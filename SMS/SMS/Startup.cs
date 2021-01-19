@@ -13,7 +13,7 @@ namespace SMS
 {
 	public class Startup
 	{
-		readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+		//readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
@@ -24,14 +24,14 @@ namespace SMS
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddCors(options =>
-			{
-				options.AddPolicy(name: MyAllowSpecificOrigins,
-								  builder =>
-								  {
-									  builder.WithOrigins("http://localhost:4200");
-								  });
-			});
+			//services.AddCors(options =>
+			//{
+			//	options.AddPolicy(name: MyAllowSpecificOrigins,
+			//					  builder =>
+			//					  {
+			//						  builder.WithOrigins("http://localhost:4200");
+			//					  });
+			//});
 
 			string key = "My secret key to validate the JWt token authentication";
 			services.AddControllersWithViews();
@@ -89,7 +89,7 @@ namespace SMS
 
 			app.UseRouting();
 
-			app.UseCors(MyAllowSpecificOrigins);
+			//app.UseCors(MyAllowSpecificOrigins);
 
 			app.UseAuthentication();
 			app.UseAuthorization();

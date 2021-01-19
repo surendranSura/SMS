@@ -21,7 +21,9 @@ export class LoginFormComponent {
   }
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders(
+      { 'Content-Type': 'application/json' }
+      )
   };
 
   private AuthUrl = 'http://localhost:51714/api/Auth/UserAuth';  // URL to web api
@@ -42,9 +44,10 @@ export class LoginFormComponent {
   Authuser()
   {
     // this.router.navigate(['/signin']);
-     this.http.post(this.AuthUrl,JSON.stringify(this._postdata),this.httpOptions).subscribe(response => {
-        //console.log(response.JSON());
-     });
+     this.http.post(this.AuthUrl,this._postdata).subscribe(resposne =>
+       {
+        console.log(Response.toString())
+       });
   }
 
 }
