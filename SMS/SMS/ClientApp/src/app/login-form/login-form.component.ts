@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'node_modules/rxjs';
-import { UserCreds } from '../UserCreds';
-import { catchError, map, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
+
 import { Router } from '@angular/router';
+import { AuthenticationService } from './service/authentication.service';
 
 @Component({
   selector: 'app-login-form',
@@ -13,48 +10,21 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent {
 
-  showFiller = false;
+  
 
-  private _postdata = {
-    username : 'test1',
-    password : 'password1'
+  constructor(private router: Router,private authService:AuthenticationService) { 
+
   }
 
-  httpOptions = {
-    headers: new HttpHeaders(
-      { 'Content-Type': 'application/json' }
-      )
-  };
-
-  private AuthUrl = 'http://localhost:51714/api/Auth/UserAuth';  // URL to web api
-
-  constructor(private http: HttpClient, private router: Router) { }
-
-  LoginType = ['Really Smart', 'Super Flexible',
-            'Super Hot', 'Weather Changer'];
-
-  model = new UserCreds(18, 'Dr IQ', '123','');
-
-  submitted = false;
-
-  onSubmit() { this.submitted = true; }
-
-  get diagnostic() { return JSON.stringify(this.model); }
-
-  Authuser()
+ 
+  authUser()
   {
-    // this.router.navigate(['/signin']);
-     this.http.post(this.AuthUrl,this._postdata).subscribe(resposne =>
-       {
-        console.log(Response.toString())
-       });
+    this.authService.getAuth("test1","password1").subscribe(res=>{
+      console.log(res);
+    },err=>{console.log(err)});
+
+     this.router.navigate(['/MainPage']);
+  
   }
 
 }
-
-/**
- * Handle Http operation that failed.
- * Let the app continue.
- * @param operation - name of the operation that failed
- * @param result - optional value to return as the observable result
- */

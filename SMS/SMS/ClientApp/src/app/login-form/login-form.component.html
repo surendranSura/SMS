@@ -1,34 +1,30 @@
-<div class="container backphoto">
-  
+<div id="backphoto">
+<div class="container-fluid">
   <div class="row">
-    <div class="column topspace">
-      <form class="box">
-        <img src="../../assets/BVloginlogo.png" style="margin-top:-50px; " class="logicon">
+    <div class="col-sm-1" ></div>
+    <div class="col-sm-4 col-lg-3" >
+      <form class="box mat-elevation-z6">
+        <img src="../../assets/BVloginlogo.png"  class="logicon">
+        <div class="inputForm">
+        <mat-form-field  appearance="outline" >
+          <mat-label>Admission Number</mat-label>
+          <input matInput #AdmissionNumber>
+        </mat-form-field>
        
-        <div class="form-group" style="margin-left:10px;margin-right:10px;margin-top:15px">
-          <label for="email">Admission Number</label>
-          <input type="email" class="form-control" id="email">  
-        </div> 
-        <div class="form-group" style="margin-left:10px;margin-right:10px;margin-top:15px">
-          <label for="pwd">Password</label>
-          <input type="password" class="form-control" id="pwd">
+        <mat-form-field  appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput #Password type="password">
+        </mat-form-field>
+        
+        <div class="submit">
+          <button class=" gradient-button gradient-button-1" (click)="authUser()">Login</button><br />
         </div>
-        <div class="form-group" style="margin-left:10px;margin-right:10px;">
-          <!-- <button type="submit" class="btn-success rounded-pill">Submit</button> -->
-          <a class="gradient-button gradient-button-1" (click)="Authuser()">Submit</a><br />
-        </div>
-              <!-- <div col-sm-1></div> -->
-              <!-- topspace -->
-              <!-- <label class="mdc-text-field mdc-text-field--filled">
-                <span class="mdc-text-field__ripple"></span>
-                <span class="mdc-floating-label" id="my-label-id">Hint text</span>
-                <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-                <span class="mdc-line-ripple"></span>
-              </label> -->
+      </div>     
       </form>
     </div>
-    <div class="column"></div>
 
+
+</div>
 </div>
 </div>
 <!-- <button type="submit" id = "btnLogin" class="btn btn-primary rounded-pill" (click)="Authuser()">Submit</button> -->

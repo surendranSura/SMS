@@ -25,14 +25,12 @@ import { MainComponent } from './components/mainpage/mainpage.component';
     MainComponent
   ],
   imports: [
-    FormsModule,
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false })
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

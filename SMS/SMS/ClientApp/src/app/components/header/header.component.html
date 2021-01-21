@@ -1,14 +1,20 @@
 <nav class="navbar navbar-expand-sm bg-light navbar-light Navborder">
-  <!-- Brand/logo -->
-  <a href="#"><!-- class="navbar-brand"  -->
-    <img src="../../../assets/menu.png" alt="logo" style="width:30px;" (click)="drawer.toggle()">
+  <a>
+    <img src="../../../assets/menu.png" alt="logo" style="width:30px;" class="menuIcon" (click)="menuToggleAction()">
+    
   </a>
   <p class="NavborHead">Menu</p>
+  <div class="NavCenter">
+    <div class="row">
+    <img src="../../../assets/BVloginlogo.png"  alt="logo" style="width:100px;">
+    </div>
+  </div>
+  
   <div class="mx-auto order-0">
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+    
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
         <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> -->
 </div>
 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">
@@ -17,20 +23,11 @@
             </a>
         </li>
     </ul>
+    <h1 style="padding-right: 10px; font-style: initial;">Welcome<br>Username!</h1>
+    <img src="../../../assets/hipster.png"  alt="profile" style="width:100px; padding-right: 10px;">
+    <img src="../../../assets/notification-bell.png"  alt="Notify" style="width:40px; padding-right: 10px;">
     <button class="btn  " style="background-color: #f2725f;color:white" type="submit">Help</button>
 </div>
-  <!-- <span></span>
-  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-  <form class="form-inline">
-    <a class="navbar-brand" href="#">
-      <img src="../../../assets/hipster.png" alt="logo" style="width:40px;">
-    </a>
-    <a class="navbar-brand" href="#">
-      <img src="../../../assets/notification-bell.png" alt="logo" style="width:40px;">
-    </a>
-    <button class="btn btn-success" type="submit">Help</button>
-  </form>
-  </div> -->
 </nav>
 
 <mat-drawer #drawer class="example-sidenav" mode="side">
