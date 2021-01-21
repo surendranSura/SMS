@@ -8,6 +8,11 @@ import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  showFiller = false;
+  shouldRun=false;
+  panelOpenState = false;
+
+
   @Output() menuToggle=new EventEmitter<boolean>();
    private menuFlag:boolean=false;
   constructor() { }

@@ -29,9 +29,9 @@ import { HeaderActionComponent } from './components/header-action/header-action.
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AngularMaterialModule,
     FormsModule,
     BrowserAnimationsModule,
-    AngularMaterialModule,
     HttpClientModule
   ],
   providers: [],
