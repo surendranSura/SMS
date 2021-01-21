@@ -12,7 +12,10 @@ color: #5f5f5f;
     top: 5%;
     left: 25%;
 }
-
+.content{
+    padding-right: 10px;
+     font-style: initial;
+}
 .menuIcon{
     cursor: pointer;
 }

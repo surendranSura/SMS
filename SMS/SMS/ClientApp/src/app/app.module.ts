@@ -14,6 +14,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/mainpage/mainpage.component';
+import { HeaderActionComponent } from './components/header-action/header-action.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MainComponent } from './components/mainpage/mainpage.component';
     RegisterComponent,
     LoginFormComponent,
     HeaderComponent,
-    MainComponent
+    MainComponent,
+    HeaderActionComponent
   ],
   imports: [
     BrowserModule,
