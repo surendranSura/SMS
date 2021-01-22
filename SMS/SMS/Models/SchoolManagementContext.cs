@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -22,7 +22,7 @@ namespace SMS.Models
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleFunction> RoleFunctions { get; set; }
         public virtual DbSet<Student> Students { get; set; }
-        public virtual DbSet<staff> staff { get; set; }
+        public virtual DbSet<Staff> Staff { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -418,7 +418,7 @@ namespace SMS.Models
                     .HasConstraintName("FK_Student_Person");
             });
 
-            modelBuilder.Entity<staff>(entity =>
+            modelBuilder.Entity<Staff>(entity =>
             {
                 entity.HasKey(e => e.EmployeeId);
 
@@ -534,7 +534,7 @@ namespace SMS.Models
                     .HasColumnName("UAN_Number");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.staff)
+                    .WithMany(p => p.Staff)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Staff_Person");
