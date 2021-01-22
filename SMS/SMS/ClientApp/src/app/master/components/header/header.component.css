@@ -16,15 +16,6 @@ background-color: white;
    margin-right: 15px;
     
 }
-.right-content{
-    width: 25%;
-    padding-top: 10px;
-   display: flex;
-   justify-content: flex-end;
-   position: absolute;
-   right: 10px;
- 
-}
 .help-btn{
     margin-top:5px;
     margin-left:15px;
