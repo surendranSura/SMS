@@ -10,7 +10,7 @@ namespace SMS.Models
         public Person()
         {
             Students = new HashSet<Student>();
-            staff = new HashSet<staff>();
+            Staff = new HashSet<Staff>();
         }
 
         public int PersonId { get; set; }
@@ -32,6 +32,6 @@ namespace SMS.Models
         public string BloodGroup { get; set; }
 
         public virtual ICollection<Student> Students { get; set; }
-        public virtual ICollection<staff> staff { get; set; }
+        public virtual ICollection<Staff> Staff { get; set; }
     }
 }
