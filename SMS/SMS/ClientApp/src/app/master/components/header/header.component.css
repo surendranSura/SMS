@@ -1,0 +1,34 @@
+.bg-app-bar{
+background-color: white;
+}
+.headerImage{
+    height:60px; 
+    margin-left:35%;
+}
+
+.menuIcon{
+    outline: none;
+      
+}
+.profile-name{
+   
+    line-height: 1.2;
+   margin-right: 15px;
+    
+}
+.right-content{
+    width: 25%;
+    padding-top: 10px;
+   display: flex;
+   justify-content: flex-end;
+   position: absolute;
+   right: 10px;
+ 
+}
+.help-btn{
+    margin-top:5px;
+    margin-left:15px;
+    background-color: rgb(242, 114, 0);
+    color: white;
+
+}

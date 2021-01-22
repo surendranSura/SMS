@@ -2,9 +2,8 @@
 
 #backphoto {  
        background-image: url(../../assets/LoginBG.png);
-     
        background-size: cover;  
-       width: 100vw; height: 100vh;
+       width: 100%; height: 100%;
 }   
 
 .box {
@@ -14,7 +13,6 @@
   margin-top:25vh;
   border: 3px solid transparent;
   background-color: white;
-
   padding-bottom:20px; 
 } 
 

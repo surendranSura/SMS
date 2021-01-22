@@ -10,11 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AngularMaterialModule } from '../angular-material.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
-import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/mainpage/mainpage.component';
-import { HeaderActionComponent } from './components/header-action/header-action.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +18,7 @@ import { HeaderActionComponent } from './components/header-action/header-action.
     SigninComponent,
     RegisterComponent,
     LoginFormComponent,
-    HeaderComponent,
-    MainComponent,
-    HeaderActionComponent
+    MainComponent   
   ],
   imports: [
     BrowserModule,

@@ -8,16 +8,18 @@ import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  showFiller = false;
   shouldRun=false;
-  panelOpenState = false;
-
+ 
+  isSmScreen=false;
 
   @Output() menuToggle=new EventEmitter<boolean>();
    private menuFlag:boolean=false;
   constructor() { }
 
   ngOnInit(): void {
+    //For Mobile page demo
+   this.isSmScreen= window.matchMedia('(max-width: 600px)').matches;
+   console.log(this.isSmScreen)
   }
 
   menuToggleAction(){

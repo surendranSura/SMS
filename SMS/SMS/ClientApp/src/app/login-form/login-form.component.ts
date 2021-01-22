@@ -23,7 +23,7 @@ export class LoginFormComponent {
       console.log(res);
     },err=>{console.log(err)});
 
-     this.router.navigate(['/MainPage']);
+     this.router.navigate(['/main']);
   
   }
 
