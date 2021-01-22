@@ -32,6 +32,5 @@ namespace SMS.Models
         public string BloodGroup { get; set; }
 
         public virtual ICollection<Student> Students { get; set; }
-        public virtual ICollection<Staff> Staff { get; set; }
-    }
+        public virtual ICollection<Staff> Staff { get; set; }    }
 }
