@@ -8,6 +8,6 @@ namespace SMS.Models
     public partial class Role
     {
         public int RoleId { get; set; }
-        public string Descr { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -39,80 +39,114 @@ namespace SMS.Models
 
             modelBuilder.Entity<Function>(entity =>
             {
-                entity.HasKey(e => e.FuncId);
-
                 entity.ToTable("Function");
 
-                entity.Property(e => e.FuncId).ValueGeneratedNever();
+                entity.Property(e => e.FunctionId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("Function_Id");
 
-                entity.Property(e => e.Descr)
+                entity.Property(e => e.Decription)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.DisplayOrder)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("Display_Order");
+
+                entity.Property(e => e.DisplayValue)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("Display_Value");
+
+                entity.Property(e => e.ParentFunctionId).HasColumnName("Parent_Function_Id");
             });
 
             modelBuilder.Entity<Person>(entity =>
             {
                 entity.ToTable("Person");
 
-                entity.Property(e => e.Id)
-                    .HasMaxLength(10)
-                    .IsFixedLength(true);
+                entity.Property(e => e.PersonId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("Person_Id");
 
-                entity.Property(e => e.AadharNumber).HasColumnName("Aadhar Number");
+                entity.Property(e => e.AadharNumber)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("Aadhar_Number");
 
                 entity.Property(e => e.BloodGroup)
+                    .IsRequired()
                     .HasMaxLength(4)
                     .IsUnicode(false)
-                    .HasColumnName("Blood Group")
+                    .HasColumnName("Blood_Group")
                     .IsFixedLength(true);
 
-                entity.Property(e => e.CurrentAddress).HasColumnName("Current Address");
+                entity.Property(e => e.CurrentAddress)
+                    .IsRequired()
+                    .HasColumnName("Current_Address");
 
-                entity.Property(e => e.DOB)
-                    .HasColumnType("datetime")
-                    .HasColumnName("D.O.B");
+                entity.Property(e => e.Dob).HasColumnType("date");
 
-                entity.Property(e => e.EmailId).HasColumnName("email id");
+                entity.Property(e => e.EmailId)
+                    .IsRequired()
+                    .HasColumnName("Email_Id");
 
                 entity.Property(e => e.FirstName)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("First Name");
+                    .HasColumnName("First_Name");
 
                 entity.Property(e => e.Gender)
+                    .IsRequired()
                     .HasMaxLength(1)
                     .IsUnicode(false)
                     .IsFixedLength(true);
 
                 entity.Property(e => e.LastName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("Last Name");
-
-                entity.Property(e => e.MiddleName)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("Middle Name");
+                    .HasColumnName("Last_Name");
 
-                entity.Property(e => e.Password).IsUnicode(false);
+                entity.Property(e => e.MiddleName)
+                    .HasMaxLength(50)
+                    .HasColumnName("Middle_Name");
 
-                entity.Property(e => e.PermanentAddress).HasColumnName("Permanent address");
+                entity.Property(e => e.Nationality)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
-                entity.Property(e => e.RoleId)
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PermanentAddress)
+                    .IsRequired()
+                    .HasColumnName("Permanent_Address");
+
+                entity.Property(e => e.Religion)
                     .HasMaxLength(10)
                     .IsFixedLength(true);
 
-                entity.Property(e => e.Salt).IsUnicode(false);
+                entity.Property(e => e.RoleId)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.Salt)
+                    .IsRequired()
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Role>(entity =>
             {
-                entity.ToTable("Role");
+                entity.Property(e => e.RoleId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("Role_Id");
 
-                entity.HasComment("User Roles !!");
-
-                entity.Property(e => e.Descr)
+                entity.Property(e => e.Description)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
@@ -122,304 +156,388 @@ namespace SMS.Models
                 entity.HasNoKey();
 
                 entity.ToTable("RoleFunction");
+
+                entity.Property(e => e.FunctionId).HasColumnName("Function_Id");
+
+                entity.Property(e => e.RoleId).HasColumnName("Role_Id");
+
+                entity.HasOne(d => d.Function)
+                    .WithMany()
+                    .HasForeignKey(d => d.FunctionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RoleFunction_Function");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany()
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RoleFunction_Roles");
             });
 
             modelBuilder.Entity<Student>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("Student");
+
+                entity.Property(e => e.StudentId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("Student_Id");
 
                 entity.Property(e => e.AdmissionDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("Admission Date");
+                    .HasColumnName("Admission_Date");
 
                 entity.Property(e => e.Class)
+                    .IsRequired()
                     .HasMaxLength(10)
                     .IsFixedLength(true);
 
                 entity.Property(e => e.EmisNumber)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("EMIS Number");
+                    .HasColumnName("EMIS_Number");
 
                 entity.Property(e => e.FathersAadharNumber)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Fathers Aadhar Number");
+                    .HasColumnName("Fathers_Aadhar_Number");
 
                 entity.Property(e => e.FathersAnnualIncome)
                     .HasColumnType("money")
-                    .HasColumnName("Fathers Annual Income");
+                    .HasColumnName("Fathers_Annual_Income");
 
-                entity.Property(e => e.FathersDesignation).HasColumnName("Fathers Designation");
+                entity.Property(e => e.FathersDesignation)
+                    .IsRequired()
+                    .HasColumnName("Fathers_Designation");
 
                 entity.Property(e => e.FathersFirstName)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Fathers First Name");
+                    .HasColumnName("Fathers_First_Name");
 
                 entity.Property(e => e.FathersLastName)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Fathers Last Name");
+                    .HasColumnName("Fathers_Last_Name");
 
                 entity.Property(e => e.FathersMiddleName)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Fathers Middle Name");
+                    .HasColumnName("Fathers_Middle_Name");
 
                 entity.Property(e => e.FathersMobileNumber)
+                    .IsRequired()
                     .HasMaxLength(10)
-                    .HasColumnName("Fathers Mobile Number")
+                    .HasColumnName("Fathers_Mobile_Number")
                     .IsFixedLength(true);
 
                 entity.Property(e => e.FathersOccupation)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Fathers Occupation");
+                    .HasColumnName("Fathers_Occupation");
 
-                entity.Property(e => e.FathersOrganization).HasColumnName("Fathers Organization");
+                entity.Property(e => e.FathersOrganization)
+                    .IsRequired()
+                    .HasColumnName("Fathers_Organization");
 
                 entity.Property(e => e.FathersSalutation)
+                    .IsRequired()
                     .HasMaxLength(3)
-                    .HasColumnName("Fathers Salutation");
+                    .HasColumnName("Fathers_Salutation");
 
                 entity.Property(e => e.FirstLanguage)
+                    .IsRequired()
                     .HasMaxLength(10)
-                    .HasColumnName("First Language")
+                    .HasColumnName("First_Language")
                     .IsFixedLength(true);
 
                 entity.Property(e => e.LegalGaurdianAadharNumber)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("LegalGaurdian Aadhar Number");
+                    .HasColumnName("Legal_Gaurdian_Aadhar_Number");
 
                 entity.Property(e => e.LegalGaurdianAnnualIncome)
                     .HasColumnType("money")
-                    .HasColumnName("LegalGaurdian Annual Income");
+                    .HasColumnName("Legal_Gaurdian_Annual_Income");
 
-                entity.Property(e => e.LegalGaurdianDesignation).HasColumnName("LegalGaurdian Designation");
+                entity.Property(e => e.LegalGaurdianDesignation)
+                    .IsRequired()
+                    .HasColumnName("Legal_Gaurdian_Designation");
 
                 entity.Property(e => e.LegalGaurdianFirstName)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("LegalGaurdian First Name");
+                    .HasColumnName("Legal_Gaurdian_First_Name");
 
                 entity.Property(e => e.LegalGaurdianLastName)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("LegalGaurdian Last Name");
+                    .HasColumnName("Legal_Gaurdian_Last_Name");
 
                 entity.Property(e => e.LegalGaurdianMiddleName)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("LegalGaurdian Middle Name");
+                    .HasColumnName("Legal_Gaurdian_Middle_Name");
 
                 entity.Property(e => e.LegalGaurdianMobileNumber)
+                    .IsRequired()
                     .HasMaxLength(10)
-                    .HasColumnName("LegalGaurdian Mobile Number")
+                    .HasColumnName("Legal_Gaurdian_Mobile_Number")
                     .IsFixedLength(true);
 
                 entity.Property(e => e.LegalGaurdianOccupation)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("LegalGaurdian Occupation");
+                    .HasColumnName("Legal_Gaurdian_Occupation");
 
-                entity.Property(e => e.LegalGaurdianOrganization).HasColumnName("LegalGaurdian Organization");
+                entity.Property(e => e.LegalGaurdianOrganization)
+                    .IsRequired()
+                    .HasColumnName("Legal_Gaurdian_Organization");
 
                 entity.Property(e => e.LegalGaurdianSalutation)
+                    .IsRequired()
                     .HasMaxLength(3)
-                    .HasColumnName("LegalGaurdian Salutation");
+                    .HasColumnName("Legal_Gaurdian_Salutation");
 
-                entity.Property(e => e.LgaurdianAadharNumber)
+                entity.Property(e => e.LocalGaurdianAadharNumber)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("LGaurdian Aadhar Number");
+                    .HasColumnName("Local_Gaurdian_Aadhar_Number");
 
-                entity.Property(e => e.LgaurdianAnnualIncome)
+                entity.Property(e => e.LocalGaurdianAnnualIncome)
                     .HasColumnType("money")
-                    .HasColumnName("LGaurdian Annual Income");
+                    .HasColumnName("Local_Gaurdian_Annual_Income");
 
-                entity.Property(e => e.LgaurdianDesignation).HasColumnName("LGaurdian Designation");
+                entity.Property(e => e.LocalGaurdianDesignation)
+                    .IsRequired()
+                    .HasColumnName("Local_Gaurdian_Designation");
 
-                entity.Property(e => e.LgaurdianFirstName)
+                entity.Property(e => e.LocalGaurdianFirstName)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("LGaurdian First Name");
+                    .HasColumnName("Local_Gaurdian_First_Name");
 
-                entity.Property(e => e.LgaurdianLastName)
+                entity.Property(e => e.LocalGaurdianLastName)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("LGaurdian Last Name");
+                    .HasColumnName("Local_Gaurdian_Last_Name");
 
-                entity.Property(e => e.LgaurdianMiddleName)
+                entity.Property(e => e.LocalGaurdianMiddleName)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("LGaurdian Middle Name");
+                    .HasColumnName("Local_Gaurdian_Middle_Name");
 
-                entity.Property(e => e.LgaurdianMobileNumber)
+                entity.Property(e => e.LocalGaurdianMobileNumber)
+                    .IsRequired()
                     .HasMaxLength(10)
-                    .HasColumnName("LGaurdian Mobile Number")
+                    .HasColumnName("Local_Gaurdian_Mobile_Number")
                     .IsFixedLength(true);
 
-                entity.Property(e => e.LgaurdianOccupation)
+                entity.Property(e => e.LocalGaurdianOccupation)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("LGaurdian Occupation");
+                    .HasColumnName("Local_Gaurdian_Occupation");
 
-                entity.Property(e => e.LgaurdianOrganization).HasColumnName("LGaurdian Organization");
+                entity.Property(e => e.LocalGaurdianOrganization).HasColumnName("Local_Gaurdian_Organization");
 
-                entity.Property(e => e.LgaurdianSalutation)
+                entity.Property(e => e.LocalGaurdianSalutation)
+                    .IsRequired()
                     .HasMaxLength(3)
-                    .HasColumnName("LGaurdian Salutation");
+                    .HasColumnName("Local_Gaurdian_Salutation");
 
                 entity.Property(e => e.MothersAadharNumber)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Mothers Aadhar Number");
+                    .HasColumnName("Mothers_Aadhar_Number");
 
                 entity.Property(e => e.MothersAnnualIncome)
                     .HasColumnType("money")
-                    .HasColumnName("Mothers Annual Income");
+                    .HasColumnName("Mothers_Annual_Income");
 
-                entity.Property(e => e.MothersDesignation).HasColumnName("Mothers Designation");
+                entity.Property(e => e.MothersDesignation)
+                    .IsRequired()
+                    .HasColumnName("Mothers_Designation");
 
                 entity.Property(e => e.MothersFirstName)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Mothers First Name");
+                    .HasColumnName("Mothers_First_Name");
 
                 entity.Property(e => e.MothersLastName)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Mothers Last Name");
+                    .HasColumnName("Mothers_Last_Name");
 
                 entity.Property(e => e.MothersMiddleName)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Mothers Middle Name");
+                    .HasColumnName("Mothers_Middle_Name");
 
                 entity.Property(e => e.MothersMobileNumber)
+                    .IsRequired()
                     .HasMaxLength(10)
-                    .HasColumnName("Mothers Mobile Number")
+                    .HasColumnName("Mothers_Mobile_Number")
                     .IsFixedLength(true);
 
                 entity.Property(e => e.MothersOccupation)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Mothers Occupation");
+                    .HasColumnName("Mothers_Occupation");
 
-                entity.Property(e => e.MothersOrganization).HasColumnName("Mothers Organization");
+                entity.Property(e => e.MothersOrganization)
+                    .IsRequired()
+                    .HasColumnName("Mothers_Organization");
 
                 entity.Property(e => e.MothersSalutation)
+                    .IsRequired()
                     .HasMaxLength(3)
-                    .HasColumnName("Mothers Salutation");
+                    .HasColumnName("Mothers_Salutation");
+
+                entity.Property(e => e.PersonId).HasColumnName("Person_Id");
 
                 entity.Property(e => e.RollNo)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasColumnName("Roll No");
+                    .HasColumnName("Roll_No");
 
                 entity.Property(e => e.SecondLanguage)
-                    .IsRequired()
                     .HasMaxLength(10)
-                    .HasColumnName("Second Language")
+                    .HasColumnName("Second_Language")
                     .IsFixedLength(true);
 
                 entity.Property(e => e.Section)
+                    .IsRequired()
                     .HasMaxLength(1)
                     .IsUnicode(false)
                     .IsFixedLength(true);
+
+                entity.HasOne(d => d.Person)
+                    .WithMany(p => p.Students)
+                    .HasForeignKey(d => d.PersonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Student_Person");
             });
 
             modelBuilder.Entity<staff>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.EmployeeId);
 
                 entity.ToTable("Staff");
 
-                entity.Property(e => e.BankAcNumber)
+                entity.Property(e => e.EmployeeId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("Employee_Id");
+
+                entity.Property(e => e.BankAccountNumber)
                     .IsRequired()
-                    .HasColumnName("Bank AC Number");
+                    .HasColumnName("Bank_Account_Number");
 
                 entity.Property(e => e.BankBranch)
                     .IsRequired()
-                    .HasColumnName("Bank Branch");
+                    .HasColumnName("Bank_Branch");
 
                 entity.Property(e => e.BankIfscCode)
                     .IsRequired()
-                    .HasColumnName("Bank IFSC Code");
+                    .HasColumnName("Bank_IFSC_Code");
 
                 entity.Property(e => e.BankName)
                     .IsRequired()
-                    .HasColumnName("Bank Name");
+                    .HasColumnName("Bank_Name");
 
                 entity.Property(e => e.Department)
+                    .IsRequired()
                     .HasMaxLength(10)
                     .IsFixedLength(true);
 
                 entity.Property(e => e.Designation)
+                    .IsRequired()
                     .HasMaxLength(10)
                     .IsFixedLength(true);
 
-                entity.Property(e => e.EmployeeId).HasColumnName("Employee ID");
-
-                entity.Property(e => e.EpfNumber).HasColumnName("EPF Number");
-
-                entity.Property(e => e.EsiNumber).HasColumnName("ESI Number");
-
-                entity.Property(e => e.FaterOccupation)
+                entity.Property(e => e.EpfNumber)
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnName("Fater Occupation");
+                    .HasColumnName("EPF_Number");
+
+                entity.Property(e => e.EsiNumber)
+                    .IsRequired()
+                    .HasColumnName("ESI_Number");
 
                 entity.Property(e => e.FatherMobileNumber)
-                    .IsRequired()
                     .HasMaxLength(10)
-                    .HasColumnName("Father Mobile Number")
+                    .HasColumnName("Father_Mobile_Number")
                     .IsFixedLength(true);
 
                 entity.Property(e => e.FatherName)
-                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Father Name");
+                    .HasColumnName("Father_Name");
+
+                entity.Property(e => e.FatherOccupation)
+                    .HasMaxLength(50)
+                    .HasColumnName("Father_Occupation");
 
                 entity.Property(e => e.JoiningDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("Joining Date");
+                    .HasColumnName("Joining_Date");
 
                 entity.Property(e => e.MotherMobileNumber)
-                    .IsRequired()
                     .HasMaxLength(10)
-                    .HasColumnName("Mother Mobile Number")
+                    .HasColumnName("Mother_Mobile_Number")
                     .IsFixedLength(true);
 
                 entity.Property(e => e.MotherName)
-                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Mother Name");
+                    .HasColumnName("Mother_Name");
 
                 entity.Property(e => e.MotherOccupation)
-                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Mother Occupation");
+                    .HasColumnName("Mother_Occupation");
 
-                entity.Property(e => e.OfficialEMailId)
+                entity.Property(e => e.OfficialEmailId)
                     .IsRequired()
-                    .HasColumnName("Official e-mail ID");
+                    .HasColumnName("Official_Email_Id");
 
                 entity.Property(e => e.PanNumber)
-                    .HasMaxLength(50)
-                    .HasColumnName("PAN Number");
-
-                entity.Property(e => e.ReportingTo).HasColumnName("Reporting To");
-
-                entity.Property(e => e.SpouceOccupation)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Spouce Occupation");
+                    .HasColumnName("PAN_Number");
 
-                entity.Property(e => e.SpoucseMobileNumber)
-                    .IsRequired()
+                entity.Property(e => e.PersonId).HasColumnName("Person_Id");
+
+                entity.Property(e => e.ReportingTo).HasColumnName("Reporting_To");
+
+                entity.Property(e => e.SpouseMobileNumber)
                     .HasMaxLength(10)
-                    .HasColumnName("Spoucse Mobile Number")
+                    .HasColumnName("Spouse_Mobile_Number")
                     .IsFixedLength(true);
 
                 entity.Property(e => e.SpouseName)
-                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Spouse Name");
+                    .HasColumnName("Spouse_Name");
+
+                entity.Property(e => e.SpouseOccupation)
+                    .HasMaxLength(50)
+                    .HasColumnName("Spouse_Occupation");
 
                 entity.Property(e => e.StaffType)
+                    .IsRequired()
                     .HasMaxLength(10)
-                    .HasColumnName("Staff Type")
+                    .HasColumnName("Staff_Type")
                     .IsFixedLength(true);
 
                 entity.Property(e => e.TeacherId)
+                    .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Teacher ID");
+                    .HasColumnName("Teacher_Id");
 
-                entity.Property(e => e.UanNumber).HasColumnName("UAN Number");
+                entity.Property(e => e.UanNumber)
+                    .IsRequired()
+                    .HasColumnName("UAN_Number");
+
+                entity.HasOne(d => d.Person)
+                    .WithMany(p => p.staff)
+                    .HasForeignKey(d => d.PersonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Staff_Person");
             });
 
             OnModelCreatingPartial(modelBuilder);
