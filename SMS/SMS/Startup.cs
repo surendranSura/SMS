@@ -2,10 +2,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using SMS.Models;
 using SMSAPI.Authentication;
 using System.Text;
 
@@ -32,6 +34,9 @@ namespace SMS
 			//						  builder.WithOrigins("http://localhost:4200");
 			//					  });
 			//});
+
+			services.AddDbContext<SchoolManagementdbcontext>(options => options.UseSqlServer(
+				Configuration.GetConnectionString("SchoolManagementConnection")));
 
 			string key = "My secret key to validate the JWt token authentication";
 			services.AddControllersWithViews();

@@ -7,7 +7,7 @@ namespace SMS.Models
 {
     public partial class Staff
     {
-        public int EmployeeId { get; set; }
+        public int StaffId { get; set; }
         public int PersonId { get; set; }
         public string StaffType { get; set; }
         public string Department { get; set; }

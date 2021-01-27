@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using SMS.Models;
 using SMSAPI.Authentication;
 using SMSAPI.Models;
 using System;
@@ -16,10 +19,12 @@ namespace SMS.Controllers
 	public class AuthController : ControllerBase
 	{
 		private readonly IJwtAuthenticationManager _JwtAuthenticationManager;
-		public AuthController(IJwtAuthenticationManager JwtAuthenticationManager)
+		private readonly SchoolManagementdbcontext _dbcontext;
+
+		public AuthController(IJwtAuthenticationManager JwtAuthenticationManager, SchoolManagementdbcontext dbcontext)
 		{
 			this._JwtAuthenticationManager = JwtAuthenticationManager;
-
+			this._dbcontext = dbcontext;
 		}
 
 		[AllowAnonymous]
@@ -28,12 +33,15 @@ namespace SMS.Controllers
 		[Consumes("application/json")]
 		public IActionResult UserAuth([FromBody]  UserCred userCred)
 		{
-			var token = _JwtAuthenticationManager.Authenticate(userCred.Username, userCred.Password);
+			Person _person = _dbcontext.Persons.Where(X => X.UserName == userCred.Username)
+				                .Include(Y => Y.Password == userCred.Password).FirstOrDefault();
 
-			if (token == null)
+			_JwtAuthenticationManager.Authenticate(ref _person);
+
+			if (_person == null)
 				return Unauthorized();
 
-			return Ok(token);
+			return Ok(_person);
 		}
 	}
 }
