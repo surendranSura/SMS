@@ -1,0 +1,36 @@
+<form (ngSubmit)="onSubmit()">
+    <div class="container" style="margin-top:30px">
+        <div class="row">
+            <div class="col-sm-4">
+                <mat-form-field appearance="standard">
+                    <mat-label>Bank</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>AC Number</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>PAN Number</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+            </div>
+
+            <div class="col-sm-4">
+                <mat-form-field appearance="standard">
+                    <mat-label>Branch Number</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>IFSC Code</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+            </div> 
+        </div>
+    </div>
+</form>
