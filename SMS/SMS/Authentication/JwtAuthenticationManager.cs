@@ -1,4 +1,7 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using SMS;
+using SMS.Models;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -11,7 +14,8 @@ namespace SMSAPI.Authentication
 {
 	public class JwtAuthenticationManager : IJwtAuthenticationManager
 	{
-		private readonly IDictionary<string, string> users = new Dictionary<string, string> { { "test1", "password1" }, { "test2", "password2" } };
+		//private readonly IDictionary<string, string> users;
+		//private readonly IDictionary<string, string> users = new Dictionary<string, string> { { "test1", "password1" }, { "test2", "password2" } };
 		private readonly string key;
 
 		public JwtAuthenticationManager(string key)
@@ -19,20 +23,15 @@ namespace SMSAPI.Authentication
 			this.key = key;
 
 		}
-		public string Authenticate(string username, string password)
+		public void Authenticate(ref Person person)
 		{
-			if (!users.Any(u => u.Key == username && u.Value == password))
-			{
-				return null;
-			}
-
 			var tokenHandler = new JwtSecurityTokenHandler();
 			var tokenKey = Encoding.ASCII.GetBytes(key);
 			var tokenDescriptor = new SecurityTokenDescriptor
 			{
 				Subject = new ClaimsIdentity(new Claim[]
 				{
-					new Claim(ClaimTypes.Name, username)
+					new Claim(ClaimTypes.Name, person.UserName)
 				}),
 				
 				Expires = DateTime.Now.AddHours(1),
@@ -44,7 +43,7 @@ namespace SMSAPI.Authentication
 			};
 
 			var token = tokenHandler.CreateToken(tokenDescriptor);
-			return tokenHandler.WriteToken(token);
+			person.AuthToken = tokenHandler.WriteToken(token);
 		}
 	}
 }
