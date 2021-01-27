@@ -10,6 +10,7 @@ export class NewStaffComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

@@ -10,19 +10,19 @@
         </mat-expansion-panel-header>
         <mat-nav-list>
             <mat-list-item>
-                <a routerLink="/signin" mat-flat-button>Student List</a>
+                Student List
+            </mat-list-item>
+            <mat-list-item routerLink="/main/student">
+                 New Student
             </mat-list-item>
             <mat-list-item>
-                <a routerLink = "/main/student"> New Student </a>
+                Student Promotion/Detain
             </mat-list-item>
             <mat-list-item>
-                <button mat-flat-button> Student Promotion/Detain </button>
+               Student Exit 
             </mat-list-item>
             <mat-list-item>
-                <button mat-flat-button> Student Exit </button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-flat-button> Student Feedback </button>
+                 Student Feedback 
             </mat-list-item>
         </mat-nav-list>
     </mat-expansion-panel>
@@ -39,17 +39,15 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-nav-list>
-            <mat-list-item>
-                <button mat-flat-button>Staff List</button>
+            <mat-list-item routerLink='/main/staff-list'>Staff List
+            </mat-list-item>
+            <mat-list-item routerLink='/main/new-staff'>New Staff
             </mat-list-item>
             <mat-list-item>
-                <a mat-flat-button routerLink='/main/new-staff'>New Staff</a>
+                e-Letter
             </mat-list-item>
             <mat-list-item>
-                <button mat-flat-button>e-Letter</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-flat-button>Staff Feedback</button>
+                Staff Feedback
             </mat-list-item>
         </mat-nav-list>
     </mat-expansion-panel>
