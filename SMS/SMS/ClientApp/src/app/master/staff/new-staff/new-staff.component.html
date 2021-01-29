@@ -1,15 +1,33 @@
 <app-header-action></app-header-action>
-<mat-tab-group>
-  <mat-tab label="Personal Details">
-    <app-personal-details></app-personal-details>
+<mat-tab-group [(selectedIndex)]="selectedTab">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Personal Details
+      <mat-icon *ngIf="formDetails[0].valid" color="primary">check_circle</mat-icon>
+    </ng-template>
+    <app-personal-details (formDetails)="setTabFormDetails($event,0)"></app-personal-details>
   </mat-tab>
+
   <mat-tab label="Employee Details">
     <app-employee-details></app-employee-details>
   </mat-tab>
+
   <mat-tab label="Employee Experience"> 
     <app-employee-experience></app-employee-experience>
   </mat-tab>
   <mat-tab label="Banking Details">  
     <app-banking-details></app-banking-details>
-  </mat-tab>
+  </mat-tab> 
 </mat-tab-group>
+
+<div class="footer-n-stu">
+   
+  <button type="button" class="gradient-button" (click)="btnMovement('bck')" [disabled]="selectedTab<=0">
+    Back
+  </button>
+  <button type="button" class="gradient-button" (click)="btnMovement('frd')" [disabled]="selectedTab>=3">
+    Next
+  </button>
+
+</div>
+{{formDetails[0].value |json}}

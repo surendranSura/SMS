@@ -14,7 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
       { path: '', component: StaffListComponent }
     ]),
     SharedModule,
-     ReactiveFormsModule
+    ReactiveFormsModule
   ]
 })
 export class StaffListModule { }

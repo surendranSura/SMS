@@ -1,0 +1,222 @@
+<form class="p-base">
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Salutation</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>D.O.B</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Religion</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>First Name</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Blood Group</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Gender</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Middle Name</mat-label>
+                    <input matInput value="" ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Nationality</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Personal Email</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Mobile Number</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>AAdhar Number</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+   
+
+    <app-address-details></app-address-details>
+    <p class="mat-title">School info</p>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Admission Number</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Roll Number</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Admision Date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Blood Group</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>class</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>First Language</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>EMSIS Number</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Section</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Second Language</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <p class="mat-title">Previous School</p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <mat-form-field appearance="standard">
+                    <mat-label>School Name</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>School Brand</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+                <mat-form-field appearance="standard">
+                    <mat-label>Passing Out School</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Year of Attendance</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+                <mat-form-field appearance="standard">
+                    <mat-label>Academic Percentage</mat-label>
+                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                </mat-form-field>
+                <mat-form-field appearance="fill" style="width:350px;">
+                    <mat-label>Reason for Leaving</mat-label>
+                    <textarea matInput></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+
+</form>

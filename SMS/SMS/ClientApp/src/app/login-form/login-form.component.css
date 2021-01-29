@@ -30,26 +30,11 @@
  .submit{
    text-align: center;
  }
-  .gradient-button {
-    padding: 15px;
-    font-weight: 500;
-    box-shadow: 0 0 20px #eee;
-    border: none;
-    border-radius: 50px; 
-    width: 80%;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}
-.gradient-button:focus{
-  
-  outline: none;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0, 0, 0, 0.541);
-}
-.gradient-button:hover{
-  
-  outline: none;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0, 0, 0, 0.541);
-}
-.gradient-button-1 {background-image: linear-gradient(to right, #65ff99 0%, #23f159 51%, #00eb44 100%)}
+ 
+ 
+ .submit-btn{
+  width: 80%;
+ }
 
 .inputForm{
   height: 60%;

@@ -6,9 +6,9 @@ import { MasterComponent } from './master.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
-import { StaffListComponent } from './staff/staff-list/staff-list.component';
+
 
 
 
@@ -17,6 +17,7 @@ import { StaffListComponent } from './staff/staff-list/staff-list.component';
     MasterComponent,
     HeaderComponent,
     SideMenuComponent
+    
   ],
   imports: [
     CommonModule,
@@ -24,7 +25,7 @@ import { StaffListComponent } from './staff/staff-list/staff-list.component';
     HttpClientModule,
     SharedModule,
     FormsModule,
-
+    ReactiveFormsModule
   ]
 })
 export class MasterModule { }

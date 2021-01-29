@@ -1,10 +1,10 @@
-<form (ngSubmit)="onSubmit()">
-    <div class="container" style="margin-top:30px">
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="p-base">
+    <div class="container-fluid" style="margin-top:5px">
         <div class="row">
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Salutation</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="Salutation">
                         <mat-option>
                             <!-- {{blood.viewValue}} *ngFor="let blood
 of bloods" [value]="blood.value" -->
@@ -13,13 +13,13 @@ of bloods" [value]="blood.value" -->
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>D.O.B</mat-label>
-                    <input matInput [matDatepicker]="picker">
+                    <input matInput [matDatepicker]="picker" formControlName="Dob">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Religion</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="Religion">
                         <mat-option>
                             <!-- {{blood.viewValue}} *ngFor="let blood
 of bloods" [value]="blood.value" -->
@@ -28,7 +28,7 @@ of bloods" [value]="blood.value" -->
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Tonuge</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="MotherTonge">
                         <mat-option>
                             <!-- {{blood.viewValue}} *ngFor="let blood
 of bloods" [value]="blood.value" -->
@@ -39,11 +39,11 @@ of bloods" [value]="blood.value" -->
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>First Name</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="FirstName" matInput value="">
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Blood Group</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="BloodGroup">
                         <mat-option>
                             <!-- {{blood.viewValue}} *ngFor="let blood
 of bloods" [value]="blood.value" -->
@@ -52,7 +52,7 @@ of bloods" [value]="blood.value" -->
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Gender</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="Gender">
                         <mat-option>
                             <!-- {{blood.viewValue}} *ngFor="let blood
 of bloods" [value]="blood.value" -->
@@ -61,7 +61,7 @@ of bloods" [value]="blood.value" -->
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Languages Known</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="LanguagesKnown">
                         <mat-option>
                             <!-- {{blood.viewValue}} *ngFor="let blood
 of bloods" [value]="blood.value" -->
@@ -72,11 +72,11 @@ of bloods" [value]="blood.value" -->
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Middle Name</mat-label>
-                    <input matInput value="" ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="MiddleName" matInput value="">
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Marital Status</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="MaritalStatus">
                         <mat-option>
                             <!-- {{blood.viewValue}} *ngFor="let blood
 of bloods" [value]="blood.value" -->
@@ -85,7 +85,7 @@ of bloods" [value]="blood.value" -->
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Nationality</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="Nationality">
                         <mat-option>
                             <!-- {{blood.viewValue}} *ngFor="let blood
 of bloods" [value]="blood.value" -->
@@ -94,94 +94,97 @@ of bloods" [value]="blood.value" -->
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Personal Email</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="PersonalEmail" matInput value="">
                 </mat-form-field>
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Last Name</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="LastName" matInput value="">
                 </mat-form-field>
+
                 <mat-form-field appearance="standard">
-                    <mat-label>Weeding Date</mat-label>
-                    <input matInput [matDatepicker]="picker">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-label>WeedingDate</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="WeedingDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
+
                 <mat-form-field appearance="standard">
                     <mat-label>Mobile Number</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="MobileNumber" matInput value="">
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>AAdhar Number</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="AadharNumber" matInput value="">
                 </mat-form-field>
             </div>
         </div>
     </div>
     <hr>
-    <p>Family Info</p>
 
-    <div class="container">
+    <p class="mat-title"> Family Info</p>
+
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Father Name</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="FatherName" matInput value="">
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Name</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="MotherName" matInput value="">
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Spouse Name</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="SpouseName" matInput value="">
                 </mat-form-field>
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Father Occupation</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="FatherOccupation" matInput value="">
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Occupation</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="MotherOccupation" matInput value="">
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Spouse Occupation</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="SouseOccupation" matInput value="">
                 </mat-form-field>
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Father Contact Number</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="FatherMobileNumber" matInput value="">
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Contact Number</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="MotherMobileNumber" matInput value="">
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Spouse Contact Number</mat-label>
-                    <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    <input formControlName="SpouseMobileNumber" matInput value="">
                 </mat-form-field>
             </div>
         </div>
     </div>
-
+    <app-address-details></app-address-details>
 </form>
-<!--
 
 
-  <p>
+
+<!-- <p>
     Form Value: {{ profileForm.value | json }}
-  </p>
+  </p> -->
 
 
-  <p>
+<!-- <p>
     Form Status: {{ profileForm.status }}
-  </p>
+  </p> -->
 
-  <p>
+<!-- <p>
     <button (click)="updateProfile()">Update Profile</button>
   </p> -->

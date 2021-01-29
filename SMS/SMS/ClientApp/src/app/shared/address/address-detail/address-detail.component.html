@@ -1,0 +1,55 @@
+
+<div class="container-fluid">
+    <p class="mat-title">{{addressLabel}}</p>
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field appearance="standard">
+                <mat-label>Line1</mat-label>
+                <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>City</mat-label>
+                <mat-select>
+                    <mat-option>
+                        <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Pincode</mat-label>
+                <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field appearance="standard">
+                <mat-label>Line2</mat-label>
+                <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>State</mat-label>
+                <mat-select>
+                    <mat-option>
+                        <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+            <mat-form-field appearance="standard">
+                <mat-label>Line3</mat-label>
+                <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Country</mat-label>
+                <mat-select>
+                    <mat-option>
+                        <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</div>

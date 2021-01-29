@@ -1,0 +1,71 @@
+<div class="container-fluid ">
+    <form class="p-base">
+        <p class="mat-title"> <mat-slide-toggle color="primary" labelPosition="before">{{titleLabel}}</mat-slide-toggle></p>
+        <div style="margin-top:5px">
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Salutation</mat-label>
+                        <mat-select>
+                            <mat-option>
+                                <!-- {{blood.viewValue}} *ngFor="let blood
+of bloods" [value]="blood.value" -->
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Mobile Number</mat-label>
+                        <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Designation</mat-label>
+                        <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>First Name</mat-label>
+                        <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>email</mat-label>
+                        <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Salary</mat-label>
+                        <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Middle Name</mat-label>
+                        <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Occupation</mat-label>
+                        <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    </mat-form-field>
+
+                    <mat-slide-toggle color="primary" labelPosition="before">Employee of BV School?</mat-slide-toggle>
+
+
+                </div>
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Company Name</mat-label>
+                        <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Aadhar Number</mat-label>
+                        <input matInput value="" required ngModel pattern="[a-zA-Z ]*">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

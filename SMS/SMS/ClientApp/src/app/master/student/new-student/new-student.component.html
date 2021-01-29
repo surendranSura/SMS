@@ -1,0 +1,23 @@
+<app-header-action></app-header-action>
+<mat-tab-group [selectedIndex]="selectedTab">
+  <mat-tab label="Student Details">
+    <app-student-details></app-student-details>
+  </mat-tab>
+  <mat-tab label="Parents/Guardian Details">
+    <app-parents-guardian-details></app-parents-guardian-details>
+  </mat-tab>
+  <mat-tab label="Documents">
+    <app-document></app-document>
+  </mat-tab>
+</mat-tab-group>
+
+<div class="footer-n-stu">
+
+  <button type="button" class="gradient-button" (click)="btnMovement('bck')" [disabled]="selectedTab<=0">
+    Back
+  </button>
+  <button type="button" class="gradient-button" (click)="btnMovement('frd')" [disabled]="selectedTab>=2">
+    Next
+  </button>
+
+</div>
