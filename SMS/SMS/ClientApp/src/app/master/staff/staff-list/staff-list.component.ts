@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Router } from '@angular/router'
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -34,14 +35,16 @@ export class StaffListComponent implements OnInit {
 //  Staff Type Employee ID Teacher ID Department Designation Status Joining Date Mobile Number e-mail
   columnsToDisplay = ['staffName','staffType', 'employeeID','department','designation','status','joiningDate','mobileNumber','eMail','actions'];
 
-  constructor() { }
-  name = new FormControl('');
+  constructor(private router:Router) { }
+  // name = new FormControl('');
 
   ngOnInit(): void {
     
   }
-  updateName() {
-    this.name.setValue('Nancy');
+  callNewStudent()
+  {
+    console.log('hai');
+    this.router.navigate(['/main/new-staff']);
   }
 
 }

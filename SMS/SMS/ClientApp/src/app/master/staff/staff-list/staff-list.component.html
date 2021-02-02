@@ -1,8 +1,20 @@
-<label>
+<div class="row headerstyle">
+    <h2>Staff List</h2>
+    
+    <div class="right-content">
+        <img src="../../../assets/filter.png" alt="profile" style="height:30px;margin-top:-10px;margin-right: 20px;">
+        <img src="../../../assets/plus.png" alt="profile" (click)="callNewStudent()" style="height:30px;margin-top:-10px;margin-right: 40px;">
+    </div>
+    </div>
+    <!-- <div class="row headerstyle">
+
+    </div> -->
+
+<!-- <label>
     <input type="text" [formControl]="name" placeholder="Search">
   </label>
   <button (click)="updateName()">click</button>
-  <p>{{name.value}}</p>
+  <p>{{name.value}}</p> -->
 <table mat-table [dataSource]="staffListData" class="mat-elevation-z6">
 
     <!--staffName-->

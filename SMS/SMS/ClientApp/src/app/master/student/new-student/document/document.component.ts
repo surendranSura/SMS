@@ -7,8 +7,11 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./document.component.css']
 })
 export class DocumentComponent implements OnInit {
-
-  constructor() { }
+  selectedFileList!: FileList;
+  
+  constructor() { 
+    this.selectedFileList = (<HTMLInputElement>document.getElementById('tCertificate')).files; 
+  }
 
   ngOnInit(): void {
   }

@@ -4,3 +4,31 @@ class="example-delete-tab-button"
 (click)="backTab(index)">
 Delete Tab
 </button> -->
+
+<div clas="container-fluid">
+    <form class="p-base">
+    <div class="row" style="width: 100%;">
+        <div class="col-sm-3" style="margin-left: 50px;margin-Top: 20px;">
+            <h2>Transfer Certificate</h2>
+            <h2 style="margin-top: 25px;">Birth Certificate</h2>
+            <h2>Passport</h2>
+            <h2>Aadhar</h2>
+            <h2>Ration Card</h2>
+            <h2>Student Visa</h2>
+            
+        </div>
+        <div class="col-sm-3" style="margin-Top: 20px;">
+            <label for="tCertificate"><h2>Attachment  <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2></label>
+            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
+            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
+            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
+            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
+            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>   
+        </div>
+        <div class="col-sm-3" style="margin-top: 20px;">
+            <input type="file" id="tCertificate" name="tCertificate" accept="image/png, image/jpeg" style="display: none;" (change)="upload($event.target.files)">    
+        </div>
+    </div>
+    
+</form>
+</div>
