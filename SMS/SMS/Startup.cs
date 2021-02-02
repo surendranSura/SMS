@@ -35,7 +35,18 @@ namespace SMS
 			//					  });
 			//});
 
-			services.AddDbContext<SchoolManagementdbcontext>(options => options.UseSqlServer(
+			services.AddSwaggerGen(options => 
+			{
+				options.SwaggerDoc("v1",
+					new Microsoft.OpenApi.Models.OpenApiInfo
+					{
+						Title = "Swagger SMS API",
+						Description = "School Management System API",
+						Version = "v1"
+					});
+			});
+
+			services.AddDbContext<SchoolManagementContext>(options => options.UseSqlServer(
 				Configuration.GetConnectionString("SchoolManagementConnection")));
 
 			string key = "My secret key to validate the JWt token authentication";
@@ -98,6 +109,15 @@ namespace SMS
 
 			app.UseAuthentication();
 			app.UseAuthorization();
+
+			app.UseSwagger();
+
+			app.UseSwaggerUI(options =>
+			{
+				options.SwaggerEndpoint("/swagger/v1/swagger.json", "School Swagger API");
+
+			});
+
 
 			app.UseEndpoints(endpoints =>
 			{

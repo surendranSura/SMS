@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 #nullable disable
 
@@ -7,14 +9,19 @@ namespace SMS.Models
 {
     public partial class Staff
     {
+        public virtual Person Person { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public int StaffId { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public int PersonId { get; set; }
         public string StaffType { get; set; }
-        public string Department { get; set; }
-        public string Designation { get; set; }
-        public string EsiNumber { get; set; }
-        public string EpfNumber { get; set; }
-        public string UanNumber { get; set; }
+        public string Esinumber { get; set; }
+        public string Epfnumber { get; set; }
+        public string Uannumber { get; set; }
         public int ReportingTo { get; set; }
         public DateTime JoiningDate { get; set; }
         public string OfficialEmailId { get; set; }
@@ -34,6 +41,17 @@ namespace SMS.Models
         public string MotherMobileNumber { get; set; }
         public string SpouseMobileNumber { get; set; }
 
-        public virtual Person Person { get; set; }
+        public int? DepartmentId { get; set; }
+        public int? DesignationId { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public virtual Department Department { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public virtual Designation Designation { get; set; }
+
+		public StaffExperience[] Experience { get; set; }
     }
 }

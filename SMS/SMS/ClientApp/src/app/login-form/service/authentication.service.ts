@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -7,10 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class AuthenticationService {
 
-  constructor(private http: HttpClient) { }
+  headers : HttpHeaders;
 
-  getAuth(username:string,password:string){
-    return this.http.get("api/api/values");///api/api/values
-   //return this.http.post("api/api/Auth/UserAuth",{username:username,password:password});
+  constructor(private http: HttpClient) { 
+    this.headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+  }
+
+  getAuth(loginJson : string){
+    return this.http.post("api/api/Auth/UserAuth", loginJson, {headers: this.headers});
   }
 }

@@ -56,6 +56,7 @@ export class PersonalDetailsComponent implements OnInit {
       SpouseMobileNumber: ['']
     }
     );
+    
     this.profileForm.valueChanges.subscribe(()=>{
       
       this.formDetails.emit({value:this.profileForm.value,valid:this.profileForm.valid});

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 #nullable disable
 
@@ -7,7 +9,14 @@ namespace SMS.Models
 {
     public partial class Student
     {
+        public virtual Person Person { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public int StudentId { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public int PersonId { get; set; }
         public string EmisNumber { get; set; }
         public string RollNo { get; set; }
@@ -24,7 +33,7 @@ namespace SMS.Models
         public string FathersOccupation { get; set; }
         public string FathersOrganization { get; set; }
         public string FathersDesignation { get; set; }
-        public decimal FathersAnnualIncome { get; set; }
+        public long FathersAnnualIncome { get; set; }
         public string FathersAadharNumber { get; set; }
         public string MothersSalutation { get; set; }
         public string MothersFirstName { get; set; }
@@ -34,7 +43,7 @@ namespace SMS.Models
         public string MothersOccupation { get; set; }
         public string MothersOrganization { get; set; }
         public string MothersDesignation { get; set; }
-        public decimal MothersAnnualIncome { get; set; }
+        public long MothersAnnualIncome { get; set; }
         public string MothersAadharNumber { get; set; }
         public string LocalGaurdianSalutation { get; set; }
         public string LocalGaurdianFirstName { get; set; }
@@ -44,7 +53,7 @@ namespace SMS.Models
         public string LocalGaurdianOccupation { get; set; }
         public string LocalGaurdianOrganization { get; set; }
         public string LocalGaurdianDesignation { get; set; }
-        public decimal LocalGaurdianAnnualIncome { get; set; }
+        public long LocalGaurdianAnnualIncome { get; set; }
         public string LocalGaurdianAadharNumber { get; set; }
         public string LegalGaurdianSalutation { get; set; }
         public string LegalGaurdianFirstName { get; set; }
@@ -54,9 +63,7 @@ namespace SMS.Models
         public string LegalGaurdianOccupation { get; set; }
         public string LegalGaurdianOrganization { get; set; }
         public string LegalGaurdianDesignation { get; set; }
-        public decimal LegalGaurdianAnnualIncome { get; set; }
+        public long LegalGaurdianAnnualIncome { get; set; }
         public string LegalGaurdianAadharNumber { get; set; }
-
-        public virtual Person Person { get; set; }
     }
 }

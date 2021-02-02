@@ -3,16 +3,16 @@
   <div class="row">
     <div class="col-sm-1" ></div>
     <div class="col-sm-4 col-lg-3" >
-      <form class="box mat-elevation-z6">
+      <form class="box mat-elevation-z6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <img src="../../assets/BVloginlogo.png"  class="logicon">
         <div class="inputForm">
         <mat-form-field  appearance="outline" >
           <mat-label>Admission Number</mat-label>
-          <input matInput #AdmissionNumber>
+          <input matInput formControlName = "username" #AdmissionNumber>
         </mat-form-field>
         <mat-form-field  appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput #Password type="password">
+          <input matInput formControlName = "password" #Password type="password">
         </mat-form-field>
         
         <div class="submit">
@@ -26,4 +26,5 @@
 </div>
 </div>
 </div>
+
 <!-- <button type="submit" id = "btnLogin" class="btn btn-primary rounded-pill" (click)="Authuser()">Submit</button> -->

@@ -15,9 +15,9 @@ namespace SMS.Controllers
 	[Authorize]
 	public class StudentController : ControllerBase
 	{
-		private readonly SchoolManagementdbcontext _dbcontext;
+		private readonly SchoolManagementContext _dbcontext;
 		
-		public StudentController(SchoolManagementdbcontext dbcontext)
+		public StudentController(SchoolManagementContext dbcontext)
 		{
 			this._dbcontext = dbcontext;
 		}
