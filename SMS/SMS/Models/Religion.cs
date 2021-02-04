@@ -9,15 +9,20 @@ namespace SMS.Models
 {
     public partial class Religion
     {
-		public Religion()
-		{
-			People = new HashSet<Person>();
-		}
+		//public Religion()
+		//{
+		//	Staff = new HashSet<Staff>();
+		//	Student = new HashSet<Student>();
+		//}
 		public int ReligionId { get; set; }
         public string ReligionName { get; set; }
 
-		[JsonIgnore]
-		[IgnoreDataMember]
-		public virtual ICollection<Person> People { get; set; }
+		//[JsonIgnore]
+		//[IgnoreDataMember]
+		//public virtual ICollection<Staff> Staff { get; set; }
+
+		//[JsonIgnore]
+		//[IgnoreDataMember]
+		//public virtual ICollection<Student> Student { get; set; }
 	}
 }

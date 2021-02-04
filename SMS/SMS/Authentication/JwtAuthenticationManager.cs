@@ -23,7 +23,7 @@ namespace SMSAPI.Authentication
 			this.key = key;
 
 		}
-		public void Authenticate(ref Person person)
+		public void Authenticate(ref UserCred userCred)
 		{
 			var tokenHandler = new JwtSecurityTokenHandler();
 			var tokenKey = Encoding.ASCII.GetBytes(key);
@@ -31,7 +31,7 @@ namespace SMSAPI.Authentication
 			{
 				Subject = new ClaimsIdentity(new Claim[]
 				{
-					new Claim(ClaimTypes.Name, person.UserName)
+					new Claim(ClaimTypes.Name, userCred.Username)
 				}),
 				
 				Expires = DateTime.Now.AddHours(1),
@@ -43,7 +43,7 @@ namespace SMSAPI.Authentication
 			};
 
 			var token = tokenHandler.CreateToken(tokenDescriptor);
-			person.AuthToken = tokenHandler.WriteToken(token);
+			userCred.AuthToken = tokenHandler.WriteToken(token);
 		}
 	}
 }

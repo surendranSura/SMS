@@ -1,0 +1,43 @@
+export class Staff {
+
+    constructor(
+        public EmailId : string,
+        public Mobile : string,
+        public  AuthToken : string,
+        public  RoleId : string,
+        public  FirstName : string,
+        public  MiddleName : string,
+        public  LastName : string,
+        public  Dob : string,
+        public  Gender : string,
+        public  AadharNumber : string,
+        public  BloodGroup : string,
+        public  NationalityId : string,
+        public  ReligionId : string,
+        public  StaffType : string,
+        public  Esinumber : string,
+        public  Epfnumber : string,
+        public  Uannumber : string,
+        public  ReportingTo : string,
+        public  JoiningDate : string,
+        public  OfficialEmailId : string,
+        public  TeacherId : string,
+        public  BankName : string,
+        public  BankBranch : string,
+        public  BankAccountNumber : string,
+        public  BankIfscCode : string,
+        public  PanNumber : string,
+        public  FatherName : string,
+        public  MotherName : string,
+        public  SpouseName : string,
+        public  FatherOccupation : string,
+        public  MotherOccupation : string,
+        public  SpouseOccupation : string,
+        public  FatherMobileNumber : string,
+        public  MotherMobileNumber : string,
+        public  SpouseMobileNumber : string,
+        public  DepartmentId : string,
+        public  DesignationId : string
+    ) { }
+  }
+  

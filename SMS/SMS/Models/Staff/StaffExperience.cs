@@ -10,6 +10,11 @@ namespace SMS.Models
 {
 	public class StaffExperience
 	{
+		//public StaffExperience()
+		//{
+		//	staff = new HashSet<Staff>();
+		//}
+
 		[JsonIgnore]
 		[IgnoreDataMember]
 		public int StaffExperienceId { get; set; }
@@ -22,5 +27,10 @@ namespace SMS.Models
 		public DateTime? To { get; set; }
 
 		public string Responsibilty { get; set; }
+
+
+		//[JsonIgnore]
+		//[IgnoreDataMember]
+		//public virtual ICollection<Staff> staff { get; set; }
 	}
 }

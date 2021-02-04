@@ -8,6 +8,6 @@ namespace SMSAPI.Authentication
 {
 	public interface IJwtAuthenticationManager
 	{
-		public void  Authenticate( ref Person person);
+		public void  Authenticate( ref UserCred userCred);
 	}
 }

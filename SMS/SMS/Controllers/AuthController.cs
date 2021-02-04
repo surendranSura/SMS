@@ -32,15 +32,34 @@ namespace SMS.Controllers
 		[Consumes("application/json")]
 		public IActionResult UserAuth([FromBody]  UserCred userCred)
 		{
-			Person _person = _dbcontext.Persons.Where(X => X.UserName == userCred.Username
-			                 && X.Password == userCred.Password).FirstOrDefault();
+			UserCred _userCred;
 
-			if (_person == null)
+			//StaffUserCred _staffUserCred = _dbcontext.StaffUserCreds.Where(X => X.Username == userCred.Username
+			//                 && X.Password == userCred.Password).FirstOrDefault();
+
+			_userCred = _dbcontext.StaffUserCreds.Where(X => X.Username == userCred.Username
+									 && X.Password == userCred.Password).Select(X => new UserCred
+									 {
+										 Username = X.Username,
+										 Password = X.Password
+									 }).FirstOrDefault();
+
+			if (_userCred == null)
+			{
+				_userCred = _dbcontext.StudentUserCreds.Where(X => X.Username == userCred.Username
+										 && X.Password == userCred.Password).Select(X => new UserCred
+										 {
+											 Username = X.Username,
+											 Password = X.Password
+										 }).FirstOrDefault();
+			}
+
+			if (_userCred == null)
 				return Unauthorized();
 
-			_JwtAuthenticationManager.Authenticate(ref _person);
+			_JwtAuthenticationManager.Authenticate(ref _userCred);
 
-			return Ok(_person);
+			return Ok(_userCred);
 		}
 	}
 }

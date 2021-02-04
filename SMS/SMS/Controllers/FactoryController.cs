@@ -57,29 +57,32 @@ namespace SMS.Controllers
 			return _dbcontext.Designations.ToList();
 		}
 		#endregion
-		// GET api/<FactoryController>/5
-		[HttpGet("{id}")]
-		public string Get(int id)
-		{
-			return "value";
-		}
 
-		// POST api/<FactoryController>
-		[HttpPost]
-		public void Post([FromBody] string value)
-		{
-		}
+		#region  EmployeeStatus
 
-		// PUT api/<FactoryController>/5
-		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		[HttpGet("EmployeeStatus")]
+		public IEnumerable<EmployeementStatus> EmployeeStatus()
 		{
+			return _dbcontext.EmployeementStatuses.ToList();
 		}
+		#endregion
 
-		// DELETE api/<FactoryController>/5
-		[HttpDelete("{id}")]
-		public void Delete(int id)
+		#region  Language
+
+		[HttpGet("Language")]
+		public IEnumerable<Languages> Language()
 		{
+			return _dbcontext.Languages.ToList();
 		}
+		#endregion
+
+		#region  Stafftype
+
+		[HttpGet("Stafftype")]
+		public IEnumerable<StaffType> Stafftype()
+		{
+			return _dbcontext.StaffTypes.ToList();
+		}
+		#endregion
 	}
 }

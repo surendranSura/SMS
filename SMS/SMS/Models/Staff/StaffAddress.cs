@@ -8,19 +8,21 @@ using System.Threading.Tasks;
 
 namespace SMS.Models
 {
-	public class Address
+	public class StaffAddress
 	{
-		public Address()
-		{
-			People = new HashSet<Person>();
-		}
+		//public StudentAddress()
+		//{
+		//	Staff = new HashSet<Staff>();
+		//	Student = new HashSet<Student>();
+		//}
 
 		[JsonIgnore]
 		[IgnoreDataMember]
-		public int AddressId { get; set; }
+		public int StaffAddressId { get; set; }
 		[JsonIgnore]
 		[IgnoreDataMember]
-		public int PersonId { get; set; }
+
+		public int StaffId { get; set; }
 		public string Line1 { get; set; }
 
 		public string Line2 { get; set; }
@@ -34,9 +36,14 @@ namespace SMS.Models
 		public string Country { get; set; }
 
 		public string Pincode { get; set; }
-		[JsonIgnore]
-		[IgnoreDataMember]
-		public virtual ICollection<Person> People { get; set; }
+
+		//[JsonIgnore]
+		//[IgnoreDataMember]
+		//public virtual ICollection<Staff> Staff { get; set; }
+
+		//[JsonIgnore]
+		//[IgnoreDataMember]
+		//public virtual ICollection<Student> Student { get; set; }
 
 	}
 }
