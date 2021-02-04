@@ -1,28 +1,28 @@
-<form class="p-base">
+<form [formGroup] = "experienceForm" class="p-base">
     <div class="container-fluid" style="margin-top:5px">
         <div class="row">
             <div class="col-sm-3">
 
                 <mat-form-field appearance="standard">
                     <mat-label>From</mat-label>
-                    <input matInput [matDatepicker]="picker">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input matInput [matDatepicker]="picker4" formControlName = "from">
+                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
                 </mat-form-field>
             </div>
 
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>To</mat-label>
-                    <input matInput [matDatepicker]="picker">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input matInput [matDatepicker]="picker5" formControlName = "to">
+                    <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                    <mat-datepicker #picker5></mat-datepicker>
                 </mat-form-field>
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="fill" style="width:350px;">
                     <mat-label>Responsiblity</mat-label>
-                    <textarea matInput></textarea>
+                    <textarea matInput formControlName = "responsiblity"></textarea>
                 </mat-form-field>
             </div>
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-experience',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeExperienceComponent implements OnInit {
 
-  constructor() { }
+  experienceForm : FormGroup;
+  @Output() formDetails=new EventEmitter();
+
+  constructor(private fb : FormBuilder) { 
+     this.experienceForm = this.fb.group(
+       {
+         from : [''],
+         to: [''],
+         responsiblity: ['']
+       })
+       this.experienceForm.valueChanges.subscribe(()=>{
+      
+        this.formDetails.emit({value:this.experienceForm.value,valid:this.experienceForm.valid});
+      
+      });
+  }
 
   ngOnInit(): void {
   }
-
+  
 }

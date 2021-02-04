@@ -8,27 +8,49 @@ import { FormGroup } from '@angular/forms';
 })
 export class NewStaffComponent implements OnInit {
 
-  formDetails:any=[{value:{},valid:false},{value:{},valid:false},{value:{},valid:false},{value:{},valid:false}];
-  
-  selectedTab:number=0;
-  
+  formDetails: boolean[] = [];
+
+  results: any = null;
+
+  conResults: any = {};
+
+  selectedTab: number = 0;
+
+
   constructor() { }
-  
+
   ngOnInit(): void {
   }
 
-  btnMovement(st:string){
-    if(st==='bck'){
+  btnMovement(st: string) {
+    if (st === 'bck') {
       this.selectedTab--;
     }
-    else if(st==='frd'){
+    else if (st === 'frd') {
+      if (this.selectedTab >= 3) {
+        this.submit();
+        return;
+      }
       this.selectedTab++;
     }
 
   }
 
-  setTabFormDetails(value:any,tab:number){  
-      this.formDetails[tab]=value;  
+  submit() {
+    if (!this.formDetails.includes(false)) {
+
+      return
+    }
+    console.log('submited');
+  }
+
+  setTabFormDetails(value: any, tab: number) {
+
+    this.formDetails[tab] = value.valid;
+
+    Object.assign(this.conResults, value.value);
+     console.log(this.conResults);
+
   }
 
 }

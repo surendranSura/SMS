@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-banking-details',
@@ -7,7 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BankingDetailsComponent implements OnInit {
 
-  constructor() { }
+  bankingFrom : FormGroup;
+  @Output() formDetails=new EventEmitter();
+
+  constructor(private fb: FormBuilder) { 
+
+    this.bankingFrom = this.fb.group({
+      bankName : [''],
+      bankAccountNumber : [''],
+      panNumber : [''],
+      branchNumber : [''],
+      bankIfscCode : ['']
+    });
+    this.bankingFrom.valueChanges.subscribe(()=>{
+      
+      this.formDetails.emit({value:this.bankingFrom.value,valid:this.bankingFrom.valid});
+    
+    });
+  }
 
   ngOnInit(): void {
   }

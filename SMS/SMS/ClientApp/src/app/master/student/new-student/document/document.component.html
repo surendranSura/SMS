@@ -10,23 +10,73 @@ Delete Tab
     <div class="row" style="width: 100%;">
         <div class="col-sm-3" style="margin-left: 50px;margin-Top: 20px;">
             <h2>Transfer Certificate</h2>
-            <h2 style="margin-top: 25px;">Birth Certificate</h2>
-            <h2>Passport</h2>
-            <h2>Aadhar</h2>
-            <h2>Ration Card</h2>
-            <h2>Student Visa</h2>
-            
         </div>
         <div class="col-sm-3" style="margin-Top: 20px;">
-            <label for="tCertificate"><h2>Attachment  <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2></label>
-            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
-            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
-            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
-            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
-            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>   
+            <label for="tCertificate"><h2>Attachment  <img src="../../../../assets/attachment.png"   class="icon" style="height: 25px;"/>&nbsp;<mat-icon *ngIf="this.t1img" color="primary">check_circle</mat-icon></h2><p style="color:red; margin-top:-10px" >{{this.t1fileName}}</p></label>
         </div>
         <div class="col-sm-3" style="margin-top: 20px;">
-            <input type="file" id="tCertificate" name="tCertificate" accept="image/png, image/jpeg" style="display: none;" (change)="upload($event.target.files)">    
+            <input type="file" id="tCertificate" (change)="Onfilesave($event,0)" style="visibility: hidden;">    
+          <!-- <div innerHtml="result"></div> name="tCertificate" accept="image/png, image/jpeg"-->
+        </div>
+    </div>
+    <div class="row" style="width: 100%;">
+        <div class="col-sm-3" style="margin-left: 50px;">
+           <h2>Birth Certificate</h2>
+        </div>
+        <div class="col-sm-3">
+            <label for="birthCertificate"> <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/>&nbsp;<mat-icon *ngIf="this.bSuccessImages" color="primary">check_circle</mat-icon></h2><p style="color:red; margin-top:-10px" >{{this.bCertificareName}}</p></label>
+        </div>
+        <div class="col-sm-3" style="margin-top: 20px;">
+           
+            <input type="file" id="birthCertificate" (change)="Onfilesave($event,1)" style="visibility: hidden;">    
+        </div>
+    </div>
+    <div class="row" style="width: 100%;">
+        <div class="col-sm-3" style="margin-left: 50px;">
+            <h2>Passport</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
+        </div>
+        <div class="col-sm-3" style="margin-top: 20px;">
+           
+          <!-- <div innerHtml="result"></div> name="tCertificate" accept="image/png, image/jpeg"-->
+        </div>
+    </div>
+    <div class="row" style="width: 100%;">
+        <div class="col-sm-3" style="margin-left: 50px;">
+            <h2>Aadhar</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
+        </div>
+        <div class="col-sm-3" style="margin-top: 20px;">
+           
+          <!-- <div innerHtml="result"></div> name="tCertificate" accept="image/png, image/jpeg"-->
+        </div>
+    </div>
+    <div class="row" style="width: 100%;">
+        <div class="col-sm-3" style="margin-left: 50px;">
+            <h2>Ration Card</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
+        </div>
+        <div class="col-sm-3" style="margin-top: 20px;">
+           
+          <!-- <div innerHtml="result"></div> name="tCertificate" accept="image/png, image/jpeg"-->
+        </div>
+    </div>
+    <div class="row" style="width: 100%;">
+        <div class="col-sm-3" style="margin-left: 50px;">
+            <h2>Student Visa</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
+        </div>
+        <div class="col-sm-3" style="margin-top: 20px;">
+           
+          <!-- <div innerHtml="result"></div> name="tCertificate" accept="image/png, image/jpeg"-->
         </div>
     </div>
     

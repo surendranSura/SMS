@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
@@ -16,9 +16,11 @@ interface Blood {
 
 export class PersonalDetailsComponent implements OnInit {
 
-  @Output() formDetails=new EventEmitter();
-  profileForm : FormGroup;
-  
+  @Output() formDetails = new EventEmitter();
+  profileForm: FormGroup;
+  addressValidFlag: boolean = false;
+  formValues = { addresses: [] };
+
 
 
   // get aliases() {
@@ -29,38 +31,39 @@ export class PersonalDetailsComponent implements OnInit {
 
     this.profileForm = this.fb.group(
       {
-      Salutation: [''],
-      Dob: [''],
-      Religion: [''],
-      MotherTonge: [''],
-      FirstName: ['',Validators.required],
-      BloodGroup: [''],
-      Gender: [''],
-      LanguagesKnown: [''],
-      MiddleName: [''],
-      MaritalStatus: [''],
-      Nationality: [''],
-      PersonalEmail: [''],
-      LastName: [''],
-      WeedingDate: [''],
-      MobileNumber: [''],
-      AadharNumber: [''],
-      FatherName: [''],
-      MotherName: [''],
-      SpouseName: [''],
-      FatherOccupation: [''],
-      MotherOccupation: [''],
-      SouseOccupation: [''],
-      FatherMobileNumber: [''],
-      MotherMobileNumber: [''],
-      SpouseMobileNumber: ['']
-    }
+        salutation: ['',Validators.required],
+        dob: ['',Validators.required],
+        religionId: ['',Validators.required],
+        motherTonge: ['',Validators.required],
+        firstName: ['', Validators.required],
+        bloodGroup: ['',Validators.required],
+        gender: ['',Validators.required],
+        emailId: ['',Validators.required],
+        languages: ['',Validators.required],
+        middleName: [''],
+        maritalStatus: ['',Validators.required],
+        nationality: ['',Validators.required],
+        personalEmail: ['',Validators.required],
+        lastName: ['',Validators.required],
+        weedingDate: [''],
+        mobileNumber: ['',Validators.required],
+        aadharNumber: ['',Validators.required],
+        fatherName: ['',Validators.required],
+        motherName: ['',Validators.required],
+        spouseName: [''],
+        fatherOccupation: ['',Validators.required],
+        motherOccupation: ['',Validators.required],
+        souseOccupation: [''],
+        fatherMobileNumber: ['',Validators.required],
+        motherMobileNumber: ['',Validators.required],
+        spouseMobileNumber: ['']
+      }
     );
-    
-    this.profileForm.valueChanges.subscribe(()=>{
-      
-      this.formDetails.emit({value:this.profileForm.value,valid:this.profileForm.valid});
-    
+
+    this.profileForm.valueChanges.subscribe(() => {
+      Object.assign(this.formValues, this.profileForm.value);
+      this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid && this.addressValidFlag) });
+
     });
   }
 
@@ -81,6 +84,13 @@ export class PersonalDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  getAddress(arrValue: any) {
+    let value = Array.from(arrValue, (obj: any) => obj.value) as never[];
+    this.formValues.addresses = value;
+    this.addressValidFlag = !((Array.from(arrValue, (obj: any) => obj.valid)).includes(false));
+    this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid && this.addressValidFlag) });
   }
 
 }
