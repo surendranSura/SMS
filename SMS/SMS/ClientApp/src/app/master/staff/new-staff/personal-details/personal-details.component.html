@@ -5,9 +5,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Salutation</mat-label>
                     <mat-select formControlName="salutation">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
+                        <mat-option *ngFor="let salutations of salutations" [value]="salutations.value">
+                            {{salutations.viewValue}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -39,14 +38,13 @@ of bloods" [value]="blood.value" -->
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>First Name</mat-label>
-                    <input formControlName="firstName" matInput >
+                    <input formControlName="firstName" matInput>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Blood Group</mat-label>
                     <mat-select formControlName="bloodGroup">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
+                        <mat-option *ngFor="let bloodGroup of blood" [value]="bloodGroup.value">
+                            {{bloodGroup.viewValue}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -72,7 +70,7 @@ of bloods" [value]="blood.value" -->
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Middle Name</mat-label>
-                    <input formControlName="middleName" matInput >
+                    <input formControlName="middleName" matInput>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Marital Status</mat-label>
@@ -94,13 +92,13 @@ of bloods" [value]="blood.value" -->
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Personal Email</mat-label>
-                    <input formControlName="emailId" matInput >
+                    <input formControlName="emailId" matInput>
                 </mat-form-field>
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Last Name</mat-label>
-                    <input formControlName="lastName" matInput >
+                    <input formControlName="lastName" matInput>
                 </mat-form-field>
 
                 <mat-form-field appearance="standard">
@@ -120,59 +118,59 @@ of bloods" [value]="blood.value" -->
                 </mat-form-field>
             </div>
         </div>
-    </div>
-    <hr>
 
-    <p class="mat-title"> Family Info</p>
+        <hr>
 
-    <div class="container-fluid">
+        <p class="mat-title"> Family Info</p>
+
+
         <div class="row">
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Father Name</mat-label>
-                    <input formControlName="fatherName" matInput >
+                    <input formControlName="fatherName" matInput>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Name</mat-label>
-                    <input formControlName="motherName" matInput >
+                    <input formControlName="motherName" matInput>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Spouse Name</mat-label>
-                    <input formControlName="spouseName" matInput >
+                    <input formControlName="spouseName" matInput>
                 </mat-form-field>
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Father Occupation</mat-label>
-                    <input formControlName="fatherOccupation" matInput >
+                    <input formControlName="fatherOccupation" matInput>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Occupation</mat-label>
-                    <input formControlName="motherOccupation" matInput >
+                    <input formControlName="motherOccupation" matInput>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Spouse Occupation</mat-label>
-                    <input formControlName="souseOccupation" matInput >
+                    <input formControlName="souseOccupation" matInput>
                 </mat-form-field>
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Father Contact Number</mat-label>
-                    <input formControlName="fatherMobileNumber" matInput >
+                    <input formControlName="fatherMobileNumber" matInput>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Contact Number</mat-label>
-                    <input formControlName="motherMobileNumber" matInput >
+                    <input formControlName="motherMobileNumber" matInput>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Spouse Contact Number</mat-label>
-                    <input formControlName="spouseMobileNumber" matInput >
+                    <input formControlName="spouseMobileNumber" matInput>
                 </mat-form-field>
             </div>
         </div>
     </div>
-   
-<app-address-details (addresses)="getAddress($event)"></app-address-details>
+
+    <app-address-details (addresses)="getAddress($event)"></app-address-details>
 </form>
 
 

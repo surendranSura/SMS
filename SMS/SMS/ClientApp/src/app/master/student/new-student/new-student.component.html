@@ -1,13 +1,17 @@
 <app-header-action></app-header-action>
 <mat-tab-group [selectedIndex]="selectedTab">
   <mat-tab label="Student Details">
-    <app-student-details></app-student-details>
+    <mat-icon *ngIf="stuFormtDetails[0]!=null && stuFormtDetails[0]" color="primary">check_circle</mat-icon>
+    <app-student-details (stuFormtDetails)="setTabFormDetails($event,0)" ></app-student-details>
   </mat-tab>
+  
   <mat-tab label="Parents/Guardian Details">
-    <app-parents-guardian-details></app-parents-guardian-details>
+    <mat-icon *ngIf="stuFormtDetails[1]!=null && stuFormtDetails[1]" color="primary">check_circle</mat-icon>
+    <app-parents-guardian-details (stuFormtDetails)="setTabFormDetails($event,1)"></app-parents-guardian-details>
   </mat-tab>
   <mat-tab label="Documents">
-    <app-document></app-document>
+    <mat-icon *ngIf="stuFormtDetails[2]!=null && stuFormtDetails[2]" color="primary">check_circle</mat-icon>
+    <app-document (stuFormtDetails)="setTabFormDetails($event,2)"></app-document>
   </mat-tab>
 </mat-tab-group>
 
@@ -16,8 +20,9 @@
   <button type="button" class="gradient-button" (click)="btnMovement('bck')" [disabled]="selectedTab<=0">
     Back
   </button>
-  <button type="button" class="gradient-button" (click)="btnMovement('frd')" [disabled]="selectedTab>=2">
-    Next
+  <button type="button" class="gradient-button" (click)="btnMovement('frd')">
+    <span *ngIf="!(selectedTab>=2)">Next</span>
+    <span *ngIf="(selectedTab>=2)">Submit</span>
   </button>
 
 </div>

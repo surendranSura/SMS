@@ -6,7 +6,7 @@ Delete Tab
 </button> -->
 
 <div clas="container-fluid">
-    <form class="p-base">
+    <form [formGroup]="documentForm" class="p-base">
     <div class="row" style="width: 100%;">
         <div class="col-sm-3" style="margin-left: 50px;margin-Top: 20px;">
             <h2>Transfer Certificate</h2>
@@ -15,7 +15,7 @@ Delete Tab
             <label for="tCertificate"><h2>Attachment  <img src="../../../../assets/attachment.png"   class="icon" style="height: 25px;"/>&nbsp;<mat-icon *ngIf="this.t1img" color="primary">check_circle</mat-icon></h2><p style="color:red; margin-top:-10px" >{{this.t1fileName}}</p></label>
         </div>
         <div class="col-sm-3" style="margin-top: 20px;">
-            <input type="file" id="tCertificate" (change)="Onfilesave($event,0)" style="visibility: hidden;">    
+            <input type="file" id="tCertificate" (change)="Onfilesave($event,0)" style="visibility: hidden;" formControlName="transferCertificate">    
           <!-- <div innerHtml="result"></div> name="tCertificate" accept="image/png, image/jpeg"-->
         </div>
     </div>
@@ -28,7 +28,7 @@ Delete Tab
         </div>
         <div class="col-sm-3" style="margin-top: 20px;">
            
-            <input type="file" id="birthCertificate" (change)="Onfilesave($event,1)" style="visibility: hidden;">    
+            <input type="file" id="birthCertificate" (change)="Onfilesave($event,1)" style="visibility: hidden;" formControlName="birthCertificate">    
         </div>
     </div>
     <div class="row" style="width: 100%;">
@@ -39,7 +39,7 @@ Delete Tab
             <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
         </div>
         <div class="col-sm-3" style="margin-top: 20px;">
-           
+            <input type="file" id="passspsorts" (change)="Onfilesave($event,2)" style="visibility: hidden;" formControlName="passport">    
           <!-- <div innerHtml="result"></div> name="tCertificate" accept="image/png, image/jpeg"-->
         </div>
     </div>
@@ -51,7 +51,7 @@ Delete Tab
             <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
         </div>
         <div class="col-sm-3" style="margin-top: 20px;">
-           
+            <input type="file" id="aadhar1" (change)="Onfilesave($event,3)" style="visibility: hidden;" formControlName="aadhar">    
           <!-- <div innerHtml="result"></div> name="tCertificate" accept="image/png, image/jpeg"-->
         </div>
     </div>
@@ -63,7 +63,7 @@ Delete Tab
             <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
         </div>
         <div class="col-sm-3" style="margin-top: 20px;">
-           
+            <input type="file" id="ratincard" (change)="Onfilesave($event,4)" style="visibility: hidden;" formControlName="rationCard">    
           <!-- <div innerHtml="result"></div> name="tCertificate" accept="image/png, image/jpeg"-->
         </div>
     </div>
@@ -75,7 +75,8 @@ Delete Tab
             <h2>Attachment   <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"/></h2>  
         </div>
         <div class="col-sm-3" style="margin-top: 20px;">
-           
+            studentVisa
+            <input type="file" id="studentvisa" (change)="Onfilesave($event,5)" style="visibility: hidden;" formControlName="studentVisa">    
           <!-- <div innerHtml="result"></div> name="tCertificate" accept="image/png, image/jpeg"-->
         </div>
     </div>

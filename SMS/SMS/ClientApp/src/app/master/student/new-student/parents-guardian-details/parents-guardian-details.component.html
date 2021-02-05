@@ -1,4 +1,5 @@
-<app-p-g-form titleLabel="Father's Details"></app-p-g-form>
-<app-p-g-form titleLabel="Mother's Details"></app-p-g-form>
-<app-p-g-form titleLabel="Local Guardian Details"></app-p-g-form>
-<app-p-g-form titleLabel="Legal Guardian Details"></app-p-g-form>
+<app-p-g-form titleLabel="Father's Details" (formValue)="getParentsInfo($event,0)"></app-p-g-form>
+<app-p-g-form titleLabel="Mother's Details"(formValue)="getParentsInfo($event,1)"></app-p-g-form>
+<app-p-g-form titleLabel="Local Guardian Details" (formValue)="getParentsInfo($event,2)"></app-p-g-form>
+<app-p-g-form titleLabel="Legal Guardian Details" (formValue)="getParentsInfo($event,3)"></app-p-g-form>
+

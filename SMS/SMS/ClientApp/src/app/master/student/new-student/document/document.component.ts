@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { Component, OnInit,Output,EventEmitter } from '@angular/core';
+import {FormBuilder, FormControl,FormGroup,Validator} from '@angular/forms';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { ConstantPool } from '@angular/compiler';
 import { SSL_OP_NO_TLSv1_1 } from 'constants';
 import { ShowHideDirective } from '@angular/flex-layout';
 import { $ } from 'protractor';
+
 
 @Component({
   selector: 'app-document',
@@ -12,6 +13,8 @@ import { $ } from 'protractor';
   styleUrls: ['./document.component.css']
 })
 export class DocumentComponent implements OnInit {
+  @Output() stuFormDetails = new EventEmitter();
+  documentForm : FormGroup;
   selectedFile: any= null;
   result:any=null;
   t1img:boolean=false;
@@ -23,8 +26,22 @@ export class DocumentComponent implements OnInit {
   RationCardName:any =null;
   all_files: File[] = Array();
   
-  constructor(private http:HttpClient) { 
-    
+  constructor(private http:HttpClient,private fb :FormBuilder) { 
+    this.documentForm =this.fb.group({
+     transferCertificate : ['']
+		,birthCertificate : ['']
+		,passport : ['']
+		,aadhar : ['']
+		,rationCard : ['']
+		,studentVisa : ['']
+    });
+    this.documentForm.valueChanges.subscribe(()=>{
+    this.stuFormDetails.emit({value:this.documentForm,valid:this.documentForm.valid}); 
+    })
+  }
+  onSubmit()
+  {
+    console.warn(this.documentForm.value);
   }
   Onfilesave(event: any,count:any)
   {

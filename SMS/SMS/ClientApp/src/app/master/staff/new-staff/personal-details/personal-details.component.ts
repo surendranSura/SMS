@@ -2,12 +2,11 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { SmsConstant } from 'src/app/shared/constantValues';
 
 
-interface Blood {
-  value: string;
-  viewValue: string;
-}
+
+
 @Component({
   selector: 'app-personal-details',
   templateUrl: './personal-details.component.html',
@@ -20,6 +19,8 @@ export class PersonalDetailsComponent implements OnInit {
   profileForm: FormGroup;
   addressValidFlag: boolean = false;
   formValues = { addresses: [] };
+  blood = SmsConstant.bloods;
+  salutations =SmsConstant.salutations;
 
 
 
