@@ -14,7 +14,13 @@ export class EmployeeDetailsComponent implements OnInit {
 
   empDetailsForm : FormGroup;
   staffId=SmsConstant.staffType;  
-department = SmsConstant.department;
+  department = SmsConstant.department;
+  designation = SmsConstant.designation;
+  employeementStatus= SmsConstant.employmentStatus;
+  role = SmsConstant.role;
+  education = SmsConstant.education;
+  reportingTo =SmsConstant.reportingTo;
+  active_value = SmsConstant.active;
 
 
 
