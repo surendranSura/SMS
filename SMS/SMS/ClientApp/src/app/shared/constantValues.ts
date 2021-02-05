@@ -52,17 +52,23 @@ export class SmsConstant {
         {value: 2, viewValue: 'English'},
         {value: 3, viewValue: 'Telugu'}
       ];
-      static readonly  City = [
+      static readonly  city = [
         {value: 0, viewValue: '--select none--'},
         {value: 1, viewValue: 'Coimbatore'},
         {value: 2, viewValue: 'Pollachi'},
-        {value: 3, viewValue: 'Telugu'}
+        {value: 3, viewValue: 'OOty'}
       ];
-      static readonly  Country = [
+      static readonly  state = [
+        {value: 0, viewValue: '--select none--'},
+        {value: 1, viewValue: 'Tamil Nadu'},
+        {value: 2, viewValue: 'Kerala'},
+        {value: 3, viewValue: 'Aandhra'}
+      ];
+      static readonly  country = [
         {value: 0, viewValue: '--select none--'},
         {value: 1, viewValue: 'India'}
       ];
-      static readonly  class = [
+      static readonly  classes = [
         {value: 0, viewValue: '--select none--'},
         {value: 1, viewValue: '1st'},
         {value: 2, viewValue: '2nd'},
@@ -86,6 +92,58 @@ export class SmsConstant {
         {value: 2, viewValue: '2019'},
         {value: 3, viewValue: '2018'}
       ];
+      static readonly  yearOfAttendence = [
+        {value: 0, viewValue: '--select none--'},
+        {value: 1, viewValue: '2020'},
+        {value: 2, viewValue: '2019'},
+        {value: 3, viewValue: '2018'}
+      ]
+      static readonly  staffType = [
+        {value: 0, viewValue: '--select none--'},
+        {value: 1, viewValue: 'System Admin'},
+        {value: 2, viewValue: 'Teacher'},
+        {value: 3, viewValue: 'Hod'}
+      ]
+      static readonly  designation = [
+        {value: 0, viewValue: '--select none--'},
+        {value: 1, viewValue: 'System Admin'},
+        {value: 2, viewValue: 'Teacher'},
+        {value: 3, viewValue: 'Hod'}
+      ]
+      static readonly  department = [
+        {value: 0, viewValue: '--select none--'},
+        {value: 1, viewValue: 'Tamil'},
+        {value: 2, viewValue: 'English'},
+        {value: 3, viewValue: 'Maths'},
+        {value: 4, viewValue: 'Science'},
+        {value: 5, viewValue: 'Social'}
+      ]
+      static readonly  education = [
+        {value: 0, viewValue: '--select none--'},
+        {value: 1, viewValue: '10th'},
+        {value: 2, viewValue: '12th'},
+        {value: 3, viewValue: 'MPhil'}
+      ]
+      static readonly  employmentStatus = [
+        {value: 0, viewValue: '--select none--'}
+      ]
+      static readonly  role = [
+        {value: 0, viewValue: '--select none--'},
+        {value: 1, viewValue: 'one'},
+        {value: 2, viewValue: 'two'}
+      ]
+      static readonly  gender = [
+        {value: 0, viewValue: '--select none--'},
+        {value: 1, viewValue: 'male'},
+        {value: 2, viewValue: 'female'}
+      ]
+      static readonly  reportingTo = [
+        {value: 0, viewValue: '--select none--'},
+        {value: 1, viewValue: 'Hod'},
+        {value: 2, viewValue: 'Principal'}
+      ]
+
+
 
 
 }

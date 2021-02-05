@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, EventEmitter, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { SmsConstant } from '../../constantValues';
 
 @Component({
   selector: 'app-address-detail',
@@ -16,7 +17,9 @@ export class AddressDetailComponent implements OnInit, OnChanges {
   @Output() pFlagEmit = new EventEmitter<boolean>();
 
   form: FormGroup;
-
+  city =SmsConstant.city;
+  state =SmsConstant.state;
+  country =SmsConstant.country;
 
   constructor(fb: FormBuilder) {
     this.form = fb.group(

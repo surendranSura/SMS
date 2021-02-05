@@ -21,6 +21,14 @@ export class PersonalDetailsComponent implements OnInit {
   formValues = { addresses: [] };
   blood = SmsConstant.bloods;
   salutations =SmsConstant.salutations;
+  maritalstatus =SmsConstant.maritalStatus;
+  religion =SmsConstant.religion;
+  gender = SmsConstant.gender;
+  nationality = SmsConstant.nationality;
+  motherTon = SmsConstant.motherTongue;
+  languageknown = SmsConstant.languageKnown;
+
+
 
 
 

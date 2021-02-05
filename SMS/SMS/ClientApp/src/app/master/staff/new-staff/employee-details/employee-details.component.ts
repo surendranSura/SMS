@@ -2,6 +2,7 @@ import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { SmsConstant } from 'src/app/shared/constantValues';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
@@ -12,6 +13,10 @@ export class EmployeeDetailsComponent implements OnInit {
   @Output() formDetails=new EventEmitter();
 
   empDetailsForm : FormGroup;
+  staffId=SmsConstant.staffType;  
+department = SmsConstant.department;
+
+
 
   constructor(private fb: FormBuilder) {     
     
