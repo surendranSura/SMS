@@ -6,12 +6,11 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Salutation</mat-label>
                     <mat-select formControlName="salutation">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
+                        <mat-option *ngFor="let salutation of salutations" [value]="salutation.value">
+                            {{salutation.viewValue}}
                         </mat-option>
                     </mat-select>
-                </mat-form-field>
+                </mat-form-field>       
                 <mat-form-field appearance="standard">
                     <mat-label>D.O.B</mat-label>
                     <input matInput [matDatepicker]="picker" formControlName="dob">
@@ -21,9 +20,8 @@ of bloods" [value]="blood.value" -->
                 <mat-form-field appearance="standard">
                     <mat-label>Religion</mat-label>
                     <mat-select formControlName="religionId">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
+                        <mat-option  *ngFor="let religionId of religion" [value]="religionId.value">
+                            {{religionId.viewValue}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -36,19 +34,17 @@ of bloods" [value]="blood.value" -->
                 <mat-form-field appearance="standard">
                     <mat-label>Blood Group</mat-label>
                     <mat-select formControlName="bloodGroup">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
+                        <mat-option *ngFor="let bloodGroup of blood" [value]="bloodGroup.viewValue">
+                            {{bloodGroup.viewValue}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Gender</mat-label>
                     <mat-select formControlName="gender">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
-                        </mat-option>
+                        <mat-option *ngFor ="let gender of gender " [value]="gender.value">
+                            {{gender.viewValue}} 
+                           </mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
@@ -60,10 +56,9 @@ of bloods" [value]="blood.value" -->
                 <mat-form-field appearance="standard">
                     <mat-label>Nationality</mat-label>
                     <mat-select formControlName="nationalityId">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
-                        </mat-option>
+                        <mat-option *ngFor="let national of nationality" [value]="national.value" >
+                            {{national.viewValue}} 
+                       </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
@@ -113,11 +108,10 @@ of bloods" [value]="blood.value" -->
                     <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
-                    <mat-label>Blood Group</mat-label>
-                    <mat-select formControlName="bloodGroup">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
+                    <mat-label>First Language</mat-label>
+                    <mat-select formControlName="firstLanguage">
+                        <mat-option *ngFor ="let firstLanguage of firstLang " [value]="firstLanguage.value">
+                            {{firstLanguage.viewValue}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -126,18 +120,27 @@ of bloods" [value]="blood.value" -->
                 <mat-form-field appearance="standard">
                     <mat-label>class</mat-label>
                     <mat-select formControlName="class">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
-                        </mat-option>
+                        <mat-option *ngFor="let classes of class" [value]="classes.value" >
+                            {{classes.viewValue}} 
+                       </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
-                    <mat-label>First Language</mat-label>
-                    <mat-select formControlName="firstLanguage">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
+                    <mat-label>Second Language</mat-label>
+                    <mat-select formControlName="secondLanguage">
+                        <mat-option *ngFor ="let secondLanguage of secndLanguage " [value]="secondLanguage.value">
+                            {{secondLanguage.viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+               
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Section</mat-label>
+                    <mat-select formControlName="section">
+                        <mat-option *ngFor ="let section of section " [value]="section.value">
+                            {{section.viewValue}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -145,26 +148,7 @@ of bloods" [value]="blood.value" -->
                     <mat-label>EMSIS Number</mat-label>
                     <input matInput formControlName="emisNumber">
                 </mat-form-field>
-            </div>
-            <div class="col-sm-3">
-                <mat-form-field appearance="standard">
-                    <mat-label>Section</mat-label>
-                    <mat-select formControlName="section">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="standard">
-                    <mat-label>Second Language</mat-label>
-                    <mat-select formControlName="secondLanguage">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+               
             </div>
         </div>
 
@@ -179,9 +163,8 @@ of bloods" [value]="blood.value" -->
                 <mat-form-field appearance="standard">
                     <mat-label>School Brand</mat-label>
                     <mat-select formControlName="schoolBrand">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
+                        <mat-option *ngFor ="let schoolBrand of sclBrand " [value]="schoolBrand.value">
+                            {{schoolBrand.viewValue}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -190,18 +173,16 @@ of bloods" [value]="blood.value" -->
                 <mat-form-field appearance="standard">
                     <mat-label>Passing Out School</mat-label>
                     <mat-select formControlName="passingOutSchool">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
+                        <mat-option *ngFor ="let passingOutSchool of pasOutScl " [value]="passingOutSchool.value">
+                            {{passingOutSchool.viewValue}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Year of Attendance</mat-label>
                     <mat-select formControlName="yearofattendence">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
+                        <mat-option *ngFor ="let yearofattendence of yearOfAttends " [value]="yearofattendence.value">
+                            {{yearofattendence.viewValue}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

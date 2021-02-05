@@ -18,7 +18,7 @@ export class PersonalDetailsComponent implements OnInit {
   @Output() formDetails = new EventEmitter();
   profileForm: FormGroup;
   addressValidFlag: boolean = false;
-  formValues = { addresses: [] };
+  formValues = { addresses: [''] };
   blood = SmsConstant.bloods;
   salutations =SmsConstant.salutations;
   maritalstatus =SmsConstant.maritalStatus;
@@ -51,8 +51,7 @@ export class PersonalDetailsComponent implements OnInit {
         languages: ['',Validators.required],
         middleName: [''],
         maritalStatus: ['',Validators.required],
-        nationality: ['',Validators.required],
-        personalEmail: ['',Validators.required],
+        nationality: [''],
         lastName: ['',Validators.required],
         weedingDate: [''],
         mobileNumber: ['',Validators.required],

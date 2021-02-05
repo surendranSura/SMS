@@ -1,5 +1,7 @@
 import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { constants } from 'buffer';
+import { SmsConstant } from 'src/app/shared/constantValues';
 
 @Component({
   selector: 'app-banking-details',
@@ -10,7 +12,7 @@ export class BankingDetailsComponent implements OnInit {
 
   bankingFrom : FormGroup;
   @Output() formDetails=new EventEmitter();
-
+ bank = SmsConstant.bank;
   constructor(private fb: FormBuilder) { 
 
     this.bankingFrom = this.fb.group({

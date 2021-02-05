@@ -134,7 +134,10 @@ export class SmsConstant {
     { value: 3, viewValue: 'MPhil' }
   ]
   static readonly employmentStatus = [
-    { value: 0, viewValue: '--select none--' }
+    { value: 0, viewValue: '--select none--' },
+    { value: 1, viewValue: 'Emp o1' },
+    { value: 2, viewValue: 'Emp 02' },
+    { value: 3, viewValue: 'Emp 03' }
   ]
   static readonly role = [
     { value: 0, viewValue: '--select none--' },
@@ -143,8 +146,8 @@ export class SmsConstant {
   ]
   static readonly gender = [
     { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'male' },
-    { value: 2, viewValue: 'female' }
+    { value: 1, viewValue: 'Male' },
+    { value: 2, viewValue: 'Female' }
   ]
   static readonly reportingTo = [
     { value: 0, viewValue: '--select none--' },

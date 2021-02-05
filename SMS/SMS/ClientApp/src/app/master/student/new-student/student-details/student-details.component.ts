@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SmsConstant } from 'src/app/shared/constantValues';
 
 @Component({
   selector: 'app-student-details',
@@ -9,8 +10,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class StudentDetailsComponent implements OnInit {
   @Output() stuFormtDetails = new EventEmitter();
   studentProfileForm: FormGroup;
-  addressValidFlag: boolean = false;
   formValues = { addresses: [] };//refer to student details parameters
+  addressValidFlag: boolean = false;
+  blood = SmsConstant.bloods;
+  salutations =SmsConstant.salutations;
+  maritalstatus =SmsConstant.maritalStatus;
+  religion =SmsConstant.religion;
+  gender = SmsConstant.gender;
+  nationality = SmsConstant.nationality;
+  motherTon = SmsConstant.motherTongue;
+  languageknown = SmsConstant.languageKnown;
+  class = SmsConstant.classes
+  firstLang =SmsConstant.firstLanguage;
+  secndLanguage =SmsConstant.secondLanguage;
+  section =SmsConstant.section;
+  sclBrand =SmsConstant.schoolBrand;
+  pasOutScl =SmsConstant.passingOutSchool;
+  yearOfAttends =SmsConstant.yearOfAttendence;
 
   constructor(private fb: FormBuilder) {
     this.studentProfileForm = this.fb.group({

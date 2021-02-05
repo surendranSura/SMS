@@ -5,10 +5,9 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Bank</mat-label>
                     <mat-select formControlName = "bankName">
-                        <mat-option>
-                            <!-- {{blood.viewValue}} *ngFor="let blood
-of bloods" [value]="blood.value" -->
-                        </mat-option>
+                        <mat-option *ngFor="let bankName of bank" [value]="bankName.value" >
+                            {{bankName.viewValue}} 
+                       </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
