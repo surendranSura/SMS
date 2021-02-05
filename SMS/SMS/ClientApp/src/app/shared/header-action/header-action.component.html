@@ -1,6 +1,8 @@
 
 <div class="row headerstyle">
-<h2>Create New Staff</h2>
+    
+<h2 *ngIf="index===0">Create New Student</h2>
+<h2 *ngIf="index===1">Create New Staff</h2>
 
 <div class="right-content">
     <img src="../../../assets/visible.png" width="30px" (click)="staffListOpen()"/>

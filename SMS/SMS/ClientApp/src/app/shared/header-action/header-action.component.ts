@@ -1,4 +1,4 @@
-import {  Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router'
 @Component({
   selector: 'app-header-action',
@@ -7,14 +7,21 @@ import { Router } from '@angular/router'
 })
 export class HeaderActionComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  @Input() index: number = 0;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  staffListOpen(){
+  staffListOpen() {
     // this.stafflistOpen=true;
     // this.stafflist.emit(this.stafflistOpen);
-    this.router.navigate(['/main/staff-list']);
+    if (this.index === 1) {
+      this.router.navigate(['/main/staff-list']);
+    }
+    else if (this.index === 0) {
+      this.router.navigate(['/main/student-list']);
+    }
   }
 }

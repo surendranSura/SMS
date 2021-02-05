@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./staff-list.component.css']
 })
 export class StaffListComponent implements OnInit {
+ 
   staffListData = [
     {
       'staffName':'hai',

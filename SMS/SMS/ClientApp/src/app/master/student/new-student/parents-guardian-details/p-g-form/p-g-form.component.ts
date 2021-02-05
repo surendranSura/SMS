@@ -27,15 +27,27 @@ export class PGFormComponent implements OnInit {
       , company: ['']
       , designation: ['']
       , annualIncome: ['']
+      , bvEmployee: ['']
     });
 
     this.parents.valueChanges.subscribe(() => {
       this.formValue.emit({
         value: this.parents.value, valid: this.parents.valid
-      })});
-    }
-    
+      })
+    });
+  }
+
   ngOnInit(): void {
+  }
+
+  toggle() {
+
+    if (this.parents.disabled) {
+      this.parents.enable();
+      return;
+    }
+    this.parents.reset();
+    this.parents.disable();
   }
 
 }

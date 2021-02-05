@@ -1,6 +1,6 @@
 <div class="container-fluid ">
     <form  [formGroup]="parents" class="p-base">
-        <p class="mat-title"> <mat-slide-toggle color="primary" labelPosition="before">{{titleLabel}}</mat-slide-toggle></p>
+        <p class="mat-title"> <mat-slide-toggle color="primary" labelPosition="before" [checked]="true" (click)="toggle()">{{titleLabel}}</mat-slide-toggle></p>
         <div style="margin-top:5px">
 
             <div class="row">
@@ -47,7 +47,7 @@ of bloods" [value]="blood.value" -->
                         <input matInput formControlName="occupation">
                     </mat-form-field>
 
-                    <mat-slide-toggle color="primary" labelPosition="before">Employee of BV School?</mat-slide-toggle>
+                    <mat-slide-toggle color="primary" labelPosition="before" formControlName="bvEmployee">Employee of BV School?</mat-slide-toggle>
 
 
                 </div>
