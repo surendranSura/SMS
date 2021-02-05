@@ -1,43 +1,56 @@
-export class Staff {
+import { StaffExperience } from "./staff-experience";
+import { Address } from "../../shared/address/address";
 
-    constructor(
-        public EmailId : string,
-        public Mobile : string,
-        public  AuthToken : string,
-        public  RoleId : string,
-        public  FirstName : string,
-        public  MiddleName : string,
-        public  LastName : string,
-        public  Dob : string,
-        public  Gender : string,
-        public  AadharNumber : string,
-        public  BloodGroup : string,
-        public  NationalityId : string,
-        public  ReligionId : string,
-        public  StaffType : string,
-        public  Esinumber : string,
-        public  Epfnumber : string,
-        public  Uannumber : string,
-        public  ReportingTo : string,
-        public  JoiningDate : string,
-        public  OfficialEmailId : string,
-        public  TeacherId : string,
-        public  BankName : string,
-        public  BankBranch : string,
-        public  BankAccountNumber : string,
-        public  BankIfscCode : string,
-        public  PanNumber : string,
-        public  FatherName : string,
-        public  MotherName : string,
-        public  SpouseName : string,
-        public  FatherOccupation : string,
-        public  MotherOccupation : string,
-        public  SpouseOccupation : string,
-        public  FatherMobileNumber : string,
-        public  MotherMobileNumber : string,
-        public  SpouseMobileNumber : string,
-        public  DepartmentId : string,
-        public  DesignationId : string
-    ) { }
-  }
-  
+export class Staff {
+      salutation: string | undefined;
+      dob: Date | undefined;
+      religionId: string | undefined;
+      motherTonge: string | undefined;
+      firstName: string | undefined;
+      bloodGroup: string | undefined;
+      gender: string | undefined;
+      emailId: string | undefined;
+      languages: string | undefined;
+      middleName: string | undefined;
+      maritalStatus: string | undefined;
+      nationality: string | undefined;
+      personalEmail: string | undefined;
+      lastName: string | undefined;
+      weedingDate: string | undefined;
+      mobileNumber: string | undefined;
+      aadharNumber: string | undefined;
+      fatherName: string | undefined;
+      motherName: string | undefined;
+      spouseName: string | undefined;
+      fatherOccupation: string | undefined;
+      motherOccupation: string | undefined;
+      souseOccupation: string | undefined;
+      fatherMobileNumber: string | undefined;
+      motherMobileNumber: string | undefined;
+      spouseMobileNumber: string | undefined;
+      teacherId : string | undefined;
+      employeeId : string | undefined;
+      educationId : string | undefined;
+      officialEmailId : string | undefined;
+      esiNumber : string | undefined;
+      staffId : string | undefined;
+      employeementstatusId : string | undefined;
+      reportingTo : string | undefined;
+      epfNumber : string | undefined;
+      departmentId : string | undefined;
+      joiningDate : string | undefined;
+      activeId : string | undefined;
+      uanNumber : string | undefined;
+      designationId : string | undefined;
+      roleId : string | undefined;
+      bankName : string | undefined;
+      bankAccountNumber : string | undefined;
+      panNumber : string | undefined;
+      branchNumber : string | undefined;
+      bankIfscCode : string | undefined;
+      from : Date | undefined;
+        to: Date | undefined;
+        responsiblity: Date | undefined;
+     // staffExperience : StaffExperience[] | undefined;
+      addresses : Address[] | undefined;
+}

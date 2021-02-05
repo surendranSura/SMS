@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SMS.Models
 {
-	public class StaffAddress
+	public class StudentAddress
 	{
 		//public StudentAddress()
 		//{
@@ -18,12 +18,11 @@ namespace SMS.Models
 
 		[JsonIgnore]
 		[IgnoreDataMember]
-		public int StaffAddressId { get; set; }
-
+		public int StudentAddressId { get; set; }
 		[JsonIgnore]
 		[IgnoreDataMember]
 
-		public int StaffId { get; set; }
+		public int StudentId { get; set; }
 		public string Line1 { get; set; }
 
 		public string Line2 { get; set; }

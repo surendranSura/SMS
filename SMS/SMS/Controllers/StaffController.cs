@@ -12,7 +12,8 @@ namespace SMS.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	[Authorize]
+	//[Authorize]
+	[AllowAnonymous]
 	public class StaffController : ControllerBase
 	{
 		private readonly SchoolManagementContext _dbcontext;

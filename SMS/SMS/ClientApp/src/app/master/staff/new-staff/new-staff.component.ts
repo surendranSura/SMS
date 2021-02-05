@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { StaffrestApiService } from '../staffrest-api.service';
 
 @Component({
   selector: 'app-new-staff',
@@ -17,7 +18,7 @@ export class NewStaffComponent implements OnInit {
   selectedTab: number = 0;
 
 
-  constructor() { }
+  constructor(private staffApiService: StaffrestApiService) { }
 
   ngOnInit(): void {
   }
@@ -38,9 +39,10 @@ export class NewStaffComponent implements OnInit {
 
   submit() {
     if (!this.formDetails.includes(false)) {
-
-      return
+      
+      return;
     }
+    this.staffApiService.createStaff(this.conResults);
     console.log('submited');
   }
 

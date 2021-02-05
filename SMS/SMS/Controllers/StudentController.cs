@@ -12,7 +12,8 @@ namespace SMS.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	[Authorize]
+	[AllowAnonymous]
+	//[Authorize]
 	public class StudentController : ControllerBase
 	{
 		private readonly SchoolManagementContext _dbcontext;
@@ -37,6 +38,7 @@ namespace SMS.Controllers
 
 		// POST api/<StudentController>
 		[HttpPost]
+		[AllowAnonymous]
 		public void Post([FromBody] Student student)
 		{
 			_dbcontext.Students.Add(student);

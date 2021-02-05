@@ -58,7 +58,10 @@ namespace SMS.Models
         [JsonIgnore]
         [IgnoreDataMember]
         public int StaffAddressId { get; set; }
-        public StaffAddress[] Addresses { get; set; }
+
+        //public StaffAddress[] Addresses { get; set; }
+
+        public virtual ICollection<StaffAddress> Addresses { get; set; }
 
         public string TeacherId { get; set; }
 
@@ -92,7 +95,9 @@ namespace SMS.Models
         [IgnoreDataMember]
         public int StaffExperienceId { get; set; }
 
-        public StaffExperience[] Experience { get; set; }
+        //public StaffExperience[] Experience { get; set; }
+
+        public virtual ICollection<StaffExperience> experiences { get; set; }
 
         [JsonIgnore]
         [IgnoreDataMember]
