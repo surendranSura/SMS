@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
 import { FormGroup, FormBuilder, Validator, FormControl } from '@angular/forms';
+import { SmsConstant } from 'src/app/shared/constantValues';
 
 @Component({
   selector: 'app-p-g-form',
@@ -14,6 +15,7 @@ export class PGFormComponent implements OnInit {
   @Output() formValue = new EventEmitter<any>();
   @Output() pflagEmit = new EventEmitter<boolean>();
   parents: FormGroup;
+  salutations=SmsConstant.salutations;
   constructor(private fb: FormBuilder) {
     this.parents = fb.group({
       salutation: ['']
