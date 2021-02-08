@@ -47,13 +47,12 @@ export class StaffrestApiService {
 
   // HttpClient API post() method => Create Staff
   createStaff(staff : Staff): Observable<Staff> {
-    console.log(JSON.stringify(staff));
-    console.log(staff.firstName);
-    return this.http.post<Staff>(this.apiURL, JSON.stringify(staff), this.httpOptions)
+    return this.http.post<Staff>(this.apiURL,staff, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
+
   }  
 
   // HttpClient API put() method => Update Staff

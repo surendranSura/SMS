@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { StaffrestApiService } from '../staffrest-api.service';
 
 @Component({
@@ -38,11 +37,14 @@ export class NewStaffComponent implements OnInit {
   }
 
   submit() {
-    if (!this.formDetails.includes(false)) {
-      
+    console.log(this.formDetails)
+   if (this.formDetails.includes(false)) {
       return;
     }
-    this.staffApiService.createStaff(this.conResults);
+
+    this.staffApiService.createStaff(this.conResults).subscribe(_=>{
+      
+    });
     console.log('submited');
   }
 
