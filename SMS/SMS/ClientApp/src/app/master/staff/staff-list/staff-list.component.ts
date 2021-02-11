@@ -13,7 +13,7 @@ export class StaffListComponent implements OnInit {
     {
       'staffName':'hai',
       'staffType':'hai',
-       'employeeID':'hai',
+       'employeeID':1,
        'department':'hai',
        'designation':'hai',
        'status':'hai',
@@ -24,7 +24,7 @@ export class StaffListComponent implements OnInit {
     {
       'staffName':'bye',
       'staffType':'bye',
-       'employeeID':'bye',
+       'employeeID':2,
        'department':'bye',
        'designation':'bye',
        'status':'bye',
@@ -44,8 +44,17 @@ export class StaffListComponent implements OnInit {
   }
   callNewStudent()
   {
-    console.log('hai');
+    
     this.router.navigate(['/main/new-staff']);
+  }
+  // removeStaff(emp : any)
+  // {
+  //   console.log(emp);
+    
+  // }
+  removeStaff(emp : any)
+  {
+    console.log('hai');
   }
 
 }
