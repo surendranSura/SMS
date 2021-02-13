@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -49,6 +50,32 @@ namespace SMS
 			services.AddDbContext<SchoolManagementContext>(options => options.UseSqlServer(
 				Configuration.GetConnectionString("SchoolManagementConnection")));
 
+			services.AddIdentity<ApplicationUser, IdentityRole>().
+				AddEntityFrameworkStores<SchoolManagementContext>().
+				AddDefaultTokenProviders();
+
+			//// Adding Authentication  
+			//services.AddAuthentication(options =>
+			//{
+			//	options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+			//	options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+			//	options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+			//})
+			//// Adding Jwt Bearer  
+			//.AddJwtBearer(options =>
+			//{
+			//	options.SaveToken = true;
+			//	options.RequireHttpsMetadata = false;
+			//	options.TokenValidationParameters = new TokenValidationParameters()
+			//	{
+			//		ValidateIssuer = true,
+			//		ValidateAudience = true,
+			//		ValidAudience = Configuration["JWT:ValidAudience"],
+			//		ValidIssuer = Configuration["JWT:ValidIssuer"],
+			//		IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
+			//	};
+			//});
+
 			string key = "My secret key to validate the JWt token authentication";
 			services.AddControllersWithViews();
 			services.AddAuthentication(X =>
@@ -69,12 +96,28 @@ namespace SMS
 				};
 			});
 
-			services.AddAuthorization(options =>
+			services.Configure<IdentityOptions>(options =>
 			{
-				//options.AddPolicy("Founderonly", policy => policy.RequireClaim(""));
-				options.AddPolicy("Staffonly", policy => policy.RequireClaim("StaffNumber"));
-				options.AddPolicy("Studentonly", policy => policy.RequireClaim("AdmissionNumber"));
+				options.Password.RequiredLength = 10;
+				options.Password.RequireNonAlphanumeric = false;
+				options.Password.RequireLowercase = false;
+				options.Password.RequireUppercase = false;
+				//options.Password.RequiredUniqueChars = false;
+				//options.Password.RequiredUniqueChars = false;
+				//options.Password.
+				// Default User settings.
+				options.User.AllowedUserNameCharacters =
+						"0123456789";
+				options.User.RequireUniqueEmail = false;
+
 			});
+
+			//services.AddAuthorization(options =>
+			//{
+			//	//options.AddPolicy("Founderonly", policy => policy.RequireClaim(""));
+			//	options.AddPolicy("Staffonly", policy => policy.RequireClaim("StaffNumber"));
+			//	options.AddPolicy("Studentonly", policy => policy.RequireClaim("AdmissionNumber"));
+			//});
 
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>
@@ -106,6 +149,8 @@ namespace SMS
 			app.UseRouting();
 
 			//app.UseCors(MyAllowSpecificOrigins);
+
+			
 
 			app.UseAuthentication();
 			app.UseAuthorization();

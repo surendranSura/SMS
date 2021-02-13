@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
@@ -12,10 +13,12 @@ namespace SMS.Models
     {
         [JsonIgnore]
         [IgnoreDataMember]
-        public int StaffId { get; set; }
 
-        //Salutation Dropdown
-        public string SalutationId { get; set; }
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public int StaffId { get; set; }
+
+		//Salutation Dropdown
+		public string SalutationId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
@@ -89,7 +92,7 @@ namespace SMS.Models
         public int ActiveId { get; set; }
         public string Uannumber { get; set; }
 
-        public byte[] ProfilePic { get; set; }
+        //public byte[] ProfilePic { get; set; }
 
         [JsonIgnore]
         [IgnoreDataMember]
@@ -99,9 +102,9 @@ namespace SMS.Models
 
         public virtual ICollection<StaffExperience> experiences { get; set; }
 
-        [JsonIgnore]
-        [IgnoreDataMember]
-        public virtual StaffUserCred StaffUserCred { get; set; }
+        //[JsonIgnore]
+        //[IgnoreDataMember]
+        //public virtual ApplicationUser ApplicationUser { get; set; }
 
         //[JsonIgnore]
         //[IgnoreDataMember]

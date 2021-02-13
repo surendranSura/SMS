@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SMS.Models
 {
-    public partial class SchoolManagementContext : DbContext
+    public partial class SchoolManagementContext : IdentityDbContext
     {
         public SchoolManagementContext()
         {
@@ -19,11 +21,13 @@ namespace SMS.Models
 
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Designation> Designations { get; set; }
-        public virtual DbSet<Function> Functions { get; set; }
+        //public virtual DbSet<Function> Functions { get; set; }
         public virtual DbSet<Nationality> Nationalities { get; set; }
         public virtual DbSet<Religion> Religions { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<RoleFunction> RoleFunctions { get; set; }
+
+        //public virtual DbSet<Role> Roles { get; set; }
+        //public virtual DbSet<RoleFunction> RoleFunctions { get; set; }
+
         public virtual DbSet<Staff> Staffs { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<StudentAddress> Addresses { get; set; }
@@ -31,10 +35,12 @@ namespace SMS.Models
         public virtual DbSet<Languages> Languages { get; set; }
         public virtual DbSet<StaffExperience> StaffExperiences { get; set; }
         public virtual DbSet<StaffType> StaffTypes { get; set; }
-        public virtual DbSet<StaffUserCred> StaffUserCreds { get; set; }
-        public virtual DbSet<StudentUserCred> StudentUserCreds { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //public virtual DbSet<StaffUserCred> StaffUserCreds { get; set; }
+        //public virtual DbSet<StudentUserCred> StudentUserCreds { get; set; }
+		public virtual DbSet<ApplicationUser> ApplicationUsers  { get; set; }
+
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
@@ -45,6 +51,8 @@ namespace SMS.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
             modelBuilder.Entity<RoleFunction>(entity =>
@@ -74,6 +82,7 @@ namespace SMS.Models
 
                 entity.Property(e => e.Uannumber).HasColumnName("UANNumber");
             });
+
 
             OnModelCreatingPartial(modelBuilder);
         }

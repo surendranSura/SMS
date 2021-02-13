@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SMS.Models;
 using System;
@@ -17,9 +19,13 @@ namespace SMS.Controllers
 	public class StaffController : ControllerBase
 	{
 		private readonly SchoolManagementContext _dbcontext;
+		private readonly UserManager<ApplicationUser> userManager;
+		private readonly RoleManager<IdentityRole> roleManager;
 
-		public StaffController(SchoolManagementContext dbcontext)
+		public StaffController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, SchoolManagementContext dbcontext)
 		{
+			this.userManager = userManager;
+			this.roleManager = roleManager;
 			this._dbcontext = dbcontext;
 		}
 		// GET: api/<StaffController>
@@ -38,10 +44,30 @@ namespace SMS.Controllers
 
 		// POST api/<StaffController>
 		[HttpPost]
-		public void Post([FromBody] Staff staff)
+		public async Task<IActionResult> Post([FromBody] Staff staff)
 		{
-			_dbcontext.Staffs.Add(staff);
-			_dbcontext.SaveChanges();
+			//var userExists = await userManager.FindByNameAsync(staff.Mobile.ToString());
+			//if (userExists != null)
+			//	return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User already exists!" });
+
+			ApplicationUser user = new ApplicationUser()
+			{
+				Email = staff.EmailId,
+				SecurityStamp = Guid.NewGuid().ToString(),
+				UserName = staff.Mobile.ToString(),
+				Staff = staff
+				//StaffId 
+			};
+
+			var result = await userManager.CreateAsync(user, staff.Mobile.ToString());
+
+			if (result.Succeeded)
+			{
+				_dbcontext.Staffs.Add(staff);
+				_dbcontext.SaveChanges();
+			}
+
+			return StatusCode(StatusCodes.Status200OK, new { Status = "Success", Message = "User added successfully!" });
 		}
 
 		// PUT api/<StaffController>/5

@@ -37,15 +37,14 @@ export class NewStaffComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.formDetails)
+
    if (this.formDetails.includes(false)) {
       return;
     }
 
     this.staffApiService.createStaff(this.conResults).subscribe(_=>{
-      
     });
-    console.log('submited');
+    
   }
 
   setTabFormDetails(value: any, tab: number) {

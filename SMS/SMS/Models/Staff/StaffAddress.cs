@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
@@ -18,6 +19,7 @@ namespace SMS.Models
 
 		[JsonIgnore]
 		[IgnoreDataMember]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int StaffAddressId { get; set; }
 
 		[JsonIgnore]
