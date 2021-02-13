@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, EventEmitter, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { SmsConstant } from '../../constantValues';
+import { SmsConstant } from '../../constant-values';
 
 @Component({
   selector: 'app-address-detail',

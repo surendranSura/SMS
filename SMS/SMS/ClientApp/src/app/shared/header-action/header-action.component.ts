@@ -23,5 +23,14 @@ export class HeaderActionComponent implements OnInit {
     else if (this.index === 0) {
       this.router.navigate(['/main/student-list']);
     }
+    else if (this.index ===2){
+      this.router.navigate(['/main/e-letter-list']);
+    }
+    else if (this.index ===3){
+      this.router.navigate(['/main/staff-feedback-list']);
+    }
+    else if (this.index ===4){
+      this.router.navigate(['/main/student-feedback-list']);
+    }
   }
 }

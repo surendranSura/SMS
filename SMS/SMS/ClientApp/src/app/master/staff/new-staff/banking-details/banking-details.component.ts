@@ -1,7 +1,7 @@
 import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { constants } from 'buffer';
-import { SmsConstant } from 'src/app/shared/constantValues';
+import { SmsConstant } from 'src/app/shared/constant-values';
 
 @Component({
   selector: 'app-banking-details',

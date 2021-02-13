@@ -21,7 +21,7 @@
             <mat-list-item>
                Student Exit 
             </mat-list-item>
-            <mat-list-item>
+            <mat-list-item routerLink="/main/student-feedback">
                  Student Feedback 
             </mat-list-item>
         </mat-nav-list>
@@ -43,12 +43,62 @@
             </mat-list-item>
             <mat-list-item routerLink='/main/new-staff'>New Staff
             </mat-list-item>
-            <mat-list-item>
+            <mat-list-item routerLink='/main/e-letter'>
                 e-Letter
             </mat-list-item>
-            <mat-list-item>
+            <mat-list-item routerLink='/main/staff-feedback'>
                 Staff Feedback
             </mat-list-item>
         </mat-nav-list>
     </mat-expansion-panel>
 </mat-accordion>
+<mat-divider></mat-divider>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <img src="../../../assets/book.png" style="width:40px;">
+            </mat-panel-title>
+            <mat-panel-description>
+                Learning
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <mat-list-item routerLink="/main/student-list" >
+                Academic Details
+            </mat-list-item>
+            <mat-list-item routerLink="/main/new-student">
+                Lesson Plan
+            </mat-list-item>
+            <mat-list-item>
+                Class Details
+            </mat-list-item>
+            <mat-list-item>
+               Course
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-divider></mat-divider>
+<mat-divider></mat-divider>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <img src="../../../assets/setting.png" style="width:40px;">
+            </mat-panel-title>
+            <mat-panel-description>
+                General
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <mat-list-item routerLink="/main/class-grade" >
+               Class/Grade
+            </mat-list-item>
+            <mat-list-item routerLink="/main/subjects">
+                Subjects
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-divider></mat-divider>

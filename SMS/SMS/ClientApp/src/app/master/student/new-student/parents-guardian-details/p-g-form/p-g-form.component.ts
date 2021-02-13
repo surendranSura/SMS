@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
 import { FormGroup, FormBuilder, Validator, FormControl } from '@angular/forms';
-import { SmsConstant } from 'src/app/shared/constantValues';
+import { SmsConstant } from 'src/app/shared/constant-values';
 
 @Component({
   selector: 'app-p-g-form',

@@ -2,7 +2,7 @@ import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
-import { SmsConstant } from 'src/app/shared/constantValues';
+import { SmsConstant } from 'src/app/shared/constant-values';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',

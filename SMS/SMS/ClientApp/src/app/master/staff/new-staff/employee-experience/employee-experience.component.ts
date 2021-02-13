@@ -9,7 +9,8 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 export class EmployeeExperienceComponent implements OnInit {
 
   experienceForm : FormGroup;
-
+  
+  toppingList:string[]=['Tamil','English','Maths','Science','social'];
   @Output() formDetails=new EventEmitter();
 
   get experiences() : FormArray {

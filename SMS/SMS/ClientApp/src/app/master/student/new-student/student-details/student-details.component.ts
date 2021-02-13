@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SmsConstant } from 'src/app/shared/constantValues';
+import { SmsConstant } from 'src/app/shared/constant-values';
 
 @Component({
   selector: 'app-student-details',
