@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SMS.Models;
 
 namespace SMS.Migrations
 {
     [DbContext(typeof(SchoolManagementContext))]
-    partial class SchoolManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20210212203123_ApplicationUser")]
+    partial class ApplicationUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -288,7 +290,7 @@ namespace SMS.Migrations
 
                     b.HasKey("FunctionId");
 
-                    b.ToTable("Function");
+                    b.ToTable("Functions");
                 });
 
             modelBuilder.Entity("SMS.Models.Languages", b =>
@@ -385,6 +387,9 @@ namespace SMS.Migrations
 
                     b.Property<int>("ActiveId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BankAccountNumber")
                         .HasColumnType("nvarchar(max)");
@@ -484,6 +489,9 @@ namespace SMS.Migrations
                     b.Property<string>("PanNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("ProfilePic")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<int>("ReligionId")
                         .HasColumnType("int");
 
@@ -514,6 +522,9 @@ namespace SMS.Migrations
                     b.Property<int>("StaffTypeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StaffUserCredStaffId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TeacherId")
                         .HasColumnType("nvarchar(max)");
 
@@ -525,6 +536,10 @@ namespace SMS.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("StaffId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("StaffUserCredStaffId");
 
                     b.HasIndex(new[] { "DepartmentId" }, "IX_Staffs_DepartmentId");
 
@@ -610,6 +625,24 @@ namespace SMS.Migrations
                     b.HasKey("StaffTypeId");
 
                     b.ToTable("StaffTypes");
+                });
+
+            modelBuilder.Entity("SMS.Models.StaffUserCred", b =>
+                {
+                    b.Property<int>("StaffId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StaffId");
+
+                    b.ToTable("StaffUserCreds");
                 });
 
             modelBuilder.Entity("SMS.Models.Student", b =>
@@ -921,20 +954,12 @@ namespace SMS.Migrations
 
                     b.HasKey("StudentId");
 
-                    b.ToTable("StudentUserCred");
+                    b.ToTable("StudentUserCreds");
                 });
 
             modelBuilder.Entity("SMS.Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<int>("StaffId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("StaffId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -1009,6 +1034,19 @@ namespace SMS.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("SMS.Models.Staff", b =>
+                {
+                    b.HasOne("SMS.Models.ApplicationUser", null)
+                        .WithMany("Staff")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("SMS.Models.StaffUserCred", "StaffUserCred")
+                        .WithMany("Staff")
+                        .HasForeignKey("StaffUserCredStaffId");
+
+                    b.Navigation("StaffUserCred");
+                });
+
             modelBuilder.Entity("SMS.Models.StaffAddress", b =>
                 {
                     b.HasOne("SMS.Models.Staff", null)
@@ -1049,17 +1087,6 @@ namespace SMS.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SMS.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("SMS.Models.Staff", "Staff")
-                        .WithMany()
-                        .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Staff");
-                });
-
             modelBuilder.Entity("SMS.Models.Function", b =>
                 {
                     b.Navigation("RoleFunctions");
@@ -1077,6 +1104,11 @@ namespace SMS.Migrations
                     b.Navigation("experiences");
                 });
 
+            modelBuilder.Entity("SMS.Models.StaffUserCred", b =>
+                {
+                    b.Navigation("Staff");
+                });
+
             modelBuilder.Entity("SMS.Models.Student", b =>
                 {
                     b.Navigation("Addresses");
@@ -1089,6 +1121,8 @@ namespace SMS.Migrations
 
             modelBuilder.Entity("SMS.Models.ApplicationUser", b =>
                 {
+                    b.Navigation("Staff");
+
                     b.Navigation("Student");
                 });
 #pragma warning restore 612, 618
