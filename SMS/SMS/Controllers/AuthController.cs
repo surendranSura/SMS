@@ -25,11 +25,11 @@ namespace SMS.Controllers
 	{
 		private readonly IJwtAuthenticationManager _JwtAuthenticationManager;
 		private readonly SchoolManagementContext _dbcontext;
-		private readonly UserManager<IdentityUser> userManager;
+		private readonly UserManager<ApplicationUser> userManager;
 		private readonly RoleManager<IdentityRole> roleManager;
 		private readonly IConfiguration _configuration;
 
-		public AuthController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration,
+		public AuthController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration,
 			           IJwtAuthenticationManager JwtAuthenticationManager, SchoolManagementContext dbcontext)
 		{
 			this._JwtAuthenticationManager = JwtAuthenticationManager;
@@ -43,40 +43,16 @@ namespace SMS.Controllers
 		[HttpPost ("UserAuth")]
 		[Route("api/[controller]/UserAuth")]
 		[Consumes("application/json")]
-		public async Task<IActionResult> UserAuth([FromBody]  ApplicationUser userCred)
+		public async Task<IActionResult> UserAuth([FromBody]  LoginCreds loginCred)
 		{
-
-			var user = await userManager.FindByNameAsync(userCred.UserName);
-			if (user != null && await userManager.CheckPasswordAsync(user, userCred.PasswordHash))
+			string _AuthToken;
+			var user = await userManager.FindByNameAsync(loginCred.UserName);
+			if (user != null && await userManager.CheckPasswordAsync(user, loginCred.Passsword))
 			{
-				//UserCred _userCred;
 
-				//StaffUserCred _staffUserCred = _dbcontext.StaffUserCreds.Where(X => X.Username == userCred.Username
-				//                 && X.Password == userCred.Password).FirstOrDefault();
+				_AuthToken = _JwtAuthenticationManager.Authenticate(loginCred.UserName);
 
-				//_userCred = _dbcontext.StaffUserCreds.Where(X => X. == userCred.UserName
-				//						 && X.PasswordHash == userCred.Password).Select(X => new UserCred
-				//						 {
-				//							 Username = X.UserName,
-				//							 Password = X.PasswordHash
-				//						 }).FirstOrDefault();
-
-				//if (_userCred == null)
-				//{
-				//	_userCred = _dbcontext.StudentUserCreds.Where(X => X.Username == userCred.Username
-				//							 && X.Password == userCred.Password).Select(X => new UserCred
-				//							 {
-				//								 Username = X.Username,
-				//								 Password = X.Password
-				//							 }).FirstOrDefault();
-				//}
-
-				//if (_userCred == null)
-				//	return Unauthorized();
-
-				_JwtAuthenticationManager.Authenticate(ref userCred);
-
-				return Ok(userCred);
+				return StatusCode(StatusCodes.Status200OK, new { Status = "Success", Message = "Logged in Sucessfully !!", AuthToken = _AuthToken });
 
 			}
 			return Unauthorized();

@@ -8,6 +8,7 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { AngularMaterialModule } from 'src/angular-material.module';
 
 
 

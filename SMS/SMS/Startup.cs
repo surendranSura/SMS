@@ -27,14 +27,6 @@ namespace SMS
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			//services.AddCors(options =>
-			//{
-			//	options.AddPolicy(name: MyAllowSpecificOrigins,
-			//					  builder =>
-			//					  {
-			//						  builder.WithOrigins("http://localhost:4200");
-			//					  });
-			//});
 
 			services.AddSwaggerGen(options => 
 			{
@@ -54,30 +46,9 @@ namespace SMS
 				AddEntityFrameworkStores<SchoolManagementContext>().
 				AddDefaultTokenProviders();
 
-			//// Adding Authentication  
-			//services.AddAuthentication(options =>
-			//{
-			//	options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-			//	options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-			//	options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-			//})
-			//// Adding Jwt Bearer  
-			//.AddJwtBearer(options =>
-			//{
-			//	options.SaveToken = true;
-			//	options.RequireHttpsMetadata = false;
-			//	options.TokenValidationParameters = new TokenValidationParameters()
-			//	{
-			//		ValidateIssuer = true,
-			//		ValidateAudience = true,
-			//		ValidAudience = Configuration["JWT:ValidAudience"],
-			//		ValidIssuer = Configuration["JWT:ValidIssuer"],
-			//		IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
-			//	};
-			//});
-
 			string key = "My secret key to validate the JWt token authentication";
 			services.AddControllersWithViews();
+
 			services.AddAuthentication(X =>
 			{
 				X.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -153,6 +124,8 @@ namespace SMS
 			
 
 			app.UseAuthentication();
+
+
 			app.UseAuthorization();
 
 			app.UseSwagger();
