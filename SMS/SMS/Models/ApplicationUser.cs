@@ -13,9 +13,13 @@ namespace SMS.Models
 	public class ApplicationUser : IdentityUser
 	{
 		//[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		[JsonIgnore]
+		[IgnoreDataMember]
 		public int StaffId { get; set; }
 
 		//[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		[JsonIgnore]
+		[IgnoreDataMember]
 		public int StudentId { get; set; }
 
 		[JsonIgnore]

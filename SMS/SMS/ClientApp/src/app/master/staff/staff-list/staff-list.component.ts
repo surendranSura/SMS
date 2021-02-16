@@ -1,6 +1,12 @@
-import {  Component, OnInit, Output,EventEmitter } from '@angular/core';
+import {  Component, OnInit, Output,EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { FormControl } from '@angular/forms';
+import { StaffrestApiService } from '../staffrest-api.service';
+import { Staff } from '../Staff';
+import { Subscription} from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-staff-list',
@@ -8,50 +14,45 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./staff-list.component.css']
 })
 export class StaffListComponent implements OnInit {
- 
-  staffListData = [
-    {
-      'staffName':'hai',
-      'staffType':'hai',
-       'employeeID':1,
-       'department':'hai',
-       'designation':'hai',
-       'status':'hai',
-       'joiningDate':'hai',
-       'mobileNumber':'hai',
-       'eMail':'hai'
-    },
-    {
-      'staffName':'bye',
-      'staffType':'bye',
-       'employeeID':2,
-       'department':'bye',
-       'designation':'bye',
-       'status':'bye',
-       'joiningDate':'bye',
-       'mobileNumber':'bye',
-       'eMail':'Surendranvenkat@gmail.com'
-    }
-  ];
-//  Staff Type Employee ID Teacher ID Department Designation Status Joining Date Mobile Number e-mail
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  @ViewChild(MatSort) sort !: MatSort;
+
+  currentUserSubscription: Subscription;
+  currentStaff? : Staff;
+  staffs: Staff[] = [];
+  staffListData!: MatTableDataSource<Staff>;
+
   columnsToDisplay = ['staffName','staffType', 'employeeID','department','designation','status','joiningDate','mobileNumber','eMail','actions'];
 
-  constructor(private router:Router) { }
-  // name = new FormControl('');
+  constructor(private router:Router, private staffApiService: StaffrestApiService) {
+
+    this.currentUserSubscription = this.staffApiService.getStaffs().subscribe(staff => {
+      this.currentStaff = staff;
+      this.staffListData = new MatTableDataSource(this.staffs);
+      this.staffListData.paginator = this.paginator;
+      this.staffListData.sort = this.sort;
+      console.log(this.staffListData);
+    });
+
+  }
+
+  
 
   ngOnInit(): void {
+   
+    // this.staffListData = new MatTableDataSource(this.staffs);
+    // this.staffListData.paginator = this.paginator;
+    // this.staffListData.sort = this.sort;
     
   }
+
   callNewStudent()
-  {
-    
+  {  
     this.router.navigate(['/main/new-staff']);
   }
-  // removeStaff(emp : any)
-  // {
-  //   console.log(emp);
-    
-  // }
+  
   removeStaff(emp : any)
   {
     console.log('hai');

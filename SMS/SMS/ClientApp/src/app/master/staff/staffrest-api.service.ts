@@ -29,6 +29,7 @@ export class StaffrestApiService {
 
   // HttpClient API get() method => Fetch Staffs list
   getStaffs(): Observable<Staff> {
+    console.log('Inside get staff');
     return this.http.get<Staff>(this.apiURL)
     .pipe(
       retry(1),

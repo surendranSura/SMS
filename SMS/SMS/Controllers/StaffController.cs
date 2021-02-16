@@ -28,6 +28,7 @@ namespace SMS.Controllers
 			this.roleManager = roleManager;
 			this._dbcontext = dbcontext;
 		}
+
 		// GET: api/<StaffController>
 		[HttpGet]
 		public IEnumerable<Staff> Get()
@@ -37,18 +38,18 @@ namespace SMS.Controllers
 
 		// GET api/<StaffController>/5
 		[HttpGet("{id}")]
-		public IActionResult Get(int id)
+		public IActionResult Get(long id)
 		{
-			return Ok(_dbcontext.Staffs.Where(X => X.StaffId == id).FirstOrDefault());
+			return Ok(_dbcontext.Staffs.Where(X => X.Mobile == id).FirstOrDefault());
 		}
 
 		// POST api/<StaffController>
 		[HttpPost]
 		public async Task<IActionResult> Post([FromBody] Staff staff)
 		{
-			//var userExists = await userManager.FindByNameAsync(staff.Mobile.ToString());
-			//if (userExists != null)
-			//	return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User already exists!" });
+			var userExists = await userManager.FindByNameAsync(staff.Mobile.ToString());
+			if (userExists != null)
+				return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User already exists!" });
 
 			ApplicationUser user = new ApplicationUser()
 			{
@@ -56,7 +57,6 @@ namespace SMS.Controllers
 				SecurityStamp = Guid.NewGuid().ToString(),
 				UserName = staff.Mobile.ToString(),
 				Staff = staff
-				//StaffId 
 			};
 
 			var result = await userManager.CreateAsync(user, staff.Mobile.ToString());
@@ -72,18 +72,18 @@ namespace SMS.Controllers
 
 		// PUT api/<StaffController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] Staff staff)
+		public async Task Put(int id, [FromBody] Staff staff)
 		{
-			_dbcontext.Entry(_dbcontext.Staffs.Where(X => X.StaffId == id).FirstOrDefault()).CurrentValues.SetValues(staff);
-			_dbcontext.SaveChanges();
+			_dbcontext.Entry(_dbcontext.Staffs.Where(X => X.Mobile == id).FirstOrDefault()).CurrentValues.SetValues(staff);
+			await _dbcontext.SaveChangesAsync();
 		}
 
 		// DELETE api/<StaffController>/5
 		[HttpDelete("{id}")]
-		public void Delete(int id)
+		public async Task Delete(long id)
 		{
-			_dbcontext.Remove(_dbcontext.Staffs.Where(X => X.StaffId == id).FirstOrDefault());
-			_dbcontext.SaveChanges();
+			_dbcontext.Remove(_dbcontext.Staffs.Where(X => X.Mobile == id).FirstOrDefault());
+			await _dbcontext.SaveChangesAsync();
 		}
 	}
 }
