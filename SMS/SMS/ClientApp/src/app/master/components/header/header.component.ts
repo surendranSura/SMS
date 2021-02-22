@@ -1,4 +1,6 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { LoginUser } from 'src/app/login-form/login-user';
+import { AuthenticationService } from 'src/app/login-form/service/authentication.service';
 
 
 @Component({
@@ -12,36 +14,19 @@ export class HeaderComponent implements OnInit {
  
   isSmScreen=false;
 
+  loginuser : LoginUser = new LoginUser();
+
   @Output() menuToggle=new EventEmitter<boolean>();
    private menuFlag:boolean=false;
-   personData=
-    {
-      'personId': 3,
-      'emailId': 'surendranvenkat@gmail.com',
-      'mobile': 7845827645,
-      'userName': 'sura',
-      'password': 'sura@sms',
-      'salt': '',
-      'authToken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InN1cmEiLCJuYmYiOjE2MTIyMDA2MjksImV4cCI6MTYxMjIwNDIyOSwiaWF0IjoxNjEyMjAwNjI5fQ.z0nl-pIH4vrBgLrxMs_4pggJxvYTQFfek_JdXSM4Xes',
-      'roleId': '1',
-      'firstName': 'surendran',
-      'middleName': '',
-      'lastName': 'v',
-      'dob': '2017-06-15T00:00:00',
-      'gender': 'M',
-      'currentAddress': 'address1',
-      'permanentAddress': 'address1',
-      'aadharNumber': '123412341234',
-      'bloodGroup': 'B+',
-      'nationalityId': 1,
-      'religionId': 1,
-      'nationality': null,
-      'religion': null,
-      'students': [],
-      'staff': []
-  }
+
+   
   
-  constructor() { }
+  
+  constructor(private loginApiService: AuthenticationService) { 
+    console.log(this.loginApiService.userValue);
+    this.loginuser = this.loginApiService.userValue;
+    console.log(this.loginuser.firstName);
+  }
 
   ngOnInit(): void {
     //For Mobile page demo

@@ -15,12 +15,12 @@
   </label>
   <button (click)="updateName()">click</button>
   <p>{{name.value}}</p> -->
-<table mat-table [dataSource]="staffListData" class="mat-elevation-z6">
+<table mat-table [dataSource]="staffListData" >
 
     <!--staffName-->
     <ng-container matColumnDef="staffName">
         <th mat-header-cell *matHeaderCellDef> Staff Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.staffName}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
         
     </ng-container>
 
@@ -33,25 +33,25 @@
     <!--employeeID-->
     <ng-container matColumnDef="employeeID">
         <th mat-header-cell *matHeaderCellDef> EmployeeID </th>
-        <td mat-cell *matCellDef="let element"> {{element.employeeID}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.employeeId}} </td>
     </ng-container>
 
     <!--department-->
     <ng-container matColumnDef="department">
         <th mat-header-cell *matHeaderCellDef> Department </th>
-        <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.departmentId}} </td>
     </ng-container>
 
     <!--designation-->
     <ng-container matColumnDef="designation">
         <th mat-header-cell *matHeaderCellDef> Designation </th>
-        <td mat-cell *matCellDef="let element"> {{element.designation}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.designationId}} </td>
     </ng-container>
 
     <!--status-->
     <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef> Status </th>
-        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.employeementstatusId}} </td>
     </ng-container>
 
     <!--joiningDate-->
@@ -63,13 +63,13 @@
     <!--mobileNumber-->
     <ng-container matColumnDef="mobileNumber">
         <th mat-header-cell *matHeaderCellDef> Mobile Number </th>
-        <td mat-cell *matCellDef="let element"> {{element.Mobile}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
     </ng-container>
 
     <!--eMail-->
     <ng-container matColumnDef="eMail">
         <th mat-header-cell *matHeaderCellDef> Email </th>
-        <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
     </ng-container>
 
      <!--actions-->
@@ -77,8 +77,8 @@
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
             <img src="../../../../assets/mind-map.png" class="icon" style="margin-right: 10px;"/>
-            <img src="../../../../assets/edit.png" class="icon" style="margin-right: 10px;"/>
-             <img src="../../../../assets/trash.png" class="icon" style="margin-right: 10px; cursor: pointer;"/> 
+            <img src="../../../../assets/edit.png" class="icon" style="margin-right: 10px;" (click)="editStaff(element)"/>
+             <img src="../../../../assets/trash.png" class="icon" (click)="removeStaff(element)" style="margin-right: 10px; cursor: pointer;"/> 
         </td>
     </ng-container>
 
@@ -87,3 +87,4 @@
     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
     <!-- (click)="removeStaff({{element.id}}) -->
 </table>
+<mat-paginator [length]="10" [pageSize]="5"></mat-paginator>

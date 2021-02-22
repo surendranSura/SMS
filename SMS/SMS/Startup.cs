@@ -47,6 +47,7 @@ namespace SMS
 				AddDefaultTokenProviders();
 
 			string key = "My secret key to validate the JWt token authentication";
+
 			services.AddControllersWithViews();
 
 			services.AddAuthentication(X =>

@@ -19,19 +19,24 @@ export class StaffListComponent implements OnInit {
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
-  currentUserSubscription: Subscription;
+  currentUserSubscription !: Subscription;
   currentStaff? : Staff;
   staffs: Staff[] = [];
-  staffListData!: MatTableDataSource<Staff>;
+  staffListData!: MatTableDataSource<any>;
 
   columnsToDisplay = ['staffName','staffType', 'employeeID','department','designation','status','joiningDate','mobileNumber','eMail','actions'];
 
   constructor(private router:Router, private staffApiService: StaffrestApiService) {
 
-    this.currentUserSubscription = this.staffApiService.getStaffs().subscribe(staff => {
+    this.LoadStaff();
+  }
+
+  LoadStaff()
+  {
+    this.currentUserSubscription = this.staffApiService.getStaffs().subscribe((staff:any) => {
       this.currentStaff = staff;
-      this.staffListData = new MatTableDataSource(this.staffs);
-      this.staffListData.paginator = this.paginator;
+      this.staffListData = new MatTableDataSource(staff);
+       this.staffListData.paginator = this.paginator;
       this.staffListData.sort = this.sort;
       console.log(this.staffListData);
     });
@@ -53,9 +58,18 @@ export class StaffListComponent implements OnInit {
     this.router.navigate(['/main/new-staff']);
   }
   
-  removeStaff(emp : any)
+  removeStaff(staff : Staff)
   {
-    console.log('hai');
+    this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
+      this.LoadStaff();
+    });
+  }
+
+  editStaff(staff : Staff)
+  {
+    this.router.navigate(['/main/new-staff',staff.mobile]);
+    // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
+    // });
   }
 
 }

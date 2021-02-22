@@ -30,7 +30,7 @@ export class StudentDetailsComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.studentProfileForm = this.fb.group({
-      salutation: ['']
+        salutation: ['']
       , firstName: ['']
       , middleName: ['']
       , lastName: ['']
@@ -58,11 +58,13 @@ export class StudentDetailsComponent implements OnInit {
       , reasonForLeaving: ['']
       , designation : ['']
     });
+
     this.studentProfileForm.valueChanges.subscribe(() => {
       Object.assign(this.formValues, this.studentProfileForm.value);
       this.stuFormtDetails.emit({ value: this.formValues, valid: (this.studentProfileForm.valid && this.addressValidFlag) });
 
     })
+    
   }
   onSubmit() {
     console.warn(this.studentProfileForm.value);

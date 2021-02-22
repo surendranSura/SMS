@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
@@ -13,9 +13,10 @@ import { SmsConstant } from 'src/app/shared/constant-values';
   styleUrls: ['./personal-details.component.css']
 })
 
-export class PersonalDetailsComponent implements OnInit {
+export class PersonalDetailsComponent implements OnInit, OnChanges {
 
   @Output() formDetails = new EventEmitter();
+  @Input() getFormValues = {};
   profileForm: FormGroup;
   addressValidFlag: boolean = false;
   formValues = { addresses: [''] };
@@ -73,6 +74,13 @@ export class PersonalDetailsComponent implements OnInit {
       this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid && this.addressValidFlag) });
 
     });
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    if (changes.getFormValues)
+    {
+      this.profileForm.patchValue(this.getFormValues);
+    }
   }
 
   // updateProfile() {

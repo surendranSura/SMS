@@ -18,7 +18,7 @@ import { MainComponent } from './components/mainpage/mainpage.component';
     SigninComponent,
     RegisterComponent,
     LoginFormComponent,
-    MainComponent   
+    MainComponent
   ],
   imports: [
     BrowserModule,

@@ -222,6 +222,24 @@ namespace SMS.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("SMS.Models.Attachments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<byte[]>("Attachment")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MyAttachments");
+                });
+
             modelBuilder.Entity("SMS.Models.Department", b =>
                 {
                     b.Property<int>("DepartmentId")
@@ -235,6 +253,60 @@ namespace SMS.Migrations
                     b.HasKey("DepartmentId");
 
                     b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("SMS.Models.Dependents", b =>
+                {
+                    b.Property<int>("DependentsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("AadharNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("AnnualIncome")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("BvEmployee")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Company")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DependentsType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Designation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("MobileNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Occupation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SalutationId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DependentsId");
+
+                    b.ToTable("Dependents");
                 });
 
             modelBuilder.Entity("SMS.Models.Designation", b =>
@@ -655,38 +727,8 @@ namespace SMS.Migrations
                     b.Property<string>("EmisNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FathersAadharNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("FathersAnnualIncome")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("FathersCompany")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FathersDesignation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FathersEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FathersFirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FathersLastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FathersMiddleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FathersMobileNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FathersOccupation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FathersSalutation")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("FatherDetailsDependentsId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstLanguage")
                         .HasColumnType("nvarchar(max)");
@@ -700,110 +742,11 @@ namespace SMS.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LegalGaurdianAadharNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("LegalGaurdianAnnualIncome")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("LegalGaurdianCompany")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LegalGaurdianDesignation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LegalGaurdianFirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LegalGaurdianLastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LegalGaurdianMiddleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LegalGaurdianMobileNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LegalGaurdianOccupation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LegalGaurdianSalary")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LegalGaurdianSalutation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocalGaurdianAadharNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("LocalGaurdianAnnualIncome")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("LocalGaurdianCompany")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocalGaurdianDesignation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocalGaurdianFirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocalGaurdianLastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocalGaurdianMiddleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocalGaurdianMobileNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocalGaurdianOccupation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocalGaurdianSalary")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocalGaurdianSalutation")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("MiddleName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("Mobile")
                         .HasColumnType("bigint");
-
-                    b.Property<string>("MotherEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MothersAadharNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("MothersAnnualIncome")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("MothersCompany")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MothersDesignation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MothersFirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MothersLastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MothersMiddleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MothersMobileNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MothersOccupation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MothersSalutation")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("NationalityId")
                         .HasColumnType("int");
@@ -862,6 +805,8 @@ namespace SMS.Migrations
                     b.HasKey("StudentId");
 
                     b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("FatherDetailsDependentsId");
 
                     b.HasIndex("StudentUserCredStudentId");
 
@@ -1033,9 +978,15 @@ namespace SMS.Migrations
                         .WithMany("Student")
                         .HasForeignKey("ApplicationUserId");
 
+                    b.HasOne("SMS.Models.Dependents", "FatherDetails")
+                        .WithMany("Students")
+                        .HasForeignKey("FatherDetailsDependentsId");
+
                     b.HasOne("SMS.Models.StudentUserCred", "StudentUserCred")
                         .WithMany("Student")
                         .HasForeignKey("StudentUserCredStudentId");
+
+                    b.Navigation("FatherDetails");
 
                     b.Navigation("StudentUserCred");
                 });
@@ -1058,6 +1009,11 @@ namespace SMS.Migrations
                         .IsRequired();
 
                     b.Navigation("Staff");
+                });
+
+            modelBuilder.Entity("SMS.Models.Dependents", b =>
+                {
+                    b.Navigation("Students");
                 });
 
             modelBuilder.Entity("SMS.Models.Function", b =>
