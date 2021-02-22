@@ -17,9 +17,13 @@ const routes: Routes = [
       { path: 'student-feedback',loadChildren:()=>import('./student/student-feedback/student-feedback.module').then(m=>m.StudentFeedbackModule)},
       { path: 'student-feedback-list',loadChildren:()=>import('./student/student-feedback-list/student-feedback-list.module').then(m=>m.StudentFeedbackListModule)},
       { path: 'class-grade', loadChildren: () => import('./general/class-grade/class-grade.module').then(m => m.ClassGradeModule)},
-      { path: 'subject', loadChildren: () => import('./general/subject/subject.module').then(m => m.SubjectModule)}
+      { path: 'subject', loadChildren: () => import('./general/subject/subject.module').then(m => m.SubjectModule)},
+      { path: 'academic-Detail', loadChildren: () => import('./academic/academic-detail/academic-detail.module').then(m => m.AcademicDetailModule) },
+      { path: 'lesson-plan', loadChildren: () => import('./academic/lesson-plan/lesson-plan.module').then(m => m.LessonPlanModule) }
     ]
   },
+  
+  
   
   
   

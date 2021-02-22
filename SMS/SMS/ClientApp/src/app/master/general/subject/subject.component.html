@@ -1,1 +1,10 @@
-<p>subject works!</p>
+<app-header-action [index]='7'></app-header-action>
+<div class="container-fluid" style="margin-top:5px;">
+    <div *ngFor="let sub of subjectlist; let i=index">
+        <app-subjects [expData]="sub" (btnEvent)="eventCatch($event)"></app-subjects>
+    </div>
+</div>
+
+<button mat-icon-button class="btnIcon">
+    <img src="../../../assets/plus.png" (click)="addSubject()" alt="profile" style="height:55px;">
+</button>

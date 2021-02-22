@@ -5,6 +5,7 @@ import { HeaderActionComponent } from './header-action/header-action.component';
 import { AddressDetailComponent } from './address/address-detail/address-detail.component';
 import { AddressDetailsComponent } from './address/address-details/address-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ClassesComponent } from './classes/classes.component';
 
 
 
@@ -12,13 +13,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HeaderActionComponent,AddressDetailComponent,
-    AddressDetailsComponent],
+    AddressDetailsComponent,
+    ClassesComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     AngularMaterialModule
   ],
   exports:[AngularMaterialModule,HeaderActionComponent,AddressDetailComponent,
-    AddressDetailsComponent]
+    AddressDetailsComponent,ClassesComponent]
 })
 export class SharedModule { }

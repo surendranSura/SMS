@@ -6,11 +6,17 @@
 <h2 *ngIf="index===2">e-Letter</h2>
 <h2 *ngIf="index===3">Staff FeedBack</h2>
 <h2 *ngIf="index===4">Student FeedBack</h2>
-<h2 *ngIf="index===5">Class & Selection</h2>
+<h2 *ngIf="index===5">Class & Section</h2>
+<h2 *ngIf="index===6">Academic Details</h2>
+<h2 *ngIf="index===7">Subjects</h2>
+<h2 *ngIf="index===8">Lesson Plan</h2>
 
-<div class="right-content" *ngIf="index!==5">
+
+<div class="right-content" *ngIf="index!==5 && index!==6 && index!==8">
     <img src="../../../assets/visible.png" style="height:35px;margin-top:-10px;margin-right: 40px; cursor: pointer;" (click)="staffListOpen()"/>
 </div>
+<div class="right-content" *ngIf="index==6">
+<h2>Current Accademic Year</h2>
 </div>
 
 
