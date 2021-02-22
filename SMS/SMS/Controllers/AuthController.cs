@@ -45,14 +45,16 @@ namespace SMS.Controllers
 		[Consumes("application/json")]
 		public async Task<IActionResult> UserAuth([FromBody]  LoginCreds loginCred)
 		{
-			string _AuthToken;
+			string _AuthToken, _Firstname;
 			var user = await userManager.FindByNameAsync(loginCred.UserName);
-			if (user != null && await userManager.CheckPasswordAsync(user, loginCred.Passsword))
+			if (user != null && await userManager.CheckPasswordAsync(user, loginCred.Password))
 			{
 
 				_AuthToken = _JwtAuthenticationManager.Authenticate(loginCred.UserName);
 
-				return StatusCode(StatusCodes.Status200OK, new { Status = "Success", Message = "Logged in Sucessfully !!", AuthToken = _AuthToken });
+				_Firstname = this._dbcontext.Staffs.Where(_userName => _userName.Mobile.ToString() == loginCred.UserName).FirstOrDefault().FirstName;
+
+				return StatusCode(StatusCodes.Status200OK, new { AuthToken = _AuthToken, FirstName = _Firstname });
 
 			}
 			return Unauthorized();

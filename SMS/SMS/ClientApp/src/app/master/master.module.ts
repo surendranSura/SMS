@@ -26,7 +26,8 @@ import { AngularMaterialModule } from 'src/angular-material.module';
     HttpClientModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularMaterialModule
   ]
 })
 export class MasterModule { }

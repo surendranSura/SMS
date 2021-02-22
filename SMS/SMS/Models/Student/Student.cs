@@ -9,6 +9,35 @@ using System.Text.Json.Serialization;
 
 namespace SMS.Models
 {
+    public partial class Dependents
+    {
+		public int DependentsId { get; set; }
+
+        [JsonIgnore]
+		public string DependentsType { get; set; }
+		public int StudentId { get; set; }
+		public string FirstName { get; set; }
+        public String LastName { get; set; }
+        public string MiddleName { get; set; }
+        public long MobileNumber { get; set; }
+        public string Occupation { get; set; }
+        public string SalutationId { get; set; }
+
+        public string AadharNumber { get; set; }
+		public long AnnualIncome { get; set; }
+
+		public bool BvEmployee { get; set; }
+
+		public string Company { get; set; }
+
+		public string Designation { get; set; }
+
+		public string  Email { get; set; }
+
+        [JsonIgnore]
+		public virtual ICollection<Student> Students { get; set; }
+
+	}
     public partial class Student
     {
 
@@ -53,51 +82,6 @@ namespace SMS.Models
         public int? yearofattendence { get; set; }
         public int AcademicPrecentage { get; set; }
         public string ReasonForLeaving { get; set; }
-        public string FathersSalutation { get; set; }
-        public string FathersFirstName { get; set; }
-        public string FathersMiddleName { get; set; }
-        public string FathersLastName { get; set; }
-        public string FathersMobileNumber { get; set; }
-        public string FathersOccupation { get; set; }
-        public string FathersEmail { get; set; }
-        public string FathersAadharNumber { get; set; }
-        public string FathersCompany { get; set; }
-        public string FathersDesignation { get; set; }
-        public long FathersAnnualIncome { get; set; }
-        public string MothersSalutation { get; set; }
-        public string MothersFirstName { get; set; }
-        public string MothersMiddleName { get; set; }
-        public string MothersLastName { get; set; }
-        public string MothersMobileNumber { get; set; }
-        public string MotherEmail { get; set; }
-        public string MothersOccupation { get; set; }
-        public string MothersCompany { get; set; }
-        public string MothersDesignation { get; set; }
-        public long MothersAnnualIncome { get; set; }
-        public string MothersAadharNumber { get; set; }
-        public string LocalGaurdianSalutation { get; set; }
-        public string LocalGaurdianFirstName { get; set; }
-        public string LocalGaurdianMiddleName { get; set; }
-        public string LocalGaurdianLastName { get; set; }
-        public string LocalGaurdianMobileNumber { get; set; }
-        public string LocalGaurdianOccupation { get; set; }
-        public string LocalGaurdianCompany { get; set; }
-        public string LocalGaurdianSalary { get; set; }
-        public string LocalGaurdianDesignation { get; set; }
-        public long LocalGaurdianAnnualIncome { get; set; }
-        public string LocalGaurdianAadharNumber { get; set; }
-        public string LegalGaurdianSalutation { get; set; }
-        public string LegalGaurdianFirstName { get; set; }
-        public string LegalGaurdianMiddleName { get; set; }
-        public string LegalGaurdianLastName { get; set; }
-        public string LegalGaurdianMobileNumber { get; set; }
-        public string LegalGaurdianOccupation { get; set; }
-        public string LegalGaurdianCompany { get; set; }
-        public string LegalGaurdianDesignation { get; set; }
-        public long LegalGaurdianAnnualIncome { get; set; }
-        public string LegalGaurdianAadharNumber { get; set; }
-        public string LegalGaurdianSalary { get; set; }
-
         public byte[] ProfilePic { get; set; }
         public byte[] TransferCertificate { get; set; }
         public byte[] BirthCertificate { get; set; }
@@ -105,5 +89,19 @@ namespace SMS.Models
         public byte[] Aadhar { get; set; }
         public byte[] RationCard { get; set; }
         public byte[] StudentVisa {get;set;}
-}
+
+        //[ForeignKey("DependentsId")]
+        //public int DependentsId { get; set; }
+        public Dependents FatherDetails { get; set; }
+
+        [NotMapped]
+        public Dependents MotherDetails { get; set; }
+
+        [NotMapped]
+        public Dependents LocalGuardian { get; set; }
+
+        [NotMapped]
+        public Dependents LegalGuardian { get; set; }
+
+    }
 }

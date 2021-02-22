@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 import { CompileShallowModuleMetadata } from '@angular/compiler';
@@ -14,6 +14,9 @@ export class StaffrestApiService {
 
   apiURL = 'api/api/Staff';
 
+  private formvalueSource = new Subject<string>();
+  formValue$ = this.formvalueSource.asObservable();
+  
   constructor(private http: HttpClient) { }
 
   /*========================================
@@ -29,7 +32,6 @@ export class StaffrestApiService {
 
   // HttpClient API get() method => Fetch Staffs list
   getStaffs(): Observable<Staff> {
-    console.log('Inside get staff');
     return this.http.get<Staff>(this.apiURL)
     .pipe(
       retry(1),
@@ -39,7 +41,7 @@ export class StaffrestApiService {
 
   // HttpClient API get() method => Fetch Staff
   getStaff(id : any): Observable<Staff> {
-    return this.http.get<Staff>(this.apiURL + id)
+    return this.http.get<Staff>(this.apiURL + '/' + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -67,7 +69,7 @@ export class StaffrestApiService {
 
   // HttpClient API delete() method => Delete Staff
   deleteStaff(id : any){
-    return this.http.delete<Staff>(this.apiURL + id, this.httpOptions)
+    return this.http.delete<Staff>(this.apiURL + '/'+ id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -86,5 +88,8 @@ export class StaffrestApiService {
      }
      window.alert(errorMessage);
      return throwError(errorMessage);
+  }
+  setFormValue(value:any) {
+    this.formvalueSource.next(value);
   }
 }

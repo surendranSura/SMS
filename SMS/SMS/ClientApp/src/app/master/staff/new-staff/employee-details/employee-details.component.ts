@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { StaffrestApiService } from '../../staffrest-api.service';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
@@ -24,7 +25,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder) {     
+  constructor(private fb: FormBuilder, private staffrestApiService : StaffrestApiService) {     
     
     this.empDetailsForm = this.fb.group(
       {
@@ -56,6 +57,9 @@ onSubmit(){
 
 }
   ngOnInit(): void {
+    this.staffrestApiService.formValue$.subscribe((data : any) => {
+      this.empDetailsForm.patchValue(data);
+    });
   }
 
 }

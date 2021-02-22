@@ -35,9 +35,10 @@ namespace SMS.Models
         public virtual DbSet<Languages> Languages { get; set; }
         public virtual DbSet<StaffExperience> StaffExperiences { get; set; }
         public virtual DbSet<StaffType> StaffTypes { get; set; }
+		public virtual DbSet<Attachments> MyAttachments { get; set; }
 
-        //public virtual DbSet<StaffUserCred> StaffUserCreds { get; set; }
-        //public virtual DbSet<StudentUserCred> StudentUserCreds { get; set; }
+		//public virtual DbSet<StaffUserCred> StaffUserCreds { get; set; }
+		//public virtual DbSet<StudentUserCred> StudentUserCreds { get; set; }
 		public virtual DbSet<ApplicationUser> ApplicationUsers  { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

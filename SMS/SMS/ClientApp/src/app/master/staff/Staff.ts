@@ -17,7 +17,7 @@ export class Staff {
       personalEmail?: string ;
       lastName?: string ;
       weedingDate?: string ;
-      mobileNumber?: string ;
+      mobile?: string ;
       aadharNumber?: string ;
       fatherName?: string ;
       motherName?: string ;
