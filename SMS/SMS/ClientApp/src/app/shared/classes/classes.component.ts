@@ -8,13 +8,14 @@ import { Router } from '@angular/router';
 })
 export class ClassesComponent implements OnInit {
   @Input() title: string = "";
-  @Input() routeLink: string = "";
+  @Input() route_Link: string = "/main/lesson-plan/subjectDetails";
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
-  navigate() {
-      this.router.navigate([this.routeLink]);
+  navigate() {  
+   
+      this.router.navigate([this.route_Link]);
   }
 
 }

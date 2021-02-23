@@ -1,4 +1,7 @@
+import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 
 @Component({
@@ -8,9 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AcademicDetailComponent implements OnInit {
 
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  @ViewChild(MatSort) sort !: MatSort;
+  //Class & Sections Subjects Lesson Plan Timetable
+  columnsToDisplay = ['classSections', 'subjects',
+    'lessonPlan', 'timeTable'];
+
+  academicDetails = [{
+    classSections: '1-A', subjects: 'Maths, Science',
+
+  }];
+
+
   constructor() { }
 
   ngOnInit(): void {
+    this.loadStaff();
   }
+
+  loadStaff() {
+
+
+  }
+
+
 
 }
