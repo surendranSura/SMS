@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SMS.Models;
 
 namespace SMS.Migrations
 {
     [DbContext(typeof(SchoolManagementContext))]
-    partial class SchoolManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20210222213811_StaffFeedback")]
+    partial class StaffFeedback
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -443,21 +445,6 @@ namespace SMS.Migrations
                     b.HasIndex(new[] { "RoleId" }, "IX_RoleFunctions_RoleId");
 
                     b.ToTable("RoleFunction");
-                });
-
-            modelBuilder.Entity("SMS.Models.Setup.Subject", b =>
-                {
-                    b.Property<int>("SubjectID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("SubjectDescr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SubjectID");
-
-                    b.ToTable("Subjects");
                 });
 
             modelBuilder.Entity("SMS.Models.Staff", b =>

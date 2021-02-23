@@ -1,5 +1,6 @@
 import { Component, Input,EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SubjectRestApiService } from '../subject-rest-api.service';
 
 @Component({
   selector: 'app-subjects',
@@ -12,13 +13,14 @@ export class SubjectsComponent implements OnInit {
 
  newFlag:boolean=false;
  subjectForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private subjectApi : SubjectRestApiService) {
     this.subjectForm = this.fb.group({
-      subject :"",
+      subjectDescr :"",
     })
    }
 
   ngOnInit(): void {
+
     if (Object.keys(this.expData).length != 0) {
       this.subjectForm.disable();
       this.subjectForm.setValue(this.expData);
@@ -26,18 +28,26 @@ export class SubjectsComponent implements OnInit {
     else{
       this.newFlag=true;
     }
+
   }
   save() {
+
     this.btnEvent.emit();
+
   }
 
   delete() {
+    
     if (Object.keys(this.expData).length === 0) {
       this.btnEvent.emit(1);
       return;
     }
 
     this.btnEvent.emit();
+
+    // this.subjectApi.deleteSubject.({
+
+    // });
   }
 
   cancel() {

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SMS.Models;
 
 namespace SMS.Migrations
 {
     [DbContext(typeof(SchoolManagementContext))]
-    partial class SchoolManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20210217213637_StudentDefinition")]
+    partial class StudentDefinition
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,24 +224,6 @@ namespace SMS.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SMS.Models.Attachments", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<byte[]>("Attachment")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MyAttachments");
-                });
-
             modelBuilder.Entity("SMS.Models.Department", b =>
                 {
                     b.Property<int>("DepartmentId")
@@ -443,21 +427,6 @@ namespace SMS.Migrations
                     b.HasIndex(new[] { "RoleId" }, "IX_RoleFunctions_RoleId");
 
                     b.ToTable("RoleFunction");
-                });
-
-            modelBuilder.Entity("SMS.Models.Setup.Subject", b =>
-                {
-                    b.Property<int>("SubjectID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("SubjectDescr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SubjectID");
-
-                    b.ToTable("Subjects");
                 });
 
             modelBuilder.Entity("SMS.Models.Staff", b =>
@@ -684,42 +653,6 @@ namespace SMS.Migrations
                     b.ToTable("StaffExperiences");
                 });
 
-            modelBuilder.Entity("SMS.Models.StaffFeedback", b =>
-                {
-                    b.Property<int>("StaffFeedbackID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<byte[]>("Attachment")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<int>("Department")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Empid")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FeedBackDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("FeedBackType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StaffName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StaffFeedbackID");
-
-                    b.ToTable("StaffFeedbacks");
-                });
-
             modelBuilder.Entity("SMS.Models.StaffType", b =>
                 {
                     b.Property<int>("StaffTypeId")
@@ -769,6 +702,9 @@ namespace SMS.Migrations
                     b.Property<string>("Class")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DependentsId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Dob")
                         .HasColumnType("datetime2");
 
@@ -777,9 +713,6 @@ namespace SMS.Migrations
 
                     b.Property<string>("EmisNumber")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("FatherDetailsDependentsId")
-                        .HasColumnType("int");
 
                     b.Property<string>("FirstLanguage")
                         .HasColumnType("nvarchar(max)");
@@ -857,7 +790,7 @@ namespace SMS.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.HasIndex("FatherDetailsDependentsId");
+                    b.HasIndex("DependentsId");
 
                     b.HasIndex("StudentUserCredStudentId");
 
@@ -1031,7 +964,9 @@ namespace SMS.Migrations
 
                     b.HasOne("SMS.Models.Dependents", "FatherDetails")
                         .WithMany("Students")
-                        .HasForeignKey("FatherDetailsDependentsId");
+                        .HasForeignKey("DependentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SMS.Models.StudentUserCred", "StudentUserCred")
                         .WithMany("Student")
