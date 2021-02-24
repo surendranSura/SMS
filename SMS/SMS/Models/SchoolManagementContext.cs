@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using SMS.Models.Setup;
 
 #nullable disable
 
@@ -41,7 +42,11 @@ namespace SMS.Models
 		//public virtual DbSet<StudentUserCred> StudentUserCreds { get; set; }
 		public virtual DbSet<ApplicationUser> ApplicationUsers  { get; set; }
 
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		public virtual DbSet<StaffFeedback> StaffFeedbacks { get; set; }
+
+        public virtual DbSet<Subject> Subjects { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {

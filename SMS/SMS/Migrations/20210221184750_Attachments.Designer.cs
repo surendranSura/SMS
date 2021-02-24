@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SMS.Models;
 
 namespace SMS.Migrations
 {
     [DbContext(typeof(SchoolManagementContext))]
-    partial class SchoolManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20210221184750_Attachments")]
+    partial class Attachments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -445,21 +447,6 @@ namespace SMS.Migrations
                     b.ToTable("RoleFunction");
                 });
 
-            modelBuilder.Entity("SMS.Models.Setup.Subject", b =>
-                {
-                    b.Property<int>("SubjectID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("SubjectDescr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SubjectID");
-
-                    b.ToTable("Subjects");
-                });
-
             modelBuilder.Entity("SMS.Models.Staff", b =>
                 {
                     b.Property<int>("StaffId")
@@ -682,42 +669,6 @@ namespace SMS.Migrations
                     b.HasIndex("StaffId");
 
                     b.ToTable("StaffExperiences");
-                });
-
-            modelBuilder.Entity("SMS.Models.StaffFeedback", b =>
-                {
-                    b.Property<int>("StaffFeedbackID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<byte[]>("Attachment")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<int>("Department")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Empid")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FeedBackDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("FeedBackType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StaffName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StaffFeedbackID");
-
-                    b.ToTable("StaffFeedbacks");
                 });
 
             modelBuilder.Entity("SMS.Models.StaffType", b =>

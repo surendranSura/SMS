@@ -85,5 +85,14 @@ namespace SMS.Controllers
 			_dbcontext.Remove(_dbcontext.Staffs.Where(X => X.Mobile == id).FirstOrDefault());
 			await _dbcontext.SaveChangesAsync();
 		}
+
+		[HttpPost("PostStaffFeedback")]
+		public async Task<IActionResult> PostStaffFeedback([FromBody] StaffFeedback staffFeedback)
+		{
+			_dbcontext.StaffFeedbacks.Add(staffFeedback);
+			await _dbcontext.SaveChangesAsync();
+
+			return Ok();
+		}
 	}
 }

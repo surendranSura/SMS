@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SubjectRestApiService } from './subject-rest-api.service';
 
 @Component({
   selector: 'app-subject',
@@ -7,15 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubjectComponent implements OnInit {
 
-  subjectlist: any = [
-    {
-      subject:'Tamil',
-  },
-  {
-    subject:'Science',
+  subjectlist: any;
+
+  constructor(private subjectApi : SubjectRestApiService) {
+
+    this.subjectApi.getSubjects().subscribe(data => {
+      this.subjectlist = data;
+    });
+
   }
-];
-  constructor() { }
 
   ngOnInit(): void {
     this.getData();
