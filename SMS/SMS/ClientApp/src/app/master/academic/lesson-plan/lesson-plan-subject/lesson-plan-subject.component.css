@@ -3,13 +3,12 @@
     border-radius: 15px;
     border-style: dashed;
     box-shadow: 0 5px rgba(0, 0, 0, 0.11);
-    position: relative;
     border-color: #43A047;
     height: 200px;
     width: 200px;
-    margin:10px;
+    margin:20px;
     text-align: center;
-    padding-top:39%;
+    padding-top:34%;
     cursor: pointer;
 }
 
@@ -24,18 +23,24 @@
     width: 40px;
     border: 3px solid #BADA55;
   }
-  .container .circle {
-    position: absolute;
-    top: -21px;
-    right: -21px;
-    width: 40px;
-    height: 40px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    border-radius: 25px;
-    background: #4da6ff;
+   .circle {
+    width: 50px;
+    height: 50px;
+    margin-left: -35px;
+    z-index: 20;
+    background-color: white;
+    border-radius: 30px;
+    border-style: dashed;
+    border-width: thin;
+    
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.2;
+    padding-top: 5px;
   }
-
+ .flex-child{
+   display: flex;
+ }
   .container {
     margin-top: 10px;
   }

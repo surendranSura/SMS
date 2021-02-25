@@ -2,13 +2,13 @@
 <div class="flex-content">
 
     <!-- <app-classes [title]="std.class"  *ngFor="let std of standard; let i=index"></app-classes> -->
-    <div  *ngFor="let sub of standard; let i=index">
-        <div class="container">
-        <div class="card mat-body-strong ">
-            <span class="circle" style="font-size: 6px;text-align: center;color: white;">in progress</span>
-            <span class="mat-title" >{{sub.subject}}</span>
+    <div class="flex-child" *ngFor="let sub of standard; let i=index">
+        
+        <div class="card mat-body-strong" routerLink="../addsLessonPlanSubjectWise">
+            
+            <span class="mat-title">{{sub.subject}}</span>
         </div>
-    </div>
+        <span class="circle" >in progress</span>
         
     </div>
 </div>
