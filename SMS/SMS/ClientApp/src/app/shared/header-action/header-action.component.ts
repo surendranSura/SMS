@@ -1,16 +1,25 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Router } from '@angular/router'
+import { FormGroup } from '@angular/forms';
+import { _MatTabBodyBase } from '@angular/material/tabs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header-action',
   templateUrl: './header-action.component.html',
   styleUrls: ['./header-action.component.css']
 })
 export class HeaderActionComponent implements OnInit {
-
+  campaignTwo: FormGroup;
   @Input() index: number = 0;
-
   constructor(private router: Router) { }
+   today:any = new Date();
+   month:any = this.today.getMonth();
+   year:any = this.today.getFullYear();
 
+  // campaignTwo = new FormGroup({
+  //   start: new FormControl(new Date(year, month, 15)),
+  //   end: new FormControl(new Date(year, month, 19))
+  // });
   ngOnInit(): void {
   }
 

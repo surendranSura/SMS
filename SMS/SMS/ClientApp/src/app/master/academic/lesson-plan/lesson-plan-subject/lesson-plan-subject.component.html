@@ -1,1 +1,14 @@
-lesson 
+<!-- lesson  -->
+<div class="flex-content">
+
+    <!-- <app-classes [title]="std.class"  *ngFor="let std of standard; let i=index"></app-classes> -->
+    <div  *ngFor="let sub of standard; let i=index">
+        <div class="container">
+        <div class="card mat-body-strong ">
+            <span class="circle" style="font-size: 6px;text-align: center;color: white;">in progress</span>
+            <span class="mat-title" >{{sub.subject}}</span>
+        </div>
+    </div>
+        
+    </div>
+</div>

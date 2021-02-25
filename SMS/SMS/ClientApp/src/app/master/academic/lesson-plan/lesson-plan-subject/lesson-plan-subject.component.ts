@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lesson-plan-subject.component.css']
 })
 export class LessonPlanSubjectComponent implements OnInit {
- 
+  standard:any=
+  [{
+    subject:"English"},{subject:"Tamil"},{subject:"Maths"},{subject:"Science"},{subject:"Social"}];
+  router: any;
   constructor() { }
 
   ngOnInit(): void {
   }
-
+//   navigate() {  
+   
+//     this.router.navigate([""]);
+// }
 }

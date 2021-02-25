@@ -11,10 +11,12 @@ import { ClassesComponent } from './classes/classes.component';
 
 
 
+
 @NgModule({
   declarations: [HeaderActionComponent,AddressDetailComponent,
     AddressDetailsComponent,
-    ClassesComponent],
+    ClassesComponent
+    ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
