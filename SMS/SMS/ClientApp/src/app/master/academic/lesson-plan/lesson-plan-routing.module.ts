@@ -9,8 +9,8 @@ import { LessonPlanComponent } from './lesson-plan.component';
 const routes: Routes = [{
   path: '', component: LessonPlanComponent, children: [
     { path: '', component: ClassesComponent },
-    { path: 'subjectDetails', component: LessonPlanSubjectComponent },
-    { path: 'addsLessonPlanSubjectWise',component:AddLesonPlanSubjectwiseComponent}
+    { path: 'subjectDetails/:class', component: LessonPlanSubjectComponent },
+    { path: 'addsLessonPlanSubjectWise/:subject/:class',component:AddLesonPlanSubjectwiseComponent}
   ]
 }];
 

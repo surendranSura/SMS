@@ -19,10 +19,11 @@ const routes: Routes = [
       { path: 'class-grade', loadChildren: () => import('./general/class-grade/class-grade.module').then(m => m.ClassGradeModule)},
       { path: 'subject', loadChildren: () => import('./general/subject/subject.module').then(m => m.SubjectModule)},
       { path: 'academic-Detail', loadChildren: () => import('./academic/academic-detail/academic-detail.module').then(m => m.AcademicDetailModule) },
-      { path: 'lesson-plan', loadChildren: () => import('./academic/lesson-plan/lesson-plan.module').then(m => m.LessonPlanModule) }
-     
+      { path: 'lesson-plan', loadChildren: () => import('./academic/lesson-plan/lesson-plan.module').then(m => m.LessonPlanModule) },
+      { path: 'course', loadChildren: () => import('./academic/course/course.module').then(m => m.CourseModule) }
     ]
   },
+  
   
   
   

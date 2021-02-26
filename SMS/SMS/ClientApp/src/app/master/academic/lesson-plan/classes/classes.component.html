@@ -1,5 +1,5 @@
 <div class="flex-content">
     
-    <app-classes [title]="std.class" [routerLink]=""  *ngFor="let std of standard; let i=index"></app-classes>
+    <app-classes [title]="std.class" [route_Link]="'/main/lesson-plan/subjectDetails/'+std.class"  *ngFor="let std of standard; let i=index"></app-classes>
 
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChange
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { SmsConstant } from 'src/app/shared/constant-values';
 @Component({
   selector: 'app-add-leson-plan-subjectwise',
@@ -10,7 +11,9 @@ import { SmsConstant } from 'src/app/shared/constant-values';
 })
 export class AddLesonPlanSubjectwiseComponent implements OnInit {
   subjectwiselessonform:FormGroup;
-  constructor(private fb:FormBuilder) {
+   subject:any;
+   class:any;
+  constructor(private fb:FormBuilder, private route: ActivatedRoute) {
     this.subjectwiselessonform=this.fb.group({
       date: ['',Validators.required],
       classWork: ['',Validators.required],
@@ -27,9 +30,12 @@ export class AddLesonPlanSubjectwiseComponent implements OnInit {
    }
 onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.subjectwiselessonform.value);
+    // console.warn(this.subjectwiselessonform.value);
   }
   ngOnInit(): void {
+    this.subject = this.route.snapshot.paramMap.get('subject');
+    this.class = this.route.snapshot.paramMap.get('class');
+    
   }
 
 }
