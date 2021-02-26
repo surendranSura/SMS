@@ -6,9 +6,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LessonPlanSubjectComponent } from './lesson-plan-subject/lesson-plan-subject.component';
 import { ClassesComponent } from './classes/classes.component';
+import { AddLesonPlanSubjectwiseComponent } from './add-leson-plan-subjectwise/add-leson-plan-subjectwise.component';
 
 @NgModule({
-  declarations: [LessonPlanComponent, LessonPlanSubjectComponent, ClassesComponent],
+  declarations: [LessonPlanComponent, LessonPlanSubjectComponent, ClassesComponent, AddLesonPlanSubjectwiseComponent],
   imports: [
     CommonModule,
     LessonPlanRoutingModule,
