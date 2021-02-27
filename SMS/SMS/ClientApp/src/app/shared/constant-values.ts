@@ -217,6 +217,24 @@ export class SmsConstant {
     { value: "3", viewValue: '2019' },
     { value: "4", viewValue: '2018' },
   ]
+  static readonly complitionCriteria = [
+    { value: 0, viewValue: '--select none--' },
+    { value: "1", viewValue: 'C1' },
+    { value: "2", viewValue: 'C2' },
+    { value: "3", viewValue: 'C3' },
+    { value: "4", viewValue: 'C4' },
+  ]
+  static readonly contentType=[
+    { value: 0, viewValue: '--select none--' },
+    { value: "1", viewValue: 'PDF' },
+    { value: "2", viewValue: 'DOC' },
+    { value: "3", viewValue: 'PPT' },
+    { value: "4", viewValue: 'SCORM Package' },
+    { value: "5", viewValue: 'Video' },
+    { value: "6", viewValue: 'Youtube Link' },
+    { value: "7", viewValue: 'Web Link' },
+
+  ]
    subjects = ['Tamil','English','Maths','Science','Social']
 
 

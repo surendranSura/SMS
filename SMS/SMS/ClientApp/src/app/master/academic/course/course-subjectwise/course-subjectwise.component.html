@@ -6,15 +6,29 @@
 </div>
 <mat-tab-group>
     <mat-tab label="Course Details">
-        <app-course-details></app-course-details>
+        <mat-icon *ngIf="courseFormtDetails[0]!=null && courseFormtDetails[0]" color="primary">check_circle</mat-icon>
+        <app-course-details (courseFormtDetails)="setTabFormDetails($event,0)"></app-course-details>
     </mat-tab>
     <mat-tab label="Content Upload">
-        <app-content-upload></app-content-upload>
+        <mat-icon *ngIf="courseFormtDetails[1]!=null && courseFormtDetails[1]" color="primary">check_circle</mat-icon>
+        <app-content-upload (courseFormtDetails)="setTabFormDetails($event,1)"></app-content-upload>
     </mat-tab>
     <mat-tab label="Target Students">
-        <app-target-student></app-target-student>
+        <mat-icon *ngIf="courseFormtDetails[2]!=null && courseFormtDetails[2]" color="primary">check_circle</mat-icon>
+        <app-target-student (courseFormtDetails)="setTabFormDetails($event,2)"></app-target-student>
     </mat-tab>
     <mat-tab label="Preview & Publish">
-        <app-preview-publish></app-preview-publish>
+        <mat-icon *ngIf="courseFormtDetails[3]!=null && courseFormtDetails[3]" color="primary">check_circle</mat-icon>
+        <app-preview-publish (courseFormtDetails)="setTabFormDetails($event,3)"></app-preview-publish>
     </mat-tab>
 </mat-tab-group>
+<div class="footer-n-stu">
+
+    <button type="button" class="gradient-button button-width"  (click)="btnMovement('bck')" [disabled]="selectedTab<=0">
+      Back
+    </button>
+    <button type="button" class="gradient-button button-width" (click)="btnMovement('frd')">
+      <span *ngIf="!(selectedTab>=2)">Next</span>
+      <span *ngIf="(selectedTab>=2)">Submit</span>
+    </button>
+  </div>
