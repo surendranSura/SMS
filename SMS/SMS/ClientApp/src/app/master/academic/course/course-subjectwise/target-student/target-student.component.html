@@ -1,1 +1,48 @@
-<p>target-student works!</p>
+<form [formGroup]="targetstudentForm">
+    <div class="targetHeaderstyle">
+        <div class="row">
+            <div class="col-sm-3" style="margin-top: -18px;">
+                <mat-form-field appearance="standard">
+                    <mat-label>Class</mat-label>
+                    <mat-select formControlName="class">
+                        <mat-option *ngFor="let class of classes" [value]="class.value">
+                            {{class.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3 headers">
+                <mat-form-field appearance="standard">
+                    <mat-label>Section</mat-label>
+                    <mat-select formControlName="section">
+                        <mat-option *ngFor="let section of sections" [value]="section.value">
+                            {{section.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3 headers">
+                <mat-form-field appearance="standard">
+                    <mat-label>status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option *ngFor="let status of allstatus" [value]="status.value">
+                            {{status.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3" style="margin-left: -50px;">
+                <mat-checkbox color="primary" (change)="checkBoxAction($event)">Assign Letter</mat-checkbox>
+               
+            </div>
+            <div class="right-content" style="margin-top:-27px;">
+                <ul type="none" class="merge-two-Line">
+                    <li>count:1 </li>
+                    <br>
+                    <li>Clear All</li>
+                    <!-- <li>!</li> -->
+                  </ul>
+            </div>
+        </div>
+    </div>
+</form>
