@@ -13,10 +13,11 @@ import { CourseDetailsComponent } from './course-subjectwise/course-details/cour
 import { ContentUploadComponent } from './course-subjectwise/content-upload/content-upload.component';
 import { TargetStudentComponent } from './course-subjectwise/target-student/target-student.component';
 import { PreviewPublishComponent } from './course-subjectwise/preview-publish/preview-publish.component';
+import { CourseListViewComponent } from './course-list-view/course-list-view.component';
 
 
 @NgModule({
-  declarations: [CourseComponent, CourseClassesComponent,  CourseSubjectwiseComponent, CourseSubjectComponent, CourseDetailsComponent, ContentUploadComponent, TargetStudentComponent, PreviewPublishComponent],
+  declarations: [CourseComponent, CourseClassesComponent,  CourseSubjectwiseComponent, CourseSubjectComponent, CourseDetailsComponent, ContentUploadComponent, TargetStudentComponent, PreviewPublishComponent, CourseListViewComponent],
   imports: [
     CommonModule,
     CourseRoutingModule,
