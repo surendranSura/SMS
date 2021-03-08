@@ -2,8 +2,9 @@ import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChange
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import {AlertService } from 'src/app/shared/alert';
 @Component({
   selector: 'app-add-leson-plan-subjectwise',
   templateUrl: './add-leson-plan-subjectwise.component.html',
@@ -13,7 +14,14 @@ export class AddLesonPlanSubjectwiseComponent implements OnInit {
   subjectwiselessonform:FormGroup;
    subject:any;
    class:any;
-  constructor(private fb:FormBuilder, private route: ActivatedRoute) {
+   options = {
+    autoClose: false,
+    keepAfterRouteChange: false
+};
+
+  constructor(private fb:FormBuilder,private route: ActivatedRoute,
+    private router: Router,protected alertService: AlertService) { 
+      
     this.subjectwiselessonform=this.fb.group({
       date: ['',Validators.required],
       classWork: ['',Validators.required],
@@ -36,6 +44,9 @@ onSubmit() {
     this.subject = this.route.snapshot.paramMap.get('subject');
     this.class = this.route.snapshot.paramMap.get('class');
     
+  }
+  navToListView(){
+    this.router.navigate(["main/lesson-plan/addLessonPlanListview/"+ this.subject+"/"+this.class]);
   }
 
 }
