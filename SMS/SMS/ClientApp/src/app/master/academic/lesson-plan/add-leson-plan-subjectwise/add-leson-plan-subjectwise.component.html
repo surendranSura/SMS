@@ -3,7 +3,8 @@
     <h2 style="margin-left: 70px; background-color:#f27200;color: white;padding-left: 15px;padding-right: 15px;">{{subject}}
     </h2>
     <div class="right-content">
-        <img src="../../../assets/visible.png"
+        
+        <img src="../../../assets/visible.png" (click)="navToListView()"
             style="height:35px;margin-top:-10px;margin-right: 40px; cursor: pointer;" />
     </div>
 </div>
@@ -68,9 +69,20 @@
            
         </div>
     </div>
-    <div class="footer-n-stu">
+    <!-- <div class="footer-n-stu">
         <button type="button" class="gradient-button add">
             ADD
           </button>
-    </div>
+          <button class="btn btn-success m-1" (click)="alertService.success('Success!!', options)">Success</button>
+          <div class="form-group mt-2">
+            <div class="form-check">
+                <input type="checkbox" name="autoClose" id="autoClose" class="form-check-input" >
+                <label for="autoClose">Auto close alert after three seconds</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" name="keepAfterRouteChange" id="keepAfterRouteChange" class="form-check-input" [(ngModel)]="options.keepAfterRouteChange">
+                <label for="keepAfterRouteChange">Keep displaying after one route change</label>
+            </div>
+        </div>
+    </div> -->
 </form>

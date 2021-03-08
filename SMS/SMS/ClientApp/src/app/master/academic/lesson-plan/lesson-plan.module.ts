@@ -7,9 +7,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LessonPlanSubjectComponent } from './lesson-plan-subject/lesson-plan-subject.component';
 import { ClassesComponent } from './classes/classes.component';
 import { AddLesonPlanSubjectwiseComponent } from './add-leson-plan-subjectwise/add-leson-plan-subjectwise.component';
+import { AddLessonPlanListviewComponent } from './add-lesson-plan-listview/add-lesson-plan-listview.component';
 
 @NgModule({
-  declarations: [LessonPlanComponent, LessonPlanSubjectComponent, ClassesComponent, AddLesonPlanSubjectwiseComponent],
+  declarations: [LessonPlanComponent, LessonPlanSubjectComponent, ClassesComponent, AddLesonPlanSubjectwiseComponent, AddLessonPlanListviewComponent],
   imports: [
     CommonModule,
     LessonPlanRoutingModule,
