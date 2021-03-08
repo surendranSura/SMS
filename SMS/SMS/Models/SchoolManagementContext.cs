@@ -46,6 +46,10 @@ namespace SMS.Models
 
         public virtual DbSet<Subject> Subjects { get; set; }
 
+        public virtual DbSet<AcademicClass> AcademicClasses { get; set; }
+
+        public virtual DbSet<AcademicClassSubject> AcademicClassSubjects { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

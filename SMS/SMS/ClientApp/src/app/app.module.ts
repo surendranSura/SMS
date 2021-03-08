@@ -11,6 +11,7 @@ import { AngularMaterialModule } from '../angular-material.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './components/mainpage/mainpage.component';
+import { AngularFileUploaderModule } from "angular-file-uploader";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MainComponent } from './components/mainpage/mainpage.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFileUploaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

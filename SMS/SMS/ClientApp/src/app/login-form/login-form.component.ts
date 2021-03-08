@@ -39,7 +39,6 @@ export class LoginFormComponent implements OnInit {
  
   authUser()
   {
-    console.log(environment.isDevelopement);
     if (this.loginForm.invalid) {
      // return;
 
@@ -54,9 +53,6 @@ export class LoginFormComponent implements OnInit {
                     console.log(error);
                     this.loading = false;
                 });
-               
-   if (environment.isDevelopement) 
-      this.router.navigate([this.returnUrl]);
   }
 
   onSubmit() {

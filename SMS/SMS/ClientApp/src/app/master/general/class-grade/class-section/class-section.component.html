@@ -2,6 +2,9 @@
     <mat-card >
         <div class="row">
 
+
+            <input type = "hidden" formControlName ="academicYear">
+
             <mat-form-field appearance="standard" class="col-sm-2">
                 <mat-label>Class</mat-label>
                 <input matInput required formControlName="class">
@@ -17,7 +20,7 @@
 
             <mat-form-field appearance="standard" class="col-sm-4">
                 <mat-label>Subject</mat-label>
-                <mat-select formControlName="subject" multiple>
+                <mat-select formControlName="subjects" multiple>
                     <mat-option *ngFor="let sub of subjectList" [value]="sub">{{sub}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -29,11 +32,11 @@
                 </mat-form-field>
 
 
-                <button mat-icon-button class="btnIcon" *ngIf="newFlag">
+                <button mat-icon-button class="btnIcon" *ngIf="newFlag"  (click)="save()">
                     <img src="../../../../assets/save.png" class="icon">
                 </button>
 
-                <button mat-icon-button class="btnIcon" *ngIf="!newFlag">
+                <button mat-icon-button class="btnIcon" *ngIf="!newFlag" (click)="toggleButton()">
                     <img src="../../../../assets/edit.png" class="icon">
                 </button>
 
@@ -45,4 +48,8 @@
 
         </div>
     </mat-card>
+
+    <p>
+        {{ csForm.value | json }}
+    </p>
 </form>

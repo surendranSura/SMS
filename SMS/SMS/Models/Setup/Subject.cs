@@ -9,7 +9,7 @@ namespace SMS.Models.Setup
 {
 	public class Subject
 	{
-		[JsonIgnore]
+		//[JsonIgnore]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int SubjectID { get; set; }
 		public string SubjectDescr { get; set; }

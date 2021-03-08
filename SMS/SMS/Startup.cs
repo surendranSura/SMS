@@ -1,15 +1,19 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using SMS.Models;
 using SMSAPI.Authentication;
+using System.IO;
 using System.Text;
 
 namespace SMS
@@ -84,6 +88,12 @@ namespace SMS
 
 			});
 
+			services.Configure<FormOptions>(o => {
+				o.ValueLengthLimit = int.MaxValue;
+				o.MultipartBodyLengthLimit = int.MaxValue;
+				o.MemoryBufferThreshold = int.MaxValue;
+			});
+
 			//services.AddAuthorization(options =>
 			//{
 			//	//options.AddPolicy("Founderonly", policy => policy.RequireClaim(""));
@@ -122,7 +132,14 @@ namespace SMS
 
 			//app.UseCors(MyAllowSpecificOrigins);
 
-			
+
+			app.UseStaticFiles(new StaticFileOptions()
+			{
+				FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+				RequestPath = new PathString("/Resources")
+			});
+
+
 
 			app.UseAuthentication();
 

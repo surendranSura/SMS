@@ -5,6 +5,8 @@ import { ConstantPool } from '@angular/compiler';
 import { SSL_OP_NO_TLSv1_1 } from 'constants';
 import { ShowHideDirective } from '@angular/flex-layout';
 import { $ } from 'protractor';
+import { ViewChild } from '@angular/core';
+import { AngularFileUploaderComponent } from "angular-file-uploader";
 
 
 @Component({
@@ -25,6 +27,46 @@ export class DocumentComponent implements OnInit {
   aadharName:any=null;
   RationCardName:any =null;
   all_files: File[] = Array();
+  resetVar: any = true;
+  imgPath: any = null;
+
+  @ViewChild('fileUpload1')
+    private fileUpload1:  AngularFileUploaderComponent;
+
+    public response: {dbPath: ''};
+
+
+    afuConfig = {
+      multiple: false,
+      formatsAllowed: ".jpg,.png",
+      maxSize: "1",
+      uploadAPI:  {
+        url:"api/api/upload",
+        method:"POST",
+      //   headers: {
+      //  "Content-Type" : "text/plain;charset=UTF-8",
+      //   },
+        params: {
+          'page': '1'
+        },
+        responseType: 'blob',
+      },
+      theme: "attachPin",
+      hideProgressBar: true,
+      hideResetBtn: true,
+      hideSelectBtn: true,
+      fileNameIndex: true,
+      replaceTexts: {
+        selectFileBtn: 'Select Files',
+        resetBtn: 'Reset',
+        uploadBtn: 'Upload',
+        dragNDropBox: 'Drag N Drop',
+        attachPinBtn: 'Attach Files...',
+        afterUploadMsg_success: 'Successfully Uploaded !',
+        afterUploadMsg_error: 'Upload Failed !',
+        sizeLimit: 'Size Limit'
+      }
+  };
   
   constructor(private http:HttpClient,private fb :FormBuilder) { 
     this.documentForm =this.fb.group({
@@ -97,6 +139,12 @@ export class DocumentComponent implements OnInit {
     }
     
   }
+
+  public uploadFinished = (event) => {
+    this.response = event;
+    this.imgPath = this.response.dbPath;
+  }
+
   ngOnInit(): void {
   }
   // backTab(index:number)
@@ -110,6 +158,10 @@ export class DocumentComponent implements OnInit {
     this.http.post('',fd).subscribe(res=>{
     console.log(res);
     });
+  }
+
+  public createImgPath = (serverPath: string) => {
+    return `api/api/${serverPath}`;
   }
 
 }

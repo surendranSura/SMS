@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { AngularMaterialModule } from 'src/angular-material.module';
+import { AngularFileUploaderModule } from "angular-file-uploader";
 
 
 
@@ -17,7 +18,7 @@ import { AngularMaterialModule } from 'src/angular-material.module';
   declarations: [
     MasterComponent,
     HeaderComponent,
-    SideMenuComponent,
+    SideMenuComponent
     
   ],
   imports: [
@@ -27,7 +28,8 @@ import { AngularMaterialModule } from 'src/angular-material.module';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    AngularFileUploaderModule
   ]
 })
 export class MasterModule { }

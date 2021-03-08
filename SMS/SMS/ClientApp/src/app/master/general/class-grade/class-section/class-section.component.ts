@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ClassGradeRestApiService } from '../class-grade-rest-api.service';
 
 @Component({
   selector: 'app-class-section',
@@ -16,12 +17,13 @@ export class ClassSectionComponent implements OnInit {
   subjectList: string[] = ['English', 'Tamil', 'Maths', 'Science', 'Social'];
   csForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private classGradeRestApiService :ClassGradeRestApiService) {
     this.csForm = this.fb.group({
       class: [''],
-      subject: [[]],
+      subjects: [[]],
       sections: [[]],
       group: [''],
+      academicYear: ['']
     });
 
   }
@@ -37,16 +39,39 @@ export class ClassSectionComponent implements OnInit {
   }
 
   save() {
-    this.btnEvent.emit();
-  }
 
-  delete() {
-    if (Object.keys(this.expData).length === 0) {
-      this.btnEvent.emit(1);
+    if (Object.keys(this.expData).length != 0)
+    {
+      this.update();
       return;
     }
 
-    this.btnEvent.emit();
+
+    this.classGradeRestApiService.createClassGrade(this.csForm.value).subscribe(_=>{
+      this.btnEvent.emit();
+    });
+
+  }
+
+  delete() {
+    
+    if (!this.expData?.subjectDescr) {
+      this.btnEvent.emit(1);
+      return;
+    }
+    
+    this.classGradeRestApiService.deleteClassGrade(this.expData.class).subscribe(_=>{
+      this.btnEvent.emit();
+    });
+
+  }
+
+  update()
+  {
+    this.classGradeRestApiService.updateClassGrade(this.expData.class, this.csForm.value).subscribe(_=>{
+      this.btnEvent.emit();
+    });
+
   }
 
   cancel() {
@@ -55,4 +80,11 @@ export class ClassSectionComponent implements OnInit {
 
   }
 
+  toggleButton()
+  {
+    this.newFlag = true;
+    this.csForm.enable();
+
+    this.btnEvent.emit(2);
+  }
 }

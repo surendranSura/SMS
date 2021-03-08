@@ -10,19 +10,25 @@ import { ParentsGuardianDetailsComponent } from './parents-guardian-details/pare
 import { DocumentComponent } from './document/document.component';
 import { PGFormComponent } from './parents-guardian-details/p-g-form/p-g-form.component';
 import { MasterModule } from '../../master.module';
+ import { AngularFileUploaderModule } from "angular-file-uploader";
+ import { UploadComponent } from '../../upload/upload.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
+
 
 
 
 @NgModule({
   declarations: [NewStudentComponent, StudentDetailsComponent, ParentsGuardianDetailsComponent, 
-    DocumentComponent, PGFormComponent],
+    DocumentComponent, PGFormComponent, UploadComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     NewStudentRoutingModule,
     SharedModule,
-    MasterModule
+    MasterModule,
+    AngularFileUploaderModule, 
+    NgxDocViewerModule
   ]
 })
 export class NewStudentModule { }

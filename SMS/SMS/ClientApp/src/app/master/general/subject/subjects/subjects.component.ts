@@ -1,5 +1,6 @@
 import { Component, Input,EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subject } from '../Models/subject';
 import { SubjectRestApiService } from '../subject-rest-api.service';
 
 @Component({
@@ -16,38 +17,58 @@ export class SubjectsComponent implements OnInit {
   constructor(private fb: FormBuilder, private subjectApi : SubjectRestApiService) {
     this.subjectForm = this.fb.group({
       subjectDescr :"",
+      subjectID :"0"
     })
    }
 
   ngOnInit(): void {
 
     if (Object.keys(this.expData).length != 0) {
+
       this.subjectForm.disable();
       this.subjectForm.setValue(this.expData);
     }
     else{
+
       this.newFlag=true;
     }
 
   }
+
   save() {
 
-    this.btnEvent.emit();
+    if (Object.keys(this.expData).length != 0)
+    {
+      this.update();
+      return;
+    }
+
+
+    this.subjectApi.createSubject(this.subjectForm.value).subscribe(_=>{
+      this.btnEvent.emit();
+    });
 
   }
 
   delete() {
     
-    if (Object.keys(this.expData).length === 0) {
+    if (!this.expData?.subjectDescr) {
       this.btnEvent.emit(1);
       return;
     }
+    
+    this.subjectApi.deleteSubject(this.expData.subjectID).subscribe(_=>{
+      this.btnEvent.emit();
+    });
 
-    this.btnEvent.emit();
+  }
 
-    // this.subjectApi.deleteSubject.({
+  update()
+  {
+    this.subjectApi.updateSubject(this.expData.subjectID, this.subjectForm.value).subscribe(_=>{
+      this.btnEvent.emit();
+    });
 
-    // });
   }
 
   cancel() {
@@ -56,4 +77,11 @@ export class SubjectsComponent implements OnInit {
 
   }
 
+  toggleButton()
+  {
+    this.newFlag = true;
+    this.subjectForm.enable();
+
+    this.btnEvent.emit(2);
+  }
 }

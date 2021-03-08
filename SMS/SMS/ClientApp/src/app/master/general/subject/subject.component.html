@@ -5,6 +5,10 @@
     </div>
 </div>
 
-<button mat-icon-button class="btnIcon">
-    <img src="../../../assets/plus.png" (click)="addSubject()" alt="profile" style="height:55px;">
+<!-- <button mat-icon-button class="btnIcon" (click)="addSubject()" [disabled]="addButton">
+    <img src="../../../assets/plus.png" alt="profile" style="height:55px;">
+</button> -->
+
+<button mat-icon-button class="btnIcon" (click)="addSubject()" [disabled]="addButton">
+    <mat-icon>add</mat-icon>
 </button>

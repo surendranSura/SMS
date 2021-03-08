@@ -40,7 +40,7 @@ namespace SMS.Controllers
 		public async Task<IActionResult> Post([FromBody] Subject subject)
 		{
 
-			_dbcontext.Subjects.Add(subject);
+			_dbcontext.Subjects.Add(subject);	
 			await _dbcontext.SaveChangesAsync();
 
 			return Ok();

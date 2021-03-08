@@ -5,15 +5,15 @@ import { retry, catchError } from 'rxjs/operators';
 
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Console } from 'console';
-import { Subject } from '../subject/Models/subject';
+import { ClassGrade } from '../class-grade/models/class-grade';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class SubjectRestApiService {
+export class ClassGradeRestApiService {
 
-  apiURL = 'api/api/Subject';
+  apiURL = 'api/api/AcademicClass';
   
   constructor(private http: HttpClient) { }
 
@@ -28,27 +28,26 @@ export class SubjectRestApiService {
     })
   }  
 
-  // HttpClient API get() method => Fetch Subject list
-  getSubjects(): Observable<Subject> {
-    return this.http.get<Subject>(this.apiURL)
+
+  getClassGrades(): Observable<ClassGrade> {
+    return this.http.get<ClassGrade>(this.apiURL)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
 
-  // HttpClient API get() method => Fetch Subject
-  getSubject(id : any): Observable<Subject> {
-    return this.http.get<Subject>(this.apiURL + '/' + id)
+  getClassGrade(id : any): Observable<ClassGrade> {
+    return this.http.get<ClassGrade>(this.apiURL + '/' + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }  
 
-  // HttpClient API post() method => Create Subject
-  createSubject(staff : any): Observable<Subject> {
-    return this.http.post<Subject>(this.apiURL,staff, this.httpOptions)
+
+  createClassGrade(staff : any): Observable<ClassGrade> {
+    return this.http.post<ClassGrade>(this.apiURL,staff, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -56,18 +55,17 @@ export class SubjectRestApiService {
 
   }  
 
-  // HttpClient API put() method => Update Subject
-  updateSubject(id : any, staff : Subject): Observable<Subject> {
-    return this.http.put<Subject>(this.apiURL +'/'+ id, JSON.stringify(staff), this.httpOptions)
+  updateClassGrade(id : any, staff : ClassGrade): Observable<ClassGrade> {
+    return this.http.put<ClassGrade>(this.apiURL +'/'+ id, JSON.stringify(staff), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
 
-  // HttpClient API delete() method => Delete Subject
-  deleteSubject(id : any){
-    return this.http.delete<Subject>(this.apiURL + '/'+ id, this.httpOptions)
+  // HttpClient API delete() method => Delete ClassGrade
+  deleteClassGrade(id : any){
+    return this.http.delete<ClassGrade>(this.apiURL + '/'+ id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -89,4 +87,3 @@ export class SubjectRestApiService {
   }
 
 }
-

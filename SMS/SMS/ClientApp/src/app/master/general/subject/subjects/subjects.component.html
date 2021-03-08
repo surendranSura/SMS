@@ -9,11 +9,11 @@
                 </mat-form-field>
             </div>
             <div class="col-sm-3">
-                <button mat-icon-button class="btnIcon" *ngIf="newFlag">
+                <button mat-icon-button class="btnIcon" *ngIf="newFlag"  (click)="save()">
                     <img src="../../../../assets/save.png" class="icon">
                 </button>
 
-                <button mat-icon-button class="btnIcon" *ngIf="!newFlag">
+                <button mat-icon-button class="btnIcon" *ngIf="!newFlag" (click)="toggleButton()">
                     <img src="../../../../assets/edit.png" class="icon">
                 </button>
 
