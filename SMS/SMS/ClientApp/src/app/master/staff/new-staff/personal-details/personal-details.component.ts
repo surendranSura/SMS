@@ -65,7 +65,8 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
         souseOccupation: [''],
         fatherMobileNumber: ['',Validators.required],
         motherMobileNumber: ['',Validators.required],
-        spouseMobileNumber: ['']
+        spouseMobileNumber: [''],
+        
       }
     );
 
@@ -80,6 +81,8 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
     if (changes.getFormValues)
     {
       this.profileForm.patchValue(this.getFormValues);
+      
+      console.log(this.getFormValues);
     }
   }
 
@@ -106,7 +109,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
     let value = Array.from(arrValue, (obj: any) => obj.value) as never[];
     this.formValues.addresses = value;
     this.addressValidFlag = !((Array.from(arrValue, (obj: any) => obj.valid)).includes(false));
-    this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid && this.addressValidFlag) });
+    this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid && this.addressValidFlag) });//
   }
 
 }

@@ -14,7 +14,7 @@ export class ParentsGuardianDetailsComponent implements OnInit {
     localGuardian:{},
     legalGuardian:{}
   };
-  stuParentDetails: boolean[] =[]
+  stuParentDetails: boolean[] =[false]
   constructor() { }
 
   ngOnInit(): void {
@@ -22,6 +22,7 @@ export class ParentsGuardianDetailsComponent implements OnInit {
 
   getParentsInfo(obj: any, flg:number) {
     this.stuParentDetails[flg]=obj.valid;
+    window.alert(obj.valid);
     switch(flg){
       case 0: this.arryoffPersonJson.fatherDetails=obj.value;
       break;
@@ -33,8 +34,9 @@ export class ParentsGuardianDetailsComponent implements OnInit {
       break;
 
     }
+   console.log(true);
     console.log(this.arryoffPersonJson);
-    this.stuFormtDetails.emit({ value: this.arryoffPersonJson});
+    this.stuFormtDetails.emit({ value: this.arryoffPersonJson,valid : this.stuParentDetails[flg]});
     // this.adderessArray[flg] = value;
     // this.addresses.emit(this.adderessArray);
 

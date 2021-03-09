@@ -34,7 +34,7 @@ export class PGFormComponent implements OnInit {
 
     this.parents.valueChanges.subscribe(() => {
       this.formValue.emit({
-        value: this.parents.value, valid: this.parents.valid
+        value: this.parents.value, valid:this.parents.valid
       })
     });
   }
