@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClassesRestApiService } from './classes-rest-api.service';
 
 @Component({
   selector: 'app-classes-lesson',
@@ -6,13 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./classes.component.css']
 })
 export class ClassesComponent implements OnInit {
-  standard:any=
-  [{
-    class:"1"},{class:"2"},{class:"3"},{class:"4"},{class:"5"},{class:"6"},{class:"7"},{class:"8"},{class:"9"},{class:"10"}];
+  // standard:any=
+  // [{
+  //   className:"1"},{className:"2"},{className:"3"},{className:"4"},{className:"5"},{className:"6"},{className:"7"},{className:"8"},{className:"9"},{className:"10"}];
+
+  standard:any;
   
-  constructor() { }
+  constructor(private classesRestApiService : ClassesRestApiService) { 
+    
+    this.classesRestApiService.getClassGrade().subscribe((data : any) => 
+      {
+        this.standard  = data;
+        console.log(this.standard);
+      }
+    );
+  }
 
   ngOnInit(): void {
+
+
   }
 
 }

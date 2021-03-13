@@ -12,6 +12,7 @@ const routes: Routes = [{
     { path: '', component: ClassesComponent },
     { path: 'subjectDetails/:class', component: LessonPlanSubjectComponent },
     { path: 'addsLessonPlanSubjectWise/:subject/:class',component:AddLesonPlanSubjectwiseComponent},
+    { path: 'addsLessonPlanSubjectWise/:id',component:AddLesonPlanSubjectwiseComponent},
     { path: 'addLessonPlanListview/:subject/:class',component:AddLessonPlanListviewComponent}
   ]
 }];

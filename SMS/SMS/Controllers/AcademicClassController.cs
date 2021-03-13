@@ -170,6 +170,35 @@ namespace SMS.Controllers
 			return Ok();
 		}
 
+		[HttpGet("GetClassNames")]
+		public IActionResult GetClassNames()
+		{
+			return Ok(_dbconext.AcademicClasses.AsEnumerable().GroupBy(Y => new { Y.ClassName }).Select(
+				X => new {
+					className = X.Key.ClassName
+				}));
+		}
+
+		[HttpGet("GetClassSubjects/{ClassName}")]
+		public IActionResult GetClassSubjects(string ClassName)
+		{
+			var q = (from academicClasses in _dbconext.AcademicClasses 
+					 join academicClassSubject in _dbconext.AcademicClassSubjects on academicClasses.AcademicClassId equals academicClassSubject.AcademicClassId
+					 join sub in _dbconext.Subjects on academicClassSubject.SubjectID equals sub.SubjectID
+					 orderby sub.SubjectID
+					 select new
+					 {
+						 academicClasses.ClassName, 
+						 sub.SubjectDescr
+					 }).Where(X => X.ClassName == ClassName).ToList();
+
+			//_dbconext.AcademicClassSubjects.Join(_dbconext.Subjects, 
+			//Where(X => X.AcademicClassId == _classId).Join
+
+			return Ok(q);
+		}
+
+
 		// PUT api/<AcademicClassController>/5
 		[HttpPut("{id}")]
 		public void Put(int id, [FromBody] string value)

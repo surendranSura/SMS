@@ -80,7 +80,7 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> </th>
             <td mat-cell *matCellDef="let element">
-                <img src="../../../../assets/edit.png" class="icon" style="margin-right: 10px;"/>
+                <img src="../../../../assets/edit.png" class="icon" (click)="editLessonPlan(element)" style="margin-right: 10px;"/>
                 <img src="../../../../assets/trash.png" class="icon" style="margin-right: 10px;"/>
             </td>
         </ng-container>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SMS.Models;
 
 namespace SMS.Migrations
 {
     [DbContext(typeof(SchoolManagementContext))]
-    partial class SchoolManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20210312190318_AddingLessonPlanDomain")]
+    partial class AddingLessonPlanDomain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,54 +224,12 @@ namespace SMS.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SMS.Models.Academics.CourseDetail", b =>
-                {
-                    b.Property<int>("CourseDetailId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CompletionCriteria")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CourseCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CourseDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CourseName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FilePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PassingScore")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Topic")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CourseDetailId");
-
-                    b.ToTable("CourseDetails");
-                });
-
             modelBuilder.Entity("SMS.Models.Academics.LessonPlan", b =>
                 {
                     b.Property<int>("LessonPlanId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<int>("AcademicClassId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AcademicClassSubjectId")
-                        .HasColumnType("int");
 
                     b.Property<string>("LessonPlanCheckDigi")
                         .HasColumnType("nvarchar(max)");
@@ -301,30 +261,12 @@ namespace SMS.Migrations
                     b.Property<string>("lesson")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("topic")
+                    b.Property<string>("toppic")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("LessonPlanId");
 
                     b.ToTable("LessonPlans");
-                });
-
-            modelBuilder.Entity("SMS.Models.Academics.StudentCourseDetail", b =>
-                {
-                    b.Property<int>("StudentCourseDetailId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("StudentCourseStatus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StudentCourseDetailId");
-
-                    b.ToTable("StudentCourseDetails");
                 });
 
             modelBuilder.Entity("SMS.Models.Attachments", b =>

@@ -46,7 +46,7 @@ export class ClassSectionComponent implements OnInit {
       return;
     }
 
-
+    console.log(this.csForm.value);
     this.classGradeRestApiService.createClassGrade(this.csForm.value).subscribe(_=>{
       this.btnEvent.emit();
     });

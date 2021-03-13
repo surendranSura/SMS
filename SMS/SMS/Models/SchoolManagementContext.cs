@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using SMS.Models.Academics;
 using SMS.Models.Setup;
 
 #nullable disable
@@ -49,6 +50,13 @@ namespace SMS.Models
         public virtual DbSet<AcademicClass> AcademicClasses { get; set; }
 
         public virtual DbSet<AcademicClassSubject> AcademicClassSubjects { get; set; }
+
+		public virtual DbSet<LessonPlan> LessonPlans { get; set; }
+
+        public virtual DbSet<CourseDetail> CourseDetails { get; set; }
+
+        public virtual DbSet<StudentCourseDetail> StudentCourseDetails { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

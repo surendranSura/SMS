@@ -48,8 +48,8 @@
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
-                    <mat-label>Toppic</mat-label>
-                    <input formControlName="toppic" matInput>
+                    <mat-label>Topic</mat-label>
+                    <input formControlName="topic" matInput>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Activity</mat-label>
@@ -68,6 +68,7 @@
             </div>
            
         </div>
+        <button type="button" class="gradient-button" (click) = "onSubmit()">Save</button>
     </div>
     <!-- <div class="footer-n-stu">
         <button type="button" class="gradient-button add">

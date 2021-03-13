@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from './service/authentication.service';
 import { first } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { AlertService } from './../shared/alert/alert.service';
 
 @Component({
   selector: 'app-login-form',
@@ -18,11 +19,17 @@ export class LoginFormComponent implements OnInit {
 
   loading = false;
   submitted = false;
+  options: any;
 
   constructor(private router: Router,
     private authService:AuthenticationService, 
     private route: ActivatedRoute,
-    private loginFormBuilder : FormBuilder) { 
+    private loginFormBuilder : FormBuilder, public alertService: AlertService) { 
+
+      this.options = {
+        autoClose: false,
+        keepAfterRouteChange: false
+    };
 
       this.loginForm = this.loginFormBuilder.group(
       {
@@ -54,6 +61,7 @@ export class LoginFormComponent implements OnInit {
                     console.log(error);
                     this.loading = false;
                 });
+                this.router.navigate([this.returnUrl]);
   }
 
   onSubmit() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs'
+import { LessonPlanRestApiService } from '../lesson-plan-rest-api.service';
 
 @Component({
   selector: 'app-lesson-plan-subject',
@@ -8,15 +9,24 @@ import { Observable } from 'rxjs'
   styleUrls: ['./lesson-plan-subject.component.css']
 })
 export class LessonPlanSubjectComponent implements OnInit {
-  standard:any=
-  [{
-    subject:"English"},{subject:"Tamil"},{subject:"Maths"},{subject:"Science"},{subject:"Social"}];
-    classId:any;
+  
+  standard:any;
+
+  classId:any;
+  
   constructor(private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router, private lessonPlanRestApiService : LessonPlanRestApiService) { }
     
   ngOnInit(): void {
+
      this.classId = this.route.snapshot.paramMap.get('class');
+
+     console.log(this.classId);
+
+     this.lessonPlanRestApiService.getClassSubjects(this.classId).subscribe( data => {
+       this.standard = data;
+     });
+
     console.log(this.classId);
   }
   navigate(subject:any) {  
