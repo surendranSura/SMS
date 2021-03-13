@@ -13,9 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './components/mainpage/mainpage.component';
 import { AngularFileUploaderModule } from "angular-file-uploader";
 import { BlockUIModule } from 'ng-block-ui';
-=======
 import { AlertModule } from './shared/alert/alert.module';
->>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -34,11 +32,8 @@ import { AlertModule } from './shared/alert/alert.module';
     BrowserAnimationsModule,
     HttpClientModule,
     AngularFileUploaderModule,
-<<<<<<< Updated upstream
-    BlockUIModule.forRoot()
-=======
+    BlockUIModule.forRoot(),
     AlertModule
->>>>>>> Stashed changes
   ],
   providers: [],
   bootstrap: [AppComponent]
