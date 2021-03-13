@@ -47,6 +47,7 @@ namespace SMS.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Post([FromBody] Staff staff)
 		{
+			
 			var userExists = await userManager.FindByNameAsync(staff.Mobile.ToString());
 			if (userExists != null)
 				return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User already exists!" });

@@ -22,6 +22,13 @@ table{
     font-size: 40px;
     color:	#676360;
     }
+
+    .fileterStyle{background-color: #f2f2f2;
+        height: 60px;
+        font-size: 12px;
+        color:	#676360;
+        }
+
     img{
         text-align: right;
     }

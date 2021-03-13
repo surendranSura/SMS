@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./master.component.css']
 })
 export class MasterComponent implements OnInit {
-
+  mHeight = '500px';
   constructor() { }
 
   ngOnInit(): void {
+    this.mHeight = `${window.innerHeight - 70}px`;
   }
 
 }

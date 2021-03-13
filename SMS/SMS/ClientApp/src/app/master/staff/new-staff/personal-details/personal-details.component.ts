@@ -28,6 +28,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
   nationality = SmsConstant.nationality;
   motherTon = SmsConstant.motherTongue;
   languageknown = SmsConstant.languageKnown;
+  getselectdata :string;
 
 
 
@@ -41,7 +42,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
 
     this.profileForm = this.fb.group(
       {
-        salutation: ['',Validators.required],
+        salutationId: ['',Validators.required],
         dob: ['',Validators.required],
         religionId: ['',Validators.required],
         motherTonge: ['',Validators.required],
@@ -72,17 +73,17 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
 
     this.profileForm.valueChanges.subscribe(() => {
       Object.assign(this.formValues, this.profileForm.value);
+      this.formValues["mobileNumber"]=Number.parseInt(this.formValues["mobileNumber"]);
       this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid && this.addressValidFlag) });
 
     });
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-    if (changes.getFormValues)
+  
+    if (changes.getFormValues.currentValue)
     {
+      console.log(changes.getFormValues.currentValue);
       this.profileForm.patchValue(this.getFormValues);
-      
-      console.log(this.getFormValues);
     }
   }
 

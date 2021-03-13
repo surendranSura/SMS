@@ -12,6 +12,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './components/mainpage/mainpage.component';
 import { AngularFileUploaderModule } from "angular-file-uploader";
+import { BlockUIModule } from 'ng-block-ui';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AngularFileUploaderModule
+    AngularFileUploaderModule,
+    BlockUIModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

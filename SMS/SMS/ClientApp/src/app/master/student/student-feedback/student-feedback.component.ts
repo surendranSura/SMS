@@ -9,7 +9,7 @@ import { SmsConstant } from 'src/app/shared/constant-values';
 export class StudentFeedbackComponent implements OnInit {
   newstudentFeedback:FormGroup;
   feedbackTypes = SmsConstant.feedbackTypes;
-  studentFeedbackTitle = SmsConstant.feedbackTitles;
+  // studentFeedbackTitle = SmsConstant.feedbackTitles;
   constructor(private fb:FormBuilder) 
   {
     this.newstudentFeedback=this.fb.group({

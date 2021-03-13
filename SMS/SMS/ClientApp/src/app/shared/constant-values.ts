@@ -2,16 +2,16 @@ export class SmsConstant {
 
   static readonly bloods = [
     { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'A+ ve' },
-    { value: 2, viewValue: 'B+ ve' },
-    { value: 3, viewValue: 'O+ ve' }
+    { value: "1", viewValue: 'A+ ve' },
+    { value: "2", viewValue: 'B+ ve' },
+    { value: "3", viewValue: 'O+ ve' }
   ];
 
   static readonly salutations = [
     { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'MR' },
-    { value: 2, viewValue: 'MISS' },
-    { value: 3, viewValue: 'MR' + "'" + 'S' }
+    { value: "1", viewValue: 'MR' },
+    { value: "2", viewValue: 'MISS' },
+    { value: "3", viewValue: 'MR' + "'" + 'S' }
   ];
   static readonly maritalStatus = [
     { value: 2, viewValue: 'Unmarried' },
@@ -91,9 +91,11 @@ export class SmsConstant {
   ];
   static readonly schoolBrand = [
     { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'good' },
-    { value: 2, viewValue: 'very good' },
-    { value: 3, viewValue: 'fine' }
+    { value: 1, viewValue: 'CBSE' },
+    { value: 2, viewValue: 'ICSE' },
+    { value: 3, viewValue: 'Matric' },
+    { value: 4, viewValue: 'State Board' },
+    { value: 5, viewValue: 'others' }
   ];
   static readonly passingOutSchool = [
     { value: 0, viewValue: '--select none--' },
@@ -109,23 +111,37 @@ export class SmsConstant {
   ]
   static readonly staffType = [
     { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'System Admin' },
-    { value: 2, viewValue: 'Teacher' },
-    { value: 3, viewValue: 'Hod' }
+    { value: 1, viewValue: 'School Admin' },
+    { value: 2, viewValue: 'Teaching' },
+    { value: 3, viewValue: 'Non Teaching' }
   ]
   static readonly designation = [
     { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'System Admin' },
-    { value: 2, viewValue: 'Teacher' },
-    { value: 3, viewValue: 'Hod' }
+    { value: 1, viewValue: 'Teacher' },
+    { value: 2, viewValue: 'Student' },
+    { value: 3, viewValue: 'Non Teaching' },
+    { value: 4, viewValue: 'Librarian' },
+    { value: 5, viewValue: 'Transport c' },
+    { value: 6, viewValue: 'Inventory Coordinator' },
+    { value: 7, viewValue: 'Finance Coordinator' }
+
   ]
   static readonly department = [
     { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Tamil' },
-    { value: 2, viewValue: 'English' },
-    { value: 3, viewValue: 'Maths' },
-    { value: 4, viewValue: 'Science' },
-    { value: 5, viewValue: 'Social' }
+    { value: 1, viewValue: 'Finance' },
+    { value: 2, viewValue: 'Transport'},
+    { value: 3, viewValue: 'Laboratory'},
+    { value: 4, viewValue: 'Administration'},
+    { value: 5, viewValue: 'Library'},
+    { value: 6, viewValue: 'Inventory'},
+    { value: 7, viewValue: 'English' },
+    { value: 8, viewValue: 'Tamil' },
+    { value: 9, viewValue: 'Maths' },
+    { value: 10, viewValue: 'Science' },  
+    { value: 11, viewValue: 'Social' },
+    { value: 12, viewValue: 'Computer Science'},
+    { value: 13, viewValue: 'Hindi' },
+    { value: 14, viewValue: 'Non Teaching' }
   ]
   static readonly education = [
     { value: 0, viewValue: '--select none--' },
@@ -135,14 +151,23 @@ export class SmsConstant {
   ]
   static readonly employmentStatus = [
     { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Emp o1' },
-    { value: 2, viewValue: 'Emp 02' },
-    { value: 3, viewValue: 'Emp 03' }
+    { value: 1, viewValue: 'Active' },
+    { value: 2, viewValue: 'Inactive'},
+    { value: 3, viewValue: 'Maternity Leave' },
+    { value: 4, viewValue: 'Paternity Leave' },
+    { value: 5, viewValue: 'LOP Leave' }
   ]
   static readonly role = [
     { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'one' },
-    { value: 2, viewValue: 'two' }
+    { value: 1, viewValue: 'Finance Admin' },
+    { value: 2, viewValue: 'Transport Admin' },
+    { value: 4, viewValue: 'Lab Admin'},
+    { value: 5, viewValue: 'Principal'},
+    { value: 6, viewValue: 'Teacher'},
+    { value: 7, viewValue: 'Student'},
+    { value: 8, viewValue: 'Parents'},
+    { value: 9, viewValue: 'Library Admin'},
+    { value: 10, viewValue: 'Inventory Admin'} 
   ]
   static readonly gender = [
     { value: 0, viewValue: '--select none--' },
@@ -156,28 +181,29 @@ export class SmsConstant {
   ]
   static readonly active = [
     { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'active 1' },
-    { value: 2, viewValue: 'active 2' },
-    { value: 3, viewValue: 'active 3' }
+    { value: 1, viewValue: 'yes' },
+    { value: 2, viewValue: 'No' }
+    
   ]
   static readonly letterType = [
     { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Word' },
-    { value: 2, viewValue: 'Pdf' },
-    { value: 3, viewValue: 'img' }
+    { value: 1, viewValue: 'Pay-slip' },
+    { value: 2, viewValue: 'Incentive' },
+    { value: 3, viewValue: 'Promotion' },
+    { value: 4, viewValue: 'General' }
   ]
   static readonly feedbackTypes = [
     { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'FT1' },
-    { value: 2, viewValue: 'FT2' },
-    { value: 3, viewValue: 'FT3' }
+    { value: 1, viewValue: 'Achievement' },
+    { value: 2, viewValue: 'Ares of Improvement' },
+    { value: 3, viewValue: 'Interim Feedback' }
   ]
-  static readonly feedbackTitles = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Ftitle1' },
-    { value: 2, viewValue: 'Ftitle2' },
-    { value: 3, viewValue: 'Ftitle3' }
-  ]
+  // static readonly feedbackTitles = [
+  //   { value: 0, viewValue: '--select none--' },
+  //   { value: 1, viewValue: 'Ftitle1' },
+  //   { value: 2, viewValue: 'Ftitle2' },
+  //   { value: 3, viewValue: 'Ftitle3' }
+  // ]
   static readonly bank = [
     { value: 0, viewValue: '--select none--' },
     { value: "1", viewValue: 'ALLAHABAD BANK ' },

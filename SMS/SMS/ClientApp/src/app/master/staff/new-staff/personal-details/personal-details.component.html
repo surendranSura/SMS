@@ -4,9 +4,9 @@
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Salutation</mat-label>
-                    <mat-select formControlName="salutation">
-                        <mat-option *ngFor="let salutations of salutations" [value]="salutations.value">
-                            {{salutations.viewValue}}
+                    <mat-select formControlName="salutationId">
+                        <mat-option *ngFor="let salu of salutations;" [value]="salu.viewValue">
+                            {{salu.viewValue}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -19,7 +19,7 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Religion</mat-label>
                     <mat-select formControlName="religionId">
-                        <mat-option  *ngFor="let religionId of religion" [value]="religionId.value">
+                        <mat-option *ngFor="let religionId of religion" [value]="religionId.value">
                             {{religionId.viewValue}}
                         </mat-option>
                     </mat-select>
@@ -28,7 +28,7 @@
                     <mat-label>Mother Tonuge</mat-label>
                     <mat-select formControlName="motherTonge">
                         <mat-option *ngFor="let mothertonge of motherTon" [value]="mothertonge.value">
-                           {{mothertonge.viewValue}}
+                            {{mothertonge.viewValue}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -49,16 +49,16 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Gender</mat-label>
                     <mat-select formControlName="gender">
-                        <mat-option *ngFor ="let gender of gender " [value]="gender.value">
-                         {{gender.viewValue}} 
+                        <mat-option *ngFor="let gender of gender " [value]="gender.value">
+                            {{gender.viewValue}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Languages Known</mat-label>
                     <mat-select formControlName="languages">
-                        <mat-option *ngFor ="let languages of languageknown " [value]="languages.value">
-                            {{languages.viewValue}} 
+                        <mat-option *ngFor="let languages of languageknown " [value]="languages.value">
+                            {{languages.viewValue}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -79,8 +79,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Nationality</mat-label>
                     <mat-select formControlName="nationality">
-                        <mat-option *ngFor="let national of nationality" [value]="national.value" >
-                             {{national.viewValue}} 
+                        <mat-option *ngFor="let national of nationality" [value]="national.value">
+                            {{national.viewValue}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -166,17 +166,3 @@
 
     <app-address-details (addresses)="getAddress($event)"></app-address-details>
 </form>
-
-
-<!-- <p>
-    Form Value: {{ profileForm.value | json }}
-  </p> -->
-
-
-<!-- <p>
-    Form Status: {{ profileForm.status }}
-  </p> -->
-
-<!-- <p>
-    <button (click)="updateProfile()">Update Profile</button>
-  </p> -->

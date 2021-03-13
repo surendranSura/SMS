@@ -40,7 +40,8 @@ export class LoginFormComponent implements OnInit {
   authUser()
   {
     if (this.loginForm.invalid) {
-     // return;
+      // this.router.navigate([this.returnUrl]);
+      return;
 
     }
     this.authService.getAuth(JSON.stringify(this.loginForm.value))

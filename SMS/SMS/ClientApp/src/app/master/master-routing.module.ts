@@ -7,6 +7,7 @@ const routes: Routes = [
     path: '', component: MasterComponent,
     children: [
       { path: 'new-staff/:id', loadChildren: () => import('./staff/new-staff/new-staff.module').then(m => m.NewStaffModule) },
+      { path: 'new-staff', loadChildren: () => import('./staff/new-staff/new-staff.module').then(m => m.NewStaffModule) },
       { path: 'staff-list', loadChildren: () => import('./staff/staff-list/staff-list.module').then(m => m.StaffListModule) },
       { path: 'new-student', loadChildren: () => import('./student/new-student/new-student.module').then(m => m.NewStudentModule)},
       { path: 'student-list', loadChildren: () =>import('./student/student-list/student-list.module').then(m=>m.StudentListModule)},

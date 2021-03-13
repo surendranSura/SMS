@@ -50,3 +50,21 @@ box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0, 0, 0, 0.541);
 outline: none;
 box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0, 0, 0, 0.541);
 }
+
+/* Scrollbar css */
+::-webkit-scrollbar {
+  width:7px;
+  height:7px;
+}
+
+/* bar */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #43a04891;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background:#43A047;
+}
+/* Scrollbar end */
