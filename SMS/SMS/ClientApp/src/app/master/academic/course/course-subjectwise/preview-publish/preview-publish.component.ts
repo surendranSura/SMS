@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./preview-publish.component.css']
 })
 export class PreviewPublishComponent implements OnInit {
+  @Output() emitcourseformDetails = new EventEmitter();
 cDate:any;
   prePublishForm:FormGroup;
   constructor(private fb:FormBuilder) {
@@ -17,6 +18,9 @@ cDate:any;
       courseTopic:['']
 
 
+    });
+    this.prePublishForm.valueChanges.subscribe(()=>{
+      this.emitcourseformDetails.emit({value:this.prePublishForm.value,valid:this.prePublishForm.valid})
     })
    }
 
