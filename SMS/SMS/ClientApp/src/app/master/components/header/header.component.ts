@@ -1,4 +1,5 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter, ViewChild } from '@angular/core';
+import { AngularFileUploaderComponent } from 'angular-file-uploader';
 import { LoginUser } from 'src/app/login-form/login-user';
 import { AuthenticationService } from 'src/app/login-form/service/authentication.service';
 
@@ -14,12 +15,53 @@ export class HeaderComponent implements OnInit {
  
   isSmScreen=false;
 
+  imgPath: any = null;
+
   loginuser : LoginUser = new LoginUser();
+
+  selectedFile: any= null;
 
   @Output() menuToggle=new EventEmitter<boolean>();
    private menuFlag:boolean=false;
 
-   
+   @ViewChild('fileUpload1')
+   private fileUpload1:  AngularFileUploaderComponent;
+
+   public response: {dbPath: ''};
+
+
+   afuConfig = {
+     multiple: false,
+     formatsAllowed: ".jpg,.png",
+     maxSize: "1",
+     uploadAPI:  {
+       url:"api/api/upload",
+       method:"POST",
+     //   headers: {
+     //  "Content-Type" : "text/plain;charset=UTF-8",
+     //   },
+       params: {
+         'page': '1'
+       },
+       responseType: 'blob',
+     },
+     theme: "attachPin",
+     hideProgressBar: true,
+     hideResetBtn: true,
+     hideSelectBtn: true,
+     fileNameIndex: true,
+     replaceTexts: {
+       selectFileBtn: 'Select Files',
+       resetBtn: 'Reset',
+       uploadBtn: 'Upload',
+       dragNDropBox: 'Drag N Drop',
+       attachPinBtn: 'Attach Files...',
+       afterUploadMsg_success: 'Successfully Uploaded !',
+       afterUploadMsg_error: 'Upload Failed !',
+       sizeLimit: 'Size Limit'
+     }
+ };
+  http: any;
   
   
   constructor(private loginApiService: AuthenticationService) { 
@@ -38,6 +80,21 @@ export class HeaderComponent implements OnInit {
     this.menuFlag=!this.menuFlag;
     this.menuToggle.emit(this.menuFlag);
   }
+  public uploadFinished = (event) => {
+    this.response = event;
+    this.imgPath = this.response.dbPath;
+  }
+  OnUpload()
+  {
+    const fd= new FormData();
+    fd.append('image',this.selectedFile,this.selectedFile.name);
+    this.http.post('',fd).subscribe(res=>{
+    console.log(res);
+    });
+  }
 
+  public createImgPath = (serverPath: string) => {
+    return `api/api/${serverPath}`;
+  }
 
 }

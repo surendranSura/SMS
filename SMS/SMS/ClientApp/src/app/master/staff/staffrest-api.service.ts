@@ -6,12 +6,13 @@ import { retry, catchError } from 'rxjs/operators';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Console } from 'console';
 import { Staff } from './Staff';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StaffrestApiService {
-
+  @BlockUI() blockUI: NgBlockUI;
   apiURL = 'api/api/Staff';
 
   private formvalueSource = new Subject<string>();
@@ -35,7 +36,7 @@ export class StaffrestApiService {
     return this.http.get<Staff>(this.apiURL)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError((err)=>this.handleError(err))
     )
   }
 
@@ -44,26 +45,26 @@ export class StaffrestApiService {
     return this.http.get<Staff>(this.apiURL + '/' + id)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError((err)=>this.handleError(err))
     )
   }  
 
   // HttpClient API post() method => Create Staff
   createStaff(staff : Staff): Observable<Staff> {
-    return this.http.post<Staff>(this.apiURL,staff, this.httpOptions)
+    return this.http.post<Staff>(this.apiURL ,staff, this.httpOptions)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError((err)=>this.handleError(err))
     )
 
   }  
 
   // HttpClient API put() method => Update Staff
   updateStaff(id : any, staff : Staff): Observable<Staff> {
-    return this.http.put<Staff>(this.apiURL + id, JSON.stringify(staff), this.httpOptions)
+    return this.http.put<Staff>(this.apiURL + '/' + id, JSON.stringify(staff), this.httpOptions)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError((err)=>this.handleError(err))
     )
   }
 
@@ -72,12 +73,15 @@ export class StaffrestApiService {
     return this.http.delete<Staff>(this.apiURL + '/'+ id, this.httpOptions)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError((err)=>this.handleError(err))
     )
   }
 
   // Error handling 
   handleError(error: any) {
+        this.blockUI.stop();
+     
+
      let errorMessage = '';
      if(error.error instanceof ErrorEvent) {
        // Get client-side error

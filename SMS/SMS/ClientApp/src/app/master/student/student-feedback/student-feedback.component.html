@@ -31,13 +31,18 @@
                     <mat-label>Class</mat-label>
                     <input matInput  formControlName="class" readonly>
                 </mat-form-field>
-                <mat-form-field appearance="standard">
+                <!-- <mat-form-field appearance="standard">
                     <mat-label>Feedback Title</mat-label>
                     <mat-select formControlName="feedbacktitle">
                         <mat-option *ngFor="let feedbacktitle of studentFeedbackTitle" [value]="feedbacktitle.value">
                             {{feedbacktitle.viewValue}}
                         </mat-option>
                     </mat-select>
+                </mat-form-field> -->
+
+                <mat-form-field appearance="standard">
+                    <mat-label>Feedback Title</mat-label>
+                    <input matInput  formControlName="feedbacktitle">
                 </mat-form-field>
             </div>
             <div class="col-sm-3">

@@ -10,7 +10,7 @@ import { SmsConstant } from 'src/app/shared/constant-values';
 export class StaffFeedbackComponent implements OnInit {
   newstaffFeedback: FormGroup;
   feedbackTypes = SmsConstant.feedbackTypes;
-  staffFeedbackTitle = SmsConstant.feedbackTitles;
+  // staffFeedbackTitle = SmsConstant.feedbackTitles;
   constructor(private fb: FormBuilder) {
     this.newstaffFeedback = this.fb.group({
       empid: [''],

@@ -1,6 +1,6 @@
-import { Component, OnInit,Output,EventEmitter } from '@angular/core';
-import {FormBuilder, FormControl,FormGroup,Validator} from '@angular/forms';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validator } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConstantPool } from '@angular/compiler';
 import { SSL_OP_NO_TLSv1_1 } from 'constants';
 import { ShowHideDirective } from '@angular/flex-layout';
@@ -16,112 +16,114 @@ import { AngularFileUploaderComponent } from "angular-file-uploader";
 })
 export class DocumentComponent implements OnInit {
   @Output() stuFormDetails = new EventEmitter();
-  documentForm : FormGroup;
-  selectedFile: any= null;
-  result:any=null;
-  t1img:boolean=false;
-  bSuccessImages:boolean=false;
-  t1fileName:any=null;
-  bCertificareName:any =null;
-  passportName:any = null;
-  aadharName:any=null;
-  RationCardName:any =null;
+  documentForm: FormGroup;
+  selectedFile: any = null;
+  result: any = null;
+  t1img: boolean = false;
+  bSuccessImages: boolean = false;
+  t1fileName: any = null;
+  bCertificareName: any = null;
+  passportName: any = null;
+  aadharName: any = null;
+  RationCardName: any = null;
   all_files: File[] = Array();
   resetVar: any = true;
   imgPath: any = null;
 
+  attachementTitles=[
+  "Transfer Certificate","Birth Certificate","Passport","Aadhaar","Ration Card","Student Visa"
+  ]
+
   @ViewChild('fileUpload1')
-    private fileUpload1:  AngularFileUploaderComponent;
+  private fileUpload1: AngularFileUploaderComponent;
 
-    public response: {dbPath: ''};
+  public response: { dbPath: '' };
 
 
-    afuConfig = {
-      multiple: false,
-      formatsAllowed: ".jpg,.png",
-      maxSize: "1",
-      uploadAPI:  {
-        url:"api/api/upload",
-        method:"POST",
+  afuConfig = {
+    multiple: false,
+    formatsAllowed: ".jpg,.png",
+    maxSize: "1",
+    uploadAPI: {
+      url: "api/api/upload",
+      method: "POST",
       //   headers: {
       //  "Content-Type" : "text/plain;charset=UTF-8",
       //   },
-        params: {
-          'page': '1'
-        },
-        responseType: 'blob',
+      params: {
+        'page': '1'
       },
-      theme: "attachPin",
-      hideProgressBar: true,
-      hideResetBtn: true,
-      hideSelectBtn: true,
-      fileNameIndex: true,
-      replaceTexts: {
-        selectFileBtn: 'Select Files',
-        resetBtn: 'Reset',
-        uploadBtn: 'Upload',
-        dragNDropBox: 'Drag N Drop',
-        attachPinBtn: 'Attach Files...',
-        afterUploadMsg_success: 'Successfully Uploaded !',
-        afterUploadMsg_error: 'Upload Failed !',
-        sizeLimit: 'Size Limit'
-      }
+      responseType: 'blob',
+    },
+    theme: "attachPin",
+    hideProgressBar: true,
+    hideResetBtn: true,
+    hideSelectBtn: true,
+    fileNameIndex: true,
+    replaceTexts: {
+      selectFileBtn: 'Select Files',
+      resetBtn: 'Reset',
+      uploadBtn: 'Upload',
+      dragNDropBox: 'Drag N Drop',
+      attachPinBtn: 'Attach Files...',
+      afterUploadMsg_success: 'Successfully Uploaded !',
+      afterUploadMsg_error: 'Upload Failed !',
+      sizeLimit: 'Size Limit'
+    }
   };
-  
-  constructor(private http:HttpClient,private fb :FormBuilder) { 
-    this.documentForm =this.fb.group({
-     transferCertificate : ['']
-		,birthCertificate : ['']
-		,passport : ['']
-		,aadhar : ['']
-		,rationCard : ['']
-		,studentVisa : ['']
+
+  constructor(private http: HttpClient, private fb: FormBuilder) {
+    this.documentForm = this.fb.group({
+      transferCertificate: ['']
+      , birthCertificate: ['']
+      , passport: ['']
+      , aadhar: ['']
+      , rationCard: ['']
+      , studentVisa: ['']
     });
-    this.documentForm.valueChanges.subscribe(()=>{
-    this.stuFormDetails.emit({value:this.documentForm,valid:this.documentForm.valid}); 
+    this.documentForm.valueChanges.subscribe(() => {
+      this.stuFormDetails.emit({ value: this.documentForm, valid: this.documentForm.valid });
     })
   }
-  onSubmit()
-  {
+  onSubmit() {
     console.warn(this.documentForm.value);
   }
-  Onfilesave(event: any,count:any)
-  {
-    
-    this.all_files.push(<File>event.target.files[count][0]);
-    switch(count)
-    {
-      case 0:
-        {
-          this.t1img=true;
-          this.t1fileName=this.all_files[0].name
-        }
-        break;
-        case 1:
-        {
-          this.bSuccessImages=true;
-          this.bCertificareName=this.all_files[1].name
-        }
-        break;
-        case 2:
-        {
-          
-          this.passportName=this.all_files[2].name
-        }
-        break;
-        case 3:
-        {
-          
-          this.aadharName=this.all_files[3].name
-        }
-        break;
-        case 4:
-        {
-          
-          this.RationCardName=this.all_files[4].name
-        }
-        break;
-    }
+  Onfilesave(event: any, count: any) {
+
+    // this.all_files.push(<File>event.target.files[count][0]);
+    // switch(count)
+    // {
+    //   case 0:
+    //     {
+    //       this.t1img=true;
+    //       this.t1fileName=this.all_files[0].name
+    //     }
+    //     break;
+    //     case 1:
+    //     {
+    //       this.bSuccessImages=true;
+    //       this.bCertificareName=this.all_files[1].name
+    //     }
+    //     break;
+    //     case 2:
+    //     {
+
+    //       this.passportName=this.all_files[2].name
+    //     }
+    //     break;
+    //     case 3:
+    //     {
+
+    //       this.aadharName=this.all_files[3].name
+    //     }
+    //     break;
+    //     case 4:
+    //     {
+
+    //       this.RationCardName=this.all_files[4].name
+    //     }
+    //     break;
+    // }
 
 
     // if(count===0)
@@ -135,9 +137,9 @@ export class DocumentComponent implements OnInit {
     // this.t1fileName=this.selectedFile.name;
 
     for (let i = 0; i < this.all_files.length; i++) {
-      console.log('File:', this.all_files[i], 'Name:', this.all_files[i].name);
+      // console.log('File:', this.all_files[i], 'Name:', this.all_files[i].name);
     }
-    
+
   }
 
   public uploadFinished = (event) => {
@@ -149,19 +151,16 @@ export class DocumentComponent implements OnInit {
   }
   // backTab(index:number)
   // {
-    
+
   // }
-  OnUpload()
-  {
-    const fd= new FormData();
-    fd.append('image',this.selectedFile,this.selectedFile.name);
-    this.http.post('',fd).subscribe(res=>{
-    console.log(res);
+  OnUpload() {
+    const fd = new FormData();
+    fd.append('image', this.selectedFile, this.selectedFile.name);
+    this.http.post('', fd).subscribe(res => {
+      console.log(res);
     });
   }
 
-  public createImgPath = (serverPath: string) => {
-    return `api/api/${serverPath}`;
-  }
+
 
 }

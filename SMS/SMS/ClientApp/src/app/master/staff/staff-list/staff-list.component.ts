@@ -7,6 +7,9 @@ import { Subscription} from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { SmsConstant } from 'src/app/shared/constant-values';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-staff-list',
@@ -14,6 +17,9 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./staff-list.component.css']
 })
 export class StaffListComponent implements OnInit {
+
+  department = SmsConstant.department;
+  designationList = SmsConstant.designation;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -25,20 +31,32 @@ export class StaffListComponent implements OnInit {
   staffListData!: MatTableDataSource<any>;
 
   columnsToDisplay = ['staffName','staffType', 'employeeID','department','designation','status','joiningDate','mobileNumber','eMail','actions'];
-
+  
+   @BlockUI() blockUI: NgBlockUI;
+  
   constructor(private router:Router, private staffApiService: StaffrestApiService) {
 
     this.LoadStaff();
   }
 
+  departmentchange(value)
+  {
+    
+    this.staffListData.filter.search(value);
+      console.log(this.staffListData.filter.search(value));
+  }
   LoadStaff()
   {
+    this.blockUI.start();
+
     this.currentUserSubscription = this.staffApiService.getStaffs().subscribe((staff:any) => {
       this.currentStaff = staff;
       this.staffListData = new MatTableDataSource(staff);
        this.staffListData.paginator = this.paginator;
       this.staffListData.sort = this.sort;
       console.log(this.staffListData);
+       this.blockUI.stop();
+
     });
 
   }
