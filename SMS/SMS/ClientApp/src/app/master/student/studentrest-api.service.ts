@@ -6,13 +6,15 @@ import { retry, catchError } from 'rxjs/operators';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Console } from 'console';
 import { Student, Dependents } from './student';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentrestApiService {
 
-  apiURL = 'api/api/Student';
+  apiURL = 'api/api/Student/';
+  @BlockUI() blockUI: NgBlockUI;
 
   constructor(private http: HttpClient) { }
 
@@ -32,7 +34,7 @@ export class StudentrestApiService {
     return this.http.get<Student>(this.apiURL)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError((err)=>this.handleError(err))
     )
   }
 
@@ -41,16 +43,17 @@ export class StudentrestApiService {
     return this.http.get<Student>(this.apiURL + id)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError((err)=>this.handleError(err))
     )
   }  
 
   // HttpClient API post() method => Create Student
   createStudent(student : Student): Observable<Student> {
-    return this.http.post<Student>(this.apiURL,student, this.httpOptions)
+    console.log(JSON.stringify(student));
+    return this.http.post<Student>('api/api/Student',student, this.httpOptions)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError((err)=>this.handleError(err))
     )
 
   }  
@@ -60,7 +63,7 @@ export class StudentrestApiService {
     return this.http.put<Student>(this.apiURL + id, JSON.stringify(student), this.httpOptions)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError((err)=>this.handleError(err))
     )
   }
 
@@ -69,21 +72,24 @@ export class StudentrestApiService {
     return this.http.delete<Student>(this.apiURL + id, this.httpOptions)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError((err)=>this.handleError(err))
     )
   }
 
   // Error handling 
   handleError(error: any) {
-     let errorMessage = '';
-     if(error.error instanceof ErrorEvent) {
-       // Get client-side error
-       errorMessage = error.error.message;
-     } else {
-       // Get server-side error
-       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-     }
-     window.alert(errorMessage);
-     return throwError(errorMessage);
-  }
+    this.blockUI.stop();
+ 
+
+      let errorMessage = '';
+      if(error.error instanceof ErrorEvent) {
+        // Get client-side error
+        errorMessage = error.error.message;
+      } else {
+        // Get server-side error
+        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      }
+      window.alert(errorMessage);
+      return throwError(errorMessage);
+   }
 }

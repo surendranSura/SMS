@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import { StudentrestApiService } from './../studentrest-api.service'
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-new-student',
@@ -14,6 +15,8 @@ export class NewStudentComponent implements OnInit {
   results : any =null;
   stuJsonResult: any ={};
   selectedTab:number=0;
+
+  @BlockUI() blockUI: NgBlockUI;
   
   constructor(private studentApiService: StudentrestApiService) { }
   
@@ -42,11 +45,11 @@ export class NewStudentComponent implements OnInit {
     // if(!this.stuFormtDetails.includes(false)){
     //   return;
     // }
-
+    this.blockUI.start();
     this.studentApiService.createStudent(this.stuJsonResult).subscribe(_=>{
     });
-
-    console.log('submited');
+    this.blockUI.stop();
+    
   }
   
   setTabFormDetails(value: any,tab:number){

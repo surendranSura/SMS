@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Staff } from '../Staff';
 import { StaffrestApiService } from '../staffrest-api.service';
 
@@ -20,7 +21,7 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
   loading = false;
   submitted = false;
 
-
+   @BlockUI() blockUI: NgBlockUI;
 
   constructor(private staffApiService: StaffrestApiService, private route: ActivatedRoute ) { }
 
@@ -60,11 +61,12 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
   }
 
   submit() {
-
+    this.blockUI.start();
     this.submitted = true;
 
 
    if (this.formDetails.includes(false)) {
+       this.blockUI.stop();
       return;
     }
 
@@ -73,6 +75,8 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
      } else {
       this.updateSatff();
      }
+
+     this.blockUI.stop();
     
   }
 

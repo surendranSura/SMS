@@ -65,7 +65,12 @@ namespace SMS.Models
         [JsonIgnore]
         [IgnoreDataMember]
         public int StudentAddressId { get; set; }
-        public StudentAddress[] Addresses { get; set; }
+
+        //[JsonIgnore]
+        //[IgnoreDataMember]
+        //public StudentAddress[] Addresses { get; set; }
+
+        public virtual ICollection<StudentAddress> Addresses { get; set; }
 
         public long Mobile { get; set; }
         public int AdmissionNumber { get; set; }

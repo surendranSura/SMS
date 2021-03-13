@@ -33,7 +33,7 @@ namespace SMS.Controllers
 		[HttpGet("{id}")]
 		public IActionResult Get(int id)
 		{
-			return Ok(_dbcontext.Students.Where(X => X.StudentId == id).FirstOrDefault());
+			return Ok(_dbcontext.Students.Where(X => X.AdmissionNumber == id).FirstOrDefault());
 		}
 
 		// POST api/<StudentController>
@@ -49,7 +49,7 @@ namespace SMS.Controllers
 		[HttpPut("{id}")]
 		public void Put(int id, [FromBody] Student student)
 		{
-			_dbcontext.Entry(_dbcontext.Students.Where(X => X.StudentId == id).FirstOrDefault()).CurrentValues.SetValues(student);
+			_dbcontext.Entry(_dbcontext.Students.Where(X => X.AdmissionNumber == id).FirstOrDefault()).CurrentValues.SetValues(student);
 			_dbcontext.SaveChanges();
 		}
 
@@ -57,7 +57,7 @@ namespace SMS.Controllers
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
-			_dbcontext.Remove(_dbcontext.Students.Where(X => X.StudentId == id).FirstOrDefault());
+			_dbcontext.Remove(_dbcontext.Students.Where(X => X.AdmissionNumber == id).FirstOrDefault());
 			_dbcontext.SaveChanges();
 		}
 	}

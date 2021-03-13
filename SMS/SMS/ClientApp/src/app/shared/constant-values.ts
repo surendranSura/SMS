@@ -50,16 +50,16 @@ export class SmsConstant {
     { value: 3, viewValue: 'Telugu' }
   ];
   static readonly firstLanguage = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Tamil' },
-    { value: 2, viewValue: 'English' },
-    { value: 3, viewValue: 'Telugu' }
+    { value: "0", viewValue: '--select none--' },
+    { value: "1", viewValue: 'Tamil' },
+    { value: "2", viewValue: 'English' },
+    { value: "3", viewValue: 'Telugu' }
   ];
   static readonly secondLanguage = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Tamil' },
-    { value: 2, viewValue: 'English' },
-    { value: 3, viewValue: 'Telugu' }
+    { value: "0", viewValue: '--select none--' },
+    { value: "1", viewValue: 'Tamil' },
+    { value: "2", viewValue: 'English' },
+    { value: "3", viewValue: 'Telugu' }
   ];
   static readonly city = [
     { value: 0, viewValue: '--select none--' },
@@ -78,16 +78,16 @@ export class SmsConstant {
     { value: 1, viewValue: 'India' }
   ];
   static readonly classes = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: '1st' },
-    { value: 2, viewValue: '2nd' },
-    { value: 3, viewValue: '3rd' }
+    { value: "0", viewValue: '--select none--' },
+    { value: "1", viewValue: '1st' },
+    { value: "2", viewValue: '2nd' },
+    { value: "3", viewValue: '3rd' }
   ];
   static readonly section = [
     { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'A' },
-    { value: 2, viewValue: 'B' },
-    { value: 3, viewValue: 'C' }
+    { value: "1", viewValue: 'A' },
+    { value: "2", viewValue: 'B' },
+    { value: "3", viewValue: 'C' }
   ];
   static readonly schoolBrand = [
     { value: 0, viewValue: '--select none--' },
@@ -170,9 +170,9 @@ export class SmsConstant {
     { value: 10, viewValue: 'Inventory Admin'} 
   ]
   static readonly gender = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Male' },
-    { value: 2, viewValue: 'Female' }
+    { value: "U", viewValue: '--select none--' },
+    { value: "M", viewValue: 'Male' },
+    { value: "F", viewValue: 'Female' }
   ]
   static readonly reportingTo = [
     { value: 0, viewValue: '--select none--' },

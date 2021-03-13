@@ -22,14 +22,14 @@ export class PGFormComponent implements OnInit {
       , firstName: ['']
       , middleName: ['']
       , lastName: ['']
-      , mobileNumber: ['']
+      , mobileNumber: ['0']
       , occupation: ['']
       , email: ['']
       , aadharNumber: ['']
       , company: ['']
       , designation: ['']
-      , annualIncome: ['']
-      , bvEmployee: ['']
+      , annualIncome: ['0']
+      , bvEmployee: [true]
     });
 
     this.parents.valueChanges.subscribe(() => {
@@ -48,7 +48,7 @@ export class PGFormComponent implements OnInit {
       this.parents.enable();
       return;
     }
-    this.parents.reset();
+    // this.parents.reset();
     this.parents.disable();
   }
 

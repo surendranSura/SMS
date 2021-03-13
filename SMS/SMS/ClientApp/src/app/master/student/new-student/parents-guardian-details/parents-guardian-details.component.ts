@@ -22,7 +22,6 @@ export class ParentsGuardianDetailsComponent implements OnInit {
 
   getParentsInfo(obj: any, flg:number) {
     this.stuParentDetails[flg]=obj.valid;
-    window.alert(obj.valid);
     switch(flg){
       case 0: this.arryoffPersonJson.fatherDetails=obj.value;
       break;
