@@ -35,6 +35,19 @@ export class ELetterComponent implements OnInit {
 
    }
 
+
+   ngAfterViewInit(): void {
+
+    if(!this.isAddMode)
+    {
+      this.staffrestApiService.getStaffeLetter(this.id)
+        .subscribe(data => {
+          this.staffrestApiService.setFormValue(data);
+        }, error => console.log(error));
+    }
+    
+  }
+
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;

@@ -9,7 +9,7 @@
             </mat-form-field>
             <mat-form-field appearance="standard">
                 <mat-label>Staff Name</mat-label>
-                <input matInput value="" formControlName="staffName" readonly>
+                <input matInput value="" formControlName="staffName" >
             </mat-form-field>
             <mat-form-field appearance="standard">
                 <mat-label>Feedback Type</mat-label>
@@ -29,7 +29,7 @@
         <div class="col-sm-3">
             <mat-form-field appearance="standard">
                 <mat-label>Department</mat-label>
-                <input matInput value="" formControlName="department" readonly>
+                <input matInput value="" formControlName="department" >
             </mat-form-field>
             <!-- <mat-form-field appearance="standard">
                 <mat-label>Feedback Title</mat-label>
@@ -49,7 +49,7 @@
         <div class="col-sm-3">
             <mat-form-field appearance="standard">
                 <mat-label>Teacher ID</mat-label>
-                <input matInput value="" formControlName="teacherId" readonly>
+                <input matInput value="" formControlName="teacherId" >
             </mat-form-field>
             <mat-form-field appearance="standard" style="width:350px;">
                 <mat-label>Description</mat-label>
@@ -74,7 +74,7 @@
     </div>
 </div>
 <div class="footer-n-stu" class="staffSubmit">   
-    <button type="button" class="gradient-button">Submit</button>
+    <button type="button" class="gradient-button" (click)="submit()">Submit</button>
     <!-- <p>{{newstaffFeedback.value|json}}</p> -->
   </div>
 </form>

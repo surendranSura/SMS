@@ -17,9 +17,9 @@ namespace SMS.Models
 
 		public DateTime FeedBackDate { get; set; }
 
-		public int Department { get; set; }
+		public string Department { get; set; }
 
-		public int TeacherId { get; set; }
+		public string TeacherId { get; set; }
 
 		public string Description { get; set; }
 

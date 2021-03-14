@@ -193,10 +193,10 @@ export class SmsConstant {
     { value: "4", viewValue: 'General' }
   ]
   static readonly feedbackTypes = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Achievement' },
-    { value: 2, viewValue: 'Ares of Improvement' },
-    { value: 3, viewValue: 'Interim Feedback' }
+    { value: "0", viewValue: '--select none--' },
+    { value: "1", viewValue: 'Achievement' },
+    { value: "2", viewValue: 'Ares of Improvement' },
+    { value: "3", viewValue: 'Interim Feedback' }
   ]
   // static readonly feedbackTitles = [
   //   { value: 0, viewValue: '--select none--' },

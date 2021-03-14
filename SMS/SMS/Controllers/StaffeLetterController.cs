@@ -27,9 +27,9 @@ namespace SMS.Controllers
 
 		// GET api/<StaffeLetterController>/5
 		[HttpGet("{id}")]
-		public StaffeLetter Get(int id)
+		public StaffeLetter Get(string id)
 		{
-			return _dbcontext.StaffeLetters.Where(X => X.StaffeLetterId == id).FirstOrDefault();
+			return _dbcontext.StaffeLetters.Where(X => X.Empid == id).FirstOrDefault();
 		}
 
 		// POST api/<StaffeLetterController>
@@ -43,17 +43,17 @@ namespace SMS.Controllers
 
 		// PUT api/<StaffeLetterController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] StaffeLetter staffeLetter)
+		public void Put(string id, [FromBody] StaffeLetter staffeLetter)
 		{
-			_dbcontext.Entry(_dbcontext.StaffeLetters.Where(X => X.StaffeLetterId == id).FirstOrDefault()).CurrentValues.SetValues(staffeLetter);
+			_dbcontext.Entry(_dbcontext.StaffeLetters.Where(X => X.Empid == id).FirstOrDefault()).CurrentValues.SetValues(staffeLetter);
 			_dbcontext.SaveChanges();
 		}
 
 		// DELETE api/<StaffeLetterController>/5
 		[HttpDelete("{id}")]
-		public void Delete(int id)
+		public void Delete(string id)
 		{
-			_dbcontext.Remove(_dbcontext.StaffeLetters.Where(X => X.StaffeLetterId == id).FirstOrDefault());
+			_dbcontext.Remove(_dbcontext.StaffeLetters.Where(X => X.Empid == id).FirstOrDefault());
 			_dbcontext.SaveChanges();
 		}
 	}

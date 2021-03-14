@@ -29,7 +29,7 @@
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Class</mat-label>
-                    <input matInput  formControlName="class" readonly>
+                    <input matInput  formControlName="class">
                 </mat-form-field>
                 <!-- <mat-form-field appearance="standard">
                     <mat-label>Feedback Title</mat-label>
@@ -48,7 +48,7 @@
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Section</mat-label>
-                    <input matInput  formControlName="section" readonly>
+                    <input matInput  formControlName="section">
                 </mat-form-field>
                 <mat-form-field appearance="standard" style="width:350px;">
                     <mat-label>Description</mat-label>
@@ -73,7 +73,7 @@
         </div>
     </div>
     <div class="footer-n-stu" style="float: right; margin-right: 20px;">   
-        <button type="button" class="gradient-button">Submit</button>
+        <button type="button" (click)="createStudenteLetter()" class="gradient-button">Submit</button>
       </div>
-      <p>{{newstudentFeedback.value|json}}</p>
+      <!-- <p>{{newstudentFeedback.value|json}}</p> -->
     </form>

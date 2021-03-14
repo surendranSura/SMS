@@ -41,6 +41,7 @@ export class StaffFeedbackListComponent implements OnInit {
   constructor(private router: Router,  private staffrestApiService :StaffrestApiService) { }
 
   ngOnInit(): void {
+    this.LoadFeedBack();
   }
   callNewStaffFeedback()
   {
@@ -49,14 +50,14 @@ export class StaffFeedbackListComponent implements OnInit {
 
   removeStaffFeedBack(staff : any){
 
-    this.staffrestApiService.deleteStaffFeedBack(staff.staffFeedbackID).subscribe(_=>{
+    this.staffrestApiService.deleteStaffFeedBack(staff.empid).subscribe(_=>{
       this.LoadFeedBack();
     });
   }
 
   editStaffFeedBack(staff : any)
   {
-    this.router.navigate(['/main/e-letter',staff.staffFeedbackID]);
+    this.router.navigate(['/main/staff-feedback',staff.empid]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });
   }
@@ -65,7 +66,7 @@ export class StaffFeedbackListComponent implements OnInit {
   {
     this.blockUI.start();
 
-    this.currentUserSubscription = this.staffrestApiService.getStaffseLetters().subscribe((staffFeedback:any) => {
+    this.currentUserSubscription = this.staffrestApiService.getStaffsFeedBack().subscribe((staffFeedback:any) => {
       this.staffFeedbackList = staffFeedback;
       console.log(this.staffFeedbackList);
        this.blockUI.stop();

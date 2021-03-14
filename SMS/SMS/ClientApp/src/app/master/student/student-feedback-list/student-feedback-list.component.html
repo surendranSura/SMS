@@ -14,20 +14,20 @@
     <!--staffName-->
     <ng-container matColumnDef="studentName">
         <th mat-header-cell *matHeaderCellDef> Staff Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.studentName}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.staffName}} </td>
 
     </ng-container>
 
     <!--feedBackType-->
     <ng-container matColumnDef="feedBackType">
         <th mat-header-cell *matHeaderCellDef>Feedback Type</th>
-        <td mat-cell *matCellDef="let element"> {{element.feedBackType}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.feedbackType}} </td>
     </ng-container>
 
     <!--feedbackTitle-->
     <ng-container matColumnDef="feedbackTitle">
         <th mat-header-cell *matHeaderCellDef> Feedback Title </th>
-        <td mat-cell *matCellDef="let element"> {{element.feedbackTitle}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.feedbacktitle}} </td>
     </ng-container>
 
     <!--description-->
@@ -55,8 +55,8 @@
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
             <img src="../../../../assets/mind-map.png" class="icon" style="margin-right: 10px;" />
-            <img src="../../../../assets/edit.png" class="icon" style="margin-right: 10px;" />
-            <img src="../../../../assets/trash.png" class="icon" style="margin-right: 10px; cursor: pointer;" />
+            <img src="../../../../assets/edit.png" class="icon" (click)="editStaffFeedBack(element)" style="margin-right: 10px;" />
+            <img src="../../../../assets/trash.png" class="icon" (click)="removeStaffFeedBack(element)" style="margin-right: 10px; cursor: pointer;" />
         </td>
     </ng-container>
 
