@@ -4,6 +4,8 @@ import { SmsConstant } from 'src/app/shared/constant-values';
 import { ActivatedRoute } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { StudentrestApiService } from '../studentrest-api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 
 @Component({
   selector: 'app-student-feedback',
@@ -20,7 +22,7 @@ export class StudentFeedbackComponent implements OnInit {
 
    @BlockUI() blockUI: NgBlockUI;
   // studentFeedbackTitle = SmsConstant.feedbackTitles;
-  constructor(private fb:FormBuilder,  private studentrestApiService :StudentrestApiService, private route: ActivatedRoute) 
+  constructor(private fb:FormBuilder,  private studentrestApiService :StudentrestApiService, private route: ActivatedRoute,public dialog: MatDialog) 
   {
     this.newstudentFeedback=this.fb.group({
       admittonNumber: ['', Validators.required],
@@ -70,14 +72,23 @@ export class StudentFeedbackComponent implements OnInit {
 
   createStudenteLetter()
   {
+   
     this.studentrestApiService.createStudentFeedBack(this.newstudentFeedback.value).subscribe(_=>{
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback created successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500);
     });
   }
 
   updateStudenteLetter()
   {
+    
     this.studentrestApiService.updateStudentFeedBack(this.id, this.newstudentFeedback.value).subscribe(_=>{
-
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback updated successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500);
     });
   }
 

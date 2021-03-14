@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 export class ClassesComponent implements OnInit {
   @Input() title: string = "";
   @Input() route_Link: string = "";
+
+  colors:any = "#5db0f0";
   // /main/lesson-plan/subjectDetails
   constructor(private router: Router) { }
 
