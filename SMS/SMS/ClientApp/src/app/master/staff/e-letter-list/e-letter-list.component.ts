@@ -60,14 +60,14 @@ export class ELetterListComponent implements OnInit {
   
   removeStaffeLetter(staff : any)
   {
-    this.staffrestApiService.deleteStaffeLetter(staff.staffeLetterId).subscribe(_=>{
+    this.staffrestApiService.deleteStaffeLetter(staff.empid).subscribe(_=>{
       this.LoadeLetter();
     });
   }
 
   editStaffeLetter(staff : any)
   {
-    this.router.navigate(['/main/e-letter',staff.staffeLetterId]);
+    this.router.navigate(['/main/e-letter',staff.empid]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });
   }

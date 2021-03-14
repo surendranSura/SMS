@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SMS.Models;
 using System;
 using System.Collections.Generic;
@@ -33,14 +34,14 @@ namespace SMS.Controllers
 		[HttpGet]
 		public IEnumerable<Staff> Get()
 		{
-			return _dbcontext.Staffs.ToList();
+			return _dbcontext.Staffs.Include(X => X.Addresses).Include(g => g.experiences).ToList();
 		}
 
 		// GET api/<StaffController>/5
 		[HttpGet("{id}")]
 		public IActionResult Get(long id)
 		{
-			return Ok(_dbcontext.Staffs.Where(X => X.Mobile == id).FirstOrDefault());
+			return Ok(_dbcontext.Staffs.Where(X => X.Mobile == id).Include(X => X.Addresses).Include(g => g.experiences).FirstOrDefault());
 		}
 
 		// POST api/<StaffController>

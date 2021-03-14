@@ -14,6 +14,8 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 export class StudentrestApiService {
 
   apiURL = 'api/api/Student/';
+  apiFeedbackURL = 'api/api/StudentFeedback/';
+  
   @BlockUI() blockUI: NgBlockUI;
 
   private formvalueSource = new Subject<string>();
@@ -78,6 +80,56 @@ export class StudentrestApiService {
       catchError((err)=>this.handleError(err))
     )
   }
+
+
+  //Staff-Feedback
+    // HttpClient API get() method => Fetch Staffs list
+    getStudentsFeedBack(): Observable<any> {
+      return this.http.get<any>(this.apiFeedbackURL)
+      .pipe(
+        retry(1),
+        catchError((err)=>this.handleError(err))
+      )
+    }
+  
+    // HttpClient API get() method => Fetch Staff
+    getStudentFeedBack(id : any): Observable<any> {
+      return this.http.get<any>(this.apiFeedbackURL + '/' + id)
+      .pipe(
+        retry(1),
+        catchError((err)=>this.handleError(err))
+      )
+    }  
+  
+    // HttpClient API post() method => Create Staff
+    createStudentFeedBack(staffFeedBack : any): Observable<any> {
+      console.log(JSON.stringify(staffFeedBack))
+      return this.http.post<any>(this.apiFeedbackURL ,staffFeedBack, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError((err)=>this.handleError(err))
+      )
+  
+    }  
+  
+    // HttpClient API put() method => Update Staff
+    updateStudentFeedBack(id : any, staffFeedBack : any): Observable<any> {
+      return this.http.put<any>(this.apiFeedbackURL + '/' + id, JSON.stringify(staffFeedBack), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError((err)=>this.handleError(err))
+      )
+    }
+  
+    // HttpClient API delete() method => Delete Staff
+    deleteStudentFeedBack(id : any){
+      return this.http.delete<any>(this.apiFeedbackURL + '/'+ id, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError((err)=>this.handleError(err))
+      )
+    }
+// end Staff FeedBack
 
   // Error handling 
   handleError(error: any) {

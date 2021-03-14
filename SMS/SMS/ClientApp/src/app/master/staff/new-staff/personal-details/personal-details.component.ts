@@ -29,7 +29,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
   motherTon = SmsConstant.motherTongue;
   languageknown = SmsConstant.languageKnown;
   getselectdata :string;
-
+  addressData=null;
 
 
 
@@ -56,7 +56,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
         nationality: [''],
         lastName: ['',Validators.required],
         weedingDate: [''],
-        mobileNumber: ['',Validators.required],
+        mobile: ['',Validators.required],
         aadharNumber: ['',Validators.required],
         fatherName: ['',Validators.required],
         motherName: ['',Validators.required],
@@ -73,7 +73,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
 
     this.profileForm.valueChanges.subscribe(() => {
       Object.assign(this.formValues, this.profileForm.value);
-      this.formValues["mobileNumber"]=Number.parseInt(this.formValues["mobileNumber"]);
+      this.formValues["mobile"]=Number.parseInt(this.formValues["mobile"]);
       this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid && this.addressValidFlag) });
 
     });
@@ -83,6 +83,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
     if (changes.getFormValues.currentValue)
     {
       console.log(changes.getFormValues.currentValue);
+      this.addressData=this.getFormValues["addresses"];
       this.profileForm.patchValue(this.getFormValues);
     }
   }

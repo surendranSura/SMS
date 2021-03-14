@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 import { Staff } from '../Staff';
 import { StaffrestApiService } from '../staffrest-api.service';
 
@@ -23,7 +25,7 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
 
    @BlockUI() blockUI: NgBlockUI;
 
-  constructor(private staffApiService: StaffrestApiService, private route: ActivatedRoute ) { }
+  constructor(private staffApiService: StaffrestApiService, private route: ActivatedRoute,public dialog: MatDialog) { }
 
   ngAfterViewInit(): void {
 
@@ -83,13 +85,24 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
   createStaff()
   {
     this.staffApiService.createStaff(this.conResults).subscribe(_=>{
+      this.dialog.open(MessageBoxComponent,{ width: '250px',height:'200px',data:"create"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500);
+      
+
+      
     });
   }
 
   updateSatff()
   {
     this.staffApiService.updateStaff(this.id, this.conResults).subscribe(_=>{
-
+      this.dialog.open(MessageBoxComponent,{ width: '250px',height:'200px',data:"update"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+        //routerlink needs
+      }, 2500);
     });
   }
 
