@@ -71,13 +71,11 @@ export class ELetterComponent implements OnInit {
 
   createStaffeLetter()
   {
-    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"e-Letter created successfully !"});
+    this.staffrestApiService.createStaffeLetter(this.eletterfrm.value).subscribe(_=>{
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"e-Letter created successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
       }, 2500);  
-      
-    this.staffrestApiService.createStaffeLetter(this.eletterfrm.value).subscribe(_=>{
-
       
       
     });
@@ -86,7 +84,14 @@ export class ELetterComponent implements OnInit {
   updateSatffeLetter()
   {
     this.staffrestApiService.updateStaffeLetter(this.id, this.eletterfrm.value).subscribe(_=>{
-
+      this.staffrestApiService.createStaffeLetter(this.eletterfrm.value).subscribe(_=>{
+        this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"e-Letter Updated successfully !"});
+        setTimeout(() => {
+          this.dialog.closeAll();
+        }, 2500);  
+        
+        
+      });
     });
   }
 

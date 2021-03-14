@@ -4,6 +4,8 @@ import { SmsConstant } from 'src/app/shared/constant-values';
 import { StaffrestApiService } from '../staffrest-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { MatDialog } from '@angular/material/dialog';
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 
 
 @Component({
@@ -22,7 +24,7 @@ export class StaffFeedbackComponent implements OnInit {
    @BlockUI() blockUI: NgBlockUI;
 
   // staffFeedbackTitle = SmsConstant.feedbackTitles;
-  constructor(private fb: FormBuilder, private staffrestApiService :StaffrestApiService, private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private staffrestApiService :StaffrestApiService, private route: ActivatedRoute,public dialog: MatDialog) {
     this.newstaffFeedback = this.fb.group({
       empid: ['', Validators.required],
       staffName: ['', Validators.required],
@@ -70,12 +72,20 @@ export class StaffFeedbackComponent implements OnInit {
 
   createStaffFeedback()
   {
+    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Staff Feedback created successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500); 
     this.staffrestApiService.createStaffFeedBack(this.newstaffFeedback.value).subscribe(_=>{
     });
   }
 
   updateSatfffeedback()
   {
+    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Staff Feedback updated successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500); 
     this.staffrestApiService.updateStaffFeedBack(this.id, this.newstaffFeedback.value).subscribe(_=>{
 
     });
