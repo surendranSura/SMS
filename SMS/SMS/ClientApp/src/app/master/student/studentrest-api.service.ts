@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 import { CompileShallowModuleMetadata } from '@angular/compiler';
@@ -15,6 +15,9 @@ export class StudentrestApiService {
 
   apiURL = 'api/api/Student/';
   @BlockUI() blockUI: NgBlockUI;
+
+  private formvalueSource = new Subject<string>();
+  formValue$ = this.formvalueSource.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -92,4 +95,8 @@ export class StudentrestApiService {
       window.alert(errorMessage);
       return throwError(errorMessage);
    }
+
+   setFormValue(value:any) {
+    this.formvalueSource.next(value);
+  }
 }

@@ -57,6 +57,8 @@ namespace SMS.Models
 
         public virtual DbSet<StudentCourseDetail> StudentCourseDetails { get; set; }
 
+        public virtual DbSet<StaffeLetter> StaffeLetters { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

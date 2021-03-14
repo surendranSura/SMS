@@ -186,11 +186,11 @@ export class SmsConstant {
     
   ]
   static readonly letterType = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Pay-slip' },
-    { value: 2, viewValue: 'Incentive' },
-    { value: 3, viewValue: 'Promotion' },
-    { value: 4, viewValue: 'General' }
+    { value: "0", viewValue: '--select none--' },
+    { value: "1", viewValue: 'Pay-slip' },
+    { value: "2", viewValue: 'Incentive' },
+    { value: "3", viewValue: 'Promotion' },
+    { value: "4", viewValue: 'General' }
   ]
   static readonly feedbackTypes = [
     { value: 0, viewValue: '--select none--' },

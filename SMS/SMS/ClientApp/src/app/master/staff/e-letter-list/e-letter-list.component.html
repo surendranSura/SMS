@@ -61,8 +61,8 @@
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
             <img src="../../../../assets/mind-map.png" class="icon" style="margin-right: 10px;"/>
-            <img src="../../../../assets/edit.png" class="icon" style="margin-right: 10px;"/>
-             <img src="../../../../assets/trash.png" class="icon" style="margin-right: 10px; cursor: pointer;"/> 
+            <img src="../../../../assets/edit.png" class="icon" (click)="editStaffeLetter(element)" style="margin-right: 10px;"/>
+             <img src="../../../../assets/trash.png" class="icon" (click)="removeStaffeLetter(element)" style="margin-right: 10px; cursor: pointer;"/> 
         </td>
     </ng-container>
 

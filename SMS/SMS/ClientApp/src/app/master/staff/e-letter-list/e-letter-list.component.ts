@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit  } from '@angular/core';
 import { Router } from '@angular/router'
 import { FormControl } from '@angular/forms';
+import { Subscription} from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { StaffrestApiService } from '../staffrest-api.service';
 
 @Component({
   selector: 'app-e-letter-list',
@@ -28,25 +34,54 @@ export class ELetterListComponent implements OnInit {
     }
   ];
   //  Staff Type Employee ID Teacher ID Department Designation Status Joining Date Mobile Number e-mail
-  columnsToDisplay = ['staffName', 'employeeID', 'letterType', 'month', 'year', 'attachment', 'actions'];
+  columnsToDisplay = ['staffName', 'employeeID', 'letterType', 'month', 'year', 'actions'];
 
-  constructor(private router: Router) { }
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  @ViewChild(MatSort) sort !: MatSort;
+
+  currentUserSubscription !: Subscription;
+  staffListData!: MatTableDataSource<any>;
+
+  
+   @BlockUI() blockUI: NgBlockUI;
+
+  constructor(private router: Router, private staffrestApiService :StaffrestApiService) { }
   // name = new FormControl('');
 
   ngOnInit(): void {
-
+    this.LoadeLetter();
   }
+
   callNewELetter() {
 
     this.router.navigate(['/main/e-letter']);
   }
-  // removeStaff(emp : any)
-  // {
-  //   console.log(emp);
+  
+  removeStaffeLetter(staff : any)
+  {
+    this.staffrestApiService.deleteStaffeLetter(staff.staffeLetterId).subscribe(_=>{
+      this.LoadeLetter();
+    });
+  }
 
-  // }
-  removeStaff(emp: any) {
-    console.log('hai');
+  editStaffeLetter(staff : any)
+  {
+    this.router.navigate(['/main/e-letter',staff.staffeLetterId]);
+    // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
+    // });
+  }
+
+  LoadeLetter()
+  {
+    this.blockUI.start();
+
+    this.currentUserSubscription = this.staffrestApiService.getStaffseLetters().subscribe((staffeLetter:any) => {
+      this.eLetterList = staffeLetter;
+      console.log(this.eLetterList);
+       this.blockUI.stop();
+
+    });
   }
 
 }

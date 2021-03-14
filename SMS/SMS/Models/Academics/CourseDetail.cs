@@ -9,6 +9,10 @@ namespace SMS.Models.Academics
 	{
 		public int CourseDetailId { get; set; }
 
+		public int AcademicClassId { get; set; }
+
+		public int AcademicClassSubjectId { get; set; }
+
 		public string CourseName { get; set; }
 
 		public string CourseCode { get; set; }

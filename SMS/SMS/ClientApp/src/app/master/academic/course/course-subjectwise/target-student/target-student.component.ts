@@ -1,6 +1,14 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { StudentListComponent } from "../../../../student/student-list/student-list.component";
+import {SelectionModel} from '@angular/cdk/collections';
+
+import { Subscription} from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-target-student',
@@ -11,6 +19,20 @@ import { SmsConstant } from 'src/app/shared/constant-values';
 export class TargetStudentComponent implements OnInit {
   @Output() emitcourseformDetails = new EventEmitter();
   
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  @ViewChild(MatSort) sort !: MatSort;
+
+  currentUserSubscription !: Subscription;
+  studentListData : any[];
+  
+
+  columnsToDisplay = ['StudentName','EsisNumber', 'MobileNumber','Email','Class','Section', 'Status'];
+
+
+
+
   targetstudentForm : FormGroup;
  classes=SmsConstant.classes;
  sections=SmsConstant.section;

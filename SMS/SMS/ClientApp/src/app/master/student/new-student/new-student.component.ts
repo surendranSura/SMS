@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import { StudentrestApiService } from './../studentrest-api.service'
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { Student } from '../student';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-student',
@@ -15,13 +17,32 @@ export class NewStudentComponent implements OnInit {
   results : any =null;
   stuJsonResult: any ={};
   selectedTab:number=0;
+  isAddMode?: boolean;
+  _student : Student;
+  id : any;
 
   @BlockUI() blockUI: NgBlockUI;
   
-  constructor(private studentApiService: StudentrestApiService) { }
+  constructor(private studentApiService: StudentrestApiService, private route: ActivatedRoute) { }
+
+  ngAfterViewInit(): void {
+
+    if(!this.isAddMode)
+    {
+      this.studentApiService.getStudent(this.id)
+        .subscribe(data => {
+          this._student = data;
+          this.studentApiService.setFormValue(data);
+          console.log(this._student);
+        }, error => console.log(error));
+    }
+    
+  }
   
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.isAddMode = !this.id;
   }
 
   btnMovement(st:string){
@@ -42,14 +63,40 @@ export class NewStudentComponent implements OnInit {
 
   submit(){
 
+    this.blockUI.start();
+    // this.submitted = true;
+
+
+   if (this.stuFormtDetails.includes(false)) {
+       this.blockUI.stop();
+      return;
+    }
+
+    if (this.isAddMode) {
+      this.createStudent();
+     } else {
+      this.updateStudent();
+     }
+
+     this.blockUI.stop();
+
     // if(!this.stuFormtDetails.includes(false)){
     //   return;
     // }
-    this.blockUI.start();
+    
+  }
+
+  createStudent()
+  {
     this.studentApiService.createStudent(this.stuJsonResult).subscribe(_=>{
     });
-    this.blockUI.stop();
-    
+  }
+
+  updateStudent()
+  {
+    this.studentApiService.updateStudent(this.id, this.stuJsonResult).subscribe(_=>{
+
+    });
   }
   
   setTabFormDetails(value: any,tab:number){

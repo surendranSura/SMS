@@ -9,7 +9,6 @@ import { MatSort } from '@angular/material/sort';
 import { SmsConstant } from 'src/app/shared/constant-values';
 import { Student } from '../student';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
@@ -33,7 +32,9 @@ export class StudentListComponent implements OnInit {
   currentUserSubscription !: Subscription;
   studentListData : any;
   currentStudent : Student;
+
   columnsToDisplay = ['StudentName','EsisNumber', 'MobileNumber','Email','Class','Section', 'Actions'];
+
   constructor(private studentrestApiService : StudentrestApiService, private router:Router) { }
 
   ngOnInit(): void {

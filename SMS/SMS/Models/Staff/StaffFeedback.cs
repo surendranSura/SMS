@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SMS.Models
 {
-	public class StaffFeedback
+	public partial class StaffFeedback
 	{
 		[JsonIgnore]
 		public int StaffFeedbackID { get; set; }
