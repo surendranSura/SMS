@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace SMS.Models.Academics
@@ -25,8 +26,12 @@ namespace SMS.Models.Academics
 
 		public string Topic { get; set; }
 
+		public	string StudentId { get; set; }
+
+		[JsonIgnore]
 		public string FileType { get; set; }
 
+		[JsonIgnore]
 		public string  FilePath { get; set; }
 
 	}

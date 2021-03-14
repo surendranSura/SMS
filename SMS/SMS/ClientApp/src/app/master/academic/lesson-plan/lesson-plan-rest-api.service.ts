@@ -11,6 +11,8 @@ export class LessonPlanRestApiService {
 
   apiURL = '/api/api/AcademicClass/GetClassSubjects/';
   lessonPlanURL = '/api/api/LessonPlan/';
+
+  coursePlanURL = '/api/api/Course/';
   
   constructor(private http: HttpClient) { }
 
@@ -38,6 +40,17 @@ export class LessonPlanRestApiService {
   createLessonPlan(lessonPlan : any): Observable<any> {
 
     return this.http.post<any>(this.lessonPlanURL,lessonPlan, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+
+  }  
+
+  // HttpClient API post() method => Create LessonPlan
+  createCourse(course : any): Observable<any> {
+
+    return this.http.post<any>(this.coursePlanURL,course, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)

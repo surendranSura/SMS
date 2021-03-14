@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SMS.Models;
+using SMS.Models.Academics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,13 @@ namespace SMS.Controllers
 	[ApiController]
 	public class CourseController : ControllerBase
 	{
+		private readonly SchoolManagementContext _dbcontext;
+
+		public CourseController(SchoolManagementContext dbcontext)
+		{
+			this._dbcontext = dbcontext;
+		}
+
 		// GET: api/<CourseController>
 		[HttpGet]
 		public IEnumerable<string> Get()
@@ -28,8 +37,10 @@ namespace SMS.Controllers
 
 		// POST api/<CourseController>
 		[HttpPost]
-		public void Post([FromBody] string value)
+		public void Post([FromBody] CourseDetail courseDetail)
 		{
+			_dbcontext.CourseDetails.Add(courseDetail);
+			_dbcontext.SaveChanges();
 		}
 
 		// PUT api/<CourseController>/5
