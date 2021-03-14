@@ -8,10 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CourseSubjectwiseComponent implements OnInit {
 
-  courseFormtDetails: boolean[] =[]
+  emitcourseformDetails: boolean[] =[]
   results : any =null;
   courseJsonResult: any ={};
   selectedTab:number=0;
+  isAddMode?: boolean;
+  submitted = false;
 
   subject:any;
   class:any;
@@ -28,7 +30,7 @@ export class CourseSubjectwiseComponent implements OnInit {
     }
     else if (st === 'frd') {
 
-      if (this.selectedTab >= 3) {
+      if (this.selectedTab >= 2) {
         this.submit();
         return;
       }
@@ -37,18 +39,35 @@ export class CourseSubjectwiseComponent implements OnInit {
 
   }
   submit(){
-
-    // if(!this.stuFormtDetails.includes(false)){
-    //   return;
-    // }
-
+    this.submitted = true;
+    if(!this.emitcourseformDetails.includes(false)){
+      return;
+    }
+    if (this.isAddMode) {
+      this.createStaff();
+     } else {
+      this.updateSatff();
+     }
     // this.studentApiService.createStudent(this.stuJsonResult).subscribe(_=>{
     // });
 
     console.log('submited');
   }
+    
+  createStaff()
+  {
+    // this.staffApiService.createStaff(this.conResults).subscribe(_=>{
+    // });
+  }
+  updateSatff()
+  {
+    // this.staffApiService.updateStaff(this.id, this.conResults).subscribe(_=>{
+
+    // });
+  }
+
   setTabFormDetails(value: any,tab:number){
-    this.courseFormtDetails[tab] = value.valid;
+    this.emitcourseformDetails[tab] = value.valid;
     Object.assign(this.courseJsonResult,value.value);
     console.log(this.courseJsonResult);
   }

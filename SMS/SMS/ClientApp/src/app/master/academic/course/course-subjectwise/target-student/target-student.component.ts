@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
 
@@ -9,7 +9,8 @@ import { SmsConstant } from 'src/app/shared/constant-values';
 })
 
 export class TargetStudentComponent implements OnInit {
-
+  @Output() emitcourseformDetails = new EventEmitter();
+  
   targetstudentForm : FormGroup;
  classes=SmsConstant.classes;
  sections=SmsConstant.section;
@@ -19,6 +20,9 @@ export class TargetStudentComponent implements OnInit {
       class:[''],
       section:[''],
       status:['']
+    });
+    this.targetstudentForm.valueChanges.subscribe(()=>{
+      this.emitcourseformDetails.emit({value:this.targetstudentForm.value,valid:this.targetstudentForm.valid});
     })
    }
 

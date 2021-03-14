@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
 
@@ -8,9 +8,9 @@ import { SmsConstant } from 'src/app/shared/constant-values';
   styleUrls: ['./content-upload.component.css']
 })
 export class ContentUploadComponent implements OnInit {
-
+  @Output() emitcourseformDetails = new EventEmitter();
   courseUploadForm: FormGroup;
-  ContentType=SmsConstant.contentType
+  ContentTypes=SmsConstant.contentType
   all_files: File[] = Array();
   uploadContentName: any=null;
   constructor(private fb: FormBuilder) {
@@ -19,7 +19,10 @@ export class ContentUploadComponent implements OnInit {
         contentType:[''],
         uploadContent:['']
       }
-    )
+    );
+    this.courseUploadForm.valueChanges.subscribe(()=>{
+      this.emitcourseformDetails.emit({value:this.courseUploadForm.value,valid:this.courseUploadForm.valid});
+    })
   }
 
   ngOnInit(): void {

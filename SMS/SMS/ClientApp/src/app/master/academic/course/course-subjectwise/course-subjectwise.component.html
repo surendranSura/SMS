@@ -6,22 +6,34 @@
     </h2>
 </div>
 <mat-tab-group>
-    <mat-tab label="Course Details">
-        <mat-icon *ngIf="courseFormtDetails[0]!=null && courseFormtDetails[0]" color="primary">check_circle</mat-icon>
-        <app-course-details (courseFormtDetails)="setTabFormDetails($event,0)"></app-course-details>
-    </mat-tab>
-    <mat-tab label="Content Upload">
-        <mat-icon *ngIf="courseFormtDetails[1]!=null && courseFormtDetails[1]" color="primary">check_circle</mat-icon>
-        <app-content-upload (courseFormtDetails)="setTabFormDetails($event,1)"></app-content-upload>
-    </mat-tab>
-    <mat-tab label="Target Students">
-        <mat-icon *ngIf="courseFormtDetails[2]!=null && courseFormtDetails[2]" color="primary">check_circle</mat-icon>
-        <app-target-student (courseFormtDetails)="setTabFormDetails($event,2)"></app-target-student>
-    </mat-tab>
-    <mat-tab label="Preview & Publish">
-        <mat-icon *ngIf="courseFormtDetails[3]!=null && courseFormtDetails[3]" color="primary">check_circle</mat-icon>
-        <app-preview-publish (courseFormtDetails)="setTabFormDetails($event,3)"></app-preview-publish>
-    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+          Course Details
+          <mat-icon *ngIf="emitcourseformDetails[0]!=null && emitcourseformDetails[0]" color="primary">check_circle</mat-icon>
+        </ng-template>
+        <app-course-details (emitcourseformDetails)="setTabFormDetails($event,0)"></app-course-details>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          Content Upload
+          <mat-icon *ngIf="emitcourseformDetails[1]!=null && emitcourseformDetails[1]" color="primary">check_circle</mat-icon>
+        </ng-template>
+        <app-content-upload (emitcourseformDetails)="setTabFormDetails($event,1)"></app-content-upload>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          Target Students
+          <mat-icon *ngIf="emitcourseformDetails[2]!=null && emitcourseformDetails[2]" color="primary">check_circle</mat-icon>
+        </ng-template>
+        <app-target-student (emitcourseformDetails)="setTabFormDetails($event,2)"></app-target-student>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          Preview & Publish
+          <mat-icon *ngIf="emitcourseformDetails[3]!=null && emitcourseformDetails[3]" color="primary">check_circle</mat-icon>
+        </ng-template>
+         <app-preview-publish (emitcourseformDetails)="setTabFormDetails($event,3)"></app-preview-publish>
+      </mat-tab>
 </mat-tab-group>
 <div class="footer-n-stu">
 
@@ -32,4 +44,5 @@
       <span *ngIf="!(selectedTab>=2)">Next</span>
       <span *ngIf="(selectedTab>=2)">Submit</span>
     </button>
+    
   </div>

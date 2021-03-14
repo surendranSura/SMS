@@ -3,8 +3,8 @@
         <div class="row" style="margin-left: 10px;">
             <mat-form-field appearance="standard">
                 <mat-label>Content Type</mat-label>
-                <mat-select formControlName="completionCriteria">
-                    <mat-option *ngFor="let contentType of ContentType" [value]="contentType.value">
+                <mat-select formControlName="contentType">
+                    <mat-option *ngFor="let contentType of ContentTypes" [value]="contentType.value">
                         {{contentType.viewValue}}
                     </mat-option>
                 </mat-select>
