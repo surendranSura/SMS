@@ -1,12 +1,12 @@
 <app-header-action [index]='0'></app-header-action>
-<mat-tab-group [selectedIndex]="selectedTab">
+<mat-tab-group [(selectedIndex)]="selectedTab">
 
 <mat-tab>
     <ng-template mat-tab-label>
       Student Details
       <mat-icon *ngIf="stuFormtDetails[0]!=null && stuFormtDetails[0]" color="primary">check_circle</mat-icon>
     </ng-template>
-    <app-student-details (stuFormtDetails)="setTabFormDetails($event,0)" ></app-student-details>
+    <app-student-details [getFormValues]="_student"(stuFormtDetails)="setTabFormDetails($event,0)" ></app-student-details>
   </mat-tab>
   
   <mat-tab>

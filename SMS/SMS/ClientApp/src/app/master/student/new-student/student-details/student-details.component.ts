@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
 
@@ -9,6 +9,7 @@ import { SmsConstant } from 'src/app/shared/constant-values';
 })
 export class StudentDetailsComponent implements OnInit {
   @Output() stuFormtDetails = new EventEmitter();
+  @Input() getFormValues = {};
   studentProfileForm: FormGroup;
   formValues = { addresses: [] };//refer to student details parameters
   addressValidFlag: boolean = false;
@@ -27,6 +28,7 @@ export class StudentDetailsComponent implements OnInit {
   sclBrand =SmsConstant.schoolBrand;
   pasOutScl =SmsConstant.passingOutSchool;
   yearOfAttends =SmsConstant.yearOfAttendence;
+  addressData = null;
 
   constructor(private fb: FormBuilder) {
     this.studentProfileForm = this.fb.group({
@@ -65,6 +67,15 @@ export class StudentDetailsComponent implements OnInit {
 
     })
     
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+  
+    if (changes.getFormValues.currentValue)
+    {
+      console.log(changes.getFormValues.currentValue);
+      this.addressData=this.getFormValues["addresses"];
+      this.studentProfileForm.patchValue(this.getFormValues);
+    }
   }
   onSubmit() {
     console.warn(this.studentProfileForm.value);

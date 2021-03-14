@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 
 
 @Component({
@@ -9,14 +9,24 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class AddressDetailsComponent implements OnInit {
 
   formPermanentAddress: any = {};
+  formCurrentAddress: any ={};
 
   adderessArray = [{ value: {}, valid: false }, { value: {}, valid: false }];
   cTpFlag:boolean=false;
 
   @Output() addresses = new EventEmitter();
-
+  @Input() addressDetails;
   constructor() {
 
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+  
+    if (changes.addressDetails.currentValue)
+    {
+      this.formCurrentAddress=this.addressDetails[0];
+      this.formPermanentAddress=this.addressDetails[1];
+    }
   }
 
   ngOnInit(): void {

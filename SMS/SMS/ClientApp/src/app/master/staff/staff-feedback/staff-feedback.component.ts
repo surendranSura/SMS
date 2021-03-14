@@ -37,15 +37,16 @@ export class StaffFeedbackComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-
+    
     if(!this.isAddMode)
     {
+      this.blockUI.start();
       this.staffrestApiService.getStaffFeedBack(this.id)
         .subscribe(data => {
-          this.staffrestApiService.setFormValue(data);
+          this.newstaffFeedback.patchValue(data);
+          this.blockUI.stop();
         }, error => console.log(error));
     }
-    
   }
 
   ngOnInit(): void {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SMS.Models;
 using System;
 using System.Collections.Generic;
@@ -26,14 +27,14 @@ namespace SMS.Controllers
 		[HttpGet]
 		public IEnumerable<Student> Get()
 		{
-			return _dbcontext.Students.ToList();
+			return _dbcontext.Students.Include(X => X.Addresses).ToList();
 		}
 
 		// GET api/<StudentController>/5
 		[HttpGet("{id}")]
 		public IActionResult Get(int id)
 		{
-			return Ok(_dbcontext.Students.Where(X => X.AdmissionNumber == id).FirstOrDefault());
+			return Ok(_dbcontext.Students.Include(X => X.Addresses).Where(X => X.AdmissionNumber == id).FirstOrDefault());
 		}
 
 		// POST api/<StudentController>

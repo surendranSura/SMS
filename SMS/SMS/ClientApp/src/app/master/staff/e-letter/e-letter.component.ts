@@ -4,6 +4,8 @@ import { SmsConstant } from 'src/app/shared/constant-values';
 import { StaffrestApiService } from '../staffrest-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-e-letter',
@@ -22,7 +24,7 @@ export class ELetterComponent implements OnInit {
 
    @BlockUI() blockUI: NgBlockUI;
 
-  constructor( private fb:FormBuilder, private staffrestApiService :StaffrestApiService, private route: ActivatedRoute) {
+  constructor( private fb:FormBuilder, private staffrestApiService :StaffrestApiService, private route: ActivatedRoute, public dialog: MatDialog) {
       this.eletterfrm = this.fb.group({
         empid: ['', Validators.required],
         staffName:['', Validators.required],
@@ -42,7 +44,7 @@ export class ELetterComponent implements OnInit {
     {
       this.staffrestApiService.getStaffeLetter(this.id)
         .subscribe(data => {
-          this.staffrestApiService.setFormValue(data);
+          this.eletterfrm.patchValue(data);
         }, error => console.log(error));
     }
     
@@ -69,7 +71,15 @@ export class ELetterComponent implements OnInit {
 
   createStaffeLetter()
   {
+    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"e-Letter created successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500);  
+      
     this.staffrestApiService.createStaffeLetter(this.eletterfrm.value).subscribe(_=>{
+
+      
+      
     });
   }
 
