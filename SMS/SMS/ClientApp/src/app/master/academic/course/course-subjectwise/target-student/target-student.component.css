@@ -16,11 +16,18 @@
     margin-top: -18px;
     margin-left:-50px;
 }
-
+.table-wrap{
+    height: 60vh;
+}
 table{
+   
     width:90%;
     margin-left:2%;
    
+}
+
+tr{
+    height: 24px;
 }
 
 .bg-app-bar{

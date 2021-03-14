@@ -12,7 +12,7 @@
 
 <form [formGroup]="courseListForm">
     <div class=" row infoheaderstyle ">
-        
+
         <h2 style="margin-left: 15px;">Class:{{classId}}</h2>
         <h2 style="margin-left: 70px; background-color:#f27200;color: white;padding-left: 15px;padding-right: 15px;">
             {{subjectName}}
@@ -32,21 +32,22 @@
             </mat-form-field>
 
             <!-- //(change)="checkBoxAction($event)" -->
-            <mat-checkbox color="primary" style="margin-left: 100px; ">Assign Letter</mat-checkbox>
-            
+            <mat-checkbox color="primary" style="margin-left: 100px; ">Course Active</mat-checkbox>
 
 
 
+
+        </div>
+        <div class="right-content">
+            <ul type="none" class="merge-two-Line" style="margin-top:-20px;">
+                <li>count:1 </li>
+                <br>
+                <li>Clear_All</li>
+                <!-- <li>!</li> -->
+            </ul>
         </div>
         <div class="col-sm-3">
-            <div class="right-content">
-        <ul type="none" class="merge-two-Line" style="margin-top:-20px;">
-            <li>count:1 </li>
-            <br>
-            <li>Clear_All</li>
-            <!-- <li>!</li> -->
-        </ul>
-        </div>
+
         </div>
     </div>
     <!-- <div class="targetHeaderstyle">
