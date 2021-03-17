@@ -30,7 +30,7 @@ export class CourseSubjectwiseComponent implements OnInit {
     }
     else if (st === 'frd') {
 
-      if (this.selectedTab >= 2) {
+      if (this.selectedTab >= 4) {
         this.submit();
         return;
       }

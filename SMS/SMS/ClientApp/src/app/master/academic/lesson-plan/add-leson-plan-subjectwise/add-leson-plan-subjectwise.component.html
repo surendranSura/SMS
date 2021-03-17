@@ -1,14 +1,15 @@
 <div class=" row headerstyle">
     <h2 style="margin-left: 40px;">Class:{{class}}</h2>
-    <h2 style="margin-left: 70px; background-color:#f27200;color: white;padding-left: 15px;padding-right: 15px;">{{subject}}
+    <h2 style="margin-left: 70px; background-color:#f27200;color: white;padding-left: 15px;padding-right: 15px;">
+        {{subject}}
     </h2>
     <div class="right-content">
-        
+
         <img src="../../../assets/visible.png" (click)="navToListView()"
             style="height:35px;margin-top:-10px;margin-right: 40px; cursor: pointer;" />
     </div>
 </div>
-<form [formGroup]="subjectwiselessonform"  class="p-base">
+<form [formGroup]="subjectwiselessonform" class="p-base">
     <div class="container-fluid" style="margin-top:5px;">
         <div class="row">
             <div class="col-sm-3">
@@ -66,9 +67,11 @@
                     <input formControlName="extraInfo" matInput>
                 </mat-form-field>
             </div>
-           
+
         </div>
-        <button type="button" class="gradient-button" (click) = "onSubmit()">Save</button>
+        <div class="footer-n-stu">
+            <button type="button" class="gradient-button" (click)="onSubmit()">Save</button>
+        </div>
     </div>
     <!-- <div class="footer-n-stu">
         <button type="button" class="gradient-button add">

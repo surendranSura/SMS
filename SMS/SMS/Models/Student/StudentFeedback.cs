@@ -27,6 +27,8 @@ namespace SMS.Models
 
 		public string Attachment { get; set; }
 
+		public string AdmissionNumber { get; set; }
+
 	}
 
 	public class StudentFeedbackReq

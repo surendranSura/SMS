@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { CoursePlanApiService } from '../../course-plan-api.service';
 
 @Component({
   selector: 'app-course-details',
@@ -13,7 +14,7 @@ export class CourseDetailsComponent implements OnInit {
 
   complitionCriteria =SmsConstant.complitionCriteria;
 
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder, private coursePlanApiService : CoursePlanApiService) {
 
     this.courseDetailsForm= this.fb.group(
       {
@@ -27,6 +28,7 @@ export class CourseDetailsComponent implements OnInit {
       }
     );
     this.courseDetailsForm.valueChanges.subscribe(()=>{
+      this.coursePlanApiService.data  = this.courseDetailsForm.value;   
       this.emitcourseformDetails.emit({ value: this.courseDetailsForm.value,
         valid: this.courseDetailsForm.valid });
         console.log(this.emitcourseformDetails);

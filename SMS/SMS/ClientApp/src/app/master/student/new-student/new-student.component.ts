@@ -4,6 +4,8 @@ import { StudentrestApiService } from './../studentrest-api.service'
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Student } from '../student';
 import { ActivatedRoute } from '@angular/router';
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-student',
@@ -23,7 +25,7 @@ export class NewStudentComponent implements OnInit {
 
   @BlockUI() blockUI: NgBlockUI;
   
-  constructor(private studentApiService: StudentrestApiService, private route: ActivatedRoute) { }
+  constructor(private studentApiService: StudentrestApiService, private route: ActivatedRoute, public dialog: MatDialog) { }
 
   ngAfterViewInit(): void {
 
@@ -89,6 +91,10 @@ export class NewStudentComponent implements OnInit {
   createStudent()
   {
     this.studentApiService.createStudent(this.stuJsonResult).subscribe(_=>{
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback updated successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500);
     });
   }
 

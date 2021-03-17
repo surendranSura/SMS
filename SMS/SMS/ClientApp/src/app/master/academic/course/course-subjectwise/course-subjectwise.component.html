@@ -1,11 +1,12 @@
 <app-header-action [index]='9'></app-header-action> 
+
 <div class=" row headerstyle">
     <h2 style="margin-left: 40px;">Class:{{class}}</h2>
     <h2 style="margin-left: 70px; background-color:#f27200;color: white;padding-left: 15px;padding-right: 15px;">
         {{subject}}
     </h2>
 </div>
-<mat-tab-group>
+<mat-tab-group [(selectedIndex)]="selectedTab">
     <mat-tab>
         <ng-template mat-tab-label>
           Course Details
@@ -41,8 +42,8 @@
       Back
     </button>
     <button type="button" class="gradient-button button-width" (click)="btnMovement('frd')">
-      <span *ngIf="!(selectedTab>=2)">Next</span>
-      <span *ngIf="(selectedTab>=2)">Submit</span>
+      <span *ngIf="!(selectedTab>=3)">Next</span>
+      <span *ngIf="(selectedTab>=3)">Submit</span>
     </button>
     
   </div>

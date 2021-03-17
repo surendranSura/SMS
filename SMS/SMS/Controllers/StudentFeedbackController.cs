@@ -52,11 +52,11 @@ namespace SMS.Controllers
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
-			if (_dbcontext.StaffFeedbacks.Where(X => X.StaffFeedbackID == id).FirstOrDefault() != null)
-			{
-				_dbcontext.Remove(_dbcontext.StaffFeedbacks.Where(X => X.StaffFeedbackID == id).FirstOrDefault());
+		//	if (_dbcontext.StudentFeedbacks.Where(X => X.StudentFeedbackId == id).FirstOrDefault() != null)
+		//	{
+				_dbcontext.Remove(_dbcontext.StudentFeedbacks.Where(X => X.StudentFeedbackId == id).FirstOrDefault());
 				_dbcontext.SaveChanges();
-			}
+			//}
 		}
 	}
 }

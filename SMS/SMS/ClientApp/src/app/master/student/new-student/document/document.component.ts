@@ -7,6 +7,7 @@ import { ShowHideDirective } from '@angular/flex-layout';
 import { $ } from 'protractor';
 import { ViewChild } from '@angular/core';
 import { AngularFileUploaderComponent } from "angular-file-uploader";
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class DocumentComponent implements OnInit {
   all_files: File[] = Array();
   resetVar: any = true;
   imgPath: any = null;
+  @BlockUI() blockUI: NgBlockUI;
 
   attachementTitles=[
   "Transfer Certificate","Birth Certificate","Passport","Aadhaar","Ration Card","Student Visa"
@@ -154,11 +156,13 @@ export class DocumentComponent implements OnInit {
 
   // }
   OnUpload() {
+    this.blockUI.start();
     const fd = new FormData();
     fd.append('image', this.selectedFile, this.selectedFile.name);
     this.http.post('', fd).subscribe(res => {
       console.log(res);
     });
+this.blockUI.stop();
   }
 
 

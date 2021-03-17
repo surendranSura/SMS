@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SmsConstant } from 'src/app/shared/constant-values';
 import { ClassGradeRestApiService } from '../class-grade-rest-api.service';
 
 @Component({
@@ -11,6 +12,9 @@ export class ClassSectionComponent implements OnInit {
 
   @Input() expData: any;
   @Output() btnEvent = new EventEmitter();
+
+  // subjectList=SmsConstant.Subjectsdropdown;
+  // sectionList=SmsConstant.Sectiondropdown;
 
   newFlag:boolean=false;
   sectionList: string[] = ['A', 'B', 'C', 'D', 'E'];

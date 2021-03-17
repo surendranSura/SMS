@@ -261,6 +261,29 @@ export class SmsConstant {
     { value: "7", viewValue: 'Web Link' },
 
   ]
+
+
+  static readonly Subjectsdropdown=[
+    { value: 0, viewValue: '--select none--' }, 
+    { value: "1", viewValue: 'Tamil' }, 
+    { value: "2", viewValue: 'English' },
+    { value: "3", viewValue: 'Maths' },
+    { value: "4", viewValue: 'Science' },
+    { value: "5", viewValue: 'Science' },
+    { value: "6", viewValue: 'Social' }
+
+  ]
+
+  static readonly Sectiondropdown=[
+    { value: 0, viewValue: '--select none--' }, 
+    { value: "1", viewValue: 'A' }, 
+    { value: "2", viewValue: 'B' },
+    { value: "3", viewValue: 'C' },
+    { value: "4", viewValue: 'D' },
+    { value: "5", viewValue: 'E' }
+
+  ]
+
    subjects = ['Tamil','English','Maths','Science','Social']
 
 

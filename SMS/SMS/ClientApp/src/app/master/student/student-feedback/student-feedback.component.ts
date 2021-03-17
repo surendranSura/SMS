@@ -25,7 +25,7 @@ export class StudentFeedbackComponent implements OnInit {
   constructor(private fb:FormBuilder,  private studentrestApiService :StudentrestApiService, private route: ActivatedRoute,public dialog: MatDialog) 
   {
     this.newstudentFeedback=this.fb.group({
-      admittonNumber: ['', Validators.required],
+      admissionNumber: ['', Validators.required],
       staffName: ['', Validators.required],
       feedbackType: ['', Validators.required],
       date: ['', Validators.required],
@@ -45,7 +45,7 @@ export class StudentFeedbackComponent implements OnInit {
     {
       this.studentrestApiService.getStudentFeedBack(this.id)
         .subscribe(data => {
-          this.studentrestApiService.setFormValue(data);
+          this.newstudentFeedback.patchValue(data);
         }, error => console.log(error));
     }
     
