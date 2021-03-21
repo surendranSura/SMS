@@ -32,3 +32,10 @@ table{
     img{
         text-align: right;
     }
+    .profile-name{
+   
+        line-height: 0.7;
+       margin-right: 15px;
+       margin-top: 15px;
+        
+    }
