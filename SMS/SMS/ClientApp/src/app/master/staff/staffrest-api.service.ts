@@ -13,9 +13,9 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 })
 export class StaffrestApiService {
   @BlockUI() blockUI: NgBlockUI;
-  apiURL = 'api/api/Staff';
-  apieLetterURL = '/api/api/StaffeLetter';
-  apiFeedbackURL = '/api/api/StaffFeedback';
+  apiURL = 'api/Staff';
+  apieLetterURL = 'api/StaffeLetter';
+  apiFeedbackURL = 'api/StaffFeedback';
 
   private formvalueSource = new Subject<string>();
   formValue$ = this.formvalueSource.asObservable();

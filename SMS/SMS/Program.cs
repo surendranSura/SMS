@@ -18,7 +18,14 @@ namespace SMS
 		}
 
 		public static IHostBuilder CreateHostBuilder(string[] args) =>
-		Host.CreateDefaultBuilder(args)
+			Host.CreateDefaultBuilder(args)
+			//.ConfigureAppConfiguration((context, config) =>
+			//{
+			//var keyVaultEndpoint = new Uri(Environment.GetEnvironmentVariable("SchoolManagementConnection"));
+			//config.AddAzureKeyVault(
+			//keyVaultEndpoint,
+			//new DefaultAzureCredential());
+			//})
 		.ConfigureWebHostDefaults(webBuilder =>
 		{
 			webBuilder.UseStartup<Startup>();

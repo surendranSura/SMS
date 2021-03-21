@@ -13,8 +13,8 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 })
 export class StudentrestApiService {
 
-  apiURL = 'api/api/Student/';
-  apiFeedbackURL = 'api/api/StudentFeedback/';
+  apiURL = 'api/Student/';
+  apiFeedbackURL = 'api/StudentFeedback/';
   
   @BlockUI() blockUI: NgBlockUI;
 
@@ -55,7 +55,7 @@ export class StudentrestApiService {
   // HttpClient API post() method => Create Student
   createStudent(student : Student): Observable<Student> {
     console.log(JSON.stringify(student));
-    return this.http.post<Student>('api/api/Student',student, this.httpOptions)
+    return this.http.post<Student>('api/Student',student, this.httpOptions)
     .pipe(
       retry(1),
       catchError((err)=>this.handleError(err))

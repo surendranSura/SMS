@@ -10,6 +10,7 @@
 
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <UserSecretsId>a9a869ee-643e-44bd-8a10-70be3bedb993</UserSecretsId>
     <!--<UserSecretsId>03df8f6a-4d67-402e-8cb2-c6633cd66732</UserSecretsId>-->
   </PropertyGroup>
 
@@ -41,6 +42,10 @@
 
   <ItemGroup>
     <Folder Include="Resources\Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

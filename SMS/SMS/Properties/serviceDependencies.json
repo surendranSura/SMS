@@ -1,11 +1,12 @@
-//{
-//  "dependencies": {
-//    "secrets1": {
-//      "type": "secrets"
-//    },
-//    "mssql1": {
-//      "type": "mssql",
-//      "connectionId": "SchoolManagementConnection"
-//    }
-//  }
-//}
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "SchoolManagementConnection"
+    },
+    "secrets1": {
+      "type": "secrets",
+      "connectionId": "SqlConnectionString"
+    }
+  }
+}

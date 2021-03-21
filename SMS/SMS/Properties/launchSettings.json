@@ -13,14 +13,18 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SqlConnectionString": "https://smsmanagement.vault.azure.net/",
+        "AZURE_USERNAME": "SchoolmanagementSys@outlook.com"
       }
     },
     "SMS": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SqlConnectionString": "https://smsmanagement.vault.azure.net/",
+        "AZURE_USERNAME": "SchoolmanagementSys@outlook.com"
       },
       "applicationUrl": "http://localhost:5000"
     }

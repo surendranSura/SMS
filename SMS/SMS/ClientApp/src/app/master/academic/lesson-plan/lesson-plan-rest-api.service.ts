@@ -9,10 +9,10 @@ import { LessonPlan } from './models/lesson-plan';
 })
 export class LessonPlanRestApiService {
 
-  apiURL = '/api/api/AcademicClass/GetClassSubjects/';
-  lessonPlanURL = '/api/api/LessonPlan/';
+  apiURL = 'api/AcademicClass/GetClassSubjects/';
+  lessonPlanURL = 'api/LessonPlan/';
 
-  coursePlanURL = '/api/api/Course/';
+  coursePlanURL = 'api/Course/';
   
   constructor(private http: HttpClient) { }
 

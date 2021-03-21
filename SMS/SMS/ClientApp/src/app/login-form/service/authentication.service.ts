@@ -30,7 +30,7 @@ export class AuthenticationService {
 
   getAuth(loginJson : string){
     console.log(loginJson);
-    return this.http.post<LoginUser>('api/api/Auth/UserAuth', loginJson, {headers: this.headers})
+    return this.http.post<LoginUser>('api/Auth/UserAuth', loginJson, {headers: this.headers})
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));

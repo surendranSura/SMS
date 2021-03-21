@@ -13,7 +13,7 @@ import { ClassGrade } from '../class-grade/models/class-grade';
 
 export class ClassGradeRestApiService {
 
-  apiURL = 'api/api/AcademicClass';
+  apiURL = 'api/AcademicClass';
   
   constructor(private http: HttpClient) { }
 
