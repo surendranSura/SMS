@@ -20,6 +20,7 @@ export class StaffListComponent implements OnInit {
 
   department = SmsConstant.department;
   designationList = SmsConstant.designation;
+  status = SmsConstant.employmentStatus;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;

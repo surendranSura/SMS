@@ -33,6 +33,41 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
+                <div class="col-sm-2">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Status</mat-label>
+                        <mat-select (selectionChange)="departmentchange($event.value)">
+                            <mat-option *ngFor="let statusvalue of status" [value]="statusvalue.value">
+                                {{statusvalue.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field appearance="standard" style="width: 180px;">
+                        <mat-label>Joining From</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field appearance="standard" style="width: 180px;">
+                        <mat-label>Joining To</mat-label>
+                        <input matInput [matDatepicker]="picker1">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                      </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <div class="right-content" style="margin-top: -10px;">
+                        <ul type="none" class="profile-name">
+                          <li>Count:1</li>
+                          <br><br>
+                          <li>Clear_All</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     
