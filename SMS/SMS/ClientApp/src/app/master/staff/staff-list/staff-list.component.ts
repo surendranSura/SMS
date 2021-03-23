@@ -17,27 +17,47 @@ import { Console } from 'console';
   styleUrls: ['./staff-list.component.css']
 })
 export class StaffListComponent implements OnInit {
-
+  
   department = SmsConstant.department;
   designationList = SmsConstant.designation;
   status = SmsConstant.employmentStatus;
-
+  filters : boolean = false;
+  rows : number = 0;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
-
+ 
   currentUserSubscription !: Subscription;
   currentStaff? : Staff;
   staffs: Staff[] = [];
   staffListData!: MatTableDataSource<any>;
 
+  departmentIdFilter = new FormControl('');
+  designationFilter = new FormControl('');
+  statusvalueFilter = new FormControl('');
+  joiningDateFrom = new FormControl('');
+  
+
   columnsToDisplay = ['staffName','staffType', 'employeeID','department','designation','status','joiningDate','mobileNumber','eMail','actions'];
   
+  filterValues = {
+    //department: 
+    departmentId :'',
+   // designation: '',
+    designationId: '',
+    //status: '',
+    employeementstatusId: '',
+    //joiningDateFrom: '',
+    joiningDate: ''
+    //joiningDateTo: '',
+  };
+
    @BlockUI() blockUI: NgBlockUI;
   
   constructor(private router:Router, private staffApiService: StaffrestApiService) {
 
     this.LoadStaff();
+    this.staffListData.filterPredicate = this.createFilter();
   }
 
   departmentchange(value)
@@ -57,7 +77,8 @@ export class StaffListComponent implements OnInit {
       this.staffListData.sort = this.sort;
       console.log(this.staffListData);
        this.blockUI.stop();
-
+      
+      this.rows = this.staffListData.data.length;
     });
 
   }
@@ -65,11 +86,49 @@ export class StaffListComponent implements OnInit {
   
 
   ngOnInit(): void {
-   
+    
+    this.departmentIdFilter.valueChanges
+    .subscribe(
+      departmentId => {
+        this.filterValues.departmentId = departmentId;
+        this.staffListData.filter = JSON.stringify(this.filterValues);
+      }
+    )
+
+    this.designationFilter.valueChanges
+    .subscribe(
+      designationId => {
+        this.filterValues.designationId = designationId;
+        this.staffListData.filter = JSON.stringify(this.filterValues);
+      }
+    )
+
+    this.statusvalueFilter.valueChanges
+    .subscribe(
+      employeementstatusId => {
+        this.filterValues.employeementstatusId = employeementstatusId;
+        this.staffListData.filter = JSON.stringify(this.filterValues);
+      }
+    )
+    
+    this.joiningDateFrom.valueChanges
+    .subscribe(
+      joiningDate => {
+        this.filterValues.joiningDate = joiningDate;
+        this.staffListData.filter = JSON.stringify(this.filterValues);
+      }
+    )
+
+
     // this.staffListData = new MatTableDataSource(this.staffs);
     // this.staffListData.paginator = this.paginator;
     // this.staffListData.sort = this.sort;
     
+  }
+
+  filterToggle()
+  {
+    this.filters = !this.filters;
   }
 
   callNewStudent()
@@ -89,6 +148,17 @@ export class StaffListComponent implements OnInit {
     this.router.navigate(['/main/new-staff',staff.mobile]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });
+  }
+
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = function(data, filter): boolean {
+      let searchTerms = JSON.parse(filter);
+      return data.departmentId.toLowerCase().indexOf(searchTerms.departmentId) !== -1
+        && data.designationId.toString().toLowerCase().indexOf(searchTerms.designationId) !== -1
+        && data.employeementstatusId.toLowerCase().indexOf(searchTerms.employeementstatusId) !== -1
+        && data.joiningDate.toLowerCase().indexOf(searchTerms.joiningDate) !== -1;
+    }
+    return filterFunction;
   }
 
 }

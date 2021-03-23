@@ -108,7 +108,7 @@ export class NewStudentComponent implements OnInit {
   setTabFormDetails(value: any,tab:number){
     this.stuFormtDetails[tab] = value.valid;
     Object.assign(this.stuJsonResult,value.value);
-    console.log(this.stuJsonResult);
+    console.log(value.value);
   }
 
 }
