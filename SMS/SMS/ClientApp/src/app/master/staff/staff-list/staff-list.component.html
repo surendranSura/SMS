@@ -3,13 +3,13 @@
 
     <div class="right-content">
         <img src="../../../assets/filter.png" alt="profile"
-            style="height:30px;margin-top:-10px;margin-right: 20px; cursor: pointer;">
+            style="height:30px;margin-top:-10px;margin-right: 20px; cursor: pointer;" (click)="filterToggle()">
         <img src="../../../assets/plus.png" alt="profile" (click)="callNewStudent()"
             style="height:30px;margin-top:-10px;margin-right: 40px;cursor: pointer;">
     </div>
 </div>
 
-<div class=" fileterStyle">
+<div class=" fileterStyle" *ngIf="filters">
    
         <div class="container-fluid" style="margin-top:5px">
             <div class="row">
@@ -17,8 +17,8 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Department</mat-label>
                         <mat-select (selectionChange)="departmentchange($event.value)">
-                            <mat-option *ngFor="let departmentId  of department " [value]="departmentId .value">
-                                {{departmentId .viewValue}} 
+                            <mat-option *ngFor="let departmentIdFilter  of department " [value]="departmentIdFilter .value">
+                                {{departmentIdFilter .viewValue}} 
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -27,8 +27,8 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Designation</mat-label>
                         <mat-select (selectionChange)="departmentchange($event.value)">
-                            <mat-option *ngFor="let designation  of designationList " [value]="designation .value">
-                                {{designation .viewValue}} 
+                            <mat-option *ngFor="let designationFilter  of designationList " [value]="designationFilter .value">
+                                {{designationFilter .viewValue}} 
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -37,8 +37,8 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Status</mat-label>
                         <mat-select (selectionChange)="departmentchange($event.value)">
-                            <mat-option *ngFor="let statusvalue of status" [value]="statusvalue.value">
-                                {{statusvalue.viewValue}}
+                            <mat-option *ngFor="let statusvalueFilter of status" [value]="statusvalueFilter.value">
+                                {{statusvalueFilter.viewValue}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -46,23 +46,23 @@
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard" style="width: 180px;">
                         <mat-label>Joining From</mat-label>
-                        <input matInput [matDatepicker]="picker">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
+                        <input matInput [matDatepicker]="joiningDateFrom">
+                        <mat-datepicker-toggle matSuffix [for]="joiningDateFrom"></mat-datepicker-toggle>
+                        <mat-datepicker #joiningDateFrom></mat-datepicker>
                       </mat-form-field>
                 </div>
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard" style="width: 180px;">
                         <mat-label>Joining To</mat-label>
-                        <input matInput [matDatepicker]="picker1">
-                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                        <mat-datepicker #picker1></mat-datepicker>
+                        <input matInput [matDatepicker]="pickerToFilter">
+                        <mat-datepicker-toggle matSuffix [for]="pickerToFilter"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerToFilter></mat-datepicker>
                       </mat-form-field>
                 </div>
                 <div class="col-sm-2">
                     <div class="right-content" style="margin-top: -10px;">
                         <ul type="none" class="profile-name">
-                          <li>Count:1</li>
+                          <li>Count:{{rows}}</li>
                           <br><br>
                           <li>Clear_All</li>
                         </ul>
