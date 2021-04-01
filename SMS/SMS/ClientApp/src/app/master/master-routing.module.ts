@@ -25,7 +25,9 @@ const routes: Routes = [
       { path: 'subject', loadChildren: () => import('./general/subject/subject.module').then(m => m.SubjectModule)},
       { path: 'academic-Detail', loadChildren: () => import('./academic/academic-detail/academic-detail.module').then(m => m.AcademicDetailModule) },
       { path: 'lesson-plan', loadChildren: () => import('./academic/lesson-plan/lesson-plan.module').then(m => m.LessonPlanModule) },
-      { path: 'course', loadChildren: () => import('./academic/course/course.module').then(m => m.CourseModule) }
+      { path: 'course', loadChildren: () => import('./academic/course/course.module').then(m => m.CourseModule) },
+      { path: 'timetable-classes', loadChildren: () => import('./timetable/timetable-classes/timetable-classes.module').then(m => m.TimetableClassesModule) },
+      { path: 'timetable-grid/:id', loadChildren: () => import('./timetable/timetable-grid/timetable-grid.module').then(m => m.TimetableGridModule) }
     ]
   },
   
