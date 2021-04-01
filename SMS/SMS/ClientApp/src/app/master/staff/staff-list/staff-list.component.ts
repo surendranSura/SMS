@@ -1,6 +1,6 @@
 import {  Component, OnInit, Output,EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router'
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl,FormGroup } from '@angular/forms';
 import { StaffrestApiService } from '../staffrest-api.service';
 import { Staff } from '../Staff';
 import { Subscription} from 'rxjs';
@@ -53,20 +53,27 @@ export class StaffListComponent implements OnInit {
   };
 
    @BlockUI() blockUI: NgBlockUI;
+  stafffilters: FormGroup;
   
-  constructor(private router:Router, private staffApiService: StaffrestApiService) {
+  constructor(private fb: FormBuilder,private router:Router, private staffApiService: StaffrestApiService) {
+    this.stafffilters = this.fb.group({
+      departmentIdFilter: [''],
+      designationFilter: [''],
+      statusvalueFilter: [''],
+      joiningDateFrom: ['']
+    });
 
-    this.LoadStaff();
-    this.staffListData.filterPredicate = this.createFilter();
-  }
-
-  departmentchange(value)
-  {
+    this.loadStaff();
     
-    this.staffListData.filter.search(value);
-      console.log(this.staffListData.filter.search(value));
   }
-  LoadStaff()
+
+  // departmentchange(value)
+  // {
+    
+  //   this.staffListData.filter.search(value);
+  //     console.log(this.staffListData.filter.search(value));
+  // }
+  loadStaff()
   {
     this.blockUI.start();
 
@@ -76,6 +83,7 @@ export class StaffListComponent implements OnInit {
        this.staffListData.paginator = this.paginator;
       this.staffListData.sort = this.sort;
       console.log(this.staffListData);
+      this.staffListData.filterPredicate = this.createFilter();
        this.blockUI.stop();
       
       this.rows = this.staffListData.data.length;
@@ -86,13 +94,15 @@ export class StaffListComponent implements OnInit {
   
 
   ngOnInit(): void {
-    
+    console.log("hai");
     this.departmentIdFilter.valueChanges
     .subscribe(
       departmentId => {
         this.filterValues.departmentId = departmentId;
         this.staffListData.filter = JSON.stringify(this.filterValues);
+        
       }
+      
     )
 
     this.designationFilter.valueChanges
@@ -139,7 +149,7 @@ export class StaffListComponent implements OnInit {
   removeStaff(staff : Staff)
   {
     this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
-      this.LoadStaff();
+      this.loadStaff();
     });
   }
 

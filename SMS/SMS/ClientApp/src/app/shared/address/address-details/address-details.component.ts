@@ -25,6 +25,7 @@ export class AddressDetailsComponent implements OnInit {
     if (changes.addressDetails.currentValue)
     {
       this.formCurrentAddress=this.addressDetails[0];
+      
       this.formPermanentAddress=this.addressDetails[1];
     }
   }

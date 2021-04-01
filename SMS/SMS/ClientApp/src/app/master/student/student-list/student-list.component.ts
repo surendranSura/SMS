@@ -32,6 +32,11 @@ export class StudentListComponent implements OnInit {
   currentUserSubscription !: Subscription;
   studentListData : any;
   currentStudent : Student;
+  filters : boolean;
+  rows : number = 0;
+  classes = SmsConstant.classes;
+  sectiones =SmsConstant.section;
+  statuses = SmsConstant.employmentStatus;
 
   columnsToDisplay = ['StudentName','EsisNumber', 'MobileNumber','Email','Class','Section', 'Actions'];
 
@@ -51,6 +56,7 @@ export class StudentListComponent implements OnInit {
        this.studentListData.paginator = this.paginator;
       this.studentListData.sort = this.sort;
       console.log(this.studentListData);
+      this.rows = this.studentListData.data.length;
        this.blockUI.stop();
 
     });
@@ -65,7 +71,10 @@ export class StudentListComponent implements OnInit {
     });
     this.blockUI.stop();
   }
-
+  filterToggle()
+  {
+    this.filters = !this.filters;
+  }
   editStudent(student : Student)
   {
     this.router.navigate(['/main/new-student',student.admissionNumber]);

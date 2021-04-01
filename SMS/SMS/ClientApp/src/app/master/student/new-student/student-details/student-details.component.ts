@@ -45,7 +45,7 @@ export class StudentDetailsComponent implements OnInit {
       , aadharNumber: ['']
       , mobile: ['']
       , admissionNumber: ['']
-      , amissionDate: ['']
+      , admissionDate: ['']
       , class: ['']
       , section: ['']
       , rollNo: ['']
