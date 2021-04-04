@@ -1,10 +1,60 @@
 <div class="row headerstyle">
     <h2>Student List</h2>
     <div class="right-content">
-        <img src="../../../assets/filter.png" alt="profile" style="height:30px;margin-top:-10px;margin-right: 20px; cursor: pointer;">
+        <img src="../../../assets/filter.png" alt="profile" style="height:30px;margin-top:-10px;margin-right: 20px; cursor: pointer;" (click)="filterToggle()">
         <img src="../../../assets/plus.png" alt="profile" routerLink="/main/new-student" style="height:30px;margin-top:-10px;margin-right: 40px; cursor: pointer;">  
     </div>
 </div>
+
+<!-- <div class=" fileterStyle" *ngIf="filters">
+   
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-2">
+                <mat-form-field appearance="standard">
+                    <mat-label>Class</mat-label>
+                    <mat-select (selectionChange)="classchange($event.value)">
+                        <mat-option *ngFor="let class  of classes " [value]="class .value">
+                            {{class .viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+                <mat-form-field appearance="standard">
+                    <mat-label>Section</mat-label>
+                    <mat-select (selectionChange)="sectionchange($event.value)">
+                        <mat-option *ngFor="let section  of sectionses " [value]="section .value">
+                            {{section .viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+                <mat-form-field appearance="standard">
+                    <mat-label>Status</mat-label>
+                    <mat-select (selectionChange)="statuschange($event.value)">
+                        <mat-option *ngFor="let status of statuses" [value]="status.value">
+                            {{status.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-2">
+                <div class="right-content" style="margin-top: -10px;">
+                    <ul type="none" class="profile-name">
+                      <li>Count:{{rows}}</li>
+                      <br>
+                      <li>Clear_All</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div> -->
 <table mat-table [dataSource]="studentListData" class="mat-elevation-z6">
     <!--studentName-->
     <ng-container matColumnDef="StudentName">

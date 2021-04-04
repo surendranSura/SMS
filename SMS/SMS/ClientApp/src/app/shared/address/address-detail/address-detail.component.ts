@@ -28,7 +28,7 @@ export class AddressDetailComponent implements OnInit, OnChanges {
         "line2": ['',[ Validators.required, Validators.maxLength(30)]],
         "line3": ['', Validators.maxLength(30)],
         "city": ['',[ Validators.required, Validators.maxLength(30)]],
-        "state": ['',[ Validators.required, Validators.maxLength(30)]],
+        "sate": ['',[ Validators.required, Validators.maxLength(30)]],
         "country": ['', [Validators.required, Validators.maxLength(30)]],
         "pincode": ['', [Validators.required, Validators.maxLength(30)]]
       });
@@ -42,7 +42,7 @@ export class AddressDetailComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.formInput && !changes.firstChange && this.pFlag) {
+    if (changes.formInput  ) {
       this.form.patchValue(this.formInput);
     }
   }

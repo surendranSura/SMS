@@ -10,13 +10,13 @@
 </div>
 
 <div class=" fileterStyle" *ngIf="filters">
-   
+    <form [formGroup]="stafffilters">
         <div class="container-fluid" style="margin-top:5px">
             <div class="row">
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard">
                         <mat-label>Department</mat-label>
-                        <mat-select (selectionChange)="departmentchange($event.value)">
+                        <mat-select formControlName="departmentIdFilter">
                             <mat-option *ngFor="let departmentIdFilter  of department " [value]="departmentIdFilter .value">
                                 {{departmentIdFilter .viewValue}} 
                             </mat-option>
@@ -26,7 +26,7 @@
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard">
                         <mat-label>Designation</mat-label>
-                        <mat-select (selectionChange)="departmentchange($event.value)">
+                        <mat-select formControlName="designationFilter">
                             <mat-option *ngFor="let designationFilter  of designationList " [value]="designationFilter .value">
                                 {{designationFilter .viewValue}} 
                             </mat-option>
@@ -36,7 +36,7 @@
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard">
                         <mat-label>Status</mat-label>
-                        <mat-select (selectionChange)="departmentchange($event.value)">
+                        <mat-select formControlName="statusvalueFilter">
                             <mat-option *ngFor="let statusvalueFilter of status" [value]="statusvalueFilter.value">
                                 {{statusvalueFilter.viewValue}}
                             </mat-option>
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-    
+    </form>
 
 </div>
 <!-- <div class="row headerstyle">

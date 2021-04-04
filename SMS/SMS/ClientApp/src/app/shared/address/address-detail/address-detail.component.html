@@ -1,4 +1,4 @@
-<div class="container-fluid">
+
     <form [formGroup]="form">
         <p class="mat-title">{{addressLabel}}</p>
         <div *ngIf="pFlag">
@@ -31,9 +31,9 @@
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>State</mat-label>
-                    <mat-select formControlName="state">
-                        <mat-option  *ngFor="let state of state" [value]="state.viewValue">
-                            {{state.viewValue}} 
+                    <mat-select formControlName="sate">
+                        <mat-option  *ngFor="let sate of state" [value]="sate.viewValue">
+                            {{sate.viewValue}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -54,4 +54,3 @@
             </div>
         </div>
     </form>
-</div>
