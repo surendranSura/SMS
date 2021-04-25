@@ -1,0 +1,92 @@
+<div class="row headerstyle">
+    <div class="col-sm-5">
+        <h2>Apply leave </h2>
+    </div>
+    <div class="col-sm-3">
+        <mat-form-field appearance="standard" style="font-size: 12px;margin-top:-18px;">
+            <mat-label>Year</mat-label>
+            <input matInput [matDatepicker]="pickerToFilter1">
+            <mat-datepicker-toggle matSuffix [for]="pickerToFilter1"></mat-datepicker-toggle>
+            <mat-datepicker #pickerToFilter1></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+        <h2>(Current Accademic Year) </h2>
+    </div>
+    <!-- <div class="row col-sm-3">
+        
+    </div>   -->
+</div>
+<div class=" percentagebar">
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row" style="font-size: 12px;">
+            <div class="col-sm-4">
+                <p>Name:</p>
+                <p>Admission Number/EmployeeID:</p>
+            </div>
+            <div class="col-sm-4">
+                <p>Class:</p>
+                <p>Department</p>
+            </div>
+            <div class="col-sm-4">
+                <p>My Leave Balance</p>
+                <p>My Leave History</p>
+            </div>
+        </div>
+    </div>
+</div>
+<form [formGroup] = "leaveform" class="p-base">
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Leave Type</mat-label>
+                    <mat-select formControlName="leave">
+                        <mat-option *ngFor="let leave of leavetype " [value]="leave.value">
+                            {{leave.viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard"  >
+                    <mat-label>Date From</mat-label>
+                    <input matInput [matDatepicker]="pickerToFilter2">
+                    <mat-datepicker-toggle matSuffix [for]="pickerToFilter2"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerToFilter2></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Leave Session</mat-label>
+                    <mat-select formControlName="leavesec">
+                        <mat-option *ngFor="let leavesec of leaveSession " [value]="leavesec.value">
+                            {{leavesec.viewValue}} 
+                        </mat-option> 
+                    </mat-select>
+                </mat-form-field>
+ 
+                <p>No.of.Days:</p>
+
+                <mat-form-field appearance="standard">
+                    <mat-label>Reason</mat-label>
+                    <input matInput formControlName="reason" >
+                </mat-form-field>
+               
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Date To</mat-label>
+                    <input matInput [matDatepicker]="pickerToFilter3">
+                    <mat-datepicker-toggle matSuffix [for]="pickerToFilter3"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerToFilter3></mat-datepicker>
+                </mat-form-field>
+            </div>
+		</div>
+       
+	</div>
+    <div class="footer-n-stu">
+        <button type="button" class="gradient-button">
+          <span>Apply_Leave</span>
+        </button>
+        
+      
+      </div>
+
+</form>

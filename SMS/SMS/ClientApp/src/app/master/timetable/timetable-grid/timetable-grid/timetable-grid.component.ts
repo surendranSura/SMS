@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { SmsConstant } from 'src/app/shared/constant-values';
@@ -38,14 +39,29 @@ export class TimetableGridComponent implements OnInit {
 
   // TimetableListData : any;
 
-   blood = SmsConstant.bloods;
+  timeTables:FormGroup;
+
+
+   staffList = SmsConstant.staffName;
+
+   subjectlist = SmsConstant.Subjectsdropdown;
 
   // columnsToDisplay = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
 
   // definedColumns = ['1','2','3','4','5','6', '7', '8', '9'];
 
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private fb:FormBuilder,public dialog: MatDialog) { 
+
+    this.timeTables = this.fb.group(
+      {
+        subject :[],
+        staff :[],
+
+      }
+    )
+
+  }
 
   ngOnInit(): void {
     // this.TimetableListData = new MatTableDataSource();

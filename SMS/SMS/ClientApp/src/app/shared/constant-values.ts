@@ -115,6 +115,13 @@ export class SmsConstant {
     { value: 2, viewValue: 'Teaching' },
     { value: 3, viewValue: 'Non Teaching' }
   ]
+
+  static readonly staffName = [
+    { value: 0, viewValue: '--select none--' },
+    { value: 1, viewValue: 'Aiswarya' },
+    { value: 2, viewValue: 'Arun Prasanth' },
+    { value: 3, viewValue: 'Dinesh' }
+  ]
   static readonly designation = [
     { value: 0, viewValue: '--select none--' },
     { value: 1, viewValue: 'Teacher' },
@@ -281,6 +288,26 @@ export class SmsConstant {
     { value: "3", viewValue: 'C' },
     { value: "4", viewValue: 'D' },
     { value: "5", viewValue: 'E' }
+
+  ]
+
+  static readonly leaveType=[
+    { value: 0, viewValue: '--select none--' }, 
+    { value: "1", viewValue: 'Medical Leave' }, 
+    { value: "2", viewValue: 'Personal Leave' },
+    { value: "3", viewValue: 'Marrige Leave' },
+    { value: "4", viewValue: 'Earned Leave' },
+    { value: "5", viewValue: 'Maternity Leave' }
+
+  ]
+
+  static readonly leaveSession=[
+    { value: 0, viewValue: '--select none--' }, 
+    { value: "1", viewValue: 'L1' }, 
+    { value: "2", viewValue: 'L2' },
+    { value: "3", viewValue: 'L3' },
+    { value: "4", viewValue: 'L4' },
+    { value: "5", viewValue: 'L5' }
 
   ]
 
