@@ -1,4 +1,5 @@
-<div class="timetable">
+<div class="timetable" [formGroup]="timeTables">
+  
     <div class="week-names">
       <div>monday</div>
       <div>tuesday</div>
@@ -9,7 +10,7 @@
       <div class="weekend">sunday</div>
     </div>
     <div class="time-interval">
-       
+
       <div>I</div>
       <div>II</div>
       <div>III</div>
@@ -22,35 +23,32 @@
     </div>
     <div class="content">
       <div>
-        <div class="accent-orange-gradient">
-            <div class="row">
-            <mat-select formControlName="religionId">
-                <mat-option>
-                    
-                </mat-option>
+        <!-- <div class="accent-orange-gradient"> -->
+        <div class="row">
+          <mat-form-field appearance="standard">
+            <mat-label style="color: black; display:flex;width:500vw;height: 50vh;">subject</mat-label>
+            <mat-select formControlName="subject">
+              <mat-option *ngFor="let subject of subjectlist" [value]="subject.viewValue">
+                {{subject.viewValue}}
+              </mat-option>
             </mat-select>
-            <mat-select formControlName="religionId">
-                <mat-option>
-                    
-                </mat-option>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label style="color: black;">Staff</mat-label>
+            <mat-select formControlName="staff">
+              <mat-option *ngFor="let staff of staffList" [value]="staff.viewValue">
+                {{staff.viewValue}}
+              </mat-option>
             </mat-select>
-            <mat-select formControlName="religionId">
-                <mat-option>
-                    
-                </mat-option>
-            </mat-select>
-            <mat-select formControlName="religionId">
-                <mat-option>
-                    
-                </mat-option>
-            </mat-select>
-        </div>
+          </mat-form-field>
+         
+          <!-- </div> -->
         </div>
       </div>
       <div></div>
       <div></div>
       <div></div>
-          <div>
+      <div>
         <div class="accent-green-gradient"></div>
       </div>
       <div class="weekend"></div>
@@ -99,5 +97,6 @@
       <div class="weekend"></div>
       <div class="weekend"></div>
     </div>
-  </div>
-  <!-- <button (click)="openDialog()">test</button> -->
+  
+</div>
+<!-- <button (click)="openDialog()">test</button> -->
