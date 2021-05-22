@@ -5,6 +5,7 @@ import { ApplyLeaveRoutingModule } from './apply-leave-routing.module';
 import { ApplyLeaveComponent } from './apply-leave.component';
 import { AngularMaterialModule } from 'src/angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ApplyLeaveRoutingModule,
     AngularMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class ApplyLeaveModule {

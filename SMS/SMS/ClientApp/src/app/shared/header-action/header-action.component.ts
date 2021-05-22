@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { _MatTabBodyBase } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 @Component({
@@ -11,10 +11,14 @@ import { Router } from '@angular/router';
 export class HeaderActionComponent implements OnInit {
   campaignTwo: FormGroup;
   @Input() index: number = 0;
-  constructor(private router: Router) { }
-   today:any = new Date();
-   month:any = this.today.getMonth();
-   year:any = this.today.getFullYear();
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
+  constructor(private router: Router) {
+   
+   }
+  
 
   // campaignTwo = new FormGroup({
   //   start: new FormControl(new Date(year, month, 15)),

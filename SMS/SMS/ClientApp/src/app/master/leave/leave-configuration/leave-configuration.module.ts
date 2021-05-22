@@ -1,21 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { StudentAttendanceRoutingModule } from './student-attendance-routing.module';
-import { StudentAttendanceComponent } from './student-attendance.component';
+import { LeaveConfigurationRoutingModule } from './leave-configuration-routing.module';
+import { LeaveConfigurationComponent } from './leave-configuration.component';
 import { AngularMaterialModule } from 'src/angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
-  declarations: [StudentAttendanceComponent],
+  declarations: [LeaveConfigurationComponent],
   imports: [
     CommonModule,
-    StudentAttendanceRoutingModule,
+    LeaveConfigurationRoutingModule,
     AngularMaterialModule,
     ReactiveFormsModule,
-    SharedModule,
+    SharedModule
   ]
 })
-export class StudentAttendanceModule { }
+export class LeaveConfigurationModule { }

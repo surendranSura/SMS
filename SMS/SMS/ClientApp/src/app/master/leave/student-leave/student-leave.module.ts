@@ -5,6 +5,7 @@ import { StudentLeaveRoutingModule } from './student-leave-routing.module';
 import { StudentLeaveComponent } from './student-leave.component';
 import { AngularMaterialModule } from 'src/angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     StudentLeaveRoutingModule,
     AngularMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class StudentLeaveModule { }

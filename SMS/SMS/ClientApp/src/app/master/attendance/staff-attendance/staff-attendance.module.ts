@@ -5,6 +5,7 @@ import { StaffAttendanceRoutingModule } from './staff-attendance-routing.module'
 import { StaffAttendanceComponent } from './staff-attendance.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from 'src/angular-material.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AngularMaterialModule } from 'src/angular-material.module';
     CommonModule,
     StaffAttendanceRoutingModule,
     AngularMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class StaffAttendanceModule { }
