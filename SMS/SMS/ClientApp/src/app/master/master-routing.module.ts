@@ -33,19 +33,13 @@ const routes: Routes = [
       { path: 'staff-attendance', loadChildren: () => import('./attendance/staff-attendance/staff-attendance.module').then(m => m.StaffAttendanceModule) },
       { path: 'apply-leave', loadChildren: () => import('./leave/apply-leave/apply-leave.module').then(m => m.ApplyLeaveModule) },
       { path: 'student-leave', loadChildren: () => import('./leave/student-leave/student-leave.module').then(m => m.StudentLeaveModule) },
-      { path: 'staff-leave', loadChildren: () => import('./leave/staff-leave/staff-leave.module').then(m => m.StaffLeaveModule) }
+      { path: 'staff-leave', loadChildren: () => import('./leave/staff-leave/staff-leave.module').then(m => m.StaffLeaveModule) },
+      { path: 'leave-config', loadChildren: () => import('./leave/leave-configuration/leave-configuration.module').then(m => m.LeaveConfigurationModule) },
+      { path: 'track-my-bus', loadChildren: () => import('./transport/track-my-bus/track-my-bus.module').then(m => m.TrackMyBusModule) },
+      { path: 'add-bus-details', loadChildren: () => import('./transport/add-bus-details/add-bus-details.module').then(m => m.AddBusDetailsModule) }
     ]
   },
- 
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  // { path: 'addbus', loadChildren: () => import('./transport/add-bus-details/addbus/addbus.module').then(m => m.AddbusModule) },
   
   
 ];

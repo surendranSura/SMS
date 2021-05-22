@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MyAttendanceRoutingModule } from './my-attendance-routing.module';
 import { MyAttendanceComponent } from './my-attendance.component';
 import { AngularMaterialModule } from 'src/angular-material.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { AngularMaterialModule } from 'src/angular-material.module';
   imports: [
     CommonModule,
     MyAttendanceRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    SharedModule
   ]
 })
 export class MyAttendanceModule { }

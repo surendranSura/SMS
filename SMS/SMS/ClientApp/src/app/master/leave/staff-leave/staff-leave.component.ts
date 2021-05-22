@@ -6,7 +6,7 @@ import { SmsConstant } from 'src/app/shared/constant-values';
 
 
 export interface PeriodicElement {
-  studentName: number;
+  staffName: number;
   admissionnumber: number;
   leaveType: string;
   noofdays: number;
@@ -16,7 +16,7 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {studentName: 1, admissionnumber: 54, leaveType:'seek leave', noofdays: 1,datefrom:new Date(),reason:1,status:"approved"}
+  {staffName: 1, admissionnumber: 54, leaveType:'seek leave', noofdays: 1,datefrom:new Date(),reason:1,status:"approved"}
  
 ];
 @Component({

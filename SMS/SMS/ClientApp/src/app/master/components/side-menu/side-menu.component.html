@@ -124,7 +124,7 @@
             <mat-list-item routerLink="/main/staff-leave">
                 Staff Leave
             </mat-list-item>
-            <mat-list-item routerLink="/main/course">
+            <mat-list-item routerLink="/main/leave-config">
                Leave Configuration
             </mat-list-item>
         </mat-nav-list>
@@ -150,6 +150,60 @@
             </mat-list-item>
             <mat-list-item routerLink="/main/timetable-classes">
                 Timetable
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-divider></mat-divider>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <img src="../../../assets/setting.png" style="width:40px;">
+            </mat-panel-title>
+            <mat-panel-description>
+                Transport
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <mat-list-item routerLink="/main/track-my-bus" >
+               Track my bus
+            </mat-list-item>
+            <mat-list-item routerLink="/main/add-bus-details">
+                Add Bus Details
+            </mat-list-item>
+            <mat-list-item routerLink="/main/timetable-classes">
+                List Bus Details
+            </mat-list-item>
+            <mat-list-item routerLink="/main/timetable-classes">
+                Add Bus Trips
+            </mat-list-item>
+            <mat-list-item routerLink="/main/timetable-classes">
+                List Bus Trips
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-divider></mat-divider>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <img src="../../../assets/setting.png" style="width:40px;">
+            </mat-panel-title>
+            <mat-panel-description>
+                Inventory
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <mat-list-item routerLink="/main/class-grade" >
+               Add Inventory
+            </mat-list-item>
+            <mat-list-item routerLink="/main/subject">
+                List Inventory
+            </mat-list-item>
+            <mat-list-item routerLink="/main/timetable-classes">
+                Inventory Defects
             </mat-list-item>
         </mat-nav-list>
     </mat-expansion-panel>
