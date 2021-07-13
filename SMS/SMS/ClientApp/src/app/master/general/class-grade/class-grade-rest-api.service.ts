@@ -13,7 +13,9 @@ import { ClassGrade } from '../class-grade/models/class-grade';
 
 export class ClassGradeRestApiService {
 
-  apiURL = 'api/AcademicClass';
+  // apiURL = 'api/AcademicClass';
+
+  apiURL =  "http://localhost:3007/Classes";
   
   constructor(private http: HttpClient) { }
 

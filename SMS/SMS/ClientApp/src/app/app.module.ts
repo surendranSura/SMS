@@ -14,6 +14,9 @@ import { MainComponent } from './components/mainpage/mainpage.component';
 import { AngularFileUploaderModule } from "angular-file-uploader";
 import { BlockUIModule } from 'ng-block-ui';
 import { AlertModule } from './shared/alert/alert.module';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { AlertModule } from './shared/alert/alert.module';
     HttpClientModule,
     AngularFileUploaderModule,
     BlockUIModule.forRoot(),
-    AlertModule
+    AlertModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]

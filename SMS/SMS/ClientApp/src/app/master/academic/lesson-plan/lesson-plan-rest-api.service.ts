@@ -9,8 +9,11 @@ import { LessonPlan } from './models/lesson-plan';
 })
 export class LessonPlanRestApiService {
 
-  apiURL = 'api/AcademicClass/GetClassSubjects/';
-  lessonPlanURL = 'api/LessonPlan/';
+  // apiURL = 'api/AcademicClass/GetClassSubjects/';
+  apiURL = "http://localhost:3007/Classes?class=";
+  // lessonPlanURL = 'api/LessonPlan/';
+
+  lessonPlanURL =  "http://localhost:3007/LessonPlan";
 
   coursePlanURL = 'api/Course/';
   

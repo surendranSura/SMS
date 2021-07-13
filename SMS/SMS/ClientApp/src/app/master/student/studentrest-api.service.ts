@@ -37,7 +37,7 @@ export class StudentrestApiService {
   // HttpClient API get() method => Fetch Students list
   getStudents(): Observable<Student> {
     debugger;
-    return this.http.get<Student>(this.apiURL)
+    return this.http.get<Student>("http://localhost:3007/Students")
     .pipe(
       retry(1),
       catchError((err)=>this.handleError(err))

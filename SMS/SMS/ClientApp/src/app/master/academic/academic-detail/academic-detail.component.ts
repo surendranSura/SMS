@@ -19,9 +19,18 @@ export class AcademicDetailComponent implements OnInit {
     'lessonPlan', 'timeTable'];
 
   academicDetails = [{
-    classSections: '1-A', subjects: 'Maths, Science',
-
-  }];
+    
+    classSections: '1-A', subjects: 'Maths, Science'
+  }, {
+    classSections: '2-B', subjects: 'Maths, Science'
+  },
+  {
+    classSections: '3-A', subjects: 'Maths, Science'
+  }, 
+  {
+    classSections: '10-A', subjects: 'Maths, Science'
+  }
+];
 
 
   constructor() { }

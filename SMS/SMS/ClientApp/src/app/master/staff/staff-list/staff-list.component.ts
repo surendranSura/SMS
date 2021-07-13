@@ -38,7 +38,7 @@ export class StaffListComponent implements OnInit {
   joiningDateFrom = new FormControl('');
   
 
-  columnsToDisplay = ['staffName','staffType', 'employeeID','department','designation','status','joiningDate','mobileNumber','eMail','actions'];
+  columnsToDisplay = ['staffName', 'employeeID','department','designation','status','joiningDate','mobileNumber','eMail','actions'];
   
   filterValues = {
     //department: 

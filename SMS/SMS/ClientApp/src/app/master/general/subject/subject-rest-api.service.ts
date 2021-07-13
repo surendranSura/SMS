@@ -13,7 +13,8 @@ import { Subject } from '../subject/Models/subject';
 
 export class SubjectRestApiService {
 
-  apiURL = 'api/Subject';
+ // apiURL = 'api/Subject';
+    apiURL = "http://localhost:3007/Subjects";
   
   constructor(private http: HttpClient) { }
 
