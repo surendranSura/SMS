@@ -13,24 +13,51 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using SMS.Models;
 using SMSAPI.Authentication;
+using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
+using WebApi.Helpers;
+using WebApi.Middleware;
+using WebApi.Services;
 
 namespace SMS
 {
 	public class Startup
 	{
-		//readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-		public Startup(IConfiguration configuration)
+		private readonly IWebHostEnvironment _env;
+		private readonly IConfiguration _configuration;
+
+		public Startup(IWebHostEnvironment env, IConfiguration configuration)
 		{
-			Configuration = configuration;
+			_env = env;
+			_configuration = configuration;
 		}
 
-		public IConfiguration Configuration { get; }
 
-		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+
+			// use sql server db in production and sqlite db in development
+			//if (_env.IsProduction())
+			//	services.AddDbContext<DataContext>();
+			//else
+			//	services.AddDbContext<DataContext, SqliteDataContext>();
+
+			services.AddDbContext<DataContext>();
+			services.AddCors();
+			services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
+			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+			services.AddSwaggerGen();
+
+			// configure strongly typed settings object
+			services.Configure<AppSettings>(_configuration.GetSection("AppSettings"));
+
+			services.AddControllersWithViews();
+			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+			// configure strongly typed settings objects
+
 
 			services.AddSwaggerGen(options => 
 			{
@@ -43,76 +70,26 @@ namespace SMS
 					});
 			});
 
-			services.AddDbContext<SchoolManagementContext>(options => options.UseSqlServer(
-				Configuration.GetConnectionString("SchoolManagementConnection")));
-
-			services.AddIdentity<ApplicationUser, IdentityRole>().
-				AddEntityFrameworkStores<SchoolManagementContext>().
-				AddDefaultTokenProviders();
-
-			string key = "My secret key to validate the JWt token authentication";
-
-			services.AddControllersWithViews();
-
-			services.AddAuthentication(X =>
-			{
-				X.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-				X.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-			}).AddJwtBearer(X =>
-			{
-				X.RequireHttpsMetadata = false;
-				X.SaveToken = true;
-				X.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-				{
-					ValidateIssuerSigningKey = true,
-					IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
-					ValidateAudience = false,
-					ValidateIssuer = false
-				};
-			});
-
-			services.Configure<IdentityOptions>(options =>
-			{
-				options.Password.RequiredLength = 10;
-				options.Password.RequireNonAlphanumeric = false;
-				options.Password.RequireLowercase = false;
-				options.Password.RequireUppercase = false;
-				//options.Password.RequiredUniqueChars = false;
-				//options.Password.RequiredUniqueChars = false;
-				//options.Password.
-				// Default User settings.
-				options.User.AllowedUserNameCharacters =
-						"0123456789";
-				options.User.RequireUniqueEmail = false;
-
-			});
-
-			services.Configure<FormOptions>(o => {
-				o.ValueLengthLimit = int.MaxValue;
-				o.MultipartBodyLengthLimit = int.MaxValue;
-				o.MemoryBufferThreshold = int.MaxValue;
-			});
-
-			//services.AddAuthorization(options =>
-			//{
-			//	//options.AddPolicy("Founderonly", policy => policy.RequireClaim(""));
-			//	options.AddPolicy("Staffonly", policy => policy.RequireClaim("StaffNumber"));
-			//	options.AddPolicy("Studentonly", policy => policy.RequireClaim("AdmissionNumber"));
-			//});
-
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>
 			{
 				configuration.RootPath = "ClientApp/dist";
 			});
 
-			services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(key));
-		}
+			// configure DI for application services
+			//services.AddScoped<IUserService, UserService>();
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+
+			// configure DI for application services
+			services.AddScoped<IAccountService, AccountService>();
+			services.AddScoped<IEmailService, EmailService>();
+		}
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext dataContext)
 		{
+
+			// migrate any database changes on startup (includes initial db creation)
+			dataContext.Database.Migrate();
+
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
@@ -130,19 +107,7 @@ namespace SMS
 
 			app.UseRouting();
 
-			//app.UseCors(MyAllowSpecificOrigins);
-
-
-			//app.UseStaticFiles(new StaticFileOptions()
-			//{
-			//	FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
-			//	RequestPath = new PathString("/Resources")
-			//});
-
-
-
 			app.UseAuthentication();
-
 
 			app.UseAuthorization();
 
@@ -154,7 +119,6 @@ namespace SMS
 
 			});
 
-
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute(
@@ -164,9 +128,6 @@ namespace SMS
 
 			app.UseSpa(spa =>
 			{
-				// To learn more about options for serving an Angular SPA from ASP.NET Core,
-				// see https://go.microsoft.com/fwlink/?linkid=864501
-
 				spa.Options.SourcePath = "ClientApp";
 
 				if (env.IsDevelopment())
@@ -174,6 +135,21 @@ namespace SMS
 					spa.UseAngularCliServer(npmScript: "start");
 				}
 			});
+
+			// global cors policy
+			app.UseCors(x => x
+				.SetIsOriginAllowed(origin => true)
+				.AllowAnyMethod()
+				.AllowAnyHeader()
+				.AllowCredentials());
+
+			// global error handler
+			app.UseMiddleware<ErrorHandlerMiddleware>();
+
+			// custom jwt auth middleware
+			app.UseMiddleware<JwtMiddleware>();
+
+			app.UseEndpoints(x => x.MapControllers());
 		}
 	}
 }

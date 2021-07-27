@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from './Models/subject';
 import { SubjectRestApiService } from './subject-rest-api.service';
+import { NotificationsService } from 'angular2-notifications';
+import { title } from 'process';
 
 @Component({
   selector: 'app-subject',
@@ -12,10 +14,30 @@ export class SubjectComponent implements OnInit {
   subjectlist: any;
   addButton : any;
 
-  constructor(private subjectApi : SubjectRestApiService) {
+  constructor(private subjectApi : SubjectRestApiService, private alertservice : NotificationsService) {
 
    
 
+  }
+
+  OnSuccess(message)
+  {
+    this.alertservice.success('Success', message, {
+      position: ['bottom', 'right'],
+      timeOut: 2000,
+      animate: 'fade',
+      showProgressBar: true
+    })
+  }
+
+  onError(message)
+  {
+    this.alertservice.error('Success', message, {
+      position: ['bottom', 'right'],
+      timeOut: 2000,
+      animate: 'fade',
+      showProgressBar: true
+    })
   }
 
   ngOnInit(): void {
@@ -29,6 +51,7 @@ export class SubjectComponent implements OnInit {
   {
     this.subjectApi.getSubjects().subscribe(data => {
       this.subjectlist = data;
+      this.OnSuccess('Subject Saved !!');
     });
   }
 
@@ -36,6 +59,7 @@ export class SubjectComponent implements OnInit {
   {
     this.subjectlist.push({});
     this.addButton = true;
+    this.OnSuccess('Subject Saved !!');
   }
 
   eventCatch(value:any){

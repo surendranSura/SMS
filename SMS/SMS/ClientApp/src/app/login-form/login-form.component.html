@@ -13,6 +13,9 @@
         <mat-form-field  appearance="outline">
           <mat-label>Password</mat-label>
           <input matInput formControlName = "password" #Password type="password">
+          <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger">
+            <div *ngIf="f.password.errors.required">Password is required.</div>
+          </div>
         </mat-form-field>
         
         <div class="submit">

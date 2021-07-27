@@ -9,9 +9,11 @@
   <span>BV Public School</span>
   <div class="right-content">
     <ul type="none" class="profile-name">
-      <li>Welcome {{loginuser.firstName}} !</li>
+      <li>Hi {{account.firstName}}!</li>
       <!-- <li>!</li> -->
     </ul>
+
+    <ngx-avatar name={{account.firstName}}></ngx-avatar>
     <!-- <img src="../../../assets/hipster.png" alt="profile" style="height:55px; padding: 5px;"> -->
 
     <!-- <app-upload (onUploadFinished)="uploadFinished($event)">hai</app-upload>
@@ -24,7 +26,7 @@
     </button>
 
     <div>
-      <button class="btn help-btn">Help</button>
+      <button (click)="logout()" class="btn help-btn">LogOut</button>
     </div>
   </div>
 

@@ -1,7 +1,8 @@
-import { Component, OnInit, Output,EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter, ViewChild, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { AngularFileUploaderComponent } from 'angular-file-uploader';
 import { LoginUser } from 'src/app/login-form/login-user';
 import { AuthenticationService } from 'src/app/login-form/service/authentication.service';
+import { AccountService } from '../../../_services';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class HeaderComponent implements OnInit {
   loginuser : LoginUser = new LoginUser();
 
   selectedFile: any= null;
+
+  account = this.accountService.accountValue;
 
   @Output() menuToggle=new EventEmitter<boolean>();
    private menuFlag:boolean=false;
@@ -64,7 +67,7 @@ export class HeaderComponent implements OnInit {
   http: any;
   
   
-  constructor(private loginApiService: AuthenticationService) { 
+  constructor(private loginApiService: AuthenticationService, private accountService: AccountService) { 
     console.log(this.loginApiService.userValue);
     this.loginuser = this.loginApiService.userValue;
     console.log(this.loginuser.firstName);
@@ -95,6 +98,10 @@ export class HeaderComponent implements OnInit {
 
   public createImgPath = (serverPath: string) => {
     return `api/api/${serverPath}`;
+  }
+
+  logout() {
+    this.accountService.logout();
   }
 
 }

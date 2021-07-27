@@ -6,6 +6,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Console } from 'console';
 import { Subject } from '../subject/Models/subject';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import { Subject } from '../subject/Models/subject';
 export class SubjectRestApiService {
 
  // apiURL = 'api/Subject';
-    apiURL = "http://localhost:3007/Subjects";
+    apiURL = environment.apiUrl + '/Subjects';
   
   constructor(private http: HttpClient) { }
 
@@ -31,6 +32,7 @@ export class SubjectRestApiService {
 
   // HttpClient API get() method => Fetch Subject list
   getSubjects(): Observable<Subject> {
+    alert(this.apiURL);
     return this.http.get<Subject>(this.apiURL)
     .pipe(
       retry(1),

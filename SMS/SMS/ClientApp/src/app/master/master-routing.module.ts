@@ -27,7 +27,7 @@ const routes: Routes = [
       { path: 'lesson-plan', loadChildren: () => import('./academic/lesson-plan/lesson-plan.module').then(m => m.LessonPlanModule) },
       { path: 'course', loadChildren: () => import('./academic/course/course.module').then(m => m.CourseModule) },
       { path: 'timetable-classes', loadChildren: () => import('./timetable/timetable-classes/timetable-classes.module').then(m => m.TimetableClassesModule) },
-      { path: 'timetable-grid/:id', loadChildren: () => import('./timetable/timetable-grid/timetable-grid.module').then(m => m.TimetableGridModule) },
+      { path: 'Scheduler', loadChildren: () => import('./../time-table/time-table.module').then(m => m.TimeTableModule) },
       { path: 'my-attendance', loadChildren: () => import('./attendance/my-attendance/my-attendance.module').then(m => m.MyAttendanceModule) },
       { path: 'student-attendance', loadChildren: () => import('./attendance/student-attendance/student-attendance.module').then(m => m.StudentAttendanceModule) },
       { path: 'staff-attendance', loadChildren: () => import('./attendance/staff-attendance/staff-attendance.module').then(m => m.StaffAttendanceModule) },
