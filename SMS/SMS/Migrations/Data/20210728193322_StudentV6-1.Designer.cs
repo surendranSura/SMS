@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.Data
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210728193322_StudentV6-1")]
+    partial class StudentV61
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,6 +28,9 @@ namespace SMS.Migrations.Data
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<byte[]>("Aadhar")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("AadharNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -37,6 +42,9 @@ namespace SMS.Migrations.Data
 
                     b.Property<int>("AdmissionNumber")
                         .HasColumnType("int");
+
+                    b.Property<byte[]>("BirthCertificate")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("BloodGroup")
                         .HasColumnType("nvarchar(max)");
@@ -239,6 +247,9 @@ namespace SMS.Migrations.Data
                     b.Property<int?>("NationalityId")
                         .HasColumnType("int");
 
+                    b.Property<byte[]>("Passport")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("PermenantCity")
                         .HasColumnType("nvarchar(max)");
 
@@ -260,6 +271,12 @@ namespace SMS.Migrations.Data
                     b.Property<string>("PermenantSate")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("ProfilePic")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("RationCard")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("ReasonForLeaving")
                         .HasColumnType("nvarchar(max)");
 
@@ -277,6 +294,12 @@ namespace SMS.Migrations.Data
 
                     b.Property<string>("Section")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("StudentVisa")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("TransferCertificate")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int?>("passingOutSchool")
                         .HasColumnType("int");

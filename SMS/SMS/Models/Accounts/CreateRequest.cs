@@ -19,7 +19,7 @@ namespace WebApi.Models.Accounts
         public string Role { get; set; }
 
         [Required]
-        [EmailAddress]
+       // [EmailAddress]
         public string Email { get; set; }
 
         [Required]

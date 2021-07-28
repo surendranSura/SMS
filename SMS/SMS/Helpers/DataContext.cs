@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using SMS.Models;
 using WebApi.Entities;
 
 namespace WebApi.Helpers
@@ -7,7 +8,9 @@ namespace WebApi.Helpers
     public class DataContext : DbContext
     {
         public DbSet<Account> Accounts { get; set; }
-        
+
+        public virtual DbSet<Student> Students { get; set; }
+
         private readonly IConfiguration Configuration;
 
         public DataContext(IConfiguration configuration)

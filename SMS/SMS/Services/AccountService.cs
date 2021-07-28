@@ -55,7 +55,7 @@ namespace WebApi.Services
         {
             var account = _context.Accounts.SingleOrDefault(x => x.Email == model.Email);
 
-            if (account == null || !account.IsVerified || !BC.Verify(model.Password, account.PasswordHash))
+            if (account == null || !BC.Verify(model.Password, account.PasswordHash))
                 throw new AppException("Email or password is incorrect");
 
             // authentication successful so generate jwt and refresh tokens
@@ -139,7 +139,7 @@ namespace WebApi.Services
             _context.SaveChanges();
 
             // send email
-            sendVerificationEmail(account, origin);
+           /// sendVerificationEmail(account, origin);
         }
 
         public void VerifyEmail(string token)
