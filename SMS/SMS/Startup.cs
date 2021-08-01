@@ -28,6 +28,7 @@ namespace SMS
 		private readonly IWebHostEnvironment _env;
 		private readonly IConfiguration _configuration;
 
+		readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 		public Startup(IWebHostEnvironment env, IConfiguration configuration)
 		{
 			_env = env;
@@ -43,9 +44,19 @@ namespace SMS
 			//	services.AddDbContext<DataContext>();
 			//else
 			//	services.AddDbContext<DataContext, SqliteDataContext>();
+			services.AddCors(options =>
+			{
+				options.AddPolicy(name: MyAllowSpecificOrigins,
+								  builder =>
+								  {
+									  builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod(); 
+								  });
+			});
+
+
 
 			services.AddDbContext<DataContext>();
-			services.AddCors();
+		//	services.AddCors();
 			services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
 			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 			services.AddSwaggerGen();
@@ -83,10 +94,11 @@ namespace SMS
 			// configure DI for application services
 			services.AddScoped<IAccountService, AccountService>();
 			services.AddScoped<IEmailService, EmailService>();
+		
 		}
+
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext dataContext)
 		{
-
 			// migrate any database changes on startup (includes initial db creation)
 			dataContext.Database.Migrate();
 
@@ -106,7 +118,7 @@ namespace SMS
 			}
 
 			app.UseRouting();
-
+			app.UseCors(MyAllowSpecificOrigins);
 			app.UseAuthentication();
 
 			app.UseAuthorization();
@@ -135,13 +147,13 @@ namespace SMS
 					spa.UseAngularCliServer(npmScript: "start");
 				}
 			});
-
+		
 			// global cors policy
-			app.UseCors(x => x
-				.SetIsOriginAllowed(origin => true)
-				.AllowAnyMethod()
-				.AllowAnyHeader()
-				.AllowCredentials());
+			//app.UseCors(x => x
+			//	.SetIsOriginAllowed(origin => true)
+			//	.AllowAnyMethod()
+			//	.AllowAnyHeader()
+			//	.AllowCredentials());
 
 			// global error handler
 			app.UseMiddleware<ErrorHandlerMiddleware>();
@@ -150,6 +162,7 @@ namespace SMS
 			app.UseMiddleware<JwtMiddleware>();
 
 			app.UseEndpoints(x => x.MapControllers());
+		
 		}
 	}
 }
