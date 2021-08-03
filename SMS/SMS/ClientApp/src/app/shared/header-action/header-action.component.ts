@@ -34,7 +34,7 @@ export class HeaderActionComponent implements OnInit {
       this.router.navigate(['/main/staff-list']);
     }
     else if (this.index === 0) {
-      this.router.navigate(['/main/student-list']);
+      this.router.navigate(['student-list']);
     }
     else if (this.index ===2){
       this.router.navigate(['/main/e-letter-list']);
@@ -44,6 +44,9 @@ export class HeaderActionComponent implements OnInit {
     }
     else if (this.index ===4){
       this.router.navigate(['/main/student-feedback-list']);
+    }
+    else if (this.index ===18){
+       this.router.navigate(['/list-inventory'])
     }
   }
 }

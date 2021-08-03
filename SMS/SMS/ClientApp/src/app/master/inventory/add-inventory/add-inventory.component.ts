@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { BlockUI, NgBlockUI } from 'ng-block-ui';
-import { ActivatedRoute } from '@angular/router';
-import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-
+import { ActivatedRoute } from '@angular/router';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 
 @Component({
-  selector: 'app-add-bus-details',
-  templateUrl: './add-bus-details.component.html',
-  styleUrls: ['./add-bus-details.component.css']
+  selector: 'app-add-inventory',
+  templateUrl: './add-inventory.component.html',
+  styleUrls: ['./add-inventory.component.css']
 })
-export class AddBusDetailsComponent implements OnInit {
+export class AddInventoryComponent implements OnInit {
 
   stuFormtDetails: boolean[] =[]
   results : any =null;
@@ -107,3 +107,4 @@ export class AddBusDetailsComponent implements OnInit {
 
 
 }
+

@@ -18,12 +18,12 @@ import { AvatarModule } from 'ngx-avatar';
 
 
 
+
 @NgModule({
   declarations: [
     MasterComponent,
     HeaderComponent,
     SideMenuComponent
-    
   ],
   imports: [
     CommonModule,

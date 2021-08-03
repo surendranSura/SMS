@@ -326,6 +326,17 @@ export class SmsConstant {
     { value: "1", viewValue: '10 days before' },
     { value: "2", viewValue: '25 days before' }
   ]
+  static readonly itemName = [
+    { value: 0, viewValue: '--select none--' },
+    { value: "1", viewValue: 'item 1' },
+    { value: "2", viewValue: 'item 2' }
+  ]
+
+  static readonly itemUsageArea = [
+    { value: 0, viewValue: '--select none--' },
+    { value: "1", viewValue: 'itemUsageArea 1' },
+    { value: "2", viewValue: 'itemUsageArea 2' }
+  ]
 
 
 

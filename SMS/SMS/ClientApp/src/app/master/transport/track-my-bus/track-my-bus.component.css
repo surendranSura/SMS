@@ -6,7 +6,7 @@
     color:	#676360;
 }
 .wordstyle{
-    font-size: 18px;
+    font-size: 27px;
     margin-top: 25px;
     margin-left:50px;
     padding:50px;
@@ -16,4 +16,8 @@
 .table{
     border-collapse: separate;
     border-spacing: 0 1em;
+    
 }
+th, td {
+    padding: 10px;
+  }

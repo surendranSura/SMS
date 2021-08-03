@@ -14,8 +14,8 @@ const routes: Routes = [
     { path: 'account', loadChildren: accountModule },
     { path: 'profile', loadChildren: profileModule, canActivate: [AuthGuard] },
     { path: 'admin', loadChildren: adminModule, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
-     { path: '', loadChildren: () => import('./master/master.module').then(m => m.MasterModule), canActivate: [AuthGuard] },
-     { path: 'Scheduler', loadChildren: () => import('./time-table/time-table.module').then(m => m.TimeTableModule) },
+    { path: '', loadChildren: () => import('./master/master.module').then(m => m.MasterModule), canActivate: [AuthGuard] },
+    { path: 'Scheduler', loadChildren: () => import('./time-table/time-table.module').then(m => m.TimeTableModule) },
 
     // otherwise redirect to home
      { path: '**', redirectTo: '' }
