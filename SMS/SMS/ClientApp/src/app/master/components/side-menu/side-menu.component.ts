@@ -15,4 +15,8 @@ export class SideMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  openSite(siteUrl) : void {
+    window.open("//" + siteUrl, '_blank');
+  }
+
 }

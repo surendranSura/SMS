@@ -21,8 +21,6 @@ export class LessonPlanSubjectComponent implements OnInit {
 
      this.classId = this.route.snapshot.paramMap.get('class');
 
-     console.log(this.classId);
-
      this.lessonPlanRestApiService.getClassSubjects(this.classId).subscribe( data => {
        this.standard = data;
      });
@@ -31,6 +29,6 @@ export class LessonPlanSubjectComponent implements OnInit {
   }
   navigate(subject:any) {  
    
-    this.router.navigate(["/main/lesson-plan/addsLessonPlanSubjectWise/"+subject+"/"+this.classId]);
+    this.router.navigate(["/lesson-plan/addsLessonPlanSubjectWise/"+subject+"/"+this.classId]);
 }
 }

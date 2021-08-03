@@ -13,8 +13,7 @@ namespace SMS.Models
     {
         [JsonIgnore]
         [IgnoreDataMember]
-
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		[DatabaseGenerated(DatabaseGeneratedOption.None)]
 		public int StaffId { get; set; }
 
 		//Salutation Dropdown

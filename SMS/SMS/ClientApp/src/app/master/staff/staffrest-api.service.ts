@@ -14,7 +14,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 export class StaffrestApiService {
   @BlockUI() blockUI: NgBlockUI;
   //apiURL = 'api/Staff';
-  apiURL = "http://localhost:3007/Staffs";
+  apiURL = "http://localhost:4000/Staff";
   apieLetterURL = 'api/api/StaffeLetter';
   apiFeedbackURL = 'api/StaffFeedback';
 
@@ -36,7 +36,7 @@ export class StaffrestApiService {
 
   // HttpClient API get() method => Fetch Staffs list
   getStaffs(): Observable<Staff> {
-    return this.http.get<Staff>("http://localhost:3007/Staffs")
+    return this.http.get<Staff>("http://localhost:4000/Staffs")
     .pipe(
       retry(1),
       catchError((err)=>this.handleError(err))
