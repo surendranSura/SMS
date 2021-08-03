@@ -13,7 +13,7 @@
   
   <mat-tab>
     <ng-template mat-tab-label>
-      Parents/Guardian Details 
+      Driver Details 
       <!-- stuFormtDetails[1]!=null && stuFormtDetails[1] -->
       <mat-icon *ngIf="stuFormtDetails[1]!=null && stuFormtDetails[1]" color="primary">check_circle</mat-icon>
     </ng-template>
@@ -22,14 +22,14 @@
   </mat-tab>
 
 <div class="footer-n-stu">
-
   <button type="button" class="gradient-button" (click)="btnMovement('bck')" [disabled]="selectedTab<=0">
     Back
   </button>
-  <button type="button" class="gradient-button" (click)="btnMovement('frd')">
+  <button type="button" class="gradient-button" (click)="btnMovement('frd')" >
     <span *ngIf="!(selectedTab>=1)">Next</span>
-    <span *ngIf="(selectedTab>=1)">Submit</span>
+    <span *ngIf="selectedTab>=1">Submit</span>
   </button>
+
 </div>
 
 
