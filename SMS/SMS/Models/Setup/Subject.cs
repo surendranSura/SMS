@@ -13,5 +13,9 @@ namespace SMS.Models.Setup
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int SubjectID { get; set; }
 		public string SubjectDescr { get; set; }
+
+		[ForeignKey("AcademicClassSubject")]
+		public int AcademicClassSubjectId { get; set; }
+		public AcademicClassSubject AcademicClassSubject { get; set; }
 	}
 }

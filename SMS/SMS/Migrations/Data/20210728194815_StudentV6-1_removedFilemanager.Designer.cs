@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.Data
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210728194815_StudentV6-1_removedFilemanager")]
+    partial class StudentV61_removedFilemanager
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,343 +21,12 @@ namespace SMS.Migrations.Data
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.3");
 
-            modelBuilder.Entity("SMS.Models.Academics.LessonPlan", b =>
-                {
-                    b.Property<int>("LessonPlanId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("AcademicClassId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AcademicClassSubjectId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LessonPlanCheckDigi")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("activity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("classActivity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("classWork")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("concept")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("extraInfo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("games")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("homeWork")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("lesson")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("topic")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("LessonPlanId");
-
-                    b.ToTable("LessonPlans");
-                });
-
-            modelBuilder.Entity("SMS.Models.Setup.AcademicClass", b =>
-                {
-                    b.Property<int>("AcademicClassId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("AcademicClassSubjectId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("AcademicYear")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ClassName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Group")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Section")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AcademicClassId");
-
-                    b.HasIndex("AcademicClassSubjectId");
-
-                    b.ToTable("AcademicClasses");
-                });
-
-            modelBuilder.Entity("SMS.Models.Setup.AcademicClassSubject", b =>
-                {
-                    b.Property<int>("AcademicClassSubjectId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("AcademicClassId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SubjectID")
-                        .HasColumnType("int");
-
-                    b.HasKey("AcademicClassSubjectId");
-
-                    b.ToTable("AcademicClassSubjects");
-                });
-
-            modelBuilder.Entity("SMS.Models.Setup.Subject", b =>
-                {
-                    b.Property<int>("SubjectID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("AcademicClassSubjectId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SubjectDescr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SubjectID");
-
-                    b.HasIndex("AcademicClassSubjectId");
-
-                    b.ToTable("Subjects");
-                });
-
-            modelBuilder.Entity("SMS.Models.Staff", b =>
-                {
-                    b.Property<int>("StaffId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AadharNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ActiveId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("BankAccountNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BankBranch")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BankIfscCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BankName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BloodGroup")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DesignationId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Dob")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("EducationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EmailId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EmployeementStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Epfnumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Esinumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FatherMobileNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FatherName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FatherOccupation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("JoiningDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LanguagesId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Marritalsatus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("Mobile")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("MotherMobileNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MotherName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MotherOccupation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MotherTongue")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NationalityId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OfficialEmailId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PanNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ReligionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReportingTo")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SalutationId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SpouseMobileNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SpouseName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SpouseOccupation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StaffAddressId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StaffExperienceId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StaffTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TeacherId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Uannumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("WeddingDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("StaffId");
-
-                    b.ToTable("Staffs");
-                });
-
-            modelBuilder.Entity("SMS.Models.StaffAddress", b =>
-                {
-                    b.Property<int>("StaffAddressId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Line1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Line2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Line3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pincode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sate")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StaffId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StaffAddressId");
-
-                    b.HasIndex("StaffId");
-
-                    b.ToTable("StaffAddress");
-                });
-
-            modelBuilder.Entity("SMS.Models.StaffExperience", b =>
-                {
-                    b.Property<int>("StaffExperienceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<DateTime?>("From")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Responsibilty")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StaffId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("To")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("StaffExperienceId");
-
-                    b.HasIndex("StaffId");
-
-                    b.ToTable("StaffExperience");
-                });
-
             modelBuilder.Entity("SMS.Models.Student", b =>
                 {
                     b.Property<int>("StudentId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("AadharNumber")
                         .HasColumnType("nvarchar(max)");
@@ -680,46 +351,6 @@ namespace SMS.Migrations.Data
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("SMS.Models.Setup.AcademicClass", b =>
-                {
-                    b.HasOne("SMS.Models.Setup.AcademicClassSubject", "AcademicClassSubject")
-                        .WithMany("AcademicClasses")
-                        .HasForeignKey("AcademicClassSubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AcademicClassSubject");
-                });
-
-            modelBuilder.Entity("SMS.Models.Setup.Subject", b =>
-                {
-                    b.HasOne("SMS.Models.Setup.AcademicClassSubject", "AcademicClassSubject")
-                        .WithMany("Subjects")
-                        .HasForeignKey("AcademicClassSubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AcademicClassSubject");
-                });
-
-            modelBuilder.Entity("SMS.Models.StaffAddress", b =>
-                {
-                    b.HasOne("SMS.Models.Staff", null)
-                        .WithMany("Addresses")
-                        .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SMS.Models.StaffExperience", b =>
-                {
-                    b.HasOne("SMS.Models.Staff", null)
-                        .WithMany("experiences")
-                        .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("WebApi.Entities.Account", b =>
                 {
                     b.OwnsMany("WebApi.Entities.RefreshToken", "RefreshTokens", b1 =>
@@ -766,20 +397,6 @@ namespace SMS.Migrations.Data
                         });
 
                     b.Navigation("RefreshTokens");
-                });
-
-            modelBuilder.Entity("SMS.Models.Setup.AcademicClassSubject", b =>
-                {
-                    b.Navigation("AcademicClasses");
-
-                    b.Navigation("Subjects");
-                });
-
-            modelBuilder.Entity("SMS.Models.Staff", b =>
-                {
-                    b.Navigation("Addresses");
-
-                    b.Navigation("experiences");
                 });
 #pragma warning restore 612, 618
         }

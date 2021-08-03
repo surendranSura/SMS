@@ -20,7 +20,7 @@ namespace WebApi.Services
         AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress);
         AuthenticateResponse RefreshToken(string token, string ipAddress);
         void RevokeToken(string token, string ipAddress);
-        void Register(RegisterRequest model, string origin);
+        void Register(RegisterRequest model, string origin, bool isStaff = false);
         void VerifyEmail(string token);
         void ForgotPassword(ForgotPasswordRequest model, string origin);
         void ValidateResetToken(ValidateResetTokenRequest model);
@@ -55,7 +55,7 @@ namespace WebApi.Services
         {
             var account = _context.Accounts.SingleOrDefault(x => x.Email == model.Email);
 
-            if (account == null || !account.IsVerified || !BC.Verify(model.Password, account.PasswordHash))
+            if (account == null || !BC.Verify(model.Password, account.PasswordHash))
                 throw new AppException("Email or password is incorrect");
 
             // authentication successful so generate jwt and refresh tokens
@@ -112,22 +112,22 @@ namespace WebApi.Services
             _context.SaveChanges();
         }
 
-        public void Register(RegisterRequest model, string origin)
+        public void Register(RegisterRequest model, string origin, bool isStaff = false )
         {
             // validate
-            if (_context.Accounts.Any(x => x.Email == model.Email))
-            {
-                // send already registered error in email to prevent account enumeration
-                sendAlreadyRegisteredEmail(model.Email, origin);
-                return;
-            }
+            //if (_context.Accounts.Any(x => x.Email == model.Email))
+            //{
+            //    // send already registered error in email to prevent account enumeration
+            //    sendAlreadyRegisteredEmail(model.Email, origin);
+            //    return;
+            //}
 
             // map model to new account object
             var account = _mapper.Map<Account>(model);
 
             // first registered account is an admin
             var isFirstAccount = _context.Accounts.Count() == 0;
-            account.Role = isFirstAccount ? Role.Admin : Role.User;
+            account.Role = isStaff ? Role.Admin : Role.User;
             account.Created = DateTime.UtcNow;
             account.VerificationToken = randomTokenString();
 
@@ -139,7 +139,7 @@ namespace WebApi.Services
             _context.SaveChanges();
 
             // send email
-            sendVerificationEmail(account, origin);
+           /// sendVerificationEmail(account, origin);
         }
 
         public void VerifyEmail(string token)

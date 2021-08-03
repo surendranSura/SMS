@@ -1,4 +1,5 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-scheduler',
@@ -7,12 +8,14 @@ import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 })
 export class SchedulerComponent implements OnInit {
 
-  viewDate: Date = new Date();
-  events = [];
+  name = 'Set iframe source';
+  url: string = "https://angular.io/api/router/RouterLink";
+  urlSafe: SafeResourceUrl;
 
-  constructor() { }
+  constructor(public sanitizer: DomSanitizer) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 
 }

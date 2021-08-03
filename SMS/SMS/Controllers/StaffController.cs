@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Helpers;
+using WebApi.Models.Accounts;
+using WebApi.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,15 +23,18 @@ namespace SMS.Controllers
 	//[AllowAnonymous]
 	public class StaffController : ControllerBase
 	{
-		private readonly SchoolManagementContext _dbcontext;
-		private readonly UserManager<ApplicationUser> userManager;
-		private readonly RoleManager<IdentityRole> roleManager;
+		private readonly DataContext _dbcontext;
 
-		public StaffController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, SchoolManagementContext dbcontext)
+		private readonly IAccountService _accountService;
+		private readonly IMapper _mapper;
+
+		public StaffController(DataContext dbcontext,
+			IAccountService accountService,
+			IMapper mapper)
 		{
-			this.userManager = userManager;
-			this.roleManager = roleManager;
 			this._dbcontext = dbcontext;
+			_accountService = accountService;
+			_mapper = mapper;
 		}
 
 		// GET: api/<StaffController>
@@ -48,26 +55,22 @@ namespace SMS.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Post([FromBody] Staff staff)
 		{
-			
-			var userExists = await userManager.FindByNameAsync(staff.Mobile.ToString());
-			if (userExists != null)
-				return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User already exists!" });
 
-			ApplicationUser user = new ApplicationUser()
-			{
-				Email = staff.EmailId,
-				SecurityStamp = Guid.NewGuid().ToString(),
-				UserName = staff.Mobile.ToString(),
-				Staff = staff
-			};
+			RegisterRequest model = new RegisterRequest();
+			model.Title = staff.SalutationId;
+			model.FirstName = staff.FirstName;
+			model.Email = Convert.ToString(staff.Mobile);
+			model.LastName = staff.LastName;
+			model.AcceptTerms = true;
+			model.Password = staff.FirstName + Convert.ToString(staff.Mobile);
+			model.ConfirmPassword = staff.FirstName + Convert.ToString(staff.Mobile);
+			_accountService.Register(model, Request.Headers["origin"], true);
+			var account = _dbcontext.Accounts.SingleOrDefault(x => x.Email == model.Email);
 
-			var result = await userManager.CreateAsync(user, staff.Mobile.ToString());
+			staff.StaffId = account.Id;
 
-			if (result.Succeeded)
-			{
-				_dbcontext.Staffs.Add(staff);
-				_dbcontext.SaveChanges();
-			}
+			_dbcontext.Staffs.Add(staff);
+			_dbcontext.SaveChanges();
 
 			return StatusCode(StatusCodes.Status200OK, new { Status = "Success", Message = "User added successfully!" });
 		}
@@ -91,8 +94,8 @@ namespace SMS.Controllers
 		[HttpPost("PostStaffFeedback")]
 		public async Task<IActionResult> PostStaffFeedback([FromBody] StaffFeedback staffFeedback)
 		{
-			_dbcontext.StaffFeedbacks.Add(staffFeedback);
-			await _dbcontext.SaveChangesAsync();
+			//_dbcontext.StaffFeedbacks.Add(staffFeedback);
+			//await _dbcontext.SaveChangesAsync();
 
 			return Ok();
 		}

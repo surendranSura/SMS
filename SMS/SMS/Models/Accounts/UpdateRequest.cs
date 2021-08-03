@@ -21,7 +21,7 @@ namespace WebApi.Models.Accounts
             set => _role = replaceEmptyWithNull(value);
         }
 
-        [EmailAddress]
+      //  [EmailAddress]
         public string Email
         {
             get => _email;

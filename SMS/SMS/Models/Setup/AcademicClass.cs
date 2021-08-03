@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -21,6 +22,10 @@ namespace SMS.Models.Setup
 
 		public string  Group { get; set; }
 
+		[ForeignKey("AcademicClassSubject")]
+		public int AcademicClassSubjectId { get; set; }
+		public AcademicClassSubject AcademicClassSubject { get; set; }
+
 	}
 
 	public class AcademicClassSubject
@@ -30,6 +35,10 @@ namespace SMS.Models.Setup
 		public int AcademicClassId { get; set; }
 
 		public int SubjectID { get; set; }
+
+		public ICollection<AcademicClass> AcademicClasses { get; set; }
+
+		public ICollection<Subject> Subjects { get; set; }
 
 	}
 

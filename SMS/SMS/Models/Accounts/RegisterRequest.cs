@@ -14,7 +14,7 @@ namespace WebApi.Models.Accounts
         public string LastName { get; set; }
 
         [Required]
-        [EmailAddress]
+        //[EmailAddress]
         public string Email { get; set; }
 
         [Required]

@@ -5,7 +5,7 @@ namespace WebApi.Models.Accounts
     public class AuthenticateRequest
     {
         [Required]
-        [EmailAddress]
+       // [EmailAddress]
         public string Email { get; set; }
 
         [Required]

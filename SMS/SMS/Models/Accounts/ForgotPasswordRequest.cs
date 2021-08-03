@@ -5,7 +5,7 @@ namespace WebApi.Models.Accounts
     public class ForgotPasswordRequest
     {
         [Required]
-        [EmailAddress]
+       // [EmailAddress]
         public string Email { get; set; }
     }
 }
