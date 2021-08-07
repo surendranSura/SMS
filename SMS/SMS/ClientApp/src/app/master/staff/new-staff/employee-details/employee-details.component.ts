@@ -30,21 +30,21 @@ export class EmployeeDetailsComponent implements OnInit,FormTouched {
     
     this.empDetailsForm = this.fb.group(
       {
-        teacherId : [''],
-        employeeId : [''],
-        educationId : [''],
-        officialEmailId : [''],
-        esiNumber : [''],
-        staffId : [''],
-        employeementstatusId : [''],
-        reportingTo : [''],
-        epfNumber : [''],
-        departmentId : [''],
-        joiningDate : [''],
-        activeId : [''],
-        uanNumber : [''],
-        designationId : [''],
-        roleId : ['']
+        teacherId : ['',Validators.required],
+        employeeId : ['',Validators.required],
+        educationId : ['',Validators.required],
+        officialEmailId : ['',Validators.required],
+        esiNumber : ['',Validators.required],
+        staffId : ['',Validators.required],
+        employeementstatusId : ['',Validators.required],
+        reportingTo : ['',Validators.required],
+        epfNumber : ['',Validators.required],
+        departmentId : ['',Validators.required],
+        joiningDate : ['',Validators.required],
+        activeId : ['',Validators.required],
+        uanNumber : ['',Validators.required],
+        designationId : ['',Validators.required],
+        roleId : ['',Validators.required]
       }
     );
     this.empDetailsForm.valueChanges.subscribe(()=>{
