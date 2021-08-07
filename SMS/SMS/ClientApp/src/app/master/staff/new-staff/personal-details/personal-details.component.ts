@@ -1,8 +1,10 @@
+import { ViewChild } from '@angular/core';
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 
 
 
@@ -13,7 +15,7 @@ import { SmsConstant } from 'src/app/shared/constant-values';
   styleUrls: ['./personal-details.component.css']
 })
 
-export class PersonalDetailsComponent implements OnInit, OnChanges {
+export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched {
 
   @Output() formDetails = new EventEmitter();
   @Input() getFormValues = {};
@@ -21,18 +23,19 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
   addressValidFlag: boolean = false;
   formValues = { addresses: [''] };
   blood = SmsConstant.bloods;
-  salutations =SmsConstant.salutations;
-  maritalstatus =SmsConstant.maritalStatus;
-  religion =SmsConstant.religion;
+  salutations = SmsConstant.salutations;
+  maritalstatus = SmsConstant.maritalStatus;
+  religion = SmsConstant.religion;
   gender = SmsConstant.gender;
   nationality = SmsConstant.nationality;
   motherTon = SmsConstant.motherTongue;
   languageknown = SmsConstant.languageKnown;
-  getselectdata :string;
-  addressData=null;
+  getselectdata: string;
+  addressData = null;
+  formBuilder: any;
 
 
-
+  @ViewChild('dt') addressDt: FormTouched;
 
   // get aliases() {
   //   return this.profileForm.get('aliases') as FormArray;
@@ -42,48 +45,62 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
 
     this.profileForm = this.fb.group(
       {
-        salutationId: ['',Validators.required],
-        dob: ['',Validators.required],
-        religionId: ['',Validators.required],
-        motherTonge: ['',Validators.required],
+        salutationId: ['', Validators.required],
+        dob: ['', Validators.required],
+        religionId: ['', Validators.required],
+        motherTonge: ['', Validators.required],
         firstName: ['', Validators.required],
-        bloodGroup: ['',Validators.required],
-        gender: ['',Validators.required],
-        emailId: ['',Validators.required],
-        languages: ['',Validators.required],
+        bloodGroup: ['', Validators.required],
+        gender: ['', Validators.required],
+        emailId: ['', Validators.required],
+        languages: ['', Validators.required],
         middleName: [''],
-        maritalStatus: ['',Validators.required],
+        maritalStatus: ['', Validators.required],
         nationality: [''],
-        lastName: ['',Validators.required],
+        lastName: ['', Validators.required],
         weedingDate: [''],
-        mobile: ['',Validators.required],
-        aadharNumber: ['',Validators.required],
-        fatherName: ['',Validators.required],
-        motherName: ['',Validators.required],
+        mobile: ['', Validators.required],
+        aadharNumber: ['', Validators.required],
+        fatherName: ['', Validators.required],
+        motherName: ['', Validators.required],
         spouseName: [''],
-        fatherOccupation: ['',Validators.required],
-        motherOccupation: ['',Validators.required],
+        fatherOccupation: ['', Validators.required],
+        motherOccupation: ['', Validators.required],
         souseOccupation: [''],
-        fatherMobileNumber: ['',Validators.required],
-        motherMobileNumber: ['',Validators.required],
+        fatherMobileNumber: ['', Validators.required],
+        motherMobileNumber: ['', Validators.required],
         spouseMobileNumber: [''],
-        
+
       }
     );
 
+
+
     this.profileForm.valueChanges.subscribe(() => {
       Object.assign(this.formValues, this.profileForm.value);
-      this.formValues["mobile"]=Number.parseInt(this.formValues["mobile"]);
+      this.formValues["mobile"] = Number.parseInt(this.formValues["mobile"]);
       this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid && this.addressValidFlag) });
 
     });
   }
-  ngOnChanges(changes: SimpleChanges): void {
+
+  formTouched(): boolean {
+    this.profileForm.markAllAsTouched();
   
-    if (changes.getFormValues.currentValue)
-    {
+    let ft = this.addressDt.formTouched();
+    
+    return this.profileForm.valid && ft;
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+
+    if (changes.getFormValues.currentValue) {
       console.log(changes.getFormValues.currentValue);
-      this.addressData=this.getFormValues["addresses"];
+      this.addressData = this.getFormValues["addresses"];
       this.profileForm.patchValue(this.getFormValues);
     }
   }
@@ -101,11 +118,12 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
+    // console.log("Hai");
+
     console.warn(this.profileForm.value);
   }
 
-  ngOnInit(): void {
-  }
+
 
   getAddress(arrValue: any) {
     let value = Array.from(arrValue, (obj: any) => obj.value) as never[];

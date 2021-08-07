@@ -30,7 +30,7 @@ export class StaffListComponent implements OnInit {
   currentUserSubscription !: Subscription;
   currentStaff? : Staff;
   staffs: Staff[] = [];
-  staffListData!: MatTableDataSource<any>;
+  staffListData: MatTableDataSource<any>= new MatTableDataSource() ;
 
   departmentIdFilter = new FormControl('');
   designationFilter = new FormControl('');
@@ -79,11 +79,11 @@ export class StaffListComponent implements OnInit {
 
     this.currentUserSubscription = this.staffApiService.getStaffs().subscribe((staff:any) => {
       this.currentStaff = staff;
-      this.staffListData = new MatTableDataSource(staff);
+      this.staffListData.data =staff;
        this.staffListData.paginator = this.paginator;
       this.staffListData.sort = this.sort;
       console.log(this.staffListData);
-      this.staffListData.filterPredicate = this.createFilter();
+     
        this.blockUI.stop();
       
       this.rows = this.staffListData.data.length;
@@ -91,45 +91,19 @@ export class StaffListComponent implements OnInit {
 
   }
 
+
+  applyFilter(event: any) {
+    console.log(event)
+  
+    const filterValue = this.stafffilters.value[event];
+    this.staffListData.filter = filterValue.trim().toLowerCase();
+  }
   
 
   ngOnInit(): void {
     console.log("hai");
-    this.departmentIdFilter.valueChanges
-    .subscribe(
-      departmentId => {
-        this.filterValues.departmentId = departmentId;
-        this.staffListData.filter = JSON.stringify(this.filterValues);
-        
-      }
-      
-    )
-
-    this.designationFilter.valueChanges
-    .subscribe(
-      designationId => {
-        this.filterValues.designationId = designationId;
-        this.staffListData.filter = JSON.stringify(this.filterValues);
-      }
-    )
-
-    this.statusvalueFilter.valueChanges
-    .subscribe(
-      employeementstatusId => {
-        this.filterValues.employeementstatusId = employeementstatusId;
-        this.staffListData.filter = JSON.stringify(this.filterValues);
-      }
-    )
-    
-    this.joiningDateFrom.valueChanges
-    .subscribe(
-      joiningDate => {
-        this.filterValues.joiningDate = joiningDate;
-        this.staffListData.filter = JSON.stringify(this.filterValues);
-      }
-    )
-
-
+   
+   
     // this.staffListData = new MatTableDataSource(this.staffs);
     // this.staffListData.paginator = this.paginator;
     // this.staffListData.sort = this.sort;

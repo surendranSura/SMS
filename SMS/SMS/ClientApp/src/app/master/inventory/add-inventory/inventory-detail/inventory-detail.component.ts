@@ -11,13 +11,13 @@ export class InventoryDetailComponent implements OnInit {
 
   @Output() busFormOutput=new EventEmitter<any>(); 
  @Input() getFormValues = {};
- busDetailForm: FormGroup;  
+ inventoryDetailForm: FormGroup;  
  itemtype = SmsConstant.itemName;
  itemusageAreaType = SmsConstant.itemUsageArea;
 
   constructor(private fb:FormBuilder) {
 
-    this.busDetailForm = this.fb.group({
+    this.inventoryDetailForm = this.fb.group({
       bus : ['']
       ,itemName : ['']
       ,modelNumber : ['']

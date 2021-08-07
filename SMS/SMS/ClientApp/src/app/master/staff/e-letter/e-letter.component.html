@@ -1,5 +1,5 @@
 
-<form [formGroup]="eletterfrm" class="p-base">
+<form [formGroup]="eletterfrm" (ngSubmit)="onSubmit()" class="p-base">
     <app-header-action [index]='2'></app-header-action>
     <div class="container-fluid" style="margin-top: 5px;">
         <div class="row">
@@ -7,6 +7,9 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Employee ID</mat-label>
                     <input matInput value="" formControlName="empid" >
+                    <!-- <mat-error>  
+                        <span *ngIf="!f.empid.valid">Please enter Employee Id!!!</span>  
+                   </mat-error> -->
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Staff Name</mat-label>

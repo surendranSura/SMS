@@ -31,22 +31,22 @@ export class HeaderActionComponent implements OnInit {
     // this.stafflistOpen=true;
     // this.stafflist.emit(this.stafflistOpen);
     if (this.index === 1) {
-      this.router.navigate(['/main/staff-list']);
+      this.router.navigate(['staff-list']);
     }
     else if (this.index === 0) {
       this.router.navigate(['student-list']);
     }
     else if (this.index ===2){
-      this.router.navigate(['/main/e-letter-list']);
+      this.router.navigate(['e-letter-list']);
     }
     else if (this.index ===3){
-      this.router.navigate(['/main/staff-feedback-list']);
+      this.router.navigate(['staff-feedback-list']);
     }
     else if (this.index ===4){
-      this.router.navigate(['/main/student-feedback-list']);
+      this.router.navigate(['student-feedback-list']);
     }
     else if (this.index ===18){
-       this.router.navigate(['/list-inventory'])
+       this.router.navigate(['list-inventory'])
     }
   }
 }

@@ -1,12 +1,13 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 
 @Component({
   selector: 'app-employee-experience',
   templateUrl: './employee-experience.component.html',
   styleUrls: ['./employee-experience.component.css']
 })
-export class EmployeeExperienceComponent implements OnInit {
+export class EmployeeExperienceComponent implements OnInit,FormTouched {
 
   experienceForm : FormGroup;
   
@@ -26,6 +27,10 @@ export class EmployeeExperienceComponent implements OnInit {
                valid: this.experienceForm.valid });
     });
    }
+  formTouched(): boolean {
+    this.experienceForm.markAllAsTouched();
+   return this.experienceForm.valid;
+  }
 
   ngOnInit(): void {
     
@@ -37,9 +42,9 @@ export class EmployeeExperienceComponent implements OnInit {
 
   buildExperiences(): FormGroup {
     return this.fb.group({
-      from: '',
+      from: ['', Validators.required],
       to: ['', Validators.required],
-      responsiblity: '',
+      responsiblity: ['', Validators.required],
     });
     
   }

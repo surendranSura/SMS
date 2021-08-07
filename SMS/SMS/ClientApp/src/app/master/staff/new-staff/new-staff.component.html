@@ -5,7 +5,7 @@
       Personal Details
       <mat-icon *ngIf="formDetails[0]!=null && formDetails[0]" color="primary">check_circle</mat-icon>
     </ng-template>
-    <app-personal-details [getFormValues]="_staff"(formDetails)="setTabFormDetails($event,0)"></app-personal-details>
+    <app-personal-details [getFormValues]="_staff"(formDetails)="setTabFormDetails($event,0)" #dt></app-personal-details>
   </mat-tab>
 
   <mat-tab>
@@ -13,7 +13,7 @@
     Employee Details
     <mat-icon *ngIf="formDetails[1]!=null && formDetails[1]"  color="primary">check_circle</mat-icon>
   </ng-template>
-   <app-employee-details (formDetails)="setTabFormDetails($event,1)"></app-employee-details>
+   <app-employee-details (formDetails)="setTabFormDetails($event,1)" #dt></app-employee-details>
 </mat-tab>
 
 <mat-tab>
@@ -21,7 +21,7 @@
   Employee Experience
   <mat-icon *ngIf="formDetails[2]!=null && formDetails[2]"  color="primary">check_circle</mat-icon>
 </ng-template>
-<app-employee-experience (formDetails)="setTabFormDetails($event,2)"></app-employee-experience>
+<app-employee-experience (formDetails)="setTabFormDetails($event,2)" #dt></app-employee-experience>
 </mat-tab>
 
 <mat-tab>
@@ -29,7 +29,7 @@
   Banking Details
   <mat-icon *ngIf="formDetails[3]!=null && formDetails[3]" color="primary">check_circle</mat-icon>
 </ng-template>
-    <app-banking-details (formDetails)="setTabFormDetails($event,3)"></app-banking-details>
+    <app-banking-details (formDetails)="setTabFormDetails($event,3)" #dt></app-banking-details>
   </mat-tab> 
 </mat-tab-group>
 
@@ -42,8 +42,6 @@
     <span *ngIf="!(selectedTab>=3)">Next</span>
     <span *ngIf="selectedTab>=3">Submit</span>
   </button>
-  
-
 </div>
 
 
