@@ -3,13 +3,14 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 import { StaffrestApiService } from '../../staffrest-api.service';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
   styleUrls: ['./employee-details.component.css']
 })
-export class EmployeeDetailsComponent implements OnInit {
+export class EmployeeDetailsComponent implements OnInit,FormTouched {
 
   @Output() formDetails=new EventEmitter();
 
@@ -51,6 +52,10 @@ export class EmployeeDetailsComponent implements OnInit {
       this.formDetails.emit({value:this.empDetailsForm.value,valid:this.empDetailsForm.valid});
     
     });
+  }
+  formTouched(): boolean {
+   this.empDetailsForm.markAllAsTouched();
+   return this.empDetailsForm.valid;
   }
 
 onSubmit(){

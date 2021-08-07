@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
+import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 import { Staff } from '../Staff';
 import { StaffrestApiService } from '../staffrest-api.service';
 
@@ -23,14 +24,15 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
   loading = false;
   submitted = false;
 
-   @BlockUI() blockUI: NgBlockUI;
+  @ViewChildren("dt") dt: QueryList<FormTouched>;
 
-  constructor(private staffApiService: StaffrestApiService, private route: ActivatedRoute,public dialog: MatDialog) { }
+  @BlockUI() blockUI: NgBlockUI;
+
+  constructor(private staffApiService: StaffrestApiService, private route: ActivatedRoute, public dialog: MatDialog) { }
 
   ngAfterViewInit(): void {
 
-    if(!this.isAddMode)
-    {
+    if (!this.isAddMode) {
       this.staffApiService.getStaff(this.id)
         .subscribe(data => {
           this._staff = data;
@@ -38,28 +40,33 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
           console.log(this._staff);
         }, error => console.log(error));
     }
-    
+
   }
 
   ngOnInit(): void {
 
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
-  
-    
+
+
   }
 
   btnMovement(st: string) {
-    if (st === 'bck') {
-      this.selectedTab--;
-    }
-    else if (st === 'frd') {
-      if (this.selectedTab >= 3) {
-        this.submit();
-        return;
+    debugger;
+    let flg = this.dt.toArray()[this.selectedTab].formTouched();
+    console.log(flg)
+   
+      if (st === 'bck') {
+        this.selectedTab--;
       }
-      this.selectedTab++;
-    }
+      else if (st === 'frd' && flg) {
+        if (this.selectedTab >= 3) {
+          this.submit();
+          return;
+        }
+        this.selectedTab++;
+      }
+    
   }
 
   submit() {
@@ -67,38 +74,31 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
     this.submitted = true;
 
 
-   if (this.formDetails.includes(false)) {
-       this.blockUI.stop();
+    if (this.formDetails.includes(false)) {
+      this.blockUI.stop();
       return;
     }
 
     if (this.isAddMode) {
       this.createStaff();
-     } else {
+    } else {
       this.updateSatff();
-     }
-
-     this.blockUI.stop();
-    
+    }
+    this.blockUI.stop();
   }
 
-  createStaff()
-  {
-    this.staffApiService.createStaff(this.conResults).subscribe(_=>{
-      this.dialog.open(MessageBoxComponent,{ width: '250px',height:'200px',data:"create"});
+  createStaff() {
+    this.staffApiService.createStaff(this.conResults).subscribe(_ => {
+      this.dialog.open(MessageBoxComponent, { width: '250px', height: '200px', data: "create" });
       setTimeout(() => {
         this.dialog.closeAll();
       }, 2500);
-      
-
-      
     });
   }
 
-  updateSatff()
-  {
-    this.staffApiService.updateStaff(this.id, this.conResults).subscribe(_=>{
-      this.dialog.open(MessageBoxComponent,{ width: '250px',height:'200px',data:"update"});
+  updateSatff() {
+    this.staffApiService.updateStaff(this.id, this.conResults).subscribe(_ => {
+      this.dialog.open(MessageBoxComponent, { width: '250px', height: '200px', data: "update" });
       setTimeout(() => {
         this.dialog.closeAll();
         //routerlink needs
@@ -111,7 +111,7 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
     this.formDetails[tab] = value.valid;
 
     Object.assign(this.conResults, value.value);
-     console.log(this.conResults);
+    console.log(this.conResults);
 
   }
 

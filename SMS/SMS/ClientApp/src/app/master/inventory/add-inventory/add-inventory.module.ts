@@ -6,6 +6,7 @@ import { AddInventoryComponent } from './add-inventory.component';
 import { InventoryDetailComponent } from './inventory-detail/inventory-detail.component';
 import { VendorDetailsComponent } from './vendor-details/vendor-details.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     AddInventoryRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class AddInventoryModule { }
