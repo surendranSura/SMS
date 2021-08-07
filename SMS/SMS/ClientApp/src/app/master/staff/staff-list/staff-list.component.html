@@ -16,8 +16,8 @@
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard">
                         <mat-label>Department</mat-label>
-                        <mat-select formControlName="departmentIdFilter">
-                            <mat-option *ngFor="let departmentIdFilter  of department " [value]="departmentIdFilter .value">
+                        <mat-select formControlName="departmentIdFilter" (selectionChange)="applyFilter('departmentIdFilter')">
+                            <mat-option *ngFor="let departmentIdFilter  of department " [value]="departmentIdFilter.viewValue">
                                 {{departmentIdFilter .viewValue}} 
                             </mat-option>
                         </mat-select>
@@ -26,8 +26,8 @@
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard">
                         <mat-label>Designation</mat-label>
-                        <mat-select formControlName="designationFilter">
-                            <mat-option *ngFor="let designationFilter  of designationList " [value]="designationFilter .value">
+                        <mat-select formControlName="designationFilter" (selectionChange)="applyFilter('designationFilter')">
+                            <mat-option *ngFor="let designationFilter  of designationList " [value]="designationFilter .viewValue">
                                 {{designationFilter .viewValue}} 
                             </mat-option>
                         </mat-select>
@@ -36,8 +36,8 @@
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard">
                         <mat-label>Status</mat-label>
-                        <mat-select formControlName="statusvalueFilter">
-                            <mat-option *ngFor="let statusvalueFilter of status" [value]="statusvalueFilter.value">
+                        <mat-select formControlName="statusvalueFilter" (selectionChange)="applyFilter('statusvalueFilter')">
+                            <mat-option *ngFor="let statusvalueFilter of status" [value]="statusvalueFilter.viewValue">
                                 {{statusvalueFilter.viewValue}}
                             </mat-option>
                         </mat-select>
