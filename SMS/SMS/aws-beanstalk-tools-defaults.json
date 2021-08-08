@@ -1,0 +1,20 @@
+
+{
+    "region" : "ap-south-1",
+    "configuration" : "Debug",
+    "framework"     : "net5.0",
+    "self-contained" : false,
+    "application"    : "SMS",
+    "environment"    : "SMS-dev",
+    "enable-xray"    : false,
+    "enhanced-health-type" : "basic",
+    "additional-options"   : "\"aws:autoscaling:launchconfiguration,SecurityGroups\"=\"sg-24d9625b,sg-046131cab018afa21\";\"aws:ec2:vpc,Subnets\"=\"subnet-b395b5ff\"",
+    "solution-stack"       : "64bit Amazon Linux 2 v2.2.4 running .NET Core",
+    "environment-type"     : "SingleInstance",
+    "cname"                : "sms-dev",
+    "instance-type"        : "t3a.medium",
+    "key-pair"             : "BV-Infra-EC2-Key-Pair",
+    "instance-profile"     : "aws-elasticbeanstalk-ec2-role",
+    "service-role"         : "aws-elasticbeanstalk-service-role",
+    "proxy-server"         : "nginx"
+}

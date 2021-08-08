@@ -52,7 +52,6 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
   }
 
   btnMovement(st: string) {
-    debugger;
     let flg = this.dt.toArray()[this.selectedTab].formTouched();
     console.log(flg)
    
@@ -98,6 +97,7 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
 
   updateSatff() {
     this.staffApiService.updateStaff(this.id, this.conResults).subscribe(_ => {
+      
       this.dialog.open(MessageBoxComponent, { width: '250px', height: '200px', data: "update" });
       setTimeout(() => {
         this.dialog.closeAll();

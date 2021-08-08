@@ -77,10 +77,17 @@ namespace SMS.Controllers
 
 		// PUT api/<StaffController>/5
 		[HttpPut("{id}")]
-		public async Task Put(int id, [FromBody] Staff staff)
+		public async Task Put(long id, [FromBody] Staff staff)
 		{
-			_dbcontext.Entry(_dbcontext.Staffs.Where(X => X.Mobile == id).FirstOrDefault()).CurrentValues.SetValues(staff);
-			await _dbcontext.SaveChangesAsync();
+			try
+			{
+				_dbcontext.Entry(_dbcontext.Staffs.Where(X => X.Mobile == id).FirstOrDefault()).CurrentValues.SetValues(staff);
+				await _dbcontext.SaveChangesAsync();
+			}
+			catch (Exception Ex)
+			{ 
+				 
+			}
 		}
 
 		// DELETE api/<StaffController>/5
