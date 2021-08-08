@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList,ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
+import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 
 @Component({
   selector: 'app-add-inventory',
@@ -12,13 +13,15 @@ import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/mes
 })
 export class AddInventoryComponent implements OnInit {
 
-  stuFormtDetails: boolean[] =[]
+  inventoryFormDetails: boolean[] =[]
   results : any =null;
   stuJsonResult: any ={};
   selectedTab:any=0;
   isAddMode?: boolean;
 //  _student : Student;
   id : any;
+  
+  @ViewChildren("dt") dt: QueryList<FormTouched>;
 
   @BlockUI() blockUI: NgBlockUI;
   
@@ -45,10 +48,12 @@ export class AddInventoryComponent implements OnInit {
   }
 
   btnMovement(st: string) {
+    let flg = this.dt.toArray()[this.selectedTab].formTouched();
+   
     if (st === 'bck') {
       this.selectedTab--;
     }
-    else if (st === 'frd') {
+    else if (st === 'frd'  && flg) {
       if (this.selectedTab >= 3) {
         this.submit();
         return;
@@ -63,7 +68,7 @@ export class AddInventoryComponent implements OnInit {
     // this.submitted = true;
 
 
-   if (this.stuFormtDetails.includes(false)) {
+   if (this.inventoryFormDetails.includes(false)) {
        this.blockUI.stop();
       return;
     }
@@ -76,7 +81,7 @@ export class AddInventoryComponent implements OnInit {
 
      this.blockUI.stop();
 
-    // if(!this.stuFormtDetails.includes(false)){
+    // if(!this.inventoryFormDetails.includes(false)){
     //   return;
     // }
     
@@ -94,13 +99,17 @@ export class AddInventoryComponent implements OnInit {
 
   updateStudent()
   {
-    // this.studentApiService.updateStudent(this.id, this.stuJsonResult).subscribe(_=>{
-
+    // this.staffApiService.updateStaff(this.id, this.conResults).subscribe(_ => {
+    //   this.dialog.open(MessageBoxComponent, { width: '250px', height: '200px', data: "update" });
+    //   setTimeout(() => {
+    //     this.dialog.closeAll();
+    //     //routerlink needs
+    //   }, 2500);
     // });
   }
   
   setTabFormDetails(value: any,tab:number){
-    this.stuFormtDetails[tab] = value.valid;
+    this.inventoryFormDetails[tab] = value.valid;
     Object.assign(this.stuJsonResult,value.value);
     console.log(value.value);
   }

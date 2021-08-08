@@ -26,23 +26,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class StaffLeaveComponent implements OnInit {
 
-  departmentIdFilter = new FormControl('');
-  designationFilter = new FormControl('');
-  statusvalueFilter = new FormControl('');
+  classFilter = new FormControl('');
+  sectionFilter = new FormControl('');
   joiningDateFrom = new FormControl('');
 
   displayedColumns: string[] = ['studentName','admissionnumber','leaveType','noofdays','datefrom','reason','status'];
-  filterValues = {
-    //department: 
-    departmentId :'',
-   // designation: '',
-    designationId: '',
-    //status: '',
-    employeementstatusId: '',
-    //joiningDateFrom: '',
-    joiningDate: ''
-    //joiningDateTo: '',
-  };
+  
 
   stafffilters: FormGroup;
   
@@ -52,14 +41,41 @@ export class StaffLeaveComponent implements OnInit {
   section = SmsConstant.section;
   constructor(private fb: FormBuilder) {
     this.stafffilters = this.fb.group({
-      departmentIdFilter: [''],
-      designationFilter: [''],
-      statusvalueFilter: [''],
+      classFilter: [''],
+      sectionFilter: [''],
       joiningDateFrom: ['']
     });
+    this.loadStaff();
    }
 
+   loadStaff()
+  {
+   // this.blockUI.start();
+
+    // this.currentUserSubscription = this.staffApiService.getStaffs().subscribe((staff:any) => {
+    //   this.currentStaff = staff;
+    //   this.staffListData.data =staff;
+    //    this.staffListData.paginator = this.paginator;
+    //   this.staffListData.sort = this.sort;
+    //   console.log(this.staffListData);
+     
+    //    this.blockUI.stop();
+      
+    //   this.rows = this.staffListData.data.length;
+    //});
+   // this.blockUI.stop();
+
+  }
+
   ngOnInit(): void {
+  }
+  
+  applyFilter(event: any) {
+    console.log(event)
+  
+    const filterValue = this.stafffilters.value[event];
+    this.dataSource1.filter = filterValue.trim().toLowerCase();
+    //this.staffListData.filter = filterValue.trim().toLowerCase();
   }
 
 }

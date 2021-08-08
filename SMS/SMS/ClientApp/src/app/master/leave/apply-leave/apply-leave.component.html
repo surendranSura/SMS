@@ -1,36 +1,21 @@
-<!-- <div class="row headerstyle">
-    <div class="col-sm-5">
-        <h2>Apply leave </h2>
-    </div>
-    <div class="col-sm-3">
-        <mat-form-field appearance="standard" style="font-size: 12px;margin-top:-18px;">
-            <mat-label>Year</mat-label>
-            <input matInput [matDatepicker]="pickerToFilter1">
-            <mat-datepicker-toggle matSuffix [for]="pickerToFilter1"></mat-datepicker-toggle>
-            <mat-datepicker #pickerToFilter1></mat-datepicker>
-        </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-        <h2>(Current Accademic Year) </h2>
-    </div>
-   
-</div> -->
-
 <app-header-action [index]='14'></app-header-action>
 <div class=" percentagebar">
-    <div class="container-fluid" style="margin-top:5px">
+    <div class="container-fluid" style="margin-top:-5px">
         <div class="row" style="font-size: 12px;">
             <div class="col-sm-4">
-                <p>Name:</p>
-                <p>Admission Number/EmployeeID:</p>
+                <p style="margin-top: 10px;">Name:</p>
+                <p style="margin-top: -5px;">Admission Number/EmployeeID:</p>
             </div>
             <div class="col-sm-4">
-                <p>Class:</p>
-                <p>Department</p>
+                <p style="margin-top: 10px;">Class:</p>
+                <p style="margin-top: -5px;">Department:</p>
             </div>
-            <div class="col-sm-4">
-                <p>My Leave Balance</p>
-                <p>My Leave History</p>
+           <div class="col-sm-3">
+
+           </div>
+            <div class="col-sm-1">
+                <p style="margin-top: 10px;">My Leave Balance</p>
+                <p style="margin-top: -5px;">My Leave History</p>
             </div>
         </div>
     </div>
@@ -49,9 +34,9 @@
                 </mat-form-field>
                 <mat-form-field appearance="standard"  >
                     <mat-label>Date From</mat-label>
-                    <input matInput [matDatepicker]="pickerToFilter2">
-                    <mat-datepicker-toggle matSuffix [for]="pickerToFilter2"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerToFilter2></mat-datepicker>
+                    <input matInput [matDatepicker]="datefrom">
+                    <mat-datepicker-toggle matSuffix [for]="datefrom"></mat-datepicker-toggle>
+                    <mat-datepicker #datefrom></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Leave Session</mat-label>
@@ -82,8 +67,8 @@
        
 	</div>
     <div class="footer-n-stu">
-        <button type="button" class="gradient-button">
-          <span>Apply_Leave</span>
+        <button type="button" class="gradient-button" style="padding:5px">
+          <span>Apply Leave</span>
         </button>
         
       

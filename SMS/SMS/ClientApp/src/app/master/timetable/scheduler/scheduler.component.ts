@@ -1,4 +1,4 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
@@ -8,13 +8,13 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class SchedulerComponent implements OnInit {
 
-  name = 'Set iframe source';
-  url: string = "https://angular.io/api/router/RouterLink";
+  url: string = "http://localhost:60702/";
   urlSafe: SafeResourceUrl;
 
   constructor(public sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    debugger;
     this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 

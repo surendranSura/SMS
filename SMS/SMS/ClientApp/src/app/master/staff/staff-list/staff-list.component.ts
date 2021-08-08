@@ -117,7 +117,7 @@ export class StaffListComponent implements OnInit {
 
   callNewStudent()
   {  
-    this.router.navigate(['/main/new-staff']);
+    this.router.navigate(['new-staff']);
   }
   
   removeStaff(staff : Staff)
@@ -129,7 +129,7 @@ export class StaffListComponent implements OnInit {
 
   editStaff(staff : Staff)
   {
-    this.router.navigate(['/main/new-staff',staff.mobile]);
+    this.router.navigate(['new-staff',staff.mobile]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });
   }

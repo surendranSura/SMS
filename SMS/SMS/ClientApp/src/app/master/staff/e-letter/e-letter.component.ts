@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { FormBuilder, FormGroup, Validators,NgForm  } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
 import { StaffrestApiService } from '../staffrest-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 
 @Component({
   selector: 'app-e-letter',
   templateUrl: './e-letter.component.html',
   styleUrls: ['./e-letter.component.css']
 })
-export class ELetterComponent implements OnInit {
+export class ELetterComponent implements OnInit,FormTouched {
   eletterfrm : FormGroup;
   letterTypes = SmsConstant.letterType;
   month = SmsConstant.months;
@@ -26,7 +28,7 @@ export class ELetterComponent implements OnInit {
 
   constructor( private fb:FormBuilder, private staffrestApiService :StaffrestApiService, private route: ActivatedRoute, public dialog: MatDialog) {
       this.eletterfrm = this.fb.group({
-        empid: ['', Validators.required],
+        empid: ['', [Validators.required]],
         staffName:['', Validators.required],
         letterType:['',Validators.required],
         department:['', Validators.required],
@@ -36,6 +38,10 @@ export class ELetterComponent implements OnInit {
       });
 
    }
+  formTouched(): boolean {
+    this.eletterfrm.markAllAsTouched();
+    return this.eletterfrm.valid;
+  }
 
 
    ngAfterViewInit(): void {
@@ -56,6 +62,13 @@ export class ELetterComponent implements OnInit {
   }
 
   submit() {
+
+    if (this.eletterfrm.invalid) {
+      // this.router.navigate([this.returnUrl]);
+      return;
+
+    }
+
     this.blockUI.start();
     this.submitted = true;
 
@@ -66,8 +79,16 @@ export class ELetterComponent implements OnInit {
      }
 
      this.blockUI.stop();
+
+
     
   }
+
+  onFormSubmit(form:NgForm)  
+  {  
+    console.log(form);  
+  }  
+
 
   createStaffeLetter()
   {
@@ -94,5 +115,17 @@ export class ELetterComponent implements OnInit {
       });
     });
   }
+  onSubmit() {
 
+    this.submitted = true;
+
+    // stop here if form is invalid
+    
+    
+
+      
+  }
+
+  get f() { return this.eletterfrm.controls; }
+   
 }

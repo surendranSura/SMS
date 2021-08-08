@@ -7,6 +7,7 @@ import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Console } from 'console';
 import { Staff } from './Staff';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 export class StaffrestApiService {
   @BlockUI() blockUI: NgBlockUI;
   //apiURL = 'api/Staff';
-  apiURL = "http://localhost:4000/Staff";
+  apiURL = environment.apiUrl + '/api/Staff';
   apieLetterURL = 'api/api/StaffeLetter';
   apiFeedbackURL = 'api/StaffFeedback';
 
@@ -36,7 +37,7 @@ export class StaffrestApiService {
 
   // HttpClient API get() method => Fetch Staffs list
   getStaffs(): Observable<Staff> {
-    return this.http.get<Staff>("http://localhost:4000/Staffs")
+    return this.http.get<Staff>(this.apiURL)
     .pipe(
       retry(1),
       catchError((err)=>this.handleError(err))

@@ -88,7 +88,6 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
     this.profileForm.markAllAsTouched();
   
     let ft = this.addressDt.formTouched();
-    console.log(ft);
     
     return this.profileForm.valid && ft;
   }

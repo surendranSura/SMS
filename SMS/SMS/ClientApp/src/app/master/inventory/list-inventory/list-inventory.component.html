@@ -9,15 +9,15 @@
 </div>
 
 <div class=" fileterStyle" *ngIf="filters">
-    <form [formGroup]="stafffilters">
+    <form [formGroup]="listinventoryfilters">
         <div class="container-fluid" style="margin-top:5px">
             <div class="row">
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard">
                         <mat-label>Item type</mat-label>
-                        <mat-select formControlName="departmentIdFilter">
-                            <mat-option *ngFor="let itemTypeFilter  of itemstypes " [value]="itemTypeFilter .value">
-                                {{itemTypeFilter .viewValue}} 
+                        <mat-select formControlName="itemTypeFilter" (selectionChange)="applyFilter('itemTypeFilter')">
+                            <mat-option *ngFor="let itemTypeFilter  of itemstypes " [value]="itemTypeFilter .viewValue">
+                                {{itemTypeFilter.viewValue}} 
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -25,8 +25,8 @@
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard">
                         <mat-label>Item Usage Area</mat-label>
-                        <mat-select formControlName="designationFilter">
-                            <mat-option *ngFor="let itemUsageAreaFilter  of itemusageArea " [value]="itemUsageAreaFilter .value">
+                        <mat-select formControlName="itemUsageAreaFilter" (selectionChange)="applyFilter('itemUsageAreaFilter')">
+                            <mat-option *ngFor="let itemUsageAreaFilter  of itemusageArea " [value]="itemUsageAreaFilter .viewValue">
                                 {{itemUsageAreaFilter .viewValue}} 
                             </mat-option>
                         </mat-select>
@@ -45,7 +45,6 @@
             </div>
         </div>
     </form>
-
 </div>
 <!-- <div class="row headerstyle">
 
@@ -56,8 +55,7 @@
   </label>
   <button (click)="updateName()">click</button>
   <p>{{name.value}}</p> -->
-<table mat-table [dataSource]="staffListData">
-
+<table mat-table [dataSource]="inventoryListData">
     <!--itemCode-->
     <ng-container matColumnDef="itemCode">
         <th mat-header-cell *matHeaderCellDef> Item Code </th>
