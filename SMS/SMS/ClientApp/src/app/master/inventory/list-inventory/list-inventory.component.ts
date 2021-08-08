@@ -30,9 +30,9 @@ export class ListInventoryComponent implements OnInit {
   currentUserSubscription !: Subscription;
   currentStaff? : Staff;
   staffs: Staff[] = [];
-  staffListData!: MatTableDataSource<any>;
+  inventoryListData!: MatTableDataSource<any>;
 
-  departmentIdFilter = new FormControl('');
+  itemTypeFilter = new FormControl('');
   designationFilter = new FormControl('');
   statusvalueFilter = new FormControl('');
   joiningDateFrom = new FormControl('');
@@ -40,27 +40,25 @@ export class ListInventoryComponent implements OnInit {
 
   columnsToDisplay = ['itemCode', 'itemName','serialNumber','brand','itemType','itemUsageArea','priperunit','quantity','vendor','attachment','actions'];
   
-  filterValues = {
-    //department: 
-    departmentId :'',
-   // designation: '',
-    designationId: '',
-    //status: '',
-    employeementstatusId: '',
-    //joiningDateFrom: '',
-    joiningDate: ''
-    //joiningDateTo: '',
-  };
+  // filterValues = {
+  //   //department: 
+  //   departmentId :'',
+  //  // designation: '',
+  //   designationId: '',
+  //   //status: '',
+  //   employeementstatusId: '',
+  //   //joiningDateFrom: '',
+  //   joiningDate: ''
+  //   //joiningDateTo: '',
+  // };
 
    @BlockUI() blockUI: NgBlockUI;
-  stafffilters: FormGroup;
+  listinventoryfilters: FormGroup;
   
   constructor(private fb: FormBuilder,private router:Router, private staffApiService: StaffrestApiService) {
-    this.stafffilters = this.fb.group({
-      departmentIdFilter: [''],
-      designationFilter: [''],
-      statusvalueFilter: [''],
-      joiningDateFrom: ['']
+    this.listinventoryfilters = this.fb.group({
+      itemTypeFilter: [''],
+      itemUsageAreaFilter: ['']
     });
 
     this.loadStaff();
@@ -70,8 +68,8 @@ export class ListInventoryComponent implements OnInit {
   // departmentchange(value)
   // {
     
-  //   this.staffListData.filter.search(value);
-  //     console.log(this.staffListData.filter.search(value));
+  //   this.inventoryListData.filter.search(value);
+  //     console.log(this.inventoryListData.filter.search(value));
   // }
   loadStaff()
   {
@@ -79,14 +77,14 @@ export class ListInventoryComponent implements OnInit {
 
     this.currentUserSubscription = this.staffApiService.getStaffs().subscribe((staff:any) => {
       this.currentStaff = staff;
-      this.staffListData = new MatTableDataSource(staff);
-       this.staffListData.paginator = this.paginator;
-      this.staffListData.sort = this.sort;
-      console.log(this.staffListData);
-      this.staffListData.filterPredicate = this.createFilter();
+      this.inventoryListData = new MatTableDataSource(staff);
+       this.inventoryListData.paginator = this.paginator;
+      this.inventoryListData.sort = this.sort;
+      console.log(this.inventoryListData);
+     // this.inventoryListData.filterPredicate = this.createFilter();
        this.blockUI.stop();
       
-      this.rows = this.staffListData.data.length;
+      this.rows = this.inventoryListData.data.length;
     });
 
   }
@@ -94,45 +92,8 @@ export class ListInventoryComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.departmentIdFilter.valueChanges
-    .subscribe(
-      departmentId => {
-        this.filterValues.departmentId = departmentId;
-        this.staffListData.filter = JSON.stringify(this.filterValues);
-        
-      }
-      
-    )
+   
 
-    this.designationFilter.valueChanges
-    .subscribe(
-      designationId => {
-        this.filterValues.designationId = designationId;
-        this.staffListData.filter = JSON.stringify(this.filterValues);
-      }
-    )
-
-    this.statusvalueFilter.valueChanges
-    .subscribe(
-      employeementstatusId => {
-        this.filterValues.employeementstatusId = employeementstatusId;
-        this.staffListData.filter = JSON.stringify(this.filterValues);
-      }
-    )
-    
-    this.joiningDateFrom.valueChanges
-    .subscribe(
-      joiningDate => {
-        this.filterValues.joiningDate = joiningDate;
-        this.staffListData.filter = JSON.stringify(this.filterValues);
-      }
-    )
-
-
-    // this.staffListData = new MatTableDataSource(this.staffs);
-    // this.staffListData.paginator = this.paginator;
-    // this.staffListData.sort = this.sort;
-    
   }
 
   filterToggle()
@@ -143,6 +104,13 @@ export class ListInventoryComponent implements OnInit {
   callNewStudent()
   {  
     this.router.navigate(['/add-inventory']);
+  }
+
+  applyFilter(event: any) {
+    console.log(event,this.listinventoryfilters.value)
+  
+    const filterValue = this.listinventoryfilters.value[event];
+    this.inventoryListData.filter = filterValue.trim().toLowerCase();
   }
   
   removeStaff(staff : Staff)
@@ -159,16 +127,16 @@ export class ListInventoryComponent implements OnInit {
     // });
   }
 
-  createFilter(): (data: any, filter: string) => boolean {
-    let filterFunction = function(data, filter): boolean {
-      let searchTerms = JSON.parse(filter);
-      return data.departmentId.toLowerCase().indexOf(searchTerms.departmentId) !== -1
-        && data.designationId.toString().toLowerCase().indexOf(searchTerms.designationId) !== -1
-        && data.employeementstatusId.toLowerCase().indexOf(searchTerms.employeementstatusId) !== -1
-        && data.joiningDate.toLowerCase().indexOf(searchTerms.joiningDate) !== -1;
-    }
-    return filterFunction;
-  }
+  // createFilter(): (data: any, filter: string) => boolean {
+  //   let filterFunction = function(data, filter): boolean {
+  //     let searchTerms = JSON.parse(filter);
+  //     return data.departmentId.toLowerCase().indexOf(searchTerms.departmentId) !== -1
+  //       && data.designationId.toString().toLowerCase().indexOf(searchTerms.designationId) !== -1
+  //       && data.employeementstatusId.toLowerCase().indexOf(searchTerms.employeementstatusId) !== -1
+  //       && data.joiningDate.toLowerCase().indexOf(searchTerms.joiningDate) !== -1;
+  //   }
+  //   return filterFunction;
+  // }
 
 }
 

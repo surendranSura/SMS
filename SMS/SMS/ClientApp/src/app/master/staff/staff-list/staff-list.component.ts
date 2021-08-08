@@ -101,7 +101,7 @@ export class StaffListComponent implements OnInit {
   
 
   ngOnInit(): void {
-//    console.log("hai");
+    console.log("hai");
    
    
     // this.staffListData = new MatTableDataSource(this.staffs);
@@ -129,7 +129,7 @@ export class StaffListComponent implements OnInit {
 
   editStaff(staff : Staff)
   {
-    this.router.navigate(['/new-staff',staff.mobile]);
+    this.router.navigate(['new-staff',staff.mobile]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });
   }
