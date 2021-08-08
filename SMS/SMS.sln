@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMS", "SMS\SMS.csproj", "{6ED82C9C-F651-412D-822C-539E5B74A7AC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fullcalendar-core", "fullcalendar-aspnet-core\fullcalendar-core\fullcalendar-core.csproj", "{67F828E9-B970-4DBC-B57A-42EF493D386B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{6ED82C9C-F651-412D-822C-539E5B74A7AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6ED82C9C-F651-412D-822C-539E5B74A7AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6ED82C9C-F651-412D-822C-539E5B74A7AC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{67F828E9-B970-4DBC-B57A-42EF493D386B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67F828E9-B970-4DBC-B57A-42EF493D386B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67F828E9-B970-4DBC-B57A-42EF493D386B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67F828E9-B970-4DBC-B57A-42EF493D386B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { RouterModule } from '@angular/router';
 import { SimpleNotificationsModule} from 'angular2-notifications';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     RouterModule.forChild([{path : '',component:SubjectComponent}]),
     SimpleNotificationsModule.forRoot(),
-    BrowserAnimationsModule
+    // BrowserAnimationsModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

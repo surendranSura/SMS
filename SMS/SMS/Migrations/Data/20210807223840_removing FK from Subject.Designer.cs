@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.Data
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210807223840_removing FK from Subject")]
+    partial class removingFKfromSubject
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,8 +79,8 @@ namespace SMS.Migrations.Data
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("AcademicClassSubjectId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AcademicClassSubjectId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("AcademicYear")
                         .HasColumnType("datetime2");
@@ -93,6 +95,8 @@ namespace SMS.Migrations.Data
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AcademicClassId");
+
+                    b.HasIndex("AcademicClassSubjectId");
 
                     b.ToTable("AcademicClasses");
                 });
@@ -122,10 +126,15 @@ namespace SMS.Migrations.Data
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int?>("AcademicClassSubjectId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SubjectDescr")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SubjectID");
+
+                    b.HasIndex("AcademicClassSubjectId");
 
                     b.ToTable("Subjects");
                 });
@@ -673,6 +682,24 @@ namespace SMS.Migrations.Data
                     b.ToTable("Accounts");
                 });
 
+            modelBuilder.Entity("SMS.Models.Setup.AcademicClass", b =>
+                {
+                    b.HasOne("SMS.Models.Setup.AcademicClassSubject", "AcademicClassSubject")
+                        .WithMany("AcademicClasses")
+                        .HasForeignKey("AcademicClassSubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AcademicClassSubject");
+                });
+
+            modelBuilder.Entity("SMS.Models.Setup.Subject", b =>
+                {
+                    b.HasOne("SMS.Models.Setup.AcademicClassSubject", null)
+                        .WithMany("Subjects")
+                        .HasForeignKey("AcademicClassSubjectId");
+                });
+
             modelBuilder.Entity("SMS.Models.StaffAddress", b =>
                 {
                     b.HasOne("SMS.Models.Staff", null)
@@ -737,6 +764,13 @@ namespace SMS.Migrations.Data
                         });
 
                     b.Navigation("RefreshTokens");
+                });
+
+            modelBuilder.Entity("SMS.Models.Setup.AcademicClassSubject", b =>
+                {
+                    b.Navigation("AcademicClasses");
+
+                    b.Navigation("Subjects");
                 });
 
             modelBuilder.Entity("SMS.Models.Staff", b =>

@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 export class SubjectRestApiService {
 
  // apiURL = 'api/Subject';
-    apiURL = environment.apiUrl + '/Subjects';
+    apiURL = environment.apiUrl + '/api/Subject';
   
   constructor(private http: HttpClient) { }
 
@@ -32,7 +32,7 @@ export class SubjectRestApiService {
 
   // HttpClient API get() method => Fetch Subject list
   getSubjects(): Observable<Subject> {
-    alert(this.apiURL);
+    //alert(this.apiURL);
     return this.http.get<Subject>(this.apiURL)
     .pipe(
       retry(1),
@@ -51,6 +51,7 @@ export class SubjectRestApiService {
 
   // HttpClient API post() method => Create Subject
   createSubject(staff : any): Observable<Subject> {
+    console.log(staff);
     return this.http.post<Subject>(this.apiURL,staff, this.httpOptions)
     .pipe(
       retry(1),
