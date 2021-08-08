@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
+import { Console } from 'console';
 
 
 @Component({
@@ -78,6 +79,7 @@ export class StaffFeedbackComponent implements OnInit {
       }, 2500); 
     this.staffrestApiService.createStaffFeedBack(this.newstaffFeedback.value).subscribe(_=>{
     });
+    console.log(this.newstaffFeedback.value);
   }
 
   updateSatfffeedback()

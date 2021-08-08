@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { Console } from 'console';
 import { SmsConstant } from 'src/app/shared/constant-values';
 @Component({
   selector: 'app-apply-leave',
@@ -28,6 +29,7 @@ export class ApplyLeaveComponent implements OnInit {
     this.leaveform.valueChanges.subscribe(()=>{
       
       this.formDetails.emit({value:this.leaveform.value,valid:this.leaveform.valid});
+      console.log(this.leaveform.value);
     
     });
   }

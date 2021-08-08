@@ -19,14 +19,14 @@
 </div> -->
 <app-header-action [index]='15'></app-header-action>
 <div class=" percentagebar">
-    <form [formGroup]="stafffilters">
+    <form [formGroup]="studentFilter">
         <div class="container-fluid" style="margin-top:5px">
             <div class="row" style="font-size: 12px;">
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard">
                         <mat-label>Department</mat-label>
-                        <mat-select formControlName="departmentIdFilter">
-                            <mat-option *ngFor="let departmentIdFilter  of department " [value]="departmentIdFilter .value">
+                        <mat-select formControlName="departmentIdFilter" (selectionChange)="applyFilter('departmentIdFilter')">
+                            <mat-option *ngFor="let departmentIdFilter  of department " [value]="departmentIdFilter .viewValue">
                                 {{departmentIdFilter .viewValue}} 
                             </mat-option>
                         </mat-select>
@@ -35,9 +35,9 @@
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard">
                         <mat-label>Staff Type</mat-label>
-                        <mat-select formControlName="designationFilter">
-                            <mat-option *ngFor="let designationFilter  of stafftype " [value]="designationFilter .value">
-                                {{designationFilter .viewValue}} 
+                        <mat-select formControlName="stafftypeFilter" (selectionChange)="applyFilter('stafftypeFilter')">
+                            <mat-option *ngFor="let stafftypeFilter  of stafftype " [value]="stafftypeFilter .viewValue">
+                                {{stafftypeFilter .viewValue}} 
                             </mat-option>
                         </mat-select>
                     </mat-form-field>

@@ -45,7 +45,7 @@ export class StaffFeedbackListComponent implements OnInit {
   }
   callNewStaffFeedback()
   {
-    this.router.navigate(['./main/staff-feedback'])
+    this.router.navigate(['staff-feedback'])
   }
 
   removeStaffFeedBack(staff : any){
@@ -57,7 +57,7 @@ export class StaffFeedbackListComponent implements OnInit {
 
   editStaffFeedBack(staff : any)
   {
-    this.router.navigate(['/main/staff-feedback',staff.empid]);
+    this.router.navigate(['staff-feedback',staff.empid]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });
   }
