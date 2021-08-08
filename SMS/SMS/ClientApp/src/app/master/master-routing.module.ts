@@ -37,8 +37,10 @@ const routes: Routes = [
       { path: 'add-bus-details', loadChildren: () => import('./transport/add-bus-details/add-bus-details.module').then(m => m.AddBusDetailsModule) },
       { path: 'add-inventory', loadChildren: () => import('./inventory/add-inventory/add-inventory.module').then(m => m.AddInventoryModule) },
       { path: 'list-inventory', loadChildren: () => import('./inventory/list-inventory/list-inventory.module').then(m => m.ListInventoryModule) }
+      
     ]
   },
+  { path: 'timetable', loadChildren: () => import('./timetable/scheduler/scheduler.module').then(m => m.SchedulerModule) }
   
   
   // { path: 'addbus', loadChildren: () => import('./transport/add-bus-details/addbus/addbus.module').then(m => m.AddbusModule) },
