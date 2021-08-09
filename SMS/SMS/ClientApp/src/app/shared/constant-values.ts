@@ -164,6 +164,11 @@ export class SmsConstant {
     { value: 4, viewValue: 'Paternity Leave' },
     { value: 5, viewValue: 'LOP Leave' }
   ]
+  static readonly status = [
+    { value: 0, viewValue: '--select none--' },
+    { value: 1, viewValue: 'Active' },
+    { value: 2, viewValue: 'Inactive'},
+  ]
   static readonly role = [
     { value: 0, viewValue: '--select none--' },
     { value: 1, viewValue: 'Finance Admin' },

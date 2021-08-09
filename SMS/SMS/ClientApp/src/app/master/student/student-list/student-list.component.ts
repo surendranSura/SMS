@@ -1,5 +1,5 @@
 import { Component, OnInit, Output,EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { StudentrestApiService } from '../studentrest-api.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Subscription} from 'rxjs';
@@ -25,6 +25,7 @@ export class StudentListComponent implements OnInit {
   //    'status':'good'
   // }];
   @BlockUI() blockUI: NgBlockUI;
+  studentfilters: FormGroup;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -35,12 +36,21 @@ export class StudentListComponent implements OnInit {
   filters : boolean;
   rows : number = 0;
   classes = SmsConstant.classes;
-  sectiones =SmsConstant.section;
-  statuses = SmsConstant.employmentStatus;
+  sectiones =SmsConstant.Sectiondropdown;
+  statuses = SmsConstant.status;
 
   columnsToDisplay = ['StudentName','EsisNumber', 'MobileNumber','Email','Class','Section', 'Actions'];
 
-  constructor(private studentrestApiService : StudentrestApiService, private router:Router) { }
+  constructor(private fb: FormBuilder,private studentrestApiService : StudentrestApiService, private router:Router) { 
+    this.studentfilters = this.fb.group({
+      classFilter: [''],
+      sectionFilter: [''],
+      statusvalueFilter: [''],
+      joiningDateFrom: ['']
+    });
+
+    this.LoadStudent();
+  }
 
   ngOnInit(): void {
     this.LoadStudent();
@@ -71,13 +81,20 @@ export class StudentListComponent implements OnInit {
     });
     this.blockUI.stop();
   }
+  applyFilter(event: any) {
+    console.log(event)
+  
+    const filterValue = this.studentfilters.value[event];
+    this.studentListData.filter = filterValue.trim().toLowerCase();
+  }
+
   filterToggle()
   {
     this.filters = !this.filters;
   }
   editStudent(student : Student)
   {
-    this.router.navigate(['/main/new-student',student.admissionNumber]);
+    this.router.navigate(['/new-student',student.admissionNumber]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });
   }
