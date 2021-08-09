@@ -3,22 +3,22 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.Data
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210808212137_remove FK AcademicClassV1")]
+    partial class removeFKAcademicClassV1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                .HasAnnotation("SqlServer:IdentitySeed", 1)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
                 .HasAnnotation("ProductVersion", "5.0.3");
 
             modelBuilder.Entity("SMS.Models.Academics.LessonPlan", b =>
@@ -26,9 +26,7 @@ namespace SMS.Migrations.Data
                     b.Property<int>("LessonPlanId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int>("AcademicClassId")
                         .HasColumnType("int");
@@ -79,9 +77,7 @@ namespace SMS.Migrations.Data
                     b.Property<int>("AcademicClassId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("AcademicClassSubjectId")
                         .HasColumnType("nvarchar(max)");
@@ -108,9 +104,7 @@ namespace SMS.Migrations.Data
                     b.Property<int>("AcademicClassSubjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int>("AcademicClassId")
                         .HasColumnType("int");
@@ -128,9 +122,7 @@ namespace SMS.Migrations.Data
                     b.Property<int>("SubjectID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("SubjectDescr")
                         .HasColumnType("nvarchar(max)");
@@ -296,9 +288,7 @@ namespace SMS.Migrations.Data
                     b.Property<int>("StaffAddressId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -336,9 +326,7 @@ namespace SMS.Migrations.Data
                     b.Property<int>("StaffExperienceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime?>("From")
                         .HasColumnType("datetime2");
@@ -418,7 +406,7 @@ namespace SMS.Migrations.Data
                     b.Property<long>("FatherAnnualIncome")
                         .HasColumnType("bigint");
 
-                    b.Property<ulong>("FatherBvEmployee")
+                    b.Property<bool>("FatherBvEmployee")
                         .HasColumnType("bit");
 
                     b.Property<string>("FatherCompany")
@@ -466,7 +454,7 @@ namespace SMS.Migrations.Data
                     b.Property<long>("LegalAnnualIncome")
                         .HasColumnType("bigint");
 
-                    b.Property<ulong>("LegalBvEmployee")
+                    b.Property<bool>("LegalBvEmployee")
                         .HasColumnType("bit");
 
                     b.Property<string>("LegalCompany")
@@ -502,7 +490,7 @@ namespace SMS.Migrations.Data
                     b.Property<long>("LocalGuardianAnnualIncome")
                         .HasColumnType("bigint");
 
-                    b.Property<ulong>("LocalGuardianBvEmployee")
+                    b.Property<bool>("LocalGuardianBvEmployee")
                         .HasColumnType("bit");
 
                     b.Property<string>("LocalGuardianCompany")
@@ -544,7 +532,7 @@ namespace SMS.Migrations.Data
                     b.Property<long>("MotherAnnualIncome")
                         .HasColumnType("bigint");
 
-                    b.Property<ulong>("MotherBvEmployee")
+                    b.Property<bool>("MotherBvEmployee")
                         .HasColumnType("bit");
 
                     b.Property<string>("MotherCompany")
@@ -638,9 +626,7 @@ namespace SMS.Migrations.Data
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int>("AcceptTerms")
                         .HasColumnType("int");
@@ -714,9 +700,7 @@ namespace SMS.Migrations.Data
                             b1.Property<int>("Id")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
-                                .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                                .HasAnnotation("SqlServer:IdentitySeed", 1)
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                                .UseIdentityColumn();
 
                             b1.Property<int>("AccountId")
                                 .HasColumnType("int");

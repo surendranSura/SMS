@@ -15,12 +15,12 @@ namespace WebApi.Helpers
 
         public DbSet<Staff> Staffs { get; set; }
 
+
         public virtual DbSet<Subject> Subjects { get; set; }
 
         public virtual DbSet<AcademicClass> AcademicClasses { get; set; }
 
         public virtual DbSet<AcademicClassSubject> AcademicClassSubjects { get; set; }
-
         public virtual DbSet<LessonPlan> LessonPlans { get; set; }
 
         private readonly IConfiguration Configuration;

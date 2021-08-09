@@ -17,8 +17,7 @@ export class SubjectsComponent implements OnInit {
   constructor(private fb: FormBuilder, private subjectApi : SubjectRestApiService) {
     this.subjectForm = this.fb.group({
       subjectDescr :[],
-      subjectID :[],
-      id : []
+      subjectID :[0]
     })
    }
 

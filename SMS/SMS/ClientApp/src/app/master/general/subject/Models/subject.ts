@@ -1,6 +1,6 @@
 export class Subject {
-    id ? : any;
+    //id ? : any;
     subjectDescr? : string;
-    subjectId? : string;
+    subjectID : string;
 }
 

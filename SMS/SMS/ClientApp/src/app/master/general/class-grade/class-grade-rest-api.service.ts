@@ -15,7 +15,7 @@ export class ClassGradeRestApiService {
 
   // apiURL = 'api/AcademicClass';
 
-  apiURL =  "http://localhost:3007/Classes";
+  apiURL =  "http://localhost:4000/AcademicClass";
   
   constructor(private http: HttpClient) { }
 

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Helpers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,9 +15,9 @@ namespace SMS.Controllers
 	[ApiController]
 	public class SubjectController : ControllerBase
 	{
-		private readonly SchoolManagementContext _dbcontext;
-
-		public SubjectController(SchoolManagementContext dbcontext)
+		//private readonly SchoolManagementContext _dbcontext;
+		private readonly DataContext _dbcontext;
+		public SubjectController(DataContext dbcontext)
 		{
 			this._dbcontext = dbcontext;
 		}
