@@ -10,11 +10,11 @@ namespace SMS.Models.Inventory
     {
         public int InventoryDefectsId { get; set; }
 
-        [ForeignKey("ItemCode")]
-        public String ItemCode { get; set; }
+        [ForeignKey("InventoryItemTypeId")]
+        public InventoryItemType InventoryItemType { get; set; }
 
-        [ForeignKey("ItemName")]
-        public string ItemName { get; set; }
+        [ForeignKey("InventoryItemUsageAreaId")]
+        public InventoryItemUsageArea InventoryItemUsageArea { get; set; }
 
         public string DefectInfo { get; set; }
 

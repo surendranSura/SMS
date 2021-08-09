@@ -20,23 +20,13 @@ namespace SMS.Models.Transport
 
         public int TotalHeadCount { get; set; }
 
-        [ForeignKey("BusNumber")]
-        public int BusNmber { get; set; }
 
-        [ForeignKey("DriverNumber")]
-        public int DriverNumber { get; set; }
+		[ForeignKey("BusesAndDriverId")]
+		public BusesAndDriver BusesAndDrivers { get; set; }
 
-        [ForeignKey("DriverName")]
-        public string DriverName { get; set; }
-
-        [ForeignKey("Class")]
-        public string StudentClass { get; set; }
-
-        [ForeignKey("Section")]
-        public string StudentSection { get; set; }
-
-        public string StudentList { get; set; }
+		[ForeignKey("StudentId")]
+		public Student Student { get; set; }
 
 
-    }
+	}
 }
