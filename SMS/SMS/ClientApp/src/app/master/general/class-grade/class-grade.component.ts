@@ -29,6 +29,7 @@ export class ClassGradeComponent implements OnInit {
   constructor(private classGradeRestApiService :ClassGradeRestApiService) { }
 
   ngOnInit(): void {
+    debugger
     this.getData();
   }
 
