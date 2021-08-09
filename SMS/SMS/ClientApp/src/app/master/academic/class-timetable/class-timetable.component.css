@@ -1,0 +1,26 @@
+.time-table-base{
+    padding:20px;
+}
+
+.tt-header{
+    display:flex;
+  
+}
+
+
+.tt-hd-item{
+ width:100px;
+ border:thin solid black;  
+}
+
+.tt-body{
+    display:flex;
+    flex-wrap: wrap;
+    width: calc(100px * 10);
+}
+
+.tt-bd-item{
+    width:100px;
+    border:thin solid black;  
+    height: 100px;
+}
