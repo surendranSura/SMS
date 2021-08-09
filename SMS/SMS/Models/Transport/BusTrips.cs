@@ -18,6 +18,8 @@ namespace SMS.Models.Transport
 
         public TimeSpan TripTimingTo { get; set; }
 
+        public int TotalHeadCount { get; set; }
+
         [ForeignKey("BusNumber")]
         public int BusNmber { get; set; }
 
