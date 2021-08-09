@@ -31,5 +31,13 @@ namespace SMS.Models.Inventory
 
         public int Price { get; set; }
 
+        public int VendorNumber { get; set; }
+
+        public string VendorName { get; set; }
+
+        public string VendorAddress { get; set; }
+
+        public byte BillCopy { get; set; }
+
     }
 }
