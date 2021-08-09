@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections;
 using WebApi.Helpers;
+using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,8 +19,9 @@ namespace SMS.Controllers
 	{
 		//private readonly SchoolManagementContext _dbconext;
 		private readonly DataContext _dbconext;
+		private readonly IMapper _mapper;
 		
-		public AcademicClassController(DataContext dbcontext)
+		public AcademicClassController(DataContext dbcontext, IMapper mapper )
 		{
 			_dbconext = dbcontext;
 		}
@@ -238,14 +240,25 @@ namespace SMS.Controllers
 
 		// PUT api/<AcademicClassController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] AcademicClassRespReq value)
+		public void Put(int id, [FromBody] AcademicClassRespReq AcademicClassRequest)
 		{
-			_dbconext.Entry(_dbconext.AcademicClasses.Where(X => X.AcademicClassId == id).FirstOrDefault()).CurrentValues.SetValues(value);
-			_dbconext.SaveChangesAsync();
-		}
+			AcademicClass academicClass = new AcademicClass();
+			academicClass.AcademicClassId = id;
+			academicClass.AcademicYear = AcademicClassRequest.AcademicYear;
+			academicClass.ClassName = AcademicClassRequest.Class;
+			academicClass.Group = AcademicClassRequest.Group;
 
-		// DELETE api/<AcademicClassController>/5
-		[HttpDelete("{ClassName}")]
+
+
+			academicClass.AcademicClassSubjectId = AcademicClassRequest.Subjects;
+			academicClass.Section = AcademicClassRequest.Sections;
+
+			_dbconext.Entry(_dbconext.AcademicClasses.Where(X => X.AcademicClassId == id).FirstOrDefault()).CurrentValues.SetValues(academicClass);
+            _dbconext.SaveChangesAsync();
+        }
+
+        // DELETE api/<AcademicClassController>/5
+        [HttpDelete("{ClassName}")]
 		public void Delete(string ClassName)
 		{
             var academicClass = _dbconext.AcademicClasses.Where(X => X.ClassName == ClassName).ToList();
