@@ -22,11 +22,11 @@ namespace SMS.Models.Setup
 
 		public string  Group { get; set; }
 
-		[ForeignKey("AcademicClassSubject")]
-		public int AcademicClassSubjectId { get; set; }
-		public AcademicClassSubject AcademicClassSubject { get; set; }
+        //[ForeignKey("AcademicClassSubject")]
+        public String AcademicClassSubjectId { get; set; }
+        //public AcademicClassSubject AcademicClassSubject { get; set; }
 
-	}
+    }
 
 	public class AcademicClassSubject
 	{
@@ -36,9 +36,9 @@ namespace SMS.Models.Setup
 
 		public int SubjectID { get; set; }
 
-		public ICollection<AcademicClass> AcademicClasses { get; set; }
+		//public ICollection<AcademicClass> AcademicClasses { get; set; }
 
-		public ICollection<Subject> Subjects { get; set; }
+		//public ICollection<Subject> Subjects { get; set; }
 
 	}
 
@@ -49,11 +49,11 @@ namespace SMS.Models.Setup
 		public string Class { get; set; }
 
 		// Comma Seperated values
-		public char[] Sections { get; set; }
+		public String Sections { get; set; }
 
 		public string Group { get; set; }
 
 		// Comma Seperated values
-		public char[] Subjects { get; set; }
+		public string Subjects { get; set; }
 	}
 }

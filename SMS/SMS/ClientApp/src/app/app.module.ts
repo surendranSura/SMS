@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {CommonModule} from '@angular/common'
 import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -41,6 +42,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     AngularMaterialModule,
     FormsModule,

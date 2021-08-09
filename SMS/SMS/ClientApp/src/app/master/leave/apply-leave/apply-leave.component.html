@@ -26,7 +26,7 @@
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Leave Type</mat-label>
-                    <mat-select formControlName="leave">
+                    <mat-select formControlName="leavetype">
                         <mat-option *ngFor="let leave of leavetype " [value]="leave.value">
                             {{leave.viewValue}} 
                         </mat-option>
@@ -35,19 +35,25 @@
                 <mat-form-field appearance="standard"  >
                     <mat-label>Date From</mat-label>
                     <input matInput [matDatepicker]="datefrom">
-                    <mat-datepicker-toggle matSuffix [for]="datefrom"></mat-datepicker-toggle>
+                    <mat-datepicker-toggle matSuffix [for]="datefrom"  formControlName="datefrom"></mat-datepicker-toggle>
                     <mat-datepicker #datefrom></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
+                    <mat-label>Date To</mat-label>
+                    <input matInput [matDatepicker]="dateto">
+                    <mat-datepicker-toggle matSuffix [for]="dateto" formControlName="dateto"></mat-datepicker-toggle>
+                    <mat-datepicker #dateto></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
                     <mat-label>Leave Session</mat-label>
-                    <mat-select formControlName="leavesec">
+                    <mat-select formControlName="leavesession">
                         <mat-option *ngFor="let leavesec of leaveSession " [value]="leavesec.value">
                             {{leavesec.viewValue}} 
                         </mat-option> 
                     </mat-select>
                 </mat-form-field>
  
-                <p>No.of.Days:</p>
+                <p>No.of.Days: {{snodays}}</p>
 
                 <mat-form-field appearance="standard">
                     <mat-label>Reason</mat-label>
@@ -55,14 +61,14 @@
                 </mat-form-field>
                
             </div>
-            <div class="col-sm-3">
+            <!-- <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Date To</mat-label>
                     <input matInput [matDatepicker]="pickerToFilter3">
                     <mat-datepicker-toggle matSuffix [for]="pickerToFilter3"></mat-datepicker-toggle>
                     <mat-datepicker #pickerToFilter3></mat-datepicker>
                 </mat-form-field>
-            </div>
+            </div> -->
 		</div>
        
 	</div>
@@ -73,5 +79,7 @@
         
       
       </div>
+
+      <p>{{leaveform.value | json}}</p>
 
 </form>
