@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SMS.Models;
 using SMS.Models.Academics;
+using SMS.Models.Leave;
 using SMS.Models.Setup;
 using WebApi.Entities;
 
@@ -23,6 +24,15 @@ namespace WebApi.Helpers
 
         public virtual DbSet<LessonPlan> LessonPlans { get; set; }
 
+
+        //leave tables
+
+        public virtual DbSet<StudentLeave> StudentLeaves { get; set; }
+
+        public virtual DbSet<StaffLeave> StaffLeaves { get; set; }
+
+        //end Leave tables
+
         private readonly IConfiguration Configuration;
 
         public MysqlDataContext(IConfiguration configuration)
@@ -33,7 +43,7 @@ namespace WebApi.Helpers
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             // connect to sqlite database
-            options.UseMySQL(Configuration.GetConnectionString("WebApiDatabaseMySQL"));
+            options.UseMySQL(Configuration.GetConnectionString("WebApiDatabaseMySQL_Dev"));
             //options.
         }
     }

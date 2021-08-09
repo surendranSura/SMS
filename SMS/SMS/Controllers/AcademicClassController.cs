@@ -238,7 +238,7 @@ namespace SMS.Controllers
 
 		// PUT api/<AcademicClassController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		public void Put(int id, [FromBody] AcademicClassRespReq value)
 		{
 			_dbconext.Entry(_dbconext.AcademicClasses.Where(X => X.AcademicClassId == id).FirstOrDefault()).CurrentValues.SetValues(value);
 			_dbconext.SaveChangesAsync();
