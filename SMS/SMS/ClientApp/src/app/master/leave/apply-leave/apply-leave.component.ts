@@ -16,13 +16,15 @@ export class ApplyLeaveComponent implements OnInit {
   leaveform : FormGroup;
   leavetype=SmsConstant.leaveType;
   leaveSession=SmsConstant.leaveSession;
+  snodays : any;
 
 
   constructor(private fb:FormBuilder) { 
     this.leaveform = this.fb.group({
-      leave : [''],
+      leavetype : [''],
       datefrom : [''],
-      leavesec : [''],
+      dateto : [''],
+      leavesession : [''],
       noofdays : [''],
       reason :['']
     });
@@ -30,12 +32,27 @@ export class ApplyLeaveComponent implements OnInit {
       
       this.formDetails.emit({value:this.leaveform.value,valid:this.leaveform.valid});
       console.log(this.leaveform.value);
+      // snodays = days_between()
     
     });
   }
 
   ngOnInit(): void {
   }
+
+  days_between(date1, date2) {
+
+    // The number of milliseconds in one day
+    const ONE_DAY = 1000 * 60 * 60 * 24;
+
+    // Calculate the difference in milliseconds
+    const differenceMs = Math.abs(date1 - date2);
+
+    // Convert back to days and return
+    return Math.round(differenceMs / ONE_DAY);
+
+}
+
   // ngOnInit(): void {
   //   this.staffrestApiService.formValue$.subscribe((data : any) => {
   //     this.empDetailsForm.patchValue(data);
