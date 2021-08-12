@@ -24,8 +24,8 @@ export class ClassSectionComponent implements OnInit {
   constructor(private fb: FormBuilder, private classGradeRestApiService :ClassGradeRestApiService) {
     this.csForm = this.fb.group({
       class: [''],
-      subjects: [[]],
-      sections: [[]],
+      subjects: [''],
+      sections: [''],
       group: [''],
       academicYear: ['']
     });
@@ -43,7 +43,7 @@ export class ClassSectionComponent implements OnInit {
   }
 
   save() {
-
+    
     if (Object.keys(this.expData).length != 0)
     {
       this.update();

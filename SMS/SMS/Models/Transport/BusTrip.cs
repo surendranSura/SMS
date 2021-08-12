@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SMS.Models.Transport
 {
-    public class BusTrips
+    public class BusTrip
     {
-        public int BusTripsid { get; set; }
+        public int BusTripid { get; set; }
 
         public int TripNumber { get; set; }
 

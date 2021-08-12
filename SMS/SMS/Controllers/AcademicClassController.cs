@@ -18,10 +18,10 @@ namespace SMS.Controllers
 	public class AcademicClassController : ControllerBase
 	{
 		//private readonly SchoolManagementContext _dbconext;
-		private readonly DataContext _dbconext;
+		private readonly MysqlDataContext _dbconext;
 		private readonly IMapper _mapper;
 		
-		public AcademicClassController(DataContext dbcontext, IMapper mapper )
+		public AcademicClassController(MysqlDataContext dbcontext, IMapper mapper )
 		{
 			_dbconext = dbcontext;
 		}

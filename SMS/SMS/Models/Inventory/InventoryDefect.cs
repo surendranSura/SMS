@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SMS.Models.Inventory
 {
-    public class InventoryDefects
+    public class InventoryDefect
     {
-        public int InventoryDefectsId { get; set; }
+        public int InventoryDefectId { get; set; }
 
         [ForeignKey("InventoryItemTypeId")]
         public InventoryItemType InventoryItemType { get; set; }

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210809225105_InventoryIntialMigration")]
+    partial class InventoryIntialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,8 +114,8 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int>("VendorNumber")
                         .HasColumnType("int");
 
-                    b.Property<string>("WarrenOrGarantee")
-                        .HasColumnType("text");
+                    b.Property<char>("WarrenOrGarantee")
+                        .HasColumnType("int");
 
                     b.Property<string>("WarrenOrGarenInfo")
                         .HasColumnType("text");
@@ -785,121 +787,6 @@ namespace SMS.Migrations.MysqlData
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("SMS.Models.Transport.BusTrip", b =>
-                {
-                    b.Property<int>("BusTripid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int?>("BusesAndDriverId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StudentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalHeadCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TripAreas")
-                        .HasColumnType("text");
-
-                    b.Property<int>("TripNumber")
-                        .HasColumnType("int");
-
-                    b.Property<TimeSpan>("TripTimingFrom")
-                        .HasColumnType("time");
-
-                    b.Property<TimeSpan>("TripTimingTo")
-                        .HasColumnType("time");
-
-                    b.HasKey("BusTripid");
-
-                    b.HasIndex("BusesAndDriverId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("BusTrips");
-                });
-
-            modelBuilder.Entity("SMS.Models.Transport.BusType", b =>
-                {
-                    b.Property<int>("BusTypeid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("BusTypeDesc")
-                        .HasColumnType("text");
-
-                    b.HasKey("BusTypeid");
-
-                    b.ToTable("BusTypes");
-                });
-
-            modelBuilder.Entity("SMS.Models.Transport.BusesAndDriver", b =>
-                {
-                    b.Property<int>("BusesAndDriverId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ArrivalTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<byte>("BusLocation")
-                        .HasColumnType("tinyint unsigned");
-
-                    b.Property<string>("BusNumber")
-                        .HasColumnType("text");
-
-                    b.Property<string>("BusStatus")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("BusTypeid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DriverAadhar")
-                        .HasColumnType("text");
-
-                    b.Property<string>("DriverName")
-                        .HasColumnType("text");
-
-                    b.Property<int>("DriverNumber")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("InsuranceEndDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("InsurancePolicyNum")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("NotificationSpanId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SeatCount")
-                        .HasColumnType("int");
-
-                    b.HasKey("BusesAndDriverId");
-
-                    b.HasIndex("BusTypeid");
-
-                    b.HasIndex("NotificationSpanId");
-
-                    b.ToTable("BusesAndDrivers");
-                });
-
-            modelBuilder.Entity("SMS.Models.Transport.NotificationSpan", b =>
-                {
-                    b.Property<int>("NotificationSpanId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("NotificationSpanDesc")
-                        .HasColumnType("text");
-
-                    b.HasKey("NotificationSpanId");
-
-                    b.ToTable("NotificationSpans");
-                });
-
             modelBuilder.Entity("WebApi.Entities.Account", b =>
                 {
                     b.Property<int>("Id")
@@ -1017,36 +904,6 @@ namespace SMS.Migrations.MysqlData
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("SMS.Models.Transport.BusTrip", b =>
-                {
-                    b.HasOne("SMS.Models.Transport.BusesAndDriver", "BusesAndDrivers")
-                        .WithMany()
-                        .HasForeignKey("BusesAndDriverId");
-
-                    b.HasOne("SMS.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId");
-
-                    b.Navigation("BusesAndDrivers");
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("SMS.Models.Transport.BusesAndDriver", b =>
-                {
-                    b.HasOne("SMS.Models.Transport.BusType", "BusType")
-                        .WithMany()
-                        .HasForeignKey("BusTypeid");
-
-                    b.HasOne("SMS.Models.Transport.NotificationSpan", "NotificationSpan")
-                        .WithMany()
-                        .HasForeignKey("NotificationSpanId");
-
-                    b.Navigation("BusType");
-
-                    b.Navigation("NotificationSpan");
                 });
 
             modelBuilder.Entity("WebApi.Entities.Account", b =>

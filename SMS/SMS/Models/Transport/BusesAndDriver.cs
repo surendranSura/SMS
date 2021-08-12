@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,27 +10,29 @@ namespace SMS.Models.Transport
     {
         public int BusesAndDriverId { get; set; }
 
-        public string BusType { get; set; }
+        [ForeignKey("BusTypeid")]
+        public BusType BusType { get; set; }
 
         public int SeatCount { get; set; }
 
-        public int BusNumber { get; set; }
+        public string BusNumber { get; set; }
 
-        public int InsurancePolicyNum { get; set; }
+        public string InsurancePolicyNum { get; set; }
 
         public DateTime InsuranceEndDate { get; set; }
 
-        public string NotificationSpan { get; set; }
+        [ForeignKey("NotificationSpanId")]
+        public NotificationSpan NotificationSpan { get; set; }
 
         public string BusStatus { get; set; }
 
-        public TimeSpan ArrivalTime { get; set; }
+        public DateTime ArrivalTime { get; set; }
 
         public string DriverName { get; set; }
 
         public int DriverNumber { get; set; }
 
-        public int DriverAadhar { get; set; }
+        public string DriverAadhar { get; set; }
 
         public byte BusLocation { get; set; }
     }

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210810112717_BusesAndDriver Modifications")]
+    partial class BusesAndDriverModifications
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,8 +114,8 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int>("VendorNumber")
                         .HasColumnType("int");
 
-                    b.Property<string>("WarrenOrGarantee")
-                        .HasColumnType("text");
+                    b.Property<char>("WarrenOrGarantee")
+                        .HasColumnType("int");
 
                     b.Property<string>("WarrenOrGarenInfo")
                         .HasColumnType("text");

@@ -6,6 +6,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Console } from 'console';
 import { ClassGrade } from '../class-grade/models/class-grade';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ClassGradeRestApiService {
 
   // apiURL = 'api/AcademicClass';
 
-  apiURL =  "http://localhost:4000/api/AcademicClass";
+  apiURL =  environment.apiUrl+"/api/AcademicClass";
   
   constructor(private http: HttpClient) { }
 
