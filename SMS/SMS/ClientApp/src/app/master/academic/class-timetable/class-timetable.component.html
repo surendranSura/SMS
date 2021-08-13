@@ -1,28 +1,9 @@
-<div class="time-table-base">
-    <button (click)="breakSet()">break</button>
-    <!--timetable header-->
-    <div class="tt-header" [ngStyle]="{'width':'calc(100px * '+(10+numBreaks)+')'}">
-        <div class="tt-hd-item" *ngFor="let name of timePeriod" [innerHTML]="name"></div>
+<app-header-action [index]='19'></app-header-action>
+
+<div class="container-fluid percentagebar" style="margin-top:5px">
+    <div class="row" style="margin-left: 20px;margin-top: -5px;padding-top: 10px;">
+        LKG
     </div>
 
-    <!--timetable body-->
-    <div class="tt-body" [ngStyle]="{'width':'calc(100px * '+(10+numBreaks)+')'}">
-        <div class="tt-bd-item" *ngFor="let item of slots;index as i">
-
-            <!--to print week days-->
-            <ng-container *ngIf="(checkInt(i)); else editor"> {{weekDay[i/(10+numBreaks)]}}</ng-container>
-
-            <!--To view editor-->
-            <ng-template #editor>
-                <ng-container *ngIf="(checkBreak(i)); else editor"> </ng-container>
-
-                <ng-template #editor>
-                    <app-time-table-editor></app-time-table-editor>
-                </ng-template>
-
-            </ng-template>
-
-        </div>
-    </div>
-
+    <app-time-table-viewer></app-time-table-viewer>
 </div>

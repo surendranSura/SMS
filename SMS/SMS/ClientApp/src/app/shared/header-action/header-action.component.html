@@ -19,9 +19,10 @@
         <h2 *ngIf="index===16">Staff Leave</h2>
         <h2 *ngIf="index===17">Leave Configuration</h2>
         <h2 *ngIf="index===18">Add Inventory</h2>
+        <h2 *ngIf="index===19">Class table</h2>
     </div>
     <div class="col-sm-3">
-       <div *ngIf="index===6 || index===8 || index===11 || index===12 || index===13 || index===14 || index===15 || index===16 || index===17" style="font-size: 12px;margin-top: -15px;">
+       <div *ngIf="index===6 || index===8 || index===11 || index===12 || index===13 || index===14 || index===15 || index===16 || index===17 || index===19" style="font-size: 12px;margin-top: -15px;">
         <mat-form-field appearance="standard">
             <mat-label>Enter a date range</mat-label>
             <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
@@ -41,7 +42,7 @@
         <div *ngIf="index===6 || index===8 || index===11 || index===12 || index===13 || index===14 || index===15 || index===16 || index===17" style="font-size: 12px;margin-top: 10px;">
             <p>(Current Academic Year)</p>
         </div>
-        <div class="right-content" *ngIf="index!==5 && index!==6 && index!==8 && index!==9 && index!==11 && index!==12 && index!==13 && index!==14 && index!==15 && index!==16 && index!==17">
+        <div class="right-content" *ngIf="index!==5 && index!==6 && index!==8 && index!==9 && index!==11 && index!==12 && index!==13 && index!==14 && index!==15 && index!==16 && index!==17 && index!==19 ">
             <img src="../../../assets/visible.png" style="height:35px;margin-top:-10px;margin-right: 40px; cursor: pointer;"
                 (click)="staffListOpen()" />
         </div>
