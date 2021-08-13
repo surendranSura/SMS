@@ -2,8 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SMS.Models;
 using SMS.Models.Academics;
+using SMS.Models.Inventory;
 using SMS.Models.Leave;
 using SMS.Models.Setup;
+using SMS.Models.Transport;
 using WebApi.Entities;
 
 namespace WebApi.Helpers
@@ -32,6 +34,22 @@ namespace WebApi.Helpers
         public virtual DbSet<StaffLeave> StaffLeaves { get; set; }
 
         //end Leave tables
+
+        #region "Inventory"
+
+        public virtual DbSet<InventoryDefect> InventoryDefects { get; set; }
+        public virtual DbSet<InventoryItemType> InventoryItemTypes { get; set; }
+        public virtual DbSet<InventoryItemUsageArea> InventoryItemUsageAreas { get; set; }
+        public virtual DbSet<Inventory> Inventorys { get; set; }
+
+        #endregion
+
+        #region "Transport"
+        public virtual DbSet<BusType> BusTypes { get; set; }
+        public virtual DbSet<BusesAndDriver> BusesAndDrivers { get; set; }
+        public virtual DbSet<BusTrip> BusTrips { get; set; }
+        public virtual DbSet<NotificationSpan> NotificationSpans { get; set; }
+        #endregion "Transport"
 
         private readonly IConfiguration Configuration;
 

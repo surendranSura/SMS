@@ -16,8 +16,8 @@ namespace SMS.Controllers
 	public class SubjectController : ControllerBase
 	{
 		//private readonly SchoolManagementContext _dbcontext;
-		private readonly DataContext _dbcontext;
-		public SubjectController(DataContext dbcontext)
+		private readonly MysqlDataContext _dbcontext;
+		public SubjectController(MysqlDataContext dbcontext)
 		{
 			this._dbcontext = dbcontext;
 		}

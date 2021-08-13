@@ -34,13 +34,13 @@ namespace WebApi.Services
 
     public class AccountService : IAccountService
     {
-        private readonly DataContext _context;
+        private readonly MysqlDataContext _context;
         private readonly IMapper _mapper;
         private readonly AppSettings _appSettings;
         private readonly IEmailService _emailService;
 
         public AccountService(
-            DataContext context,
+            MysqlDataContext context,
             IMapper mapper,
             IOptions<AppSettings> appSettings,
             IEmailService emailService)

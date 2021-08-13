@@ -55,7 +55,7 @@ namespace SMS
 
 
 
-			services.AddDbContext<DataContext>();
+			services.AddDbContext<MysqlDataContext>();
 		//	services.AddCors();
 			services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
 			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -97,7 +97,7 @@ namespace SMS
 		
 		}
 
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext dataContext)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MysqlDataContext dataContext)
 		{
 			// migrate any database changes on startup (includes initial db creation)
 			dataContext.Database.Migrate();

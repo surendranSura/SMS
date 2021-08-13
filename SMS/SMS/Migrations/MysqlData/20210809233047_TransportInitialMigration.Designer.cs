@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210809233047_TransportInitialMigration")]
+    partial class TransportInitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,8 +114,8 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int>("VendorNumber")
                         .HasColumnType("int");
 
-                    b.Property<string>("WarrenOrGarantee")
-                        .HasColumnType("text");
+                    b.Property<char>("WarrenOrGarantee")
+                        .HasColumnType("int");
 
                     b.Property<string>("WarrenOrGarenInfo")
                         .HasColumnType("text");
@@ -841,14 +843,14 @@ namespace SMS.Migrations.MysqlData
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ArrivalTime")
-                        .HasColumnType("datetime");
+                    b.Property<TimeSpan>("ArrivalTime")
+                        .HasColumnType("time");
 
                     b.Property<byte>("BusLocation")
                         .HasColumnType("tinyint unsigned");
 
-                    b.Property<string>("BusNumber")
-                        .HasColumnType("text");
+                    b.Property<int>("BusNumber")
+                        .HasColumnType("int");
 
                     b.Property<string>("BusStatus")
                         .HasColumnType("text");
@@ -856,8 +858,8 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int?>("BusTypeid")
                         .HasColumnType("int");
 
-                    b.Property<string>("DriverAadhar")
-                        .HasColumnType("text");
+                    b.Property<int>("DriverAadhar")
+                        .HasColumnType("int");
 
                     b.Property<string>("DriverName")
                         .HasColumnType("text");
@@ -868,8 +870,8 @@ namespace SMS.Migrations.MysqlData
                     b.Property<DateTime>("InsuranceEndDate")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("InsurancePolicyNum")
-                        .HasColumnType("text");
+                    b.Property<int>("InsurancePolicyNum")
+                        .HasColumnType("int");
 
                     b.Property<int?>("NotificationSpanId")
                         .HasColumnType("int");
