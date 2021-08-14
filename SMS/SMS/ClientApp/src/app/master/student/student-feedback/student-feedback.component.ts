@@ -12,7 +12,7 @@ import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/mes
   templateUrl: './student-feedback.component.html',
   styleUrls: ['./student-feedback.component.css']
 })
-export class StudentFeedbackComponent implements OnInit {
+export class StudentFeedbackComponent implements OnInit{
   newstudentFeedback:FormGroup;
   feedbackTypes = SmsConstant.feedbackTypes;
   isAddMode?: boolean;
@@ -32,9 +32,9 @@ export class StudentFeedbackComponent implements OnInit {
       class: ['', Validators.required],
       feedbacktitle: ['', Validators.required],
       section:['', Validators.required],
-      teacherId: ['', Validators.required],
+      //teacherId: ['', Validators.required],
       description:['', Validators.required],
-      attachment: ['', Validators.required]
+      attachment: ['']
     });
 
    }
@@ -57,38 +57,51 @@ export class StudentFeedbackComponent implements OnInit {
   }
 
   submit() {
-    this.blockUI.start();
+    console.log(this.newstudentFeedback.value);
+    this.newstudentFeedback.markAllAsTouched();
+    if(this.newstudentFeedback.invalid)
+    {
+      return 
+    }
+    
     this.submitted = true;
-
+ 
     if (this.isAddMode) {
       this.createStudenteLetter();
      } else {
       this.updateStudenteLetter();
      }
 
-     this.blockUI.stop();
+    
     
   }
 
   createStudenteLetter()
   {
-   
+    
+   this.blockUI.start()
     this.studentrestApiService.createStudentFeedBack(this.newstudentFeedback.value).subscribe(_=>{
+      this.blockUI.stop();
       this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback created successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
       }, 2500);
+    },()=>{
+      this.blockUI.stop();
     });
   }
 
   updateStudenteLetter()
   {
-    
+    this.blockUI.start()
     this.studentrestApiService.updateStudentFeedBack(this.id, this.newstudentFeedback.value).subscribe(_=>{
+      this.blockUI.stop();
       this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback updated successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
       }, 2500);
+    },()=>{
+      this.blockUI.stop();
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import { StudentrestApiService } from './../studentrest-api.service'
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
@@ -6,6 +6,8 @@ import { Student } from '../student';
 import { ActivatedRoute } from '@angular/router';
 import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FormTouched } from 'src/app/shared/interfaces/form-touched';
+import { QueryList } from '@angular/core';
 
 @Component({
   selector: 'app-new-student',
@@ -23,6 +25,7 @@ export class NewStudentComponent implements OnInit {
   _student : Student;
   id : any;
 
+  @ViewChildren("dt") dt: QueryList<FormTouched>;
   @BlockUI() blockUI: NgBlockUI;
   
   constructor(private studentApiService: StudentrestApiService, private route: ActivatedRoute, public dialog: MatDialog) { }
@@ -47,20 +50,21 @@ export class NewStudentComponent implements OnInit {
     this.isAddMode = !this.id;
   }
 
-  btnMovement(st:string){
-
-    if(st==='bck'){
-      this.selectedTab--;
-    }
-    else if (st === 'frd') {
-
-      if (this.selectedTab >= 3) {
-        this.submit();
-        return;
+  btnMovement(st: string) {
+    let flg = this.dt.toArray()[this.selectedTab].formTouched();
+    console.log(flg)
+   
+      if (st === 'bck') {
+        this.selectedTab--;
       }
-      this.selectedTab++;
-    }
-
+      else if (st === 'frd' && flg) {
+        if (this.selectedTab >= 3) {
+          this.submit();
+          return;
+        }
+        this.selectedTab++;
+      }
+    
   }
 
   submit(){

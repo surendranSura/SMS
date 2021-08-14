@@ -1,13 +1,14 @@
-import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 
 @Component({
   selector: 'app-student-details',
   templateUrl: './student-details.component.html',
   styleUrls: ['./student-details.component.css']
 })
-export class StudentDetailsComponent implements OnInit {
+export class StudentDetailsComponent implements OnInit ,FormTouched{
   @Output() stuFormtDetails = new EventEmitter();
   @Input() getFormValues = {};
   studentProfileForm: FormGroup;
@@ -29,6 +30,8 @@ export class StudentDetailsComponent implements OnInit {
   pasOutScl =SmsConstant.passingOutSchool;
   yearOfAttends =SmsConstant.yearOfAttendence;
   addressData = null;
+
+  @ViewChild('dt') addressDt: FormTouched;
 
   constructor(private fb: FormBuilder) {
     this.studentProfileForm = this.fb.group({
@@ -58,7 +61,7 @@ export class StudentDetailsComponent implements OnInit {
       , yearofattendence: ['',Validators.required]
       , academicPrecentage: ['',Validators.required]
       , reasonForLeaving: ['',Validators.required]
-      , designation : ['',Validators.required]
+      
     });
 
     this.studentProfileForm.valueChanges.subscribe(() => {
@@ -67,6 +70,13 @@ export class StudentDetailsComponent implements OnInit {
 
     })
     
+  }
+  formTouched(): boolean {
+    this.studentProfileForm.markAllAsTouched();
+
+    let ft = this.addressDt.formTouched();
+    console.log(this.studentProfileForm.status)
+    return this.studentProfileForm.valid && ft;
   }
   ngOnChanges(changes: SimpleChanges): void {
   
