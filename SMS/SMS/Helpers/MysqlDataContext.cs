@@ -5,6 +5,7 @@ using SMS.Models.Academics;
 using SMS.Models.Inventory;
 using SMS.Models.Leave;
 using SMS.Models.Setup;
+using SMS.Models.TimeTable;
 using SMS.Models.Transport;
 using WebApi.Entities;
 
@@ -32,6 +33,8 @@ namespace WebApi.Helpers
         public virtual DbSet<StudentLeave> StudentLeaves { get; set; }
 
         public virtual DbSet<StaffLeave> StaffLeaves { get; set; }
+
+        public virtual DbSet<ClassTimeTable> ClassTimeTable { get; set; }
 
         //end Leave tables
 
