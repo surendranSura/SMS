@@ -81,8 +81,8 @@ namespace SMS.Controllers
 				_academicClassRequest.AcademicYear = r.academicYear;
 				_academicClassRequest.Class = r.className;
 				_academicClassRequest.Group = r.classgroup;
-				_academicClassRequest.Subjects = r.Subject; //r.subject.ToArray();
-				_academicClassRequest.Sections = r.Section;//resultSection.Where(X => X.className == r.className).FirstOrDefault().Sections.ToArray();
+				_academicClassRequest.Subjects =  r.Subject.Split(','); //r.subject.ToArray();
+				_academicClassRequest.Sections = r.Section.Split(',');//resultSection.Where(X => X.className == r.className).FirstOrDefault().Sections.ToArray();
 
 				academicClassRequest.Add(_academicClassRequest);
 
@@ -149,9 +149,9 @@ namespace SMS.Controllers
 				_academicClassRequest.Class = r.className;
 				_academicClassRequest.Group = r.classgroup;
 				//char[] vs = r.subject.ToArray();
-				_academicClassRequest.Subjects = r.Subject;
+				_academicClassRequest.Subjects = r.Subject.Split(',');
 				//char[] vs1 = result.Where(X => X.className == r.className).FirstOrDefault().Sections.ToArray();
-				_academicClassRequest.Sections = r.Section;
+				_academicClassRequest.Sections = r.Section.Split(',');
 
 				academicClassRequest.Add(_academicClassRequest);
 
@@ -172,8 +172,8 @@ namespace SMS.Controllers
 
 		
 
-			academicClass.AcademicClassSubjectId = AcademicClassRequest.Subjects;
-			academicClass.Section = AcademicClassRequest.Sections;
+			academicClass.AcademicClassSubjectId = String.Join(",", AcademicClassRequest.Subjects) ;
+			academicClass.Section = String.Join(",", AcademicClassRequest.Sections);
 
 
             _dbconext.AcademicClasses.Add(academicClass);
@@ -244,14 +244,14 @@ namespace SMS.Controllers
 		{
 			AcademicClass academicClass = new AcademicClass();
 			academicClass.AcademicClassId = id;
-			academicClass.AcademicYear = AcademicClassRequest.AcademicYear;
+			academicClass.AcademicYear = AcademicClassRequest.AcademicYear == null ? DateTime.Now : AcademicClassRequest.AcademicYear ;
 			academicClass.ClassName = AcademicClassRequest.Class;
 			academicClass.Group = AcademicClassRequest.Group;
 
 
 
-			academicClass.AcademicClassSubjectId = AcademicClassRequest.Subjects;
-			academicClass.Section = AcademicClassRequest.Sections;
+			academicClass.AcademicClassSubjectId = string.Join(',',AcademicClassRequest.Subjects);
+			academicClass.Section = string.Join(',',AcademicClassRequest.Sections);
 
 			_dbconext.Entry(_dbconext.AcademicClasses.Where(X => X.AcademicClassId == id).FirstOrDefault()).CurrentValues.SetValues(academicClass);
             _dbconext.SaveChangesAsync();

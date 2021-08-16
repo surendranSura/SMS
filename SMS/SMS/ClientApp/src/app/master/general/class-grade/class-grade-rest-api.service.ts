@@ -50,7 +50,8 @@ export class ClassGradeRestApiService {
 
 
   createClassGrade(staff : any): Observable<ClassGrade> {
-    return this.http.post<ClassGrade>(this.apiURL,staff, this.httpOptions)
+    console.log(JSON.stringify(staff));
+    return this.http.post<any>(this.apiURL, JSON.stringify(staff), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -59,7 +60,7 @@ export class ClassGradeRestApiService {
   }  
 
   updateClassGrade(id : any, staff : ClassGrade): Observable<ClassGrade> {
-    return this.http.put<ClassGrade>(this.apiURL +'/'+ id, JSON.stringify(staff), this.httpOptions)
+    return this.http.put<ClassGrade>(this.apiURL +'/'+ id, JSON.stringify(staff))
     .pipe(
       retry(1),
       catchError(this.handleError)

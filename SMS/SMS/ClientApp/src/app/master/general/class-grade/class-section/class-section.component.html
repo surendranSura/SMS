@@ -32,11 +32,11 @@
                 </mat-form-field>
 
 
-                <button mat-icon-button class="btnIcon" *ngIf="newFlag"  (click)="save()">
+                <button mat-icon-button class="btnIcon" *ngIf="newFlag"  (click)="save('save')">
                     <img src="../../../../assets/edit.png" class="icon">
                 </button>
 
-                <button mat-icon-button class="btnIcon" *ngIf="!newFlag" (click)="toggleButton()">
+                <button mat-icon-button class="btnIcon" *ngIf="!newFlag" (click)="save(_eventtype)">
                     <img src="../../../../assets/edit.png" class="icon">
                 </button>
 

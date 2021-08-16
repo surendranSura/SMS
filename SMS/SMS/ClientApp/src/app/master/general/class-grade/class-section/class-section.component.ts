@@ -15,7 +15,7 @@ export class ClassSectionComponent implements OnInit {
 
   // subjectList=SmsConstant.Subjectsdropdown;
   // sectionList=SmsConstant.Sectiondropdown;
-
+  _eventtype : any;
   newFlag:boolean=false;
   sectionList: string[] = ['A', 'B', 'C', 'D', 'E'];
   subjectList: string[] = ['English', 'Tamil', 'Maths', 'Science', 'Social'];
@@ -27,27 +27,41 @@ export class ClassSectionComponent implements OnInit {
       subjects: [''],
       sections: [''],
       group: [''],
-      academicYear: ['']
+      academicYear: [Date.now]
     });
 
   }
 
   ngOnInit(): void {
+    this._eventtype = 'toggle';
     if (Object.keys(this.expData).length != 0) {
       this.csForm.disable();
       this.csForm.setValue(this.expData);
     }
     else{
       this.newFlag=true;
+      this._eventtype = 'toggle';
     }
   }
 
-  save() {
+  save(eventtype : any) {
     
     if (Object.keys(this.expData).length != 0)
     {
-      this.update();
-      return;
+      if (eventtype == 'toggle')
+      {
+        this.newFlag = false;
+        this.csForm.enable();
+        this._eventtype = 'update';
+        return;
+      }
+
+      if (eventtype == 'update')
+      {
+        this.update();
+        this._eventtype = 'toggle';
+        return;
+      }
     }
 
     console.log(this.csForm.value);
@@ -55,14 +69,17 @@ export class ClassSectionComponent implements OnInit {
       this.btnEvent.emit();
     });
 
-  }
+ }
 
   delete() {
     
-    if (!this.expData?.subjectDescr) {
-      this.btnEvent.emit(1);
-      return;
-    }
+    // console.log('first');
+    // if (!this.expData?.subjectDescr) {
+    //   this.btnEvent.emit(1);
+    //   return;
+    // }
+
+    // console.log('second');
     
     this.classGradeRestApiService.deleteClassGrade(this.expData.class).subscribe(_=>{
       this.btnEvent.emit();
@@ -86,7 +103,7 @@ export class ClassSectionComponent implements OnInit {
 
   toggleButton()
   {
-    this.newFlag = true;
+    this.newFlag = false;
     this.csForm.enable();
 
     this.btnEvent.emit(2);

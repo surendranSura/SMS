@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ using SMS.Models;
 using SMSAPI.Authentication;
 using System;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using WebApi.Helpers;
@@ -44,6 +46,15 @@ namespace SMS
 			//	services.AddDbContext<DataContext>();
 			//else
 			//	services.AddDbContext<DataContext, SqliteDataContext>();
+
+			// using System.Net;
+
+			services.Configure<ForwardedHeadersOptions>(options =>
+			{
+				options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+			});
+
+
 			services.AddCors(options =>
 			{
 				options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -101,6 +112,11 @@ namespace SMS
 		{
 			// migrate any database changes on startup (includes initial db creation)
 			dataContext.Database.Migrate();
+
+			app.UseForwardedHeaders(new ForwardedHeadersOptions
+			{
+				ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+			});
 
 			if (env.IsDevelopment())
 			{
