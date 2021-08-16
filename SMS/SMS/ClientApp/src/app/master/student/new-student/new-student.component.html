@@ -6,7 +6,7 @@
       Student Details
       <mat-icon *ngIf="stuFormtDetails[0]!=null && stuFormtDetails[0]" color="primary">check_circle</mat-icon>
     </ng-template>
-    <app-student-details [getFormValues]="_student"(stuFormtDetails)="setTabFormDetails($event,0)" ></app-student-details>
+    <app-student-details [getFormValues]="_student"(stuFormtDetails)="setTabFormDetails($event,0)" #dt></app-student-details>
   </mat-tab>
   
   <mat-tab>
@@ -15,7 +15,7 @@
       <!-- stuFormtDetails[1]!=null && stuFormtDetails[1] -->
       <mat-icon *ngIf="stuFormtDetails[1]!=null && stuFormtDetails[1]" color="primary">check_circle</mat-icon>
     </ng-template>
-    <app-parents-guardian-details (stuFormtDetails)="setTabFormDetails($event,1)"></app-parents-guardian-details>
+    <app-parents-guardian-details (stuFormtDetails)="setTabFormDetails($event,1)" #dt></app-parents-guardian-details>
   </mat-tab>
   
   
@@ -24,7 +24,7 @@
       Documents
       <mat-icon *ngIf="stuFormtDetails[2]!=null && stuFormtDetails[2]" color="primary">check_circle</mat-icon>
     </ng-template>
-    <app-document (stuFormtDetails)="setTabFormDetails($event,2)"></app-document>
+    <app-document (stuFormtDetails)="setTabFormDetails($event,2)" #dt></app-document>
   </mat-tab>
 </mat-tab-group>
 

@@ -8,6 +8,7 @@ import { $ } from 'protractor';
 import { ViewChild } from '@angular/core';
 import { AngularFileUploaderComponent } from "angular-file-uploader";
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
   templateUrl: './document.component.html',
   styleUrls: ['./document.component.css']
 })
-export class DocumentComponent implements OnInit {
+export class DocumentComponent implements OnInit ,FormTouched{
   @Output() stuFormDetails = new EventEmitter();
   documentForm: FormGroup;
   selectedFile: any = null;
@@ -86,6 +87,10 @@ export class DocumentComponent implements OnInit {
     this.documentForm.valueChanges.subscribe(() => {
       this.stuFormDetails.emit({ value: this.documentForm, valid: this.documentForm.valid });
     })
+  }
+  formTouched(): boolean {
+    this.documentForm.markAllAsTouched();
+    return this.documentForm.valid;
   }
   onSubmit() {
     console.warn(this.documentForm.value);

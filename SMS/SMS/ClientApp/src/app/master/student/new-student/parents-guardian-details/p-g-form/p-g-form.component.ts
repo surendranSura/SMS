@@ -1,13 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { FormGroup, FormBuilder, Validator, FormControl } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 
 @Component({
   selector: 'app-p-g-form',
   templateUrl: './p-g-form.component.html',
   styleUrls: ['./p-g-form.component.css']
 })
-export class PGFormComponent implements OnInit {
+export class PGFormComponent implements OnInit,FormTouched {
 
   @Input() titleLabel: string = '';
   @Input() pFlag = false;
@@ -18,17 +20,17 @@ export class PGFormComponent implements OnInit {
   salutations=SmsConstant.salutations;
   constructor(private fb: FormBuilder) {
     this.parents = fb.group({
-      salutation: ['']
-      , firstName: ['']
-      , middleName: ['']
-      , lastName: ['']
-      , mobileNumber: ['0']
-      , occupation: ['']
-      , email: ['']
-      , aadharNumber: ['']
-      , company: ['']
-      , designation: ['']
-      , annualIncome: ['0']
+      salutation: ['',Validators.required]
+      , firstName: ['',Validators.required]
+      , middleName: ['',Validators.required]
+      , lastName: ['',Validators.required]
+      , mobileNumber: ['0',Validators.required]
+      , occupation: ['',Validators.required]
+      , email: ['',Validators.required]
+      , aadharNumber: ['',Validators.required]
+      , company: ['',Validators.required]
+      , designation: ['',Validators.required]
+      , annualIncome: ['0',Validators.required]
       , bvEmployee: [true]
     });
 
@@ -37,6 +39,11 @@ export class PGFormComponent implements OnInit {
         value: this.parents.value, valid:this.parents.valid
       })
     });
+  }
+  formTouched(): boolean {
+   
+    this.parents.markAllAsTouched();
+    return this.parents.valid;
   }
 
   ngOnInit(): void {

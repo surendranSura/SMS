@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SMS.Models.Academics;
 using SMS.Models.Setup;
+using SMS.Models.TimeTable;
 
 #nullable disable
 
@@ -60,6 +61,7 @@ namespace SMS.Models
         public virtual DbSet<StaffeLetter> StaffeLetters { get; set; }
 
         public virtual DbSet<StudentFeedback> StudentFeedbacks { get; set; }
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

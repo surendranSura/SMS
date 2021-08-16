@@ -6,9 +6,6 @@ import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 
-
-
-
 @Component({
   selector: 'app-personal-details',
   templateUrl: './personal-details.component.html',
