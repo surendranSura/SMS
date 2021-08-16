@@ -18,4 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ]
 })
-export class StudentFeedbackListModule { }
+export class StudentFeedbackListModule {
+  
+ }

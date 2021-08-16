@@ -62,7 +62,7 @@ export class ELetterComponent implements OnInit,FormTouched {
   }
 
   submit() {
-
+    this.eletterfrm.markAllAsTouched();
     if (this.eletterfrm.invalid) {
       // this.router.navigate([this.returnUrl]);
       return;
@@ -92,24 +92,23 @@ export class ELetterComponent implements OnInit,FormTouched {
 
   createStaffeLetter()
   {
-    this.staffrestApiService.createStaffeLetter(this.eletterfrm.value).subscribe(_=>{
-      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"e-Letter created successfully !"});
+    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"e-Letter detail created successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
-      }, 2500);  
-      
-      
+      }, 2500);
+    this.staffrestApiService.createStaffeLetter(this.eletterfrm.value).subscribe(_=>{      
     });
   }
 
   updateSatffeLetter()
   {
+    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"e-Letter detail updated successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500);
     this.staffrestApiService.updateStaffeLetter(this.id, this.eletterfrm.value).subscribe(_=>{
       this.staffrestApiService.createStaffeLetter(this.eletterfrm.value).subscribe(_=>{
-        this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"e-Letter Updated successfully !"});
-        setTimeout(() => {
-          this.dialog.closeAll();
-        }, 2500);  
+       
         
         
       });

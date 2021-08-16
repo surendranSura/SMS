@@ -58,6 +58,8 @@ export class StaffFeedbackComponent implements OnInit {
   }
 
   submit() {
+    console.log(this.newstaffFeedback.value);
+    this.newstaffFeedback.markAllAsTouched();
     this.blockUI.start();
     this.submitted = true;
 

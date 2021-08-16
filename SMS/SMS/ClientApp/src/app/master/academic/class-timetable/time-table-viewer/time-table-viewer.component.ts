@@ -21,7 +21,7 @@ export class TimeTableViewerComponent implements OnInit {
 
   dataSrc = {
     addtionlWeekDays: ['Sat'],
-    periods: 9,
+    //periods: 9,
     table: [
       {
         day: 'Mon',

@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { FormBuilder, FormControl,FormGroup } from '@angular/forms';
+import { SmsConstant } from 'src/app/shared/constant-values';
 
 @Component({
   selector: 'app-student-feedback-list',
@@ -27,7 +29,9 @@ export class StudentFeedbackListComponent implements OnInit {
   
     currentUserSubscription !: Subscription;
     staffListData!: MatTableDataSource<any>;
-
+    feedbackTypes = SmsConstant.feedbackTypes;
+    studentfeedbackfilters: FormGroup;
+    filters : boolean;
 
     // "studentFeedbackId": 1,
     // "staffName": "asdasdasd",
@@ -40,17 +44,26 @@ export class StudentFeedbackListComponent implements OnInit {
     // "description": "asdasdasd",
     // "attachment": ""
   
-    
+    range = new FormGroup({
+      start: new FormControl(),
+      end: new FormControl()
+    });
      @BlockUI() blockUI: NgBlockUI;
     columnsToDisplay=['studentName','feedBackType','feedbackTitle','description','date', 'actions'];
   
-  constructor(private roter:Router, private studentrestApiService :StudentrestApiService) { }
+  constructor(private fb: FormBuilder,private roter:Router, private studentrestApiService :StudentrestApiService) { 
+    this.studentfeedbackfilters = this.fb.group({
+      FeedbackTypeFilter: [''],
+      start: [''],
+      end:['']
+    });
+  }
 
   ngOnInit(): void {
     this.LoadFeedBack();
   }
   callNewStudentFeedback(){
-    this.roter.navigate(['/main/student-feedback'])
+    this.roter.navigate(['/student-feedback'])
   }
 
   removeStaffFeedBack(staff : any){
@@ -78,6 +91,13 @@ export class StudentFeedbackListComponent implements OnInit {
        this.blockUI.stop();
 
     });
+  }
+  filterToggle(){
+    this.filters = !this.filters;
+  }
+  applyFilter(event: any) {
+    const filterValue = this.studentfeedbackfilters.value[event];
+    this.studentFeedbackList.filter = filterValue.trim().toLowerCase();
   }
 
 }

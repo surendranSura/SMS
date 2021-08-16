@@ -51,6 +51,7 @@ export class ParentsGuardianDetailsComponent implements OnInit, FormTouched {
     }
     console.log(true);
     console.log(this.arryoffPersonJson);
+    console.log(this.stuParentDetails[flg]);
     this.stuFormtDetails.emit({ value: this.arryoffPersonJson, valid: this.stuParentDetails[flg] });
     // this.adderessArray[flg] = value;
     // this.addresses.emit(this.adderessArray);

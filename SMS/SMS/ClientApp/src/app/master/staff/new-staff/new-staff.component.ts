@@ -87,6 +87,10 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
   }
 
   createStaff() {
+    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"New Staff details successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500);
     this.staffApiService.createStaff(this.conResults).subscribe(_ => {
       this.dialog.open(MessageBoxComponent, { width: '250px', height: '200px', data: "create" });
       setTimeout(() => {
@@ -96,6 +100,10 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
   }
 
   updateSatff() {
+    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Staff details updated successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500);
     this.staffApiService.updateStaff(this.id, this.conResults).subscribe(_ => {
       
       this.dialog.open(MessageBoxComponent, { width: '250px', height: '200px', data: "update" });

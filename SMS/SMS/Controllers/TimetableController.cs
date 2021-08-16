@@ -21,10 +21,10 @@ namespace SMS.Controllers
         }
         // GET: api/<TimetableController>
         [HttpGet]
-        public IEnumerable<ClassTimeTable> Get([FromBody] ClassTimeTableReq classTimeTableReq)
+        public void Get([FromBody] ClassTimeTableReq classTimeTableReq)
         {
-           return _dbcontext.ClassTimeTable.Where(X => X.Class == classTimeTableReq.Class
-              && X.Section == classTimeTableReq.Section && X.Year == classTimeTableReq.Year).ToList();
+           //return _dbcontext.ClassTimeTable.Where(X => X.Class == classTimeTableReq.Class
+              //&& X.Section == classTimeTableReq.Section && X.Year == classTimeTableReq.Year).ToList();
         }
 
         // GET api/<TimetableController>/5

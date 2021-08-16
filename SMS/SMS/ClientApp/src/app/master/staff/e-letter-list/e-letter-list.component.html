@@ -2,10 +2,58 @@
     <h2>eLetter List</h2>
     
     <div class="right-content">
-        <img src="../../../assets/filter.png" alt="profile" style="height:30px;margin-top:-10px;margin-right: 20px; cursor: pointer;">
+        <img src="../../../assets/filter.png" alt="profile" style="height:30px;margin-top:-10px;margin-right: 20px; cursor: pointer;" (click)="filterToggle()">
         <img src="../../../assets/plus.png" alt="profile" (click)="callNewELetter()" style="height:30px;margin-top:-10px;margin-right: 40px;cursor: pointer;">
     </div>
-    </div>
+</div>
+<div class=" fileterStyle" *ngIf="filters">
+    <form [formGroup]="eletterfilters">
+        <div class="container-fluid" style="margin-top:5px">
+            <div class="row">
+                <div class="col-sm-2">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Letter Type</mat-label>
+                        <mat-select formControlName="leavetypeFilter" (selectionChange)="applyFilter('leavetypeFilter')">
+                            <mat-option *ngFor="let leavetypeFilter  of letterType " [value]="leavetypeFilter.viewValue">
+                                {{leavetypeFilter .viewValue}} 
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Month</mat-label>
+                        <mat-select formControlName="monthFilter" (selectionChange)="applyFilter('monthFilter')">
+                            <mat-option *ngFor="let monthFilter  of monthList " [value]="monthFilter .viewValue">
+                                {{monthFilter .viewValue}} 
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Status</mat-label>
+                        <mat-select formControlName="yearfilter" (selectionChange)="applyFilter('yearfilter')">
+                            <mat-option *ngFor="let yearfilter of years" [value]="yearfilter.viewValue">
+                                {{yearfilter.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2*">
+                    <div class="right-content" style="margin-top:5px;">
+                        <ul type="none" class="profile-name">
+                          <li>Count:{{rows}}</li>
+                          <br><br>
+                          <!-- <li>Clear_All</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
     <!-- <div class="row headerstyle">
 
     </div> -->

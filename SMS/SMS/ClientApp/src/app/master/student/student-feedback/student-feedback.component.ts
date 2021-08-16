@@ -78,14 +78,14 @@ export class StudentFeedbackComponent implements OnInit{
 
   createStudenteLetter()
   {
-    
-   this.blockUI.start()
-    this.studentrestApiService.createStudentFeedBack(this.newstudentFeedback.value).subscribe(_=>{
-      this.blockUI.stop();
-      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback created successfully !"});
+    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback created successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
       }, 2500);
+   this.blockUI.start()
+    this.studentrestApiService.createStudentFeedBack(this.newstudentFeedback.value).subscribe(_=>{
+      this.blockUI.stop();
+      
     },()=>{
       this.blockUI.stop();
     });
@@ -93,13 +93,14 @@ export class StudentFeedbackComponent implements OnInit{
 
   updateStudenteLetter()
   {
-    this.blockUI.start()
-    this.studentrestApiService.updateStudentFeedBack(this.id, this.newstudentFeedback.value).subscribe(_=>{
-      this.blockUI.stop();
-      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback updated successfully !"});
+    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback updated successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
       }, 2500);
+    this.blockUI.start()
+    this.studentrestApiService.updateStudentFeedBack(this.id, this.newstudentFeedback.value).subscribe(_=>{
+      this.blockUI.stop();
+      
     },()=>{
       this.blockUI.stop();
     });
