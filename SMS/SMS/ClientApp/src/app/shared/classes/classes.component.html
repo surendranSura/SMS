@@ -1,3 +1,2 @@
-<div class="card mat-body-strong ">
-    <span class="mat-title"  (click)="navigate()">{{title}}</span>
+<div class="card mat-body-strong, cards" [ngStyle]="{'background-color':getColor(title)}"> <span class="mat-title"(click)="navigate()">{{title}}</span>
 </div>
