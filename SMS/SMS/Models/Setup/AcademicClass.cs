@@ -49,11 +49,11 @@ namespace SMS.Models.Setup
 		public string Class { get; set; }
 
 		// Comma Seperated values
-		public String Sections { get; set; }
+		public String[] Sections { get; set; }
 
 		public string Group { get; set; }
 
 		// Comma Seperated values
-		public string Subjects { get; set; }
+		public string[] Subjects { get; set; }
 	}
 }
