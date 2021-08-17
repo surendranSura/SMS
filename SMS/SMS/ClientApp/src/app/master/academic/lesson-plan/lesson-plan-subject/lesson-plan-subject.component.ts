@@ -23,6 +23,7 @@ export class LessonPlanSubjectComponent implements OnInit {
 
      this.lessonPlanRestApiService.getClassSubjects(this.classId).subscribe( data => {
        this.standard = data;
+       console.log(this.standard[0].subjects);
      });
 
     console.log(this.classId);
