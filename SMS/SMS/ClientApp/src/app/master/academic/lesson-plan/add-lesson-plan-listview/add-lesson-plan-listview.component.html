@@ -1,33 +1,36 @@
 <form [formGroup]="LessonListForm">
     <div class=" row headerstyle">
-        <h2 style="margin-left: 40px;">Class{{class}}</h2>
-        <h2 style="margin-left: 70px; background-color:#f27200;color: white;padding-left: 15px;padding-right: 15px;">
+        <h2 style="margin-left: 40px;">{{class}}</h2>
+        <h2 class="subjectsName">
             {{subject}}</h2>
-        <div class="row field" style="margin-left: 150px;">
-            <div class="col-sm-3">
-                <mat-form-field appearance="standard">
+        <div class="row field" style="margin-left: 75px;">
+            <div class="col-sm-2">
+                <mat-form-field appearance="standard" style="width: 180px;">
                     <mat-label>From</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="from">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input matInput [matDatepicker]="From">
+                    <mat-datepicker-toggle matSuffix [for]="From"></mat-datepicker-toggle>
+                    <mat-datepicker #From></mat-datepicker>
+                  </mat-form-field>
+            </div>
+           
+            <div class="col-sm-5"></div>
+            <div class="col-sm-2">
+                <mat-form-field appearance="standard" style="width: 180px;">
+                    <mat-label>To</mat-label>
+                    <input matInput [matDatepicker]="pickerToFilter">
+                    <mat-datepicker-toggle matSuffix [for]="pickerToFilter"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerToFilter></mat-datepicker>
                 </mat-form-field>
             </div>
-          
-            <!-- <div class="col-sm-3">
-                <mat-form-field appearance="standard">
-                    <mat-label>To</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="To">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-            </div> -->
+
+            
         </div>
-        <div class="right-content" style="margin-top:-10px">
-            <h2>Submit For Approval</h2>
+        <div class="right-content">
+            <h2 style="font-size: 18px; margin-top:-5px;">Submit For Approval</h2>
         </div>
     </div>
     <div class="row" style="margin-left:10px;">
-        <h2 style="margin-left: 40px; cursor: pointer;" (click)="navToback()"><img src="../../../../assets/left.png" class="icon" style="margin-right: 10px;margin-top: -1px;" />Back to Add Lesson </h2>
+        <h2 (click)="navToback()"><img src="../../../../assets/left.png" class="icon" style="margin-right: 10px;margin-top: -1px; font-size: 18px; margin-left: 40px; cursor: pointer;" />Back to Add Lesson </h2>
     </div>
     <table mat-table [dataSource]="studentListData" class="mat-elevation-z6">
         <!--studentName-->

@@ -23,6 +23,7 @@ export class CourseSubjectComponent implements OnInit {
       this.standard = data;
     });
     console.log(this.classId);
+   
   }
   navigate(subject: any) {
         this.router.navigate(["/main/course/courseListView/"+subject+"/"+this.classId]);

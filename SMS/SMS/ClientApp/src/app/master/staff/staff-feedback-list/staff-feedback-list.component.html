@@ -2,19 +2,45 @@
     <h2>Staff Feedback List</h2>
     
     <div class="right-content">
-        <img src="../../../assets/filter.png" alt="profile" style="height:30px;margin-top:-10px;margin-right: 20px; cursor: pointer;">
+        <img src="../../../assets/filter.png" alt="profile" style="height:30px;margin-top:-10px;margin-right: 20px; cursor: pointer;" (click)="filterToggle()">
         <img src="../../../assets/plus.png" alt="profile" (click)="callNewStaffFeedback()" style="height:30px;margin-top:-10px;margin-right: 40px;cursor: pointer;">
     </div>
     </div>
-    <!-- <div class="row headerstyle">
+ 
+<div class="filterStyle" *ngIf="filters">
+    <form [formGroup]="stafffeedbackfilters">
+        <div class="container-fluid" style="margin-top: -5px;">
+            <div class="row">
+                <div class="col-sm-2">
+                
+                <mat-form-field appearance="standard">
+                    <mat-label>Feedback Type</mat-label>
+                    <mat-select formControlName="FeedbackTypeFilter" (selectionChange)="applyFilter('FeedbackTypeFilter')">
+                        <mat-option *ngFor="let classFilter  of feedbackTypes " [value]="classFilter .viewValue">
+                            {{classFilter .viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+                <mat-form-field appearance="standard">
+                    <mat-label>Enter a date range</mat-label>
+                    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                      <input matStartDate formControlName="start" (selectionChange)="applyFilter('start')" placeholder="Start date">
+                      <input matEndDate formControlName="end" (selectionChange)="applyFilter('end')" placeholder="End date">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                  
+                    <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                    <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+                  </mat-form-field>
+            </div>
+            </div>
+        </div>
+    </form>
+</div>
 
-    </div> -->
-
-<!-- <label>
-    <input type="text" [formControl]="name" placeholder="Search">
-  </label>
-  <button (click)="updateName()">click</button>
-  <p>{{name.value}}</p> -->
 <table mat-table [dataSource]="staffFeedbackList" class="mat-elevation-z6">
 
     <!--staffName-->
