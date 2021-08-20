@@ -42,18 +42,20 @@ namespace SMS.Controllers
 		{
 			var I = new Inventory();
 
-			I.ItemCode = IR.ItemCode;
-			I.ItemName = IR.ItemName;
-			I.ModelNumber = IR.ModelNumber;
-			I.SerialNumber = IR.SerialNumber;
-			I.Brand = IR.Brand;
-			I.Quantity = IR.Quantity;
-			I.WarrenOrGarantee = IR.WarrenOrGarantee;
-			I.WarrenOrGarenInfo = IR.WarrenOrGarenInfo;
-			I.Price = IR.Price;
-			I.VendorName = IR.VendorName;
-			I.VendorNumber = IR.VendorNumber;
-			I.VendorAddress = IR.VendorAddress;
+			//I.ItemCode = IR.ItemCode;
+			I.ItemName = IR.itemName;
+			I.InventoryItemTypeId = IR.itemTypeId;
+			I.ModelNumber = IR.modelNumber;
+			I.InventoryItemUsageAreaId = IR.itemUsageId;
+			I.SerialNumber = IR.serialNumber;
+			I.WarrenOrGarantee = IR.warrenOrGarantee;
+			I.WarrenOrGarenInfo = IR.warrenOrGarenInfo;
+			I.Brand = IR.brandName;
+			I.Quantity = IR.quantity;
+			I.Price = IR.itemPriceorPerUnit;
+			I.VendorName = IR.vendorName;
+			I.VendorNumber = IR.vendorNumber;
+			I.VendorAddress = IR.vendorAddress;
 
 			_dbContext.Inventorys.Add(I);
 			_dbContext.SaveChanges();

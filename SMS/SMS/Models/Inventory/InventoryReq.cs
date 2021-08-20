@@ -7,30 +7,34 @@ namespace SMS.Models.Inventory
 {
     public class InventoryReq
     {
-        public string ItemCode { get; set; }
+        public string itemCode { get; set; }
 
-        public string ItemName { get; set; }
+        public string itemName { get; set; }
 
-        public int ModelNumber { get; set; }
+        public int modelNumber { get; set; }
 
-        public string SerialNumber { get; set; }
+        public int itemTypeId { get; set; }
 
-        public string Brand { get; set; }
+        public int itemUsageId { get; set; }
 
-        public int Quantity { get; set; }
+        public string serialNumber { get; set; }
 
-        public string WarrenOrGarantee { get; set; }
+        public string brandName { get; set; }
 
-        public string WarrenOrGarenInfo { get; set; }
+        public int quantity { get; set; }
 
-        public int Price { get; set; }
+        public Boolean warrenOrGarantee { get; set; }
 
-        public int VendorNumber { get; set; }
+        public string warrenOrGarenInfo { get; set; }
 
-        public string VendorName { get; set; }
+        public int itemPriceorPerUnit { get; set; }
 
-        public string VendorAddress { get; set; }
+        public string vendorNumber { get; set; }
 
-        public byte BillCopy { get; set; }
+        public string vendorName { get; set; }
+
+        public string vendorAddress { get; set; }
+
+        public byte billCopy { get; set; }
     }
 }

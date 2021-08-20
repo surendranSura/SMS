@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210817001403_InventoryUpdates")]
+    partial class InventoryUpdates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,14 +78,14 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("Brand")
                         .HasColumnType("text");
 
-                    b.Property<int>("InventoryItemTypeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("InventoryItemUsageAreaId")
                         .HasColumnType("int");
 
                     b.Property<string>("ItemName")
                         .HasColumnType("text");
+
+                    b.Property<int>("ItemTypeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ModelNumber")
                         .HasColumnType("int");
@@ -106,17 +108,17 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("VendorNumber")
                         .HasColumnType("text");
 
-                    b.Property<bool>("WarrenOrGarantee")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<string>("WarrenOrGarantee")
+                        .HasColumnType("text");
 
                     b.Property<string>("WarrenOrGarenInfo")
                         .HasColumnType("text");
 
                     b.HasKey("InventoryId");
 
-                    b.HasIndex("InventoryItemTypeId");
-
                     b.HasIndex("InventoryItemUsageAreaId");
+
+                    b.HasIndex("ItemTypeId");
 
                     b.ToTable("Inventorys");
                 });
@@ -1001,15 +1003,15 @@ namespace SMS.Migrations.MysqlData
 
             modelBuilder.Entity("SMS.Models.Inventory.Inventory", b =>
                 {
-                    b.HasOne("SMS.Models.Inventory.InventoryItemType", "InventoryItemType")
-                        .WithMany()
-                        .HasForeignKey("InventoryItemTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SMS.Models.Inventory.InventoryItemUsageArea", "InventoryItemUsageArea")
                         .WithMany()
                         .HasForeignKey("InventoryItemUsageAreaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SMS.Models.Inventory.InventoryItemType", "InventoryItemType")
+                        .WithMany()
+                        .HasForeignKey("ItemTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

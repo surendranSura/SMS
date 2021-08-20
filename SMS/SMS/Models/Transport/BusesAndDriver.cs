@@ -10,6 +10,8 @@ namespace SMS.Models.Transport
     {
         public int BusesAndDriverId { get; set; }
 
+        public int BusTypeid { get; set; }
+
         [ForeignKey("BusTypeid")]
         public BusType BusType { get; set; }
 
@@ -21,12 +23,14 @@ namespace SMS.Models.Transport
 
         public DateTime InsuranceEndDate { get; set; }
 
+        public int NotificationSpanId { get; set; }
+
         [ForeignKey("NotificationSpanId")]
         public NotificationSpan NotificationSpan { get; set; }
 
-        public string BusStatus { get; set; }
+        //public string BusStatus { get; set; }
 
-        public DateTime ArrivalTime { get; set; }
+        //public DateTime ArrivalTime { get; set; }
 
         public string DriverName { get; set; }
 
@@ -34,6 +38,8 @@ namespace SMS.Models.Transport
 
         public string DriverAadhar { get; set; }
 
-        public byte BusLocation { get; set; }
+        //public byte BusLocation { get; set; }
+
+        public string company { get; set; }
     }
 }

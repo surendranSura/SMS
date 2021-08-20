@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210816081709_TransportDetUpdateLatest")]
+    partial class TransportDetUpdateLatest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,14 +75,20 @@ namespace SMS.Migrations.MysqlData
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<byte>("BillCopy")
+                        .HasColumnType("tinyint unsigned");
+
                     b.Property<string>("Brand")
                         .HasColumnType("text");
 
-                    b.Property<int>("InventoryItemTypeId")
+                    b.Property<int?>("InventoryItemTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("InventoryItemUsageAreaId")
+                    b.Property<int?>("InventoryItemUsageAreaId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ItemCode")
+                        .HasColumnType("text");
 
                     b.Property<string>("ItemName")
                         .HasColumnType("text");
@@ -103,11 +111,11 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("VendorName")
                         .HasColumnType("text");
 
-                    b.Property<string>("VendorNumber")
-                        .HasColumnType("text");
+                    b.Property<int>("VendorNumber")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("WarrenOrGarantee")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<string>("WarrenOrGarantee")
+                        .HasColumnType("text");
 
                     b.Property<string>("WarrenOrGarenInfo")
                         .HasColumnType("text");
@@ -893,7 +901,16 @@ namespace SMS.Migrations.MysqlData
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("ArrivalTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<byte>("BusLocation")
+                        .HasColumnType("tinyint unsigned");
+
                     b.Property<string>("BusNumber")
+                        .HasColumnType("text");
+
+                    b.Property<string>("BusStatus")
                         .HasColumnType("text");
 
                     b.Property<int>("BusTypeid")
@@ -1003,15 +1020,11 @@ namespace SMS.Migrations.MysqlData
                 {
                     b.HasOne("SMS.Models.Inventory.InventoryItemType", "InventoryItemType")
                         .WithMany()
-                        .HasForeignKey("InventoryItemTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InventoryItemTypeId");
 
                     b.HasOne("SMS.Models.Inventory.InventoryItemUsageArea", "InventoryItemUsageArea")
                         .WithMany()
-                        .HasForeignKey("InventoryItemUsageAreaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InventoryItemUsageAreaId");
 
                     b.Navigation("InventoryItemType");
 
