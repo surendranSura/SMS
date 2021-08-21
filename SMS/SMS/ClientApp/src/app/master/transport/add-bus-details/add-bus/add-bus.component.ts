@@ -10,20 +10,26 @@ import { SmsConstant } from 'src/app/shared/constant-values';
 })
 export class AddBusComponent implements OnInit {
  @Output() busFormOutput=new EventEmitter<any>(); 
- @Input() getFormValues = {};
+ formValues= {};
  busDetailForm: FormGroup;
  bustype = SmsConstant.busTypes;
  sendNotification = SmsConstant.notification;
   constructor(private fb:FormBuilder) {
     this.busDetailForm = this.fb.group({
-      bus : ['']
+      busTypeid : ['']
       ,company : ['']
-      ,seats : ['']
+      ,seatCount : ['']
       ,busNumber : ['']
-      ,insPolicyNum : ['']
-      ,insurenceDate : ['']
-      ,notification : ['']
+      ,insurancePolicyNum : ['']
+      ,insuranceEndDate : ['']
+      ,notificationSpanId : ['']
     })
+
+    this.busDetailForm.valueChanges.subscribe(() =>{
+      Object.assign(this.formValues, this.busDetailForm.value);
+      this.busFormOutput.emit({value: this.formValues});
+    }
+    )
    }
   
   ngOnInit(): void {

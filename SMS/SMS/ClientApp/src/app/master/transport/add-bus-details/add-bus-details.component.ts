@@ -28,11 +28,12 @@ export class AddBusDetailsComponent implements OnInit {
   ngAfterViewInit(): void {
 
     if (!this.isAddMode) {
+      // console.log(this._busAndDriver);
       this._BusanddriverServiceAPI.getBusAnddriver(this.id)
         .subscribe(data => {
           this._busAndDriver = data;
           this._BusanddriverServiceAPI.setFormValue(data);
-          console.log(this._busAndDriver);
+          
         }, error => console.log(error));
     }
 
@@ -58,7 +59,7 @@ export class AddBusDetailsComponent implements OnInit {
       this.selectedTab--;
     }
     else if (st === 'frd') {
-      if (this.selectedTab >= 3) {
+      if (this.selectedTab >= 1) {
         this.submit();
         return;
       }
@@ -91,8 +92,9 @@ export class AddBusDetailsComponent implements OnInit {
   }
 
   createBusAndDriver() {
+    // console.log(this.busAndDriJsonResult);
     this._BusanddriverServiceAPI.createBusAnddriver(this.busAndDriJsonResult).subscribe(_ => {
-      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "student feedback updated successfully !" });
+      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Bus And Driver Details updated successfully !" });
       setTimeout(() => {
         this.dialog.closeAll();
       }, 2500);
@@ -115,7 +117,7 @@ export class AddBusDetailsComponent implements OnInit {
   setTabFormDetails(value: any,tab:number){
     this.BusAndDriverDetails[tab] = value.valid;
     Object.assign(this.busAndDriJsonResult,value.value);
-    console.log(value.value);
+    // console.log(value.value);
   }
 }
 

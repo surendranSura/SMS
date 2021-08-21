@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
+import { InventoryService } from '../inventory.service';
+import {Inventory} from '../inventory'
 
 @Component({
   selector: 'app-add-inventory',
@@ -14,32 +16,32 @@ import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 export class AddInventoryComponent implements OnInit {
 
   inventoryFormDetails: boolean[] =[]
-  results : any =null;
-  stuJsonResult: any ={};
+  // results : any =null;
+  invJsonResult: any ={};
   selectedTab:any=0;
   isAddMode?: boolean;
-//  _student : Student;
+  _Inventory: Inventory;
   id : any;
   
-  @ViewChildren("dt") dt: QueryList<FormTouched>;
+  // @ViewChildren("dt") dt: QueryList<FormTouched>;
 
   @BlockUI() blockUI: NgBlockUI;
   
-  constructor(private route: ActivatedRoute, public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, public dialog: MatDialog, private _InventoryAPI: InventoryService) { }
 
-  // ngAfterViewInit(): void {
+  ngAfterViewInit(): void {
 
-  //   if(!this.isAddMode)
-  //   {
-  //     this.studentApiService.getStudent(this.id)
-  //       .subscribe(data => {
-  //         this._student = data;
-  //         this.studentApiService.setFormValue(data);
-  //         console.log(this._student);
-  //       }, error => console.log(error));
-  //   }
+    if(!this.isAddMode)
+    {
+      this._InventoryAPI.getInventory(this.id)
+        .subscribe(data => {
+          this._Inventory = data;
+          this._InventoryAPI.setFormValue(data);
+          // console.log(this._Inventory);
+        }, error => console.log(error));
+    }
     
-  // }
+  }
   
 
   ngOnInit(): void {
@@ -48,13 +50,11 @@ export class AddInventoryComponent implements OnInit {
   }
 
   btnMovement(st: string) {
-    let flg = this.dt.toArray()[this.selectedTab].formTouched();
-   
     if (st === 'bck') {
       this.selectedTab--;
     }
-    else if (st === 'frd'  && flg) {
-      if (this.selectedTab >= 3) {
+    else if (st === 'frd') {
+      if (this.selectedTab >= 1) {
         this.submit();
         return;
       }
@@ -63,7 +63,7 @@ export class AddInventoryComponent implements OnInit {
   }
 
   submit(){
-
+debugger
     this.blockUI.start();
     // this.submitted = true;
 
@@ -74,44 +74,39 @@ export class AddInventoryComponent implements OnInit {
     }
 
     if (this.isAddMode) {
-      this.createStudent();
+      this.createInventory();
      } else {
-      this.updateStudent();
+      this.updateInventory();
      }
 
      this.blockUI.stop();
 
     // if(!this.inventoryFormDetails.includes(false)){
     //   return;
-    // }
-    
+    // } 
+     
   }
 
-  createStudent()
+  createInventory()
   {
-    // this.studentApiService.createStudent(this.stuJsonResult).subscribe(_=>{
-    //   this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback updated successfully !"});
-    //   setTimeout(() => {
-    //     this.dialog.closeAll();
-    //   }, 2500);
-    // });
+    console.log(JSON.stringify(this.invJsonResult));
+    this._InventoryAPI.createInventory(this.invJsonResult).subscribe( _=> {
+      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Inventory Details updated successfully !" });
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500);
+    });
   }
 
-  updateStudent()
+  updateInventory()
   {
-    // this.staffApiService.updateStaff(this.id, this.conResults).subscribe(_ => {
-    //   this.dialog.open(MessageBoxComponent, { width: '250px', height: '200px', data: "update" });
-    //   setTimeout(() => {
-    //     this.dialog.closeAll();
-    //     //routerlink needs
-    //   }, 2500);
-    // });
+    this._InventoryAPI.updateInventory(this.id, this.invJsonResult).subscribe(_=>{});
   }
   
   setTabFormDetails(value: any,tab:number){
     this.inventoryFormDetails[tab] = value.valid;
-    Object.assign(this.stuJsonResult,value.value);
-    console.log(value.value);
+    Object.assign(this.invJsonResult,value.value);
+    // console.log(value.value);
   }
 
 

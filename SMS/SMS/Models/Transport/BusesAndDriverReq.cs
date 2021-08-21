@@ -7,24 +7,30 @@ namespace SMS.Models.Transport
 {
     public class BusesAndDriverReq
     {
-        public int SeatCount { get; set; }
+        public int busTypeid { get; set; }
 
-        public string BusNumber { get; set; }
+        public int seatCount { get; set; }
 
-        public string InsurancePolicyNum { get; set; }
+        public string busNumber { get; set; }
 
-        public DateTime InsuranceEndDate { get; set; }
+        public string insurancePolicyNum { get; set; }
 
-        public string BusStatus { get; set; }
+        public DateTime insuranceEndDate { get; set; }
 
-        public DateTime ArrivalTime { get; set; }
+        public int notificationSpanId { get; set; }
 
-        public string DriverName { get; set; }
+        //public string busStatus { get; set; }
 
-        public int DriverNumber { get; set; }
+        //public DateTime arrivalTime { get; set; }
 
-        public string DriverAadhar { get; set; }
+        public string driverName { get; set; }
 
-        public byte BusLocation { get; set; }
+        public int driverNumber { get; set; }
+
+        public string driverAadhar { get; set; }
+
+        //public byte busLocation { get; set; }
+
+        public string company { get; set; }
     }
 }
