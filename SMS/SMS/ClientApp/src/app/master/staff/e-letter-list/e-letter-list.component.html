@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard">
-                        <mat-label>Status</mat-label>
+                        <mat-label>Year</mat-label>
                         <mat-select formControlName="yearfilter" (selectionChange)="applyFilter('yearfilter')">
                             <mat-option *ngFor="let yearfilter of years" [value]="yearfilter.viewValue">
                                 {{yearfilter.viewValue}}
