@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace SMS.Models
 {
-	public class Languages
+	public class Language
 	{
 		//public Languages()
 		//{
 		//	staff = new HashSet<Staff>();
 		//}
 
-		public int LanguagesId { get; set; }
+		public int LanguageId { get; set; }
 
 		public string LanguageDescription { get; set; }
 
