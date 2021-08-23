@@ -34,7 +34,35 @@ namespace WebApi.Helpers
 
         public virtual DbSet<StaffLeave> StaffLeaves { get; set; }
 
-        public virtual DbSet<ClassTimeTable> ClassTimeTable { get; set; }
+        #region "staff_Lookups"
+        public virtual DbSet<Nationality> Nationalities { get; set; }
+
+        public virtual DbSet<Religion> Religions { get; set; }
+
+        public virtual DbSet<City> Cities { get; set; }
+
+        public virtual DbSet<State> States { get; set; }
+
+        public virtual DbSet<Country> Countries { get; set; }
+
+        public virtual DbSet<Language> Languages { get; set; }
+
+        public virtual DbSet<StaffType> StaffTypes { get; set; }
+
+        public virtual DbSet<Designation> Designations { get; set; }
+
+        public virtual DbSet<Department> Departments { get; set; }
+
+        public virtual DbSet<Education> Educations { get; set; }
+
+        public virtual DbSet<ReportingTo> ReportingTos { get; set; }
+
+        public virtual DbSet<SchoolName> SchoolNames { get; set; }
+
+        public virtual DbSet<Bank> Banks { get; set; }
+        #endregion
+
+        //public virtual DbSet<ClassTimeTable> ClassTimeTable { get; set; }
 
         //end Leave tables
 
