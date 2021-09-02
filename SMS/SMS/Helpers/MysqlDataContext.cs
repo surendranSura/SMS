@@ -82,6 +82,10 @@ namespace WebApi.Helpers
         public virtual DbSet<NotificationSpan> NotificationSpans { get; set; }
         #endregion "Transport"
 
+        public virtual DbSet<ClassTimeTable> ClassTimeTables { get; set; }
+
+        public virtual DbSet<PeriodDetail> PeriodDetails { get; set; }
+
         private readonly IConfiguration Configuration;
 
         public MysqlDataContext(IConfiguration configuration)
