@@ -26,13 +26,13 @@ namespace SMS.Migrations.MysqlData
                 table: "Inventorys",
                 newName: "IX_Inventorys_InventoryItemTypeId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Inventorys_InventoryItemTypes_InventoryItemTypeId",
-                table: "Inventorys",
-                column: "InventoryItemTypeId",
-                principalTable: "InventoryItemTypes",
-                principalColumn: "InventoryItemTypeId",
-                onDelete: ReferentialAction.Cascade);
-        }
+			//migrationBuilder.AddForeignKey(
+			//	name: "FK_Inventorys_InventoryItemTypes_InventoryItemTypeId",
+			//	table: "Inventorys",
+			//	column: "InventoryItemTypeId",
+			//	principalTable: "InventoryItemTypes",
+			//	principalColumn: "InventoryItemTypeId",
+			//	onDelete: ReferentialAction.Cascade);
+		}
     }
 }
