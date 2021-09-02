@@ -35,7 +35,7 @@ namespace SMS.Models
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<StudentAddress> Addresses { get; set; }
         public virtual DbSet<EmployeementStatus> EmployeementStatuses { get; set; }
-        public virtual DbSet<Languages> Languages { get; set; }
+        public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<StaffExperience> StaffExperiences { get; set; }
         public virtual DbSet<StaffType> StaffTypes { get; set; }
 		public virtual DbSet<Attachments> MyAttachments { get; set; }

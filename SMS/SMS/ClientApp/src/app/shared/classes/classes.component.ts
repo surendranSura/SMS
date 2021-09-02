@@ -21,4 +21,37 @@ export class ClassesComponent implements OnInit {
       this.router.navigate([this.route_Link]);
   }
 
+  getColor(title) { (2)
+    switch (title) {
+      case 'I':
+        return '#E36EEC';
+      case 'II':
+        return '#6E9BEC';
+      case 'III':
+        return '#EC846E';
+      case 'IV':
+        return 'yellow';
+      case 'VI':
+        return '#FFBD33'; 
+      case 'V':
+        return '#33FFBD';
+      case 'VI':
+        return '#33FFBD';
+      case 'VII':
+        return '#FFBD33';  
+      case 'VIII':
+        return 'yellow';
+      case 'IX':
+        return '#EC846E';
+      case 'X':
+        return '#6E9BEC';
+      case 'XI':
+        return '#33FFBD';
+      case 'XII':
+        return '#E36EEC';
+      default:
+         return 'white';  
+    }
+  }
+
 }

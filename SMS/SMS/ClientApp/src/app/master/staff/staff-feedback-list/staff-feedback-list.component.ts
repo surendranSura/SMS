@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router'
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription} from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { StaffrestApiService } from '../staffrest-api.service';
+import { SmsConstant } from 'src/app/shared/constant-values';
 
 @Component({
   selector: 'app-staff-feedback-list',
@@ -30,11 +31,15 @@ export class StaffFeedbackListComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
-
   currentUserSubscription !: Subscription;
   staffListData!: MatTableDataSource<any>;
-
-  
+  feedbackTypes = SmsConstant.feedbackTypes;
+  stafffeedbackfilters: FormGroup;
+  filters : boolean;
+  range =new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  })
    @BlockUI() blockUI: NgBlockUI;
 
   columnsToDisplay = ['staffName', 'feedBackType', 'feedbackTitle', 'description', 'date', 'attachment', 'actions'];
@@ -72,6 +77,14 @@ export class StaffFeedbackListComponent implements OnInit {
        this.blockUI.stop();
 
     });
+  }
+  filterToggle(){
+    this.filters = !this.filters;
+  }
+  applyFilter(event: any)
+  {
+    const filterValue =this.stafffeedbackfilters.value[event];
+    this.staffListData.filter = filterValue.trim().toLowerCase();
   }
 
 }

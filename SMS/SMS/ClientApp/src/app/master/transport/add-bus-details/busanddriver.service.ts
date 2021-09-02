@@ -66,7 +66,7 @@ export class BusanddriverService {
 
   // HttpClient API put() method => Update BusAnddriver
   updateBusAnddriver(id: any, BusAnddriver: any): Observable<any> {
-    var apiURLUpdate = environment.apiUrl + '/apiTransport/UpdateBusAndDriver/';
+    var apiURLUpdate = environment.apiUrl + '/api/Transport/UpdateBusAndDriver/';
 
     return this.http.put<any>(apiURLUpdate + id, JSON.stringify(BusAnddriver), this.httpOptions)
       .pipe(
@@ -77,9 +77,9 @@ export class BusanddriverService {
 
   // HttpClient API delete() method => Delete BusAnddriver
   deleteBusAnddriver(id: any) {
-    var apiURLUpdate = environment.apiUrl + '/api/Transport/RemoveBusAndDriver/';
+    var apiURLdelete = environment.apiUrl + '/api/Transport/RemoveBusAndDriver/';
 
-    return this.http.delete<any>(this.apiURL + id, this.httpOptions)
+    return this.http.delete<any>(apiURLdelete + id, this.httpOptions)
       .pipe(
         retry(1),
         catchError((err) => this.handleError(err))

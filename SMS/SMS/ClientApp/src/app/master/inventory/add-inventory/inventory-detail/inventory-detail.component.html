@@ -8,8 +8,8 @@
                     <input matInput formControlName="itemName">
                 </mat-form-field>    
                 <mat-form-field appearance="standard">
-                    <mat-label>Bus Type</mat-label>
-                    <mat-select formControlName="item">
+                    <mat-label>Item Type</mat-label>
+                    <mat-select formControlName="itemTypeId">
                         <mat-option *ngFor="let item of itemtype" [value]="item.value">
                             {{item.viewValue}}
                         </mat-option>
@@ -21,7 +21,7 @@
                 </mat-form-field> 
                 <mat-form-field appearance="standard">
                     <mat-label>Item Usage Area</mat-label>
-                    <mat-select formControlName="ItemUsage">
+                    <mat-select formControlName="itemUsageId">
                         <mat-option *ngFor="let ItemUsage of itemusageAreaType" [value]="ItemUsage.value">
                             {{ItemUsage.viewValue}}
                         </mat-option>
@@ -32,11 +32,11 @@
                     <input matInput formControlName="serialNumber">
                 </mat-form-field>   
                 
-                <mat-slide-toggle color="primary" labelPosition="before" formControlName="warGarenty">Is Warranty/Guarantee</mat-slide-toggle>
+                <mat-slide-toggle color="primary" labelPosition="before" formControlName="warrenOrGarantee">Is Warranty/Guarantee</mat-slide-toggle>
 
                 <mat-form-field appearance="standard">
                     <mat-label>Details of Warranty/Guarantee</mat-label>
-                    <input matInput formControlName="detailOfWG">
+                    <input matInput formControlName="warrenOrGarenInfo">
                 </mat-form-field> 
               
             </div>
@@ -47,7 +47,7 @@
                 </mat-form-field> 
                 
                 <mat-form-field appearance="standard">
-                    <mat-label>Quantity name</mat-label>
+                    <mat-label>Quantity</mat-label>
                     <input matInput formControlName="quantity">
                 </mat-form-field> 
             </div>

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { LessonPlan } from './models/lesson-plan';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { LessonPlan } from './models/lesson-plan';
 export class LessonPlanRestApiService {
 
   // apiURL = 'api/AcademicClass/GetClassSubjects/';
-  apiURL = "http://localhost:3007/Classes?class=";
+  apiURL = environment.apiUrl + "/api/AcademicClass/";
   // lessonPlanURL = 'api/LessonPlan/';
 
   lessonPlanURL =  "http://localhost:3007/LessonPlan";

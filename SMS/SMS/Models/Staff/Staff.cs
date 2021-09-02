@@ -76,6 +76,12 @@ namespace SMS.Models
         public string Esinumber { get; set; }
         public string Epfnumber { get; set; }
 
+        //public int cityID { get; set; }
+
+        //[ForeignKey(cityID)]
+
+        //public City CityID { get; set; }
+
         // reporting To drop down TBD
         public int ReportingTo { get; set; }
 

@@ -1,12 +1,12 @@
 export class BusAndDriver{
-    Bus? :string;
-    Company? :string;
-    NoOfSeats? :string;
-    BusNumber? :string;
-    InsPolicyNum? :string;
-    AdmissionDate? :string;
-    SendNotification? :string;
-    DriverName? :string;
-    DriverNumber? :string;
-    DriverAadharNUm? :string;
-}
+    busTypeid? :string;
+    company? :string;
+    seatCount? :string;
+    busNumber? :string;
+    insurancePolicyNum? :string;
+    insuranceEndDate? :string;
+    notificationSpanId? :string;
+    driverName? :string;
+    driverNumber? :string;
+    driverAadhar? :string;
+} 

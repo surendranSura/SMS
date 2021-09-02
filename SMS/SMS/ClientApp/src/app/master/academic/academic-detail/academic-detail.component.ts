@@ -14,6 +14,7 @@ export class AcademicDetailComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
+  
   //Class & Sections Subjects Lesson Plan Timetable
   columnsToDisplay = ['classSections', 'subjects',
     'lessonPlan', 'timeTable'];
@@ -36,10 +37,10 @@ export class AcademicDetailComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.loadStaff();
+    this.loadacademic();
   }
 
-  loadStaff() {
+  loadacademic() {
 
 
   }

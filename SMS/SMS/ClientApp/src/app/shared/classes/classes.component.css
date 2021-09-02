@@ -12,3 +12,15 @@
     padding-top:39%;
     cursor: pointer;
 }
+
+.card:hover{
+    color:white;
+    border-radius: 10px;
+    transform: scale(1.1);
+}
+
+.cards{
+    cursor: pointer;
+    transition: transform 0.5s , border-radius 0.5s  ;
+}
+

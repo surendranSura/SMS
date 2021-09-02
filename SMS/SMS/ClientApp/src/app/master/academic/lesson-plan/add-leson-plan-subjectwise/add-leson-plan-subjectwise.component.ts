@@ -28,20 +28,21 @@ export class AddLesonPlanSubjectwiseComponent implements OnInit {
     private router: Router,protected alertService: AlertService, private lessonPlanRestApiService : LessonPlanRestApiService) { 
       
     this.subjectwiselessonform=this.fb.group({
-      date: [''],
-      classWork: [''],
-      homeWork: [''],
-      lesson: [''],
-      games: [''],
-      activity: ['',],
-      classActivity:[''],
-      topic:[''],
-      extraInfo:[''],
-      concept:['']
+      date: ['',Validators.required],
+      classWork: ['',Validators.required],
+      homeWork: ['',Validators.required],
+      lesson: ['',Validators.required],
+      games: ['',Validators.required],
+      activity: ['',Validators.required],
+      classActivity:['',Validators.required],
+      topic:['',Validators.required],
+      extraInfo:['',Validators.required],
+      concept:['',Validators.required]
     });
    }
 onSubmit() {
 
+  this.subjectwiselessonform.markAllAsTouched();
   let classSubject= {className:this.class,subjectName:this.subject};
   Object.assign(classSubject,this.subjectwiselessonform.value);
 
@@ -65,7 +66,7 @@ onSubmit() {
   }
 
   navToListView(){
-    this.router.navigate(["main/lesson-plan/addLessonPlanListview/"+ this.subject+"/"+this.class]);
+    this.router.navigate(["lesson-plan/addLessonPlanListview/"+ this.subject+"/"+this.class]);
   }
 
   loadLessonPlan()

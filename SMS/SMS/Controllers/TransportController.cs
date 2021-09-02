@@ -45,15 +45,20 @@ namespace SMS.Controllers
             //var result = _mapper.Map<BusesAndDriver>(value);
             var BD = new BusesAndDriver();
 
-            BD.ArrivalTime = value.ArrivalTime;
-            BD.BusLocation = value.BusLocation;
-            BD.BusNumber = value.BusNumber;
-            BD.BusStatus = value.BusStatus;
-            BD.DriverAadhar = value.DriverAadhar;
-            BD.DriverName = value.DriverName;
-            BD.DriverNumber = value.DriverNumber;
-            
+            BD.BusTypeid = value.busTypeid;
+            BD.company = value.company;
+            BD.SeatCount = value.seatCount;
+            BD.BusNumber = value.busNumber;
+            BD.InsurancePolicyNum = value.insurancePolicyNum;
+            BD.InsuranceEndDate = value.insuranceEndDate;
+            BD.DriverAadhar = value.driverAadhar;
+            BD.DriverName = value.driverName;
+            BD.DriverNumber = value.driverNumber;
+            BD.NotificationSpanId = value.notificationSpanId;
 
+            //BD.ArrivalTime = value.ArrivalTime;
+            //BD.BusLocation = value.busLocation;
+            //BD.BusStatus = value.BusStatus;
             _dbContext.BusesAndDrivers.Add(BD);
             _dbContext.SaveChanges();
         }

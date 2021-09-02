@@ -22,10 +22,10 @@ export class ClassesComponent implements OnInit {
       }
     );
   }
-
   ngOnInit(): void {
 
 
   }
+ 
 
 }

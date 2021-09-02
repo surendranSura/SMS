@@ -67,26 +67,104 @@ namespace SMS.Migrations.MysqlData
                     b.ToTable("LessonPlans");
                 });
 
+            modelBuilder.Entity("SMS.Models.Bank", b =>
+                {
+                    b.Property<int>("BankId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("BankDescr")
+                        .HasColumnType("text");
+
+                    b.HasKey("BankId");
+
+                    b.ToTable("Banks");
+                });
+
+            modelBuilder.Entity("SMS.Models.City", b =>
+                {
+                    b.Property<int>("CityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("cityDescr")
+                        .HasColumnType("text");
+
+                    b.HasKey("CityId");
+
+                    b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("SMS.Models.Country", b =>
+                {
+                    b.Property<int>("CountryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("countryDescr")
+                        .HasColumnType("text");
+
+                    b.HasKey("CountryId");
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("SMS.Models.Department", b =>
+                {
+                    b.Property<int>("DepartmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("DepartmentName")
+                        .HasColumnType("text");
+
+                    b.HasKey("DepartmentId");
+
+                    b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("SMS.Models.Designation", b =>
+                {
+                    b.Property<int>("DesignationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("DesignationName")
+                        .HasColumnType("text");
+
+                    b.HasKey("DesignationId");
+
+                    b.ToTable("Designations");
+                });
+
+            modelBuilder.Entity("SMS.Models.Education", b =>
+                {
+                    b.Property<int>("EducationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("eduDescr")
+                        .HasColumnType("text");
+
+                    b.HasKey("EducationId");
+
+                    b.ToTable("Educations");
+                });
+
             modelBuilder.Entity("SMS.Models.Inventory.Inventory", b =>
                 {
                     b.Property<int>("InventoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<byte>("BillCopy")
-                        .HasColumnType("tinyint unsigned");
-
                     b.Property<string>("Brand")
                         .HasColumnType("text");
 
-                    b.Property<int?>("InventoryItemTypeId")
+                    b.Property<int>("InventoryItemTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("InventoryItemUsageAreaId")
+                    b.Property<int>("InventoryItemUsageAreaId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ItemCode")
-                        .HasColumnType("text");
 
                     b.Property<string>("ItemName")
                         .HasColumnType("text");
@@ -109,11 +187,11 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("VendorName")
                         .HasColumnType("text");
 
-                    b.Property<int>("VendorNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("WarrenOrGarantee")
+                    b.Property<string>("VendorNumber")
                         .HasColumnType("text");
+
+                    b.Property<bool>("WarrenOrGarantee")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("WarrenOrGarenInfo")
                         .HasColumnType("text");
@@ -179,6 +257,20 @@ namespace SMS.Migrations.MysqlData
                     b.ToTable("InventoryItemUsageAreas");
                 });
 
+            modelBuilder.Entity("SMS.Models.Language", b =>
+                {
+                    b.Property<int>("LanguageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("LanguageDescription")
+                        .HasColumnType("text");
+
+                    b.HasKey("LanguageId");
+
+                    b.ToTable("Languages");
+                });
+
             modelBuilder.Entity("SMS.Models.Leave.StaffLeave", b =>
                 {
                     b.Property<int>("StaffLeaveId")
@@ -239,6 +331,62 @@ namespace SMS.Migrations.MysqlData
                     b.HasIndex("StudentId");
 
                     b.ToTable("StudentLeaves");
+                });
+
+            modelBuilder.Entity("SMS.Models.Nationality", b =>
+                {
+                    b.Property<int>("NationalityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("NationalityName")
+                        .HasColumnType("text");
+
+                    b.HasKey("NationalityId");
+
+                    b.ToTable("Nationalities");
+                });
+
+            modelBuilder.Entity("SMS.Models.Religion", b =>
+                {
+                    b.Property<int>("ReligionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReligionName")
+                        .HasColumnType("text");
+
+                    b.HasKey("ReligionId");
+
+                    b.ToTable("Religions");
+                });
+
+            modelBuilder.Entity("SMS.Models.ReportingTo", b =>
+                {
+                    b.Property<int>("ReportingToId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReportingDescr")
+                        .HasColumnType("text");
+
+                    b.HasKey("ReportingToId");
+
+                    b.ToTable("ReportingTos");
+                });
+
+            modelBuilder.Entity("SMS.Models.SchoolName", b =>
+                {
+                    b.Property<int>("SchoolNameId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("SchoolDescr")
+                        .HasColumnType("text");
+
+                    b.HasKey("SchoolNameId");
+
+                    b.ToTable("SchoolNames");
                 });
 
             modelBuilder.Entity("SMS.Models.Setup.AcademicClass", b =>
@@ -509,6 +657,34 @@ namespace SMS.Migrations.MysqlData
                     b.HasIndex("StaffId");
 
                     b.ToTable("StaffExperience");
+                });
+
+            modelBuilder.Entity("SMS.Models.StaffType", b =>
+                {
+                    b.Property<int>("StaffTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.HasKey("StaffTypeId");
+
+                    b.ToTable("StaffTypes");
+                });
+
+            modelBuilder.Entity("SMS.Models.State", b =>
+                {
+                    b.Property<int>("StateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("stateDescr")
+                        .HasColumnType("text");
+
+                    b.HasKey("StateId");
+
+                    b.ToTable("States");
                 });
 
             modelBuilder.Entity("SMS.Models.Student", b =>
@@ -899,19 +1075,10 @@ namespace SMS.Migrations.MysqlData
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ArrivalTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<byte>("BusLocation")
-                        .HasColumnType("tinyint unsigned");
-
                     b.Property<string>("BusNumber")
                         .HasColumnType("text");
 
-                    b.Property<string>("BusStatus")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("BusTypeid")
+                    b.Property<int>("BusTypeid")
                         .HasColumnType("int");
 
                     b.Property<string>("DriverAadhar")
@@ -929,11 +1096,14 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("InsurancePolicyNum")
                         .HasColumnType("text");
 
-                    b.Property<int?>("NotificationSpanId")
+                    b.Property<int>("NotificationSpanId")
                         .HasColumnType("int");
 
                     b.Property<int>("SeatCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("company")
+                        .HasColumnType("text");
 
                     b.HasKey("BusesAndDriverId");
 
@@ -1015,11 +1185,15 @@ namespace SMS.Migrations.MysqlData
                 {
                     b.HasOne("SMS.Models.Inventory.InventoryItemType", "InventoryItemType")
                         .WithMany()
-                        .HasForeignKey("InventoryItemTypeId");
+                        .HasForeignKey("InventoryItemTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SMS.Models.Inventory.InventoryItemUsageArea", "InventoryItemUsageArea")
                         .WithMany()
-                        .HasForeignKey("InventoryItemUsageAreaId");
+                        .HasForeignKey("InventoryItemUsageAreaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("InventoryItemType");
 
@@ -1119,11 +1293,15 @@ namespace SMS.Migrations.MysqlData
                 {
                     b.HasOne("SMS.Models.Transport.BusType", "BusType")
                         .WithMany()
-                        .HasForeignKey("BusTypeid");
+                        .HasForeignKey("BusTypeid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SMS.Models.Transport.NotificationSpan", "NotificationSpan")
                         .WithMany()
-                        .HasForeignKey("NotificationSpanId");
+                        .HasForeignKey("NotificationSpanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("BusType");
 

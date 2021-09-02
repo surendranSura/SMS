@@ -15,22 +15,24 @@ export class InventoryDetailComponent implements OnInit,FormTouched {
  inventoryDetailForm: FormGroup;  
  itemtype = SmsConstant.itemName;
  itemusageAreaType = SmsConstant.itemUsageArea;
+ formValues = {};
   constructor(private fb:FormBuilder) {
 
     this.inventoryDetailForm = this.fb.group({
-      bus : ['',Validators.required]
-      ,itemName : ['',Validators.required]
+      itemName : ['',Validators.required]
+      ,itemTypeId : ['',Validators.required]
       ,modelNumber : ['',Validators.required]
       ,serialNumber : ['',Validators.required]
-      ,detailOfWG : ['',Validators.required]
-      ,ItemUsage : ['',Validators.required]
-      ,warGarenty: [true]
+      ,warrenOrGarenInfo : ['',Validators.required]
+      ,itemUsageId : ['',Validators.required]
+      ,warrenOrGarantee: [true]
       ,brandName : ['',Validators.required]
       ,quantity : ['',Validators.required]
     })
     this.inventoryDetailForm.valueChanges.subscribe(()=>{
-      
-      this.inventoryFormDetails.emit({value:this.inventoryDetailForm.value,valid:this.inventoryDetailForm.valid});
+      Object.assign(this.formValues, this.inventoryDetailForm.value);
+      this.inventoryFormDetails.emit({value: this.formValues});
+      // this.inventoryFormDetails.emit({value:this.inventoryDetailForm.value,valid:this.inventoryDetailForm.valid});
     
     });
    }

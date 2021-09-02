@@ -7,18 +7,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./vendor-details.component.css']
 })
 export class VendorDetailsComponent implements OnInit {
-  @Output() inventoryFormDetails=new EventEmitter<any>(); 
+  @Output() vendorFormDetails=new EventEmitter<any>(); 
   // @Input() getFormValues = {};
   vendorDetailForm: FormGroup;
+  formValues = {};
   constructor(private fb:FormBuilder) {
     this.vendorDetailForm = this.fb.group({
-      VendorName : ['', Validators.required]
+      vendorName : ['', Validators.required]
       ,itemPriceorPerUnit : ['', Validators.required]
       ,vendorAddress : ['', Validators.required]
-      ,vendorName : ['', Validators.required]
+      ,vendorNumber : ['', Validators.required]
     });
     this.vendorDetailForm.valueChanges.subscribe(()=>{      
-      this.inventoryFormDetails.emit({value:this.vendorDetailForm.value,valid:this.vendorDetailForm.valid});    
+      Object.assign(this.formValues, this.vendorDetailForm.value);
+      this.vendorFormDetails.emit({value: this.formValues});  
     });
    }
    formTouched(): boolean {
