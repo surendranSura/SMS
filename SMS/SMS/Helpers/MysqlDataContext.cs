@@ -34,7 +34,9 @@ namespace WebApi.Helpers
 
         public virtual DbSet<StaffLeave> StaffLeaves { get; set; }
 
-        //public virtual DbSet<ClassTimeTable> ClassTimeTable { get; set; }
+        public virtual DbSet<ClassTimeTable> ClassTimeTables { get; set; }
+
+        public virtual DbSet<PeriodDetail> PeriodDetails { get; set; }
 
         //end Leave tables
 

@@ -3,6 +3,7 @@ using SMS.Models.TimeTable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using WebApi.Helpers;
 
@@ -20,24 +21,21 @@ namespace SMS.Controllers
             this._dbcontext = dbcontext;
         }
         // GET: api/<TimetableController>
-        [HttpGet]
-        public void Get([FromBody] ClassTimeTableReq classTimeTableReq)
+        [HttpGet("RetriveTimetable")]
+        public ClassTimeTable Get([FromBody] ClassTimeTableReq value)
         {
-           //return _dbcontext.ClassTimeTable.Where(X => X.Class == classTimeTableReq.Class
-              //&& X.Section == classTimeTableReq.Section && X.Year == classTimeTableReq.Year).ToList();
-        }
-
-        // GET api/<TimetableController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+            return _dbcontext.ClassTimeTables
+                           .Include("PeriodDetail")
+                           .Where(s => s.Class == value.Class && s.Section == value.Section && s.Year == value.Year)
+                           .FirstOrDefault<ClassTimeTable>();
         }
 
         // POST api/<TimetableController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("CreatePeriod")]
+        public void Post([FromBody] ClassTimeTable value)
         {
+            _dbcontext.ClassTimeTables.Add(value);
+            _dbcontext.SaveChanges();
         }
 
         // PUT api/<TimetableController>/5
